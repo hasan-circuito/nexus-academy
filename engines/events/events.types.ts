@@ -36,7 +36,8 @@ export type DomainEvent =
   | StreakBrokenEvent
   | DictionaryTermViewedEvent
   | SessionStartedEvent
-  | SessionEndedEvent;
+  | SessionEndedEvent
+  | CodeExecutedEvent;
 
 export type EventType = DomainEvent['type'];
 
@@ -94,7 +95,7 @@ export interface PracticeCompletedEvent {
   type: 'PRACTICE_COMPLETED';
   payload: {
     missionId: string;
-    selfReported: true;   // Always true in V1 — no code runner
+    selfReported: boolean;
     timestamp: string;
   };
 }
@@ -270,5 +271,16 @@ export interface SessionEndedEvent {
     durationMs: number;
     stepsCompleted: number;
     timestamp: string;
+  };
+}
+
+export interface CodeExecutedEvent {
+  type: 'CODE_EXECUTED';
+  payload: {
+    code: string;
+    stdout: string;
+    stderr: string;
+    executionTimeMs: number;
+    success: boolean;
   };
 }

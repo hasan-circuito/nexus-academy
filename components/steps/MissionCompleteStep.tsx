@@ -81,7 +81,8 @@ Can you give me a brief summary of what I should review next based on this topic
         <div className="p-6 rounded-2xl bg-card border border-border shadow-sm flex flex-col items-center text-center space-y-2">
           <div className="p-3 rounded-full bg-level/10 text-level"><Trophy className="w-6 h-6" /></div>
           <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Current Level</p>
-          <p className="text-3xl font-bold text-foreground">{isClient ? projectedXPState.level : 1}</p>
+          <p className="text-3xl font-bold text-foreground">Level {isClient ? projectedXPState.level : 1}</p>
+          <p className="text-xs text-level font-medium">{isClient ? projectedXPState.levelName : 'Learner'}</p>
           <div className="w-full space-y-1 mt-2">
             <div className="w-full h-1.5 rounded-full bg-surface-elevated overflow-hidden">
               <div className="h-full bg-level rounded-full" style={{ width: `${isClient ? projectedXPState.percentToNextLevel : 0}%` }} />

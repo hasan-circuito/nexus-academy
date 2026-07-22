@@ -1,0 +1,34 @@
+[
+  {
+    "errorType": "SyntaxError",
+    "banglaTitle": "সিনট্যাক্স এরর (Syntax Error)",
+    "explanation": "পাইথন তোমার কোডটি বুঝতে পারছে না কারণ এটি লেখার নিয়মে ভুল আছে।",
+    "whyItHappened": "সাধারণত কোনো ব্র্যাকেট, কোটেশন মার্ক (\") বা কোলন (:) মিস হলে এই এররটি হয়।",
+    "howToFix": "কোডটি ভালোভাবে চেক করো, কোনো চিহ্ন বাদ পড়েছে কিনা দেখো।",
+    "correctedExample": "ভুল: print(\"Hello) \nসঠিক: print(\"Hello\")"
+  },
+  {
+    "errorType": "NameError",
+    "banglaTitle": "নেইম এরর (Name Error)",
+    "explanation": "তুমি এমন একটি নাম বা ভেরিয়েবল ব্যবহার করছো যা পাইথন চেনে না।",
+    "whyItHappened": "হয়তো তুমি ভেরিয়েবলটি তৈরি করোনি, অথবা নামের বানানে ভুল করেছো।",
+    "howToFix": "ভেরিয়েবলের নাম ঠিক আছে কিনা এবং এটি আগে তৈরি করা হয়েছে কিনা তা চেক করো।",
+    "correctedExample": "ভুল: print(nam) \nসঠিক: print(name)"
+  },
+  {
+    "errorType": "TypeError",
+    "banglaTitle": "টাইপ এরর (Type Error)",
+    "explanation": "তুমি দুটি ভিন্ন ধরণের ডেটা নিয়ে এমন কাজ করতে চাচ্ছো যা সম্ভব নয়।",
+    "whyItHappened": "যেমন একটি স্ট্রিং (টেক্সট) এর সাথে একটি ইন্টিজার (সংখ্যা) যোগ করার চেষ্টা করলে এই এরর হয়।",
+    "howToFix": "ডেটা টাইপগুলো চেক করো। টেক্সটের সাথে সংখ্যা যোগ করতে চাইলে সংখ্যাটিকে str() দিয়ে টেক্সটে রূপান্তর করে নাও।",
+    "correctedExample": "ভুল: age = \"Your age is \" + 20 \nসঠিক: age = \"Your age is \" + str(20)"
+  },
+  {
+    "errorType": "IndentationError",
+    "banglaTitle": "ইন্ডেন্টেশন এরর (Indentation Error)",
+    "explanation": "কোডের শুরুতে যে ফাঁকা জায়গা (space/tab) থাকে, সেখানে ভুল হয়েছে।",
+    "whyItHappened": "পাইথন ব্লক (if, for, def ইত্যাদি) বোঝার জন্য নির্দিষ্ট পরিমাণ ফাঁকা জায়গা আশা করে। তুমি হয়তো কম বা বেশি ফাঁকা জায়গা দিয়েছো।",
+    "howToFix": "লাইনের শুরুতে ঠিক ৪টি স্পেস বা ১টি ট্যাব ব্যবহার করো।",
+    "correctedExample": "ভুল:\nif True:\nprint(\"Hi\")\n\nসঠিক:\nif True:\n    print(\"Hi\")"
+  }
+]

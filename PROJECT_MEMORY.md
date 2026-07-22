@@ -172,5 +172,5 @@ Plan → Implement → Self-Review → Test → Validate → Document → **Wait
 6. Only UnderstandingEngine may emit MISSION_COMPLETED.
 7. AchievementService must NOT subscribe to ACHIEVEMENT_UNLOCKED.
 8. Event chain max depth: 3 levels.
-9. Reflection is binary in V1. AI Mentor is V2.
-10. No Pyodide in V1. Practice is self-reported.
+9. Reflection is binary in V1. AI Mentor.
+10. Python execution uses Pyodide (WASM) lazily-loaded. Must use Monaco Editor. `PythonEngine` handles execution, `PythonErrorInterpreter` handles errors using `python-errors.json`, `OutputComparator` compares outputs. Emits `CODE_EXECUTED` domain event to support Open/Closed Principle for future AI/Analytics engines.

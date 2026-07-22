@@ -17,7 +17,12 @@ export default function DashboardPage() {
     },
     ...Array.from({ length: 9 }).map((_, i) => {
       const mId = String(i + 2).padStart(3, '0');
-      const isLocked = isClient ? progress.missions[mId]?.status !== 'unlocked' && progress.missions[mId]?.status !== 'complete' : true;
+      // If it exists in persisted state, read its status. 
+      // If not, it defaults to true because by default later missions are locked.
+      const persistedMission = progress.missions[mId];
+      const isLocked = isClient 
+        ? (persistedMission ? (persistedMission.status !== 'unlocked' && persistedMission.status !== 'complete' && persistedMission.status !== 'in_progress') : true)
+        : true;
       return {
         id: mId,
         title: isLocked ? `Locked Mission ${i + 2}` : `Mission ${i + 2}`,
@@ -103,7 +108,17 @@ export default function DashboardPage() {
         {[
           { label: "Understanding", value: `${isClient ? Math.round(Object.values(progress.missions).reduce((a,b)=>a+(b.understandingScore||0),0) / Math.max(1, Object.values(progress.missions).filter(m=>m.status==='complete').length)) : 0}%`, icon: Target, color: "text-success", bg: "bg-success/10" },
           { label: "Total XP", value: isClient ? progress.xp.toString() : "0", icon: Star, color: "text-xp", bg: "bg-xp/10" },
-          { label: "Current Level", value: isClient ? xpState.levelName : "Learner", icon: Trophy, color: "text-level", bg: "bg-level/10" },
+          { label: "Current Level", value: isClient ? (
+            <div className="flex flex-col">
+              <span>Level {xpState.level}</span>
+              <span className="text-sm text-level font-medium">{xpState.levelName}</span>
+            </div>
+          ) : (
+            <div className="flex flex-col">
+              <span>Level 1</span>
+              <span className="text-sm text-level font-medium">Learner</span>
+            </div>
+          ), icon: Trophy, color: "text-level", bg: "bg-level/10" },
           { label: "Current Streak", value: `${isClient ? progress.streak.current : 0} Days`, icon: Flame, color: "text-warning", bg: "bg-warning/10" }
         ].map((stat, i) => (
           <div key={i} className="flex flex-col gap-2 p-4 rounded-xl border border-border bg-card">
@@ -218,8 +233,8 @@ export default function DashboardPage() {
       <div className="mt-12 flex justify-center">
         <button 
           onClick={() => {
-            localStorage.clear();
-            window.location.reload();
+            localStorage.removeItem('nexus_progress');
+            window.location.href = '/dashboard';
           }}
           className="text-xs text-muted-foreground hover:text-destructive flex items-center gap-1 px-3 py-1 rounded-full hover:bg-destructive/10 transition-colors"
         >

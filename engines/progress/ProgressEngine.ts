@@ -26,8 +26,45 @@ export class ProgressEngine {
 
     const mp = progress.missions[mission.id];
     
-    // Prevent double-completion exploits
+    // Helper to add activity
+    const addActivity = (type: 'mission_completed' | 'xp_earned' | 'level_up' | 'mission_unlocked', message: string, points?: number) => {
+      progress.activityHistory = progress.activityHistory || [];
+      progress.activityHistory.unshift({
+        id: Math.random().toString(36).substr(2, 9),
+        type,
+        message,
+        timestamp: new Date().toISOString(),
+        points
+      });
+      // Keep only last 50
+      if (progress.activityHistory.length > 50) progress.activityHistory.pop();
+    };
+    
+    // Always ensure next mission is unlocked
+    const missionNum = parseInt(mission.id.replace('mission-', ''), 10);
+    const nextMissionId = String(missionNum + 1).padStart(3, '0');
+    
+    if (!progress.missions[nextMissionId]) {
+      progress.missions[nextMissionId] = {
+        status: 'unlocked',
+        unlockedAt: new Date().toISOString(),
+        understandingScore: 0,
+        xpEarned: 0,
+        steps: {},
+        quizAttempts: [],
+        debugAttempts: [],
+        reflection: { completed: false },
+      };
+      addActivity('mission_unlocked', `Unlocked Mission ${missionNum + 1}`);
+    } else if (progress.missions[nextMissionId].status !== 'unlocked' && progress.missions[nextMissionId].status !== 'complete') {
+      progress.missions[nextMissionId].status = 'unlocked';
+      progress.missions[nextMissionId].unlockedAt = new Date().toISOString();
+      addActivity('mission_unlocked', `Unlocked Mission ${missionNum + 1}`);
+    }
+
+    // Prevent double-completion exploits for XP
     if (mp.status === 'complete') {
+      storage.saveProgress(progress);
       return;
     }
 
@@ -62,19 +99,7 @@ export class ProgressEngine {
       progress.streak.longest = Math.max(progress.streak.longest, progress.streak.current);
     }
 
-    // Helper to add activity
-    const addActivity = (type: 'mission_completed' | 'xp_earned' | 'level_up' | 'mission_unlocked', message: string, points?: number) => {
-      progress.activityHistory = progress.activityHistory || [];
-      progress.activityHistory.unshift({
-        id: Math.random().toString(36).substr(2, 9),
-        type,
-        message,
-        timestamp: new Date().toISOString(),
-        points
-      });
-      // Keep only last 50
-      if (progress.activityHistory.length > 50) progress.activityHistory.pop();
-    };
+
 
     addActivity('mission_completed', `Completed ${mission.title}`);
     addActivity('xp_earned', `Earned ${xpEarned} XP`, xpEarned);
@@ -86,28 +111,6 @@ export class ProgressEngine {
     
     if (newState.level > oldState.level) {
        addActivity('level_up', `Reached Level ${newState.level} (${newState.levelName})`);
-    }
-
-    // 5. Unlock next mission
-    const missionNum = parseInt(mission.id.replace('mission-', ''), 10);
-    const nextMissionId = String(missionNum + 1).padStart(3, '0');
-    
-    if (!progress.missions[nextMissionId]) {
-      progress.missions[nextMissionId] = {
-        status: 'unlocked',
-        unlockedAt: new Date().toISOString(),
-        understandingScore: 0,
-        xpEarned: 0,
-        steps: {},
-        quizAttempts: [],
-        debugAttempts: [],
-        reflection: { completed: false },
-      };
-      addActivity('mission_unlocked', `Unlocked Mission ${missionNum + 1}`);
-    } else if (progress.missions[nextMissionId].status === 'locked') {
-      progress.missions[nextMissionId].status = 'unlocked';
-      progress.missions[nextMissionId].unlockedAt = new Date().toISOString();
-      addActivity('mission_unlocked', `Unlocked Mission ${missionNum + 1}`);
     }
 
     // 6. Persist
