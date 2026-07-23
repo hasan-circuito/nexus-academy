@@ -1,53 +1,48 @@
 // engines/python/OutputComparator.test.ts
+import { ValidationEngine } from './ValidationEngine';
 import { OutputComparator } from './OutputComparator';
+import type { ExecutionResult } from './python.types';
+import type { ValidationConfig } from '@/types/mission.types';
 import * as assert from 'assert';
 
-console.log("Running OutputComparator tests...\n");
+console.log("Running ValidationEngine tests...\n");
 
-function runTest(name: string, actual: string, expected: string, shouldMatch: boolean) {
-  const result = OutputComparator.compare(actual, expected);
+function mockExecResult(stdout: string, success = true): ExecutionResult {
+  return { stdout, stderr: '', success, executionTimeMs: 10 };
+}
+
+function runTest(name: string, stdout: string, config: ValidationConfig, shouldPass: boolean) {
+  const exec = mockExecResult(stdout);
+  const comp = OutputComparator.compare(stdout, config.value);
+  const result = ValidationEngine.evaluate(exec, comp, config);
+  
   try {
-    assert.strictEqual(result.isMatch, shouldMatch);
+    assert.strictEqual(result.passed, shouldPass);
     console.log(`✅ PASS: ${name}`);
   } catch (e) {
     console.error(`❌ FAIL: ${name}`);
-    console.error(`   Expected isMatch: ${shouldMatch}, but got: ${result.isMatch}`);
-    console.error(`   Actual Output: ${JSON.stringify(actual)}`);
-    console.error(`   Expected Output: ${JSON.stringify(expected)}`);
+    console.error(`   Expected passed: ${shouldPass}, but got: ${result.passed}`);
+    console.error(`   Actual Output: ${JSON.stringify(stdout)}`);
     process.exit(1);
   }
 }
 
-// 1. Exact match
-runTest("Exact match", "Hasan", "Hasan", true);
+// 1. exact_output
+runTest("exact_output match", "Hasan\n", { type: 'exact_output', value: 'Hasan' }, true);
+runTest("exact_output mismatch", "hasan\n", { type: 'exact_output', value: 'Hasan' }, false);
 
-// 2. Trailing newline
-runTest("Trailing newline (LF)", "Hasan\n", "Hasan", true);
+// 2. contains_output
+runTest("contains_output match", "Hello Hasan how are you\n", { type: 'contains_output', value: 'Hasan' }, true);
+runTest("contains_output mismatch", "Hello Rahim\n", { type: 'contains_output', value: 'Hasan' }, false);
 
-// 3. Multiple trailing newlines
-runTest("Multiple trailing newlines", "Hasan\n\n\n", "Hasan", true);
+// 3. regex_output
+runTest("regex_output match", "ID: 12345\n", { type: 'regex_output', value: '^ID: \\d+$' }, true);
+runTest("regex_output mismatch", "ID: abc\n", { type: 'regex_output', value: '^ID: \\d+$' }, false);
 
-// 4. CRLF vs LF
-runTest("CRLF vs LF", "Hasan\r\n", "Hasan", true);
-runTest("CRLF vs LF with newlines", "Hasan\r\n", "Hasan\n", true);
-
-// 5. Trailing whitespace
-runTest("Trailing whitespace", "Hasan   ", "Hasan", true);
-runTest("Trailing whitespace before newline", "Hasan  \n", "Hasan", true);
-
-// 6. Semicolon equivalence (Output wise, it just produces Hasan)
-// In Python `print("Hasan");` produces `Hasan\n`
-runTest("Semicolon output equivalent", "Hasan\n", "Hasan", true);
-
-// 7. Single vs Double Quotes (Output is just string content)
-// `print('Hasan')` vs `print("Hasan")` both output `Hasan\n`
-runTest("Quotes output equivalent", "Hasan\n", "Hasan", true);
-
-// 8. Case mismatch
-runTest("Case mismatch", "hasan\n", "Hasan", false);
-
-// 9. Type mismatch (user printed quotes literally)
-runTest("Literal single quotes printed", "'Hasan'\n", "Hasan", false);
-runTest("Literal double quotes printed", "\"Hasan\"\n", "Hasan", false);
+// 4. any_non_empty_output
+runTest("any_non_empty_output match", "Anything\n", { type: 'any_non_empty_output' }, true);
+runTest("any_non_empty_output match spaces", " \n", { type: 'any_non_empty_output' }, false); // Normalizer trims spaces, so it becomes empty!
+runTest("any_non_empty_output mismatch empty", "", { type: 'any_non_empty_output' }, false);
 
 console.log("\nAll tests passed successfully!");
+

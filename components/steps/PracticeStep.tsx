@@ -7,13 +7,14 @@ import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
 import { usePracticeCode } from '@/hooks/usePracticeCode';
 import { OutputComparator } from '@/engines/python/OutputComparator';
-import { ComparisonResult } from '@/engines/python/python.types';
+import { ValidationEngine } from '@/engines/python/ValidationEngine';
+import { EvaluationResult } from '@/engines/python/python.types';
 import { EventBus } from '@/engines/events/EventBus';
 
 export function PracticeStepComponent({ step, missionData }: { step: PracticeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
-  const [comparison, setComparison] = useState<ComparisonResult | null>(null);
+  const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   const { code, updateCode, isLoaded } = usePracticeCode(missionData.id, step.type, '');
@@ -23,10 +24,16 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
     const result = await runCode(code);
     
     if (result.success) {
-      const comp = OutputComparator.compare(result.stdout, step.expectedOutput);
-      setComparison(comp);
+      // Normalize and compare
+      const comparison = OutputComparator.compare(result.stdout, step.expectedOutput);
       
-      if (comp.isMatch) {
+      // Fallback to exact_output for older missions without validation
+      const config = step.validation || { type: 'exact_output', value: step.expectedOutput };
+      
+      const evalResult = ValidationEngine.evaluate(result, comparison, config);
+      setEvaluation(evalResult);
+
+      if (evalResult.passed) {
         setIsDone(true);
         // Emit true completion (not self-reported)
         EventBus.emit({
@@ -39,7 +46,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
         });
       }
     } else {
-      setComparison(null);
+      setEvaluation(null);
     }
   };
 
@@ -89,7 +96,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
           <ExecutionOutput 
             result={lastResult} 
             isRunning={isRunning} 
-            comparison={comparison} 
+            evaluation={evaluation} 
           />
 
           <div className="space-y-2 mt-4">
@@ -112,7 +119,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
           
           <div className="rounded-xl overflow-hidden border border-border font-mono text-sm">
             <div className="bg-[#0d1117] p-6 text-blue-300"><pre><code>{step.solution}</code></pre></div>
-            <div className="bg-[#05070a] p-4 text-green-400 border-t border-border/50"><span className="text-xs text-muted-foreground uppercase mr-2">Expected</span>{step.expectedOutput}</div>
+            <div className="bg-[#05070a] p-4 text-green-400 border-t border-border/50"><span className="text-xs text-muted-foreground uppercase mr-2">Expected Output / Goal</span>{step.displayHint || step.expectedOutput}</div>
           </div>
           <p className="font-bangla text-muted-foreground bg-surface p-4 rounded-lg border border-border">{step.solutionExplanation}</p>
         </div>

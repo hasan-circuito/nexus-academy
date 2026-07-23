@@ -28,10 +28,29 @@ export interface ErrorInterpretation {
   correctedExample: string;
 }
 
+import type { ValidationConfig, ValidationStrategy } from '@/types/mission.types';
+
 export interface ComparisonResult {
-  isMatch: boolean;
-  mismatchType?: 'whitespace_only' | 'case_mismatch' | 'wrong_value' | 'type_error';
-  feedback?: string; // Optional Bangla hint if mismatch is recognized
-  expectedNormalized?: string;
-  actualNormalized?: string;
+  actualNormalized: string;
+  expectedNormalized: string;
+}
+
+export interface EvaluationResult {
+  passed: boolean;
+  score: number;
+  message: string;
+  stdout: string;
+  stderr: string;
+  runtimeError: boolean;
+  validationType: ValidationStrategy;
+  diffExpected?: string;
+  diffActual?: string;
+}
+
+export interface IValidationStrategy {
+  evaluate(
+    executionResult: ExecutionResult,
+    comparisonResult: ComparisonResult,
+    config: ValidationConfig
+  ): EvaluationResult;
 }

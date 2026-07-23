@@ -126,7 +126,10 @@
         "print() ফাংশন ব্যবহার করো।",
         "তোমার নাম কোটেশনের (\" \") ভেতরে লেখো।"
       ],
-      "expectedOutput": "Your Name",
+      "displayHint": "তোমার নিজের নাম প্রিন্ট করো",
+      "validation": {
+        "type": "any_non_empty_output"
+      },
       "solution": "print(\"Your Name\")",
       "solutionExplanation": "print() এর ভেতরে স্ট্রিং দিলে তা স্ক্রিনে দেখায়।"
     },

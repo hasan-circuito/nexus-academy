@@ -2,17 +2,17 @@
 // NEXUS Academy — Interactive Python Execution Output Component
 
 import React from 'react';
-import { ExecutionResult, ComparisonResult } from '@/engines/python/python.types';
+import { ExecutionResult, EvaluationResult } from '@/engines/python/python.types';
 import { PythonErrorInterpreter } from '@/engines/python/PythonErrorInterpreter';
 import { Terminal, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
 
 export interface ExecutionOutputProps {
   result: ExecutionResult | null;
   isRunning: boolean;
-  comparison?: ComparisonResult | null;
+  evaluation?: EvaluationResult | null;
 }
 
-export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunning, comparison }) => {
+export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunning, evaluation }) => {
   if (isRunning) {
     return (
       <div className="mt-4 p-4 rounded-lg border border-slate-700 bg-[#0f172a] shadow-inner font-mono text-sm animate-pulse">
@@ -102,47 +102,53 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunn
         </div>
       )}
 
-      {/* Comparison Feedback */}
-      {comparison && (
+      {/* Evaluation Feedback */}
+      {evaluation && (
         <div className={`p-4 border-t text-sm ${
-          comparison.isMatch 
+          evaluation.passed 
             ? 'bg-green-950/30 border-green-900/50' 
             : 'bg-yellow-950/30 border-yellow-900/50'
         }`}>
-          {comparison.isMatch ? (
+          {evaluation.passed ? (
             <div className="flex items-center space-x-2 text-green-400">
               <CheckCircle2 size={18} className="text-green-500" />
-              <span className="font-semibold">আউটপুট সঠিক। খুব ভালো!</span>
+              <span className="font-semibold">{evaluation.message || 'আউটপুট সঠিক। খুব ভালো!'}</span>
             </div>
           ) : (
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <AlertCircle size={18} className="text-yellow-500 mt-0.5 shrink-0" />
                 <div>
-                  <h4 className="font-bold text-yellow-400 mb-1">আউটপুটটি প্রত্যাশিত আউটপুটের সাথে মিলছে না।</h4>
-                  <p className="text-yellow-300 text-sm">{comparison.feedback}</p>
+                  <h4 className="font-bold text-yellow-400 mb-1">সঠিক হয়নি!</h4>
+                  <p className="text-yellow-300 text-sm">{evaluation.message}</p>
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 text-xs font-mono">
-                <div className="bg-black/50 p-3 rounded border border-yellow-900/30">
-                  <span className="text-yellow-500 uppercase block mb-2 tracking-wider">Expected Output</span>
-                  <pre className="text-green-400 whitespace-pre-wrap">{comparison.expectedNormalized || ' '}</pre>
-                </div>
-                <div className="bg-black/50 p-3 rounded border border-yellow-900/30">
-                  <span className="text-yellow-500 uppercase block mb-2 tracking-wider">Actual Output</span>
-                  <pre className="text-red-400 whitespace-pre-wrap">{comparison.actualNormalized || ' '}</pre>
-                </div>
-              </div>
-
-              <div className="p-3 bg-black/30 rounded border border-yellow-900/20 text-yellow-200 text-xs">
-                 <span className="text-yellow-500 uppercase block mb-1 tracking-wider">Difference</span>
-                 {comparison.actualNormalized !== undefined && comparison.expectedNormalized !== undefined ? (
-                    <div>
-                       Your output has <strong>{comparison.actualNormalized.length}</strong> characters, but expected has <strong>{comparison.expectedNormalized.length}</strong>.
+              {evaluation.diffExpected !== undefined && evaluation.diffActual !== undefined && (
+                <>
+                  <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+                    <div className="bg-black/50 p-3 rounded border border-yellow-900/30">
+                      <span className="text-yellow-500 uppercase block mb-2 tracking-wider">Expected Output</span>
+                      <pre className="text-green-400 whitespace-pre-wrap">{evaluation.diffExpected || ' '}</pre>
                     </div>
-                 ) : 'No output produced.'}
-              </div>
+                    <div className="bg-black/50 p-3 rounded border border-yellow-900/30">
+                      <span className="text-yellow-500 uppercase block mb-2 tracking-wider">Actual Output</span>
+                      <pre className="text-red-400 whitespace-pre-wrap">{evaluation.diffActual || ' '}</pre>
+                    </div>
+                  </div>
+
+                  {evaluation.validationType === 'exact_output' && (
+                    <div className="p-3 bg-black/30 rounded border border-yellow-900/20 text-yellow-200 text-xs">
+                      <span className="text-yellow-500 uppercase block mb-1 tracking-wider">Difference</span>
+                      {evaluation.diffActual && evaluation.diffExpected ? (
+                          <div>
+                            Your output has <strong>{evaluation.diffActual.length}</strong> characters, but expected has <strong>{evaluation.diffExpected.length}</strong>.
+                          </div>
+                      ) : 'No output produced.'}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>

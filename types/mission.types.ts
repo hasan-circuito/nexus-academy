@@ -178,15 +178,27 @@ export interface AIExampleStep {
 }
 
 // Step 9 — practice
+export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output';
+
+export interface ValidationConfig {
+  type: ValidationStrategy;
+  value?: string;
+  ignoreWhitespace?: boolean;
+  ignoreCase?: boolean;
+  ignoreTrailingNewline?: boolean;
+  strictMode?: boolean;
+}
+
 export interface PracticeStep {
   type: 'practice';
   title: string;                    // Bangla
   prompt: string;                   // Bangla — what to write/attempt
   hints: string[];                  // Bangla — ordered hints (reveal one at a time)
-  expectedOutput: string;
+  displayHint?: string;             // UI visual expected hint
+  expectedOutput?: string;          // Legacy UI fallback for older missions
+  validation?: ValidationConfig;    // Engine rules
   solution: string;                 // Full correct solution code
   solutionExplanation: string;      // Bangla
-  // V1: practice is self-reported. V2: Pyodide will verify using solution/expectedOutput.
 }
 
 // Step 10 — quiz
