@@ -1,21 +1,14 @@
+---
+Document: Engineering Playbook
+Section: 02 – Engineering Workflow
+Version: 1.0.0
+Status: Active
+Owner: Project Owner
+Audience: Human Developers, AI Assistants, Future Contributors
+Last Updated: 2026-07-25
+---
+
 # 02. Engineering Workflow
-
----
-
-## Document Information
-
-| Property | Value |
-|----------|-------|
-| Document | Engineering Playbook |
-| Section | 02 – Engineering Workflow |
-| Project | NEXUS Academy |
-| Version | 1.0.0 |
-| Status | Active |
-| Owner | Project Owner |
-| Audience | Engineers, AI Coding Assistants, Future Contributors |
-| Last Updated | YYYY-MM-DD |
-
----
 
 # 1. Purpose
 

@@ -1,19 +1,14 @@
-# 04. Coding Standards
-
+---
+Document: Engineering Playbook
+Section: 04 – Coding Standards
+Version: 1.0.0
+Status: Active
+Owner: Project Owner
+Audience: Human Developers, AI Assistants, Future Contributors
+Last Updated: 2026-07-25
 ---
 
-## Document Information
-
-| Property | Value |
-|----------|-------|
-| Document | Engineering Playbook |
-| Section | 04 – Coding Standards |
-| Project | NEXUS Academy |
-| Version | 1.0.0 |
-| Status | Active |
-| Owner | Project Owner |
-| Audience | Engineers, AI Coding Assistants, Future Contributors |
-| Last Updated | YYYY-MM-DD |
+# 04. Coding Standards
 
 ---
 

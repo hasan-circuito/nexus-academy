@@ -1,19 +1,14 @@
-# 05. AI Collaboration
-
+---
+Document: Engineering Playbook
+Section: 05 – AI Collaboration
+Version: 1.0.0
+Status: Active
+Owner: Project Owner
+Audience: Human Developers, AI Assistants, Future Contributors
+Last Updated: 2026-07-25
 ---
 
-## Document Information
-
-| Property | Value |
-|----------|-------|
-| Document | Engineering Playbook |
-| Section | 05 – AI Collaboration |
-| Project | NEXUS Academy |
-| Version | 1.0.0 |
-| Status | Active |
-| Owner | Project Owner |
-| Audience | Human Developers, AI Coding Assistants, Future Contributors |
-| Last Updated | YYYY-MM-DD |
+# 05. AI Collaboration
 
 ---
 
@@ -188,12 +183,15 @@ An AI assistant should always:
 
 # Part 2 — AI Operational Standards
 
----> **Relationship to the Engineering Workflow**
+---
+
+> **Relationship to the Engineering Workflow**
 >
-> The operational standards defined in this section describe how AI assistants execute engineering tasks **within** the Engineering Workflow established in **02-engineering-workflow.md**.
+> The operational standards defined in this section describe how AI assistants execute engineering tasks within the Engineering Workflow established in **02-engineering-workflow.md**.
 >
 > This document does not replace the Engineering Workflow. Instead, it defines the expected operational behavior of AI assistants while participating in that workflow.
 
+---
 
 # 8. Receiving Work
 

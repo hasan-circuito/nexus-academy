@@ -1,21 +1,14 @@
+---
+Document: Engineering Playbook
+Section: 01 – Introduction
+Version: 1.0.0
+Status: Active
+Owner: Project Owner
+Audience: Human Developers, AI Assistants, Future Contributors
+Last Updated: 2026-07-25
+---
+
 # 01. Introduction
-
----
-
-## Document Information
-
-| Property | Value |
-|----------|-------|
-| Document | Engineering Playbook |
-| Section | 01 – Introduction |
-| Project | NEXUS Academy |
-| Version | 1.0.0 |
-| Status | Active |
-| Owner | Project Owner |
-| Audience | Engineers, AI Coding Assistants, Future Contributors |
-| Last Updated | YYYY-MM-DD |
-
----
 
 # 1. Purpose
 
