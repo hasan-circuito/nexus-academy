@@ -193,6 +193,7 @@ export interface PracticeStep {
   type: 'practice';
   title: string;                    // Bangla
   prompt: string;                   // Bangla — what to write/attempt
+  starterCode?: string;             // Optional starting code for the exercise
   hints: string[];                  // Bangla — ordered hints (reveal one at a time)
   displayHint?: string;             // UI visual expected hint
   expectedOutput?: string;          // Legacy UI fallback for older missions

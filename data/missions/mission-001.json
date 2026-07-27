@@ -122,6 +122,7 @@
       "type": "practice",
       "title": "এখন তুমি চেষ্টা করো",
       "prompt": "একটি প্রোগ্রাম লেখো যা তোমার নাম প্রিন্ট করবে।",
+      "starterCode": "# Write a program to print your name\n",
       "hints": [
         "print() ফাংশন ব্যবহার করো।",
         "তোমার নাম কোটেশনের (\" \") ভেতরে লেখো।"

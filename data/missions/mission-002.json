@@ -121,6 +121,7 @@
       "type": "practice",
       "title": "এখন তুমি চেষ্টা করো",
       "prompt": "প্রোগ্রামটি পরিবর্তন করে এমন একটি প্রোগ্রাম লেখো যা ইউজারের নাম জিজ্ঞেস করবে এবং তাকে বলবে 'Welcome, [name]' বা 'Nice to meet you, [name]'।",
+      "starterCode": "# Write your code below\n# Step 1: Ask the user for their name and store it in a variable\n\n\n# Step 2: Use the variable to greet them\n",
       "hints": [
         "প্রথমে input() ব্যবহার করে নাম নাও এবং একটি ভেরিয়েবলে রাখো।",
         "print() এর ভেতরে কমা (,) ব্যবহার করে 'Welcome,' এবং ভেরিয়েবলটি পাশাপাশি লেখো।"

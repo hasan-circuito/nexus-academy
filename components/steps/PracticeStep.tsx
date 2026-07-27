@@ -17,18 +17,18 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
-  const { code, updateCode, isLoaded } = usePracticeCode(missionData.id, step.type, '');
+  const { code, updateCode, isLoaded } = usePracticeCode(missionData.id, step.type, step.starterCode || '');
 
   const handleRun = async () => {
     if (!code.trim()) return;
     const result = await runCode(code);
     
     if (result.success) {
-      // Normalize and compare
-      const comparison = OutputComparator.compare(result.stdout, step.expectedOutput);
-      
       // Fallback to exact_output for older missions without validation
       const config = step.validation || { type: 'exact_output', value: step.expectedOutput };
+      
+      // Normalize and compare
+      const comparison = OutputComparator.compare(result.stdout, config.value);
       
       const evalResult = ValidationEngine.evaluate(result, comparison, config);
       setEvaluation(evalResult);
