@@ -1,7 +1,7 @@
 'use client';
 import type { PracticeStep, MissionData } from '@/types/mission.types';
 import { useState } from 'react';
-import { HelpCircle, Check, Play } from 'lucide-react';
+import { HelpCircle, Check, Play, RotateCcw } from 'lucide-react';
 import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
@@ -17,7 +17,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
-  const { code, updateCode, isLoaded } = usePracticeCode(missionData.id, step.type, step.starterCode || '');
+  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.type, step.starterCode || '');
 
   const handleRun = async () => {
     if (!code.trim()) return;
@@ -83,6 +83,14 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
               <span>{isRunning ? 'Running...' : 'Run Code'}</span>
             </button>
             
+            <button 
+              onClick={resetCode}
+              title="Reset to Original Code"
+              className="p-2 text-muted-foreground hover:bg-surface hover:text-foreground rounded-lg transition-colors border border-transparent hover:border-border"
+            >
+              <RotateCcw size={20} />
+            </button>
+
             {hintIndex < step.hints.length && (
               <button 
                 onClick={() => setHintIndex(prev => prev + 1)} 

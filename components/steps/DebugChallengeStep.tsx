@@ -1,7 +1,7 @@
 'use client';
 import type { DebugChallengeStep, MissionData } from '@/types/mission.types';
 import { useState } from 'react';
-import { Bug, Search, Check, AlertOctagon, Play } from 'lucide-react';
+import { Bug, Search, Check, AlertOctagon, Play, RotateCcw } from 'lucide-react';
 import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
@@ -14,7 +14,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
   const [isFixed, setIsFixed] = useState(false);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
-  const { code, updateCode, isLoaded } = usePracticeCode(missionData.id, step.type, step.buggyCode);
+  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.type, step.buggyCode);
 
   const handleRun = async () => {
     if (!code.trim()) return;
@@ -75,6 +75,14 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
             >
               <Play size={18} className={isRunning ? 'animate-pulse' : ''} />
               <span>{isRunning ? 'Running...' : 'Run Fixed Code'}</span>
+            </button>
+
+            <button 
+              onClick={resetCode}
+              title="Reset to Original Code"
+              className="p-2 text-muted-foreground hover:bg-surface hover:text-foreground rounded-lg transition-colors border border-transparent hover:border-border"
+            >
+              <RotateCcw size={20} />
             </button>
 
             {hintIndex < step.hints.length && (
