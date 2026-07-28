@@ -51,6 +51,7 @@ export interface IValidationStrategy {
   evaluate(
     executionResult: ExecutionResult,
     comparisonResult: ComparisonResult,
-    config: ValidationConfig
+    config: ValidationConfig,
+    sourceCode?: string
   ): EvaluationResult;
 }

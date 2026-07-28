@@ -30,7 +30,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
       // Normalize and compare
       const comparison = OutputComparator.compare(result.stdout, config.value);
       
-      const evalResult = ValidationEngine.evaluate(result, comparison, config);
+      const evalResult = ValidationEngine.evaluate(result, comparison, config, code);
       setEvaluation(evalResult);
 
       if (evalResult.passed) {

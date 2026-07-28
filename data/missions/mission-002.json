@@ -126,7 +126,7 @@
     {
       "type": "practice",
       "title": "এখন তুমি চেষ্টা করো",
-      "prompt": "পাইথনকে তোমার নিজের নাম মনে রাখতে শেখাও। একটি ভেরিয়েবল তৈরি করো যার নাম হবে `my_name` এবং তার ভেতরে তোমার নাম স্টোর করো।",
+      "prompt": "my_name নামে একটি Variable তৈরি করো এবং এর মধ্যে তোমার নাম সংরক্ষণ করো। এই ধাপে print() ব্যবহার করার প্রয়োজন নেই।",
       "starterCode": "# Write your code below to store your name in a variable\n",
       "hints": [
         "প্রথমে লেবেল বা ভেরিয়েবলের নাম লেখো (`my_name`)।",
@@ -135,7 +135,8 @@
       ],
       "expectedOutput": "",
       "validation": {
-        "type": "any_non_empty_output"
+        "type": "regex_source",
+        "value": "my_name\\s*=\\s*[\"'].+[\"']"
       },
       "solution": "my_name = \"Your Name\"",
       "solutionExplanation": "তুমি সফলভাবে পাইথনের মেমোরিতে একটি নাম দেওয়া জায়গা তৈরি করেছো এবং সেখানে ডেটা রেখেছো।"

@@ -178,7 +178,7 @@ export interface AIExampleStep {
 }
 
 // Step 9 — practice
-export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output';
+export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output' | 'regex_source';
 
 export interface ValidationConfig {
   type: ValidationStrategy;

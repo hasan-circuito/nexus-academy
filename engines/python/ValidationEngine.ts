@@ -6,6 +6,7 @@ import { ExactOutputStrategy } from './strategies/ExactOutputStrategy';
 import { ContainsOutputStrategy } from './strategies/ContainsOutputStrategy';
 import { RegexOutputStrategy } from './strategies/RegexOutputStrategy';
 import { AnyNonEmptyOutputStrategy } from './strategies/AnyNonEmptyOutputStrategy';
+import { RegexSourceStrategy } from './strategies/RegexSourceStrategy';
 
 export class ValidationEngine {
   private static strategies: Record<ValidationStrategy, IValidationStrategy> = {
@@ -13,12 +14,14 @@ export class ValidationEngine {
     'contains_output': new ContainsOutputStrategy(),
     'regex_output': new RegexOutputStrategy(),
     'any_non_empty_output': new AnyNonEmptyOutputStrategy(),
+    'regex_source': new RegexSourceStrategy(),
   };
 
   public static evaluate(
     executionResult: ExecutionResult,
     comparisonResult: ComparisonResult,
-    config: ValidationConfig
+    config: ValidationConfig,
+    sourceCode: string = ''
   ): EvaluationResult {
     const strategy = this.strategies[config.type];
     
@@ -26,6 +29,6 @@ export class ValidationEngine {
       throw new Error(`Unknown validation strategy: ${config.type}`);
     }
 
-    return strategy.evaluate(executionResult, comparisonResult, config);
+    return strategy.evaluate(executionResult, comparisonResult, config, sourceCode);
   }
 }
