@@ -239,12 +239,27 @@ export interface DebugChallengeStep {
 }
 
 // Step 12 — reflection
+export interface CriticalThinkingQuestion {
+  question: string;              // Bangla/English question
+  expertThinking: string;        // Bangla — detailed expert explanation (2–4 paragraphs)
+  realWorldEngineering: string;  // Bangla — one real engineering example
+  beyondProgramming: string;     // Bangla — why this thinking matters outside Python
+}
+
 export interface ReflectionStep {
   type: 'reflection';
   title: string;                    // Bangla
   instruction: string;              // Bangla — "নিচের প্রশ্নগুলো নিয়ে ভাবো"
-  prompts: string[];                // Bangla — exactly 3 reflection questions
-  // V1: binary (completed/not). V2: AI Mentor reads text and provides quality score.
+  prompts: string[];                // Bangla — exactly 3 reflection questions (used in simple mode)
+  // If criticalThinkingQuestions is provided, use the Critical Thinking Lab UI instead of simple prompts
+  criticalThinkingQuestions?: CriticalThinkingQuestion[];
+  endScreen?: {                     // Optional ending card shown after all questions are done
+    title: string;
+    message: string;
+    conclusion: string;
+  };
+  // V1: completion is binary (all prompts read + learner clicks Complete)
+  // V2: AI Mentor reads reflection text and provides personalized feedback
 }
 
 // Step 13 — mission_complete

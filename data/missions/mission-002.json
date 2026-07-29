@@ -179,13 +179,38 @@
     },
     {
       "type": "reflection",
-      "title": "নিজেকে প্রশ্ন করো",
-      "instruction": "নিচের প্রশ্নগুলো নিয়ে ভাবো (এবং মনে মনে উত্তর দাও):",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে ভাবো। তারপর Expert Thinking দেখো।",
       "prompts": [
         "What if Python remembered something... but never had a way to use it?",
         "Would remembering still be useful?",
-        "তোমার তৈরি করা মেমোরিগুলো ভবিষ্যতে আরও কতভাবে ব্যবহার করা যেতে পারে?"
-      ]
+        "How might the memory you created today be used later?"
+      ],
+      "criticalThinkingQuestions": [
+        {
+          "question": "What if Python remembered something... but never had a way to use it?",
+          "expertThinking": "মনে রাখার উদ্দেশ্যই হলো পরে সেটি ব্যবহার করা।\n\nযদি কোনো সফটওয়্যার তথ্য সংরক্ষণ করতে পারে, কিন্তু সেই তথ্য আর কখনও ব্যবহারই করতে না পারে, তাহলে সেই মেমোরির কোনো বাস্তব মূল্য নেই।\n\nএকটি Variable তাই শুধু তথ্য জমা রাখে না।\n\nএটি ভবিষ্যতের সিদ্ধান্ত, গণনা এবং কাজের ভিত্তি তৈরি করে।",
+          "realWorldEngineering": "একটি Smart Door Lock PIN কোড মনে রাখে।\n\nকিন্তু যদি সেই PIN যাচাই করার ক্ষমতা না থাকে...\n\nতাহলে দরজা কখনও খুলবে না।\n\nমেমোরি আছে। কিন্তু ব্যবহার নেই। তাই পুরো সিস্টেমই অর্থহীন।",
+          "beyondProgramming": "মানুষও একইভাবে শেখে।\n\nযে জ্ঞান ব্যবহার করা যায় না...\n\nসেটা ধীরে ধীরে ভুলে যায়।\n\nজ্ঞান তখনই শক্তি হয়, যখন সেটি কাজে লাগে।"
+        },
+        {
+          "question": "Would remembering still be useful?",
+          "expertThinking": "আংশিক।\n\nশুধু তথ্য জমা রাখা কোনো সফটওয়্যারকে বুদ্ধিমান বানায় না।\n\nবুদ্ধিমান সফটওয়্যার তথ্য ব্যবহার করে।\n\nমনে রাখা এবং ব্যবহার করা... এই দুইটি একসাথে হলেই সিদ্ধান্ত নেওয়া সম্ভব হয়।",
+          "realWorldEngineering": "Netflix শুধু Movie List জমা রাখে না।\n\nতুমি কী দেখেছ... সেটাও মনে রাখে।\n\nতারপর সেই তথ্য ব্যবহার করে নতুন Recommendation দেয়।\n\nযদি Recommendation না দিত... তাহলে Watch History রাখারও খুব বেশি মূল্য থাকত না।",
+          "beyondProgramming": "Research-এ Data Collection প্রথম ধাপ।\n\nAnalysis দ্বিতীয় ধাপ।\n\nশুধু Data সংগ্রহ করলেই Research শেষ হয় না।"
+        },
+        {
+          "question": "How might the memory you created today be used later?",
+          "expertThinking": "আজ তুমি একটি Variable তৈরি করেছ।\n\nআজ সেটি শুধু print() করা হয়েছে।\n\nকিন্তু ভবিষ্যতে এই একই Variable ব্যবহার হবে:\nDecision নেওয়ার জন্য, গণনার জন্য, AI Model-এর Input হিসেবে, Robot Control-এর জন্য, Web Application-এর জন্য, Game তৈরির জন্য।\n\nআজকের ছোট Variable... আগামী দিনের বড় Software-এর ভিত্তি।",
+          "realWorldEngineering": "একটি Self-driving Car প্রতি সেকেন্ডে হাজার হাজার তথ্য মনে রাখে।\n\nরাস্তার গাড়ি। Speed। Traffic Signal। Pedestrian।\n\nএরপর সেই তথ্য ব্যবহার করে Steering ঘোরায়।\n\nআজ তুমি যে Variable শিখেছ... এই একই ধারণা কোটি কোটি বার ব্যবহার হয়।",
+          "beyondProgramming": "Programming শেখা মানে শুধু Syntax শেখা নয়।\n\nProgramming শেখা মানে...\n\nProblem → Memory → Decision\n\nএই চিন্তার ধরণ তৈরি করা। এই চিন্তাধারাই একজন Engineer, AI Researcher এবং Scientist-এর ভিত্তি।"
+        }
+      ],
+      "endScreen": {
+        "title": "Mission Reflection",
+        "message": "আজ তুমি শুধু Variable শেখোনি।\n\nতুমি শিখেছো—\n\n• কেন Software তথ্য মনে রাখে\n• কেন সেই তথ্য ব্যবহার করতে হয়\n• কেন এই ধারণা AI, Robotics, Research এবং Real-world Engineering-এর মূল ভিত্তি।",
+        "conclusion": "Congratulations.\n\nYou are no longer memorizing Python.\n\nYou are starting to think like an Engineer."
+      }
     },
     {
       "type": "mission_complete",
