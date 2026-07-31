@@ -174,4 +174,4 @@ Plan → Implement → Self-Review → Test → Validate → Document → **Wait
 8. Event chain max depth: 3 levels.
 9. Reflection is binary in V1. AI Mentor.
 10. Python execution uses Pyodide (WASM) lazily-loaded. Must use Monaco Editor. `PythonEngine` handles execution, `PythonErrorInterpreter` handles errors using `python-errors.json`, `OutputComparator` compares outputs. Emits `CODE_EXECUTED` domain event to support Open/Closed Principle for future AI/Analytics engines.
-11. **AI Governance:** All AI-driven content generation and architectural decisions must strictly adhere to the Nexus AI Decision & Collaboration Framework (NADF) and the Critical Thinking Lab Engineering Rulebook to maintain the Beginner-first, Engineering-first philosophy.
+11. **AI Governance:** Every AI-assisted artifact, architectural decision, documentation update, and educational content must comply with the Nexus AI Decision & Collaboration Framework (NADF), the Critical Thinking Lab Engineering Rulebook, and the Authoring Playbook. When conflicts arise, governance documents take precedence over generated content.
