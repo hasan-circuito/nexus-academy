@@ -55,13 +55,23 @@ export function CodeExampleStepComponent({ step }: { step: CodeExampleStep }) {
               <span>Edit & Run</span>
             </button>
           </div>
-          <div className="p-6 font-mono text-sm text-blue-300 relative group">
-            <pre><code>{step.code}</code></pre>
-            {step.annotations && step.annotations.map(a => (
-              <div key={a.lineNumber} className="absolute right-4 top-4 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary font-bangla text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                {a.explanation}
-              </div>
-            ))}
+          <div className="p-6 font-mono text-sm text-blue-300 relative overflow-x-auto">
+            <div className="flex flex-col min-w-fit space-y-1">
+              {step.code.split('\n').map((line, idx) => {
+                const lineNum = idx + 1;
+                const annotation = step.annotations?.find(a => a.lineNumber === lineNum);
+                return (
+                  <div key={lineNum} className="flex items-start group/line min-h-[1.75rem]">
+                    <pre className="pr-8 shrink-0 pt-1"><code>{line || ' '}</code></pre>
+                    {annotation && (
+                      <div className="px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 text-primary font-bangla text-xs opacity-60 group-hover/line:opacity-100 transition-opacity max-w-[400px]">
+                        {annotation.explanation}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="bg-[#05070a] p-4 font-mono text-sm border-t border-border/50 text-green-400">
             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2 uppercase">
