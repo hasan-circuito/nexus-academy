@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { Play, Lock, BookOpen, Star, Target, Flame, Trophy, Activity, ArrowRight, BookMarked, Code2 } from 'lucide-react';
+import manifest from '@/data/missions/manifest.json';
 import mission001 from '@/data/missions/mission-001.json';
 import { useProgress } from '@/hooks/useProgress';
 
@@ -9,30 +10,29 @@ import { useProgress } from '@/hooks/useProgress';
 export default function DashboardPage() {
   const { progress, xpState, isClient } = useProgress();
 
-  const missions = [
-    { 
-      ...mission001, 
-      isLocked: isClient ? progress.missions[mission001.id]?.status === 'locked' : false,
-      isCompleted: isClient ? progress.missions[mission001.id]?.status === 'complete' : false
-    },
-    ...Array.from({ length: 9 }).map((_, i) => {
-      const mId = String(i + 2).padStart(3, '0');
-      // If it exists in persisted state, read its status. 
-      // If not, it defaults to true because by default later missions are locked.
-      const persistedMission = progress.missions[mId];
-      const isLocked = isClient 
-        ? (persistedMission ? (persistedMission.status !== 'unlocked' && persistedMission.status !== 'complete' && persistedMission.status !== 'in_progress') : true)
-        : true;
-      return {
-        id: mId,
-        title: isLocked ? `Locked Mission ${i + 2}` : `Mission ${i + 2}`,
-        description: isLocked ? "Complete the previous mission to unlock this content." : "Ready to learn!",
-        isLocked,
-        isCompleted: isClient ? progress.missions[mId]?.status === 'complete' : false,
-        estimatedMinutes: 20
-      };
-    })
-  ];
+  const missions = manifest.missions.map(entry => {
+    const persistedMission = progress.missions[entry.id];
+    const isFirstMission = entry.prerequisite === null;
+    const isLocked = isClient 
+      ? (persistedMission 
+          ? (persistedMission.status !== 'unlocked' && persistedMission.status !== 'complete' && persistedMission.status !== 'in_progress') 
+          : !isFirstMission)
+      : !isFirstMission;
+    const isCompleted = isClient ? persistedMission?.status === 'complete' : false;
+    
+    return {
+      id: entry.id,
+      title: isLocked ? `Locked Mission` : entry.title,
+      banglaTitle: entry.banglaTitle,
+      banglaSubtitle: entry.banglaSubtitle || '',
+      description: isLocked ? 'Complete the previous mission to unlock this content.' : entry.banglaSubtitle || '',
+      isLocked,
+      isCompleted,
+      estimatedMinutes: entry.estimatedMinutes || 20,
+      // Include steps data if this is mission 001 (for the continue learning card)
+      ...(entry.id === '001' ? { steps: mission001.steps, cognitiveLoadEstimate: mission001.cognitiveLoadEstimate } : {})
+    };
+  });
 
   return (
     <div className="p-6 lg:p-10 max-w-7xl mx-auto space-y-8 pb-24">
@@ -67,7 +67,7 @@ export default function DashboardPage() {
                       )}
                     </div>
                     <h3 className="text-2xl font-bold text-card-foreground">{activeMission.title}</h3>
-                    <p className="text-muted-foreground text-sm max-w-2xl">{('description' in activeMission ? activeMission.description : activeMission.banglaSubtitle)}</p>
+                    <p className="text-muted-foreground text-sm max-w-2xl">{activeMission.description}</p>
                     
                     <div className="flex items-center gap-6 mt-4 pt-2">
                       <div className="flex flex-col">
@@ -158,7 +158,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-semibold text-foreground truncate">{mission.title}</h4>
-                  <p className="text-sm text-muted-foreground truncate">{('description' in mission ? mission.description : mission.banglaSubtitle)}</p>
+                  <p className="text-sm text-muted-foreground truncate">{mission.description}</p>
                 </div>
                 {!mission.isLocked && (
                   <Link 
