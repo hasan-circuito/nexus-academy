@@ -68,13 +68,29 @@ export class ProgressEngine {
       return;
     }
 
-    // 1. Calculate Score (Simulated for V1 via UnderstandingEngine)
-    // V1 hack: manually set score since we don't have all the sub-engines wired to events yet
-    mp.understandingScore = 85; 
+    // 1. Calculate Score from actual step evidence
+    const steps = mp.steps || {};
+    const quizEvidence = steps['quiz'] as any;
+    const debugEvidence = steps['debug_challenge'] as any;
+    const practiceEvidence = steps['practice'] as any;
+    const reflectionData = mp.reflection;
 
-    // 2. Award XP
+    const quizScore = quizEvidence?.passed ? ((quizEvidence.score as number) || 100) / 100 : 0;
+    const debugScore = debugEvidence?.passed ? 1.0 : 0;
+    const practiceScore = practiceEvidence?.passed ? 1.0 : 0;
+    const reflectionScore = reflectionData?.completed ? 1.0 : 0;
+    const hintPenalty = debugEvidence?.hintsUsed 
+      ? Math.max(0, 1 - ((debugEvidence.hintsUsed as number) * 0.15)) 
+      : 1.0;
+
+    mp.understandingScore = Math.round(
+      (quizScore * 0.40 + debugScore * 0.25 + practiceScore * 0.20 + 
+       reflectionScore * 0.10 + hintPenalty * 0.05) * 100
+    );
+
+    // 2. Award XP based on real score (max 400)
     const xpEngine = new XPEngine(storage);
-    const xpEarned = 400; 
+    const xpEarned = Math.round((mp.understandingScore / 100) * 400);
     
     // 3. Update Mission Progress
     mp.status = 'complete';
