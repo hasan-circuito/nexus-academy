@@ -1072,7 +1072,20 @@ Two concepts in one mission
 Artificial examples
 Teaching theory before need
 Breaking project continuity
-Fake Git commits .... 
+Fake Git commits ....  
+
+
+
+## Version
+
+Version: 1.0
+
+Status:
+Stable
+
+This document should remain stable.
+
+Future improvements must preserve backward compatibility whenever possible. 
 
 
 
