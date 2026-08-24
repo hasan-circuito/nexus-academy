@@ -4,7 +4,8 @@ import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ProgressEngine } from '@/engines/progress/ProgressEngine';
 import type { MissionData } from '@/types/mission.types';
 import { useRouter } from 'next/navigation';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
+import { storage } from '@/services/LocalStorageDataService';
 
 interface Props {
   missionData: MissionData;
@@ -20,6 +21,21 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
   const hasNext = currentIndex < totalSteps - 1;
   const isLastStep = currentIndex === totalSteps - 1;
 
+  const [gateMessage, setGateMessage] = useState<string | null>(null);
+
+  const canCompleteMission = (): boolean => {
+    if (typeof window === 'undefined') return false;
+    const prog = storage.getProgress();
+    const mp = prog.missions[missionData.id];
+    if (!mp?.steps) return false;
+    
+    const quizDone = (mp.steps['quiz'] as any)?.passed === true;
+    const practiceDone = (mp.steps['practice'] as any)?.passed === true;
+    const debugDone = (mp.steps['debug_challenge'] as any)?.passed === true;
+    
+    return quizDone && practiceDone && debugDone;
+  };
+
   const handlePrev = useCallback(() => {
     if (hasPrev) router.push(`/mission/${missionId}/step/${currentIndex - 1}`);
   }, [hasPrev, router, missionId, currentIndex]);
@@ -28,7 +44,11 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
     if (hasNext) {
       router.push(`/mission/${missionId}/step/${currentIndex + 1}`);
     } else {
-      // Last step: complete the mission then navigate to dashboard
+      // Last step: check completion gate before completing
+      if (!canCompleteMission()) {
+        setGateMessage('সব ধাপ (Quiz, Practice, Debug) সম্পন্ন করো!');
+        return;
+      }
       try {
         ProgressEngine.completeMission(missionData);
       } catch (e) {
@@ -76,6 +96,11 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
           )}
         </button>
       </div>
+      {gateMessage && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 px-6 py-3 bg-warning/10 border border-warning/30 text-warning rounded-lg font-bangla text-sm animate-in fade-in duration-300 z-50">
+          {gateMessage}
+        </div>
+      )}
     </footer>
   );
 }
