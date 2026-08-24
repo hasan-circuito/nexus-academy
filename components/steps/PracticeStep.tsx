@@ -10,6 +10,7 @@ import { OutputComparator } from '@/engines/python/OutputComparator';
 import { ValidationEngine } from '@/engines/python/ValidationEngine';
 import { EvaluationResult } from '@/engines/python/python.types';
 import { EventBus } from '@/engines/events/EventBus';
+import { saveStepEvidence } from '@/hooks/useProgress';
 
 export function PracticeStepComponent({ step, missionData }: { step: PracticeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
@@ -35,6 +36,11 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
 
       if (evalResult.passed) {
         setIsDone(true);
+        // Persist practice evidence
+        saveStepEvidence(missionData.id, 'practice', {
+          passed: true,
+          hintsUsed: hintIndex,
+        });
         // Emit true completion (not self-reported)
         EventBus.emit({
           type: 'PRACTICE_COMPLETED',
