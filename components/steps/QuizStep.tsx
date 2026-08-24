@@ -3,6 +3,7 @@ import type { QuizStep, QuizQuestion } from '@/types/mission.types';
 import type { MissionData } from '@/types/mission.types';
 import { useState } from 'react';
 import { CheckCircle2, XCircle, ChevronRight, Trophy } from 'lucide-react';
+import { saveStepEvidence } from '@/hooks/useProgress';
 
 interface Props {
   step: QuizStep;
@@ -39,6 +40,15 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
       setSelected(null);
       setSubmitted(false);
     } else {
+      // Persist quiz evidence to localStorage
+      const finalScore = selected === q.correctOptionIndex ? score + 1 : score;
+      const pct = Math.round((finalScore / totalQuestions) * 100);
+      saveStepEvidence(_missionData.id, 'quiz', {
+        passed: pct >= step.passingScore,
+        score: pct,
+        totalQuestions,
+        correctAnswers: finalScore,
+      });
       setFinished(true);
     }
   };
