@@ -1,0 +1,26 @@
+{
+  "missions": [
+    {
+      "id": "001",
+      "title": "Software Memory and Variables",
+      "banglaTitle": "সফটওয়্যারের মেমোরি",
+      "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
+      "status": "published",
+      "prerequisite": null,
+      "primaryConcept": "Variables & Print",
+      "estimatedMinutes": 25,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "002",
+      "title": "Using Software Memory",
+      "banglaTitle": "মেমোরি ব্যবহার",
+      "banglaSubtitle": "মনে রাখা তথ্য কেন গুরুত্বপূর্ণ?",
+      "status": "published",
+      "prerequisite": "001",
+      "primaryConcept": "print() and Variable Usage",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    }
+  ]
+}
