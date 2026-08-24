@@ -1,10 +1,10 @@
 [
   {
     "id": "001",
-    "title": "Python Introduction",
-    "banglaTitle": "পাইথন পরিচিতি",
-    "banglaSubtitle": "প্রোগ্রামিং শুরুর গল্প",
-    "description": "Learn what Python is, its history, and why it matters for AI and EEE",
+    "title": "Software Memory and Variables",
+    "banglaTitle": "সফটওয়্যারের মেমোরি",
+    "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
+    "description": "Learn how software remembers information using variables",
     "status": "unlocked",
     "estimatedMinutes": 25,
     "difficulty": "beginner",
@@ -12,8 +12,25 @@
       "prerequisiteIds": [],
       "enablesIds": ["002"],
       "relatedIds": [],
-      "topicSlug": "python_introduction"
+      "topicSlug": "variables_and_memory"
     },
-    "tags": ["python", "history", "introduction", "guido"]
+    "tags": ["python", "variables", "memory", "print"]
+  },
+  {
+    "id": "002",
+    "title": "Using Software Memory",
+    "banglaTitle": "মেমোরি ব্যবহার",
+    "banglaSubtitle": "মনে রাখা তথ্য কেন গুরুত্বপূর্ণ?",
+    "description": "Learn how to use stored information with print()",
+    "status": "locked",
+    "estimatedMinutes": 20,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["001"],
+      "enablesIds": ["003"],
+      "relatedIds": [],
+      "topicSlug": "using_variables"
+    },
+    "tags": ["python", "print", "usage", "memory"]
   }
 ]
