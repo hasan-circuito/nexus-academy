@@ -8,6 +8,7 @@ import { usePythonEngine } from '@/hooks/usePythonEngine';
 import { usePracticeCode } from '@/hooks/usePracticeCode';
 import { OutputComparator } from '@/engines/python/OutputComparator';
 import { EventBus } from '@/engines/events/EventBus';
+import { saveStepEvidence } from '@/hooks/useProgress';
 
 export function DebugChallengeStepComponent({ step, missionData }: { step: DebugChallengeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
@@ -22,6 +23,11 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
     
     if (result.success && !result.stderr) {
       setIsFixed(true);
+      // Persist debug evidence
+      saveStepEvidence(missionData.id, 'debug_challenge', {
+        passed: true,
+        hintsUsed: hintIndex,
+      });
       // Emit true completion (not self-reported)
       EventBus.emit({
         type: 'DEBUG_SOLVED',
