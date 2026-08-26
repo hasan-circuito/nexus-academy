@@ -128,8 +128,16 @@
         "তোমার নাম কোটেশনের (\" \") ভেতরে লেখো।"
       ],
       "displayHint": "তোমার নিজের নাম প্রিন্ট করো",
+      "expectedOutput": "",
       "validation": {
-        "type": "any_non_empty_output"
+        "type": "regex_source",
+        "value": "print\\s*\\(\\s*['\"].+['\"]\\s*\\)",
+        "ignoreWhitespace": true,
+        "ignoreCase": false,
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি সফলভাবে প্রথম পাইথন কোড লিখেছ।",
+          "onPatternFail": "print() ফাংশনের ভেতরে তোমার নামটি কোটেশন মার্ক (\") দিয়ে লেখো। যেমন: print(\"Hasan\")"
+        }
       },
       "solution": "print(\"Your Name\")",
       "solutionExplanation": "print() এর ভেতরে স্ট্রিং দিলে তা স্ক্রিনে দেখায়।"
