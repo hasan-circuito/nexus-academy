@@ -133,9 +133,14 @@
       "expectedOutput": "",
       "validation": {
         "type": "regex_source",
-        "value": "(my_name\\s*=\\s*['\"].+['\"])[\\s\\S]*(dream\\s*=\\s*['\"].+['\"])[\\s\\S]*(favorite_food\\s*=\\s*['\"].+['\"])[\\s\\S]*(print\\(my_name\\))[\\s\\S]*(print\\(dream\\))[\\s\\S]*(print\\(favorite_food\\))",
+        "value": "(my_name\\s*=\\s*['\"].+['\"])[\\s\\S]*(dream\\s*=\\s*['\"].+['\"])[\\s\\S]*(favorite_food\\s*=\\s*['\"].+['\"])[\\s\\S]*(print\\s*\\(\\s*my_name\\s*\\))[\\s\\S]*(print\\s*\\(\\s*dream\\s*\\))[\\s\\S]*(print\\s*\\(\\s*favorite_food\\s*\\))",
         "ignoreWhitespace": true,
-        "ignoreCase": true
+        "ignoreCase": true,
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! তুমি ৩টি ভেরিয়েবলে তথ্য জমা রেখে সফলভাবে প্রিন্ট করেছ।",
+          "onPatternFail": "my_name, dream এবং favorite_food — তিনটি ভেরিয়েবলই তৈরি করো এবং প্রতিটির জন্য print() ব্যবহার করো।",
+          "onHardcoded": "ভেরিয়েবল ছাড়া সরাসরি print করবে না! প্রথমে my_name = \"তোমার নাম\" এভাবে ভেরিয়েবল তৈরি করো।"
+        }
       },
       "solution": "my_name = \"Hasan\"\ndream = \"Software Engineer\"\nfavorite_food = \"Biryani\"\n\nprint(my_name)\nprint(dream)\nprint(favorite_food)",
       "solutionExplanation": "দারুণ! তুমি সফলভাবে তিনটি আলাদা তথ্য সফটওয়্যারের মেমোরিতে মনে রেখেছ এবং পরে তা ব্যবহার করেছ।"
