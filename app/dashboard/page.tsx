@@ -22,10 +22,11 @@ export default function DashboardPage() {
     
     return {
       id: entry.id,
-      title: isLocked ? `Locked Mission` : entry.title,
+      title: `Mission ${entry.id}: ${entry.banglaTitle}`,
+      englishTitle: entry.title,
       banglaTitle: entry.banglaTitle,
       banglaSubtitle: entry.banglaSubtitle || '',
-      description: isLocked ? 'Complete the previous mission to unlock this content.' : entry.banglaSubtitle || '',
+      description: entry.banglaSubtitle || entry.primaryConcept || '',
       isLocked,
       isCompleted,
       estimatedMinutes: entry.estimatedMinutes || 20,
@@ -157,13 +158,23 @@ export default function DashboardPage() {
                   {mission.isLocked ? <Lock className="w-5 h-5" /> : <Code2 className="w-5 h-5" />}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-foreground truncate">{mission.title}</h4>
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-semibold text-foreground truncate">{mission.title}</h4>
+                    <span className="text-xs text-muted-foreground hidden sm:inline">({mission.englishTitle})</span>
+                  </div>
                   <p className="text-sm text-muted-foreground truncate">{mission.description}</p>
                 </div>
-                {!mission.isLocked && (
+                {mission.isLocked ? (
                   <Link 
                     href={`/mission/mission-${mission.id}/step/0`}
-                    className="text-sm font-medium text-primary hover:text-primary-hover px-4 py-2"
+                    className="text-xs font-medium text-muted-foreground hover:text-primary px-3 py-1.5 rounded-md bg-surface-elevated hover:bg-surface transition-colors"
+                  >
+                    Locked (Preview)
+                  </Link>
+                ) : (
+                  <Link 
+                    href={`/mission/mission-${mission.id}/step/0`}
+                    className="text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors"
                   >
                     {mission.isCompleted ? 'Review' : 'Start'}
                   </Link>
