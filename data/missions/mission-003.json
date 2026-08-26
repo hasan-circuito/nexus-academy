@@ -1,34 +1,235 @@
 {
   "id": "003",
-  "title": "Locked Mission 3",
-  "titleBangla": "লক করা মিশন 3",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-002"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "When Memory Changes",
+  "banglaTitle": "মেমোরি যখন বদলে যায়",
+  "banglaSubtitle": "বাস্তবতা বদলালে মেমোরি কীভাবে আপডেট হয়?",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 1,
+    "practiceComplexity": 1,
+    "estimatedTotalMinutes": 18
+  },
+  "curiosity": {
+    "didYouKnow": "Software rarely works with information that stays unchanged forever. Almost every program models dynamic real-world reality.",
+    "realWorldApplication": "Game scores, device battery percentage, temperatures, and account balances all change continuously while a program is running.",
+    "aiApplication": "AI systems constantly update information such as conversation state, user context, and intermediate thoughts as new inputs arrive.",
+    "eeeApplication": "An embedded system stores an analog sensor reading and immediately replaces it when a newer reading arrives from the ADC.",
+    "historicalFact": "The concept of mutable stored state was essential for transitioning from static calculation engines to dynamic interactive computing.",
+    "nextMissionPreview": "If stored information can change, what happens when software needs to work with different kinds of data (like numbers vs text)?"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "003",
-      "title": "Welcome to Mission 3",
-      "banglaTitle": "মিশন 3-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "When Memory Changes",
+      "banglaTitle": "মেমোরি যখন বদলে যায়",
+      "tagline": "বাস্তবতা বদলালে সফটওয়্যার কী করে?",
+      "description": "আগের মিশনে আমরা মেমোরিতে তথ্য জমা রাখা এবং তা ব্যবহার করা শিখেছি। কিন্তু যখন আসল দুনিয়ায় তথ্য বদলে যায় (যেমন গেমের স্কোর ১০ থেকে ২০ হয়), তখন সফটওয়্যার কীভাবে তার পুরনো মেমোরি আপডেট করে? আজ আমরা তাই শিখব!",
       "learningObjectives": [
-        "Patience"
+        "মেমোরির মান কেন বদলাতে হয় তা বোঝা",
+        "Variable Reassignment (মান আপডেট) করা শেখা",
+        "আপডেটের পর print() কীভাবে কাজ করে তা বোঝা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 3
+    },
+    {
+      "type": "story",
+      "title": "ডিজিটাল স্কোরবোর্ড",
+      "setting": "একটি ফুটবল স্টেডিয়াম...",
+      "content": "খেলা শুরুর আগে স্কোরবোর্ডে দলের গোল সংখ্যা থাকে 0। কিছু সময় পর দল একটি গোল করল।\n\nস্কোরবোর্ড কি তখন দুটি স্কোর (0 এবং 1) আলাদা আলাদা করে পাশাপাশি ঝুলিয়ে রাখবে?\n\nঅবশ্যই না! স্কোরবোর্ড তার আগের 0 মুছে ফেলে সেখানে নতুন 1 বসিয়ে দেয়। সফটওয়্যারও ঠিক এইভাবেই বাস্তবতার সাথে তাল মিলিয়ে নিজের মেমোরি আপডেট করে।",
+      "moral": "বাস্তবতা পরিবর্তন হলে সফটওয়্যারের মেমোরিও আপডেট করতে হয়।"
+    },
+    {
+      "type": "analogy",
+      "title": "কাগজের নোট বনাম হোয়াইটবোর্ড",
+      "realWorld": {
+        "label": "হোয়াইটবোর্ড",
+        "description": "পুরনো লেখা মুছে ফেলে ঠিক একই জায়গায় নতুন লেখা বসানো যায়",
+        "icon": "FileEdit"
+      },
+      "pythonConcept": {
+        "label": "Variable Update",
+        "description": "একই বাক্সে পুরনো মান মুছে নতুন মান প্রতিস্থাপন করে",
+        "icon": "RefreshCw"
+      },
+      "connection": "কাগজে আমরা আগের সংখ্যা কেটে পাশে নতুন সংখ্যা লিখি। কিন্তু সফটওয়্যারের ভেরিয়েবল হলো একটি হোয়াইটবোর্ডের মতো—একই নামের বক্সে নতুন মান বসালে আগের মানটি পুরোপুরি মুছে নতুন মানটি বসে যায়।",
+      "deeperInsight": "একটি ভেরিয়েবল সবসময় তার সর্বশেষ (latest) মানটিই কেবল মনে রাখে।"
+    },
+    {
+      "type": "concept",
+      "title": "ভেরিয়েবল আপডেট বা Reassignment",
+      "content": "পাইথনে কোনো ভেরিয়েবলের মান পরিবর্তন করতে নতুন কোনো জটিল নিয়মের প্রয়োজন নেই। ঠিক আগের মতোই ভেরিয়েবলের নাম লিখে `=` চিহ্নের পর নতুন মান লিখে দিলেই মেমোরি আপডেট হয়ে যায়।\n\nদ্বিতীয় লাইনটি এক্সিকিউট হওয়ার সাথে সাথে `score` এর ভেতরে থাকা পুরনো `10` মুছে যায় এবং নতুন `20` জমা হয়।",
+      "keyPoints": [
+        "একটি ভেরিয়েবলে নতুন মান দিলে আগের মান স্বয়ংক্রিয়ভাবে মুছে যায়",
+        "একে প্রোগ্রামিংয়ের ভাষায় Variable Reassignment বা Update বলে",
+        "print() সবসময় ভেরিয়েবলের সর্বশেষ মানটিই দেখায়"
+      ],
+      "whyCallout": "যদি মেমোরি পরিবর্তন না করা যেত, তবে গেমের স্কোর, আবহাওয়ার তাপমাত্রা বা ব্যাংকের ব্যালেন্স—কোনো কিছুই সফটওয়্যার দিয়ে চালানো সম্ভব হতো না।",
+      "whenToUse": "যখন বাস্তব কোনো পরিবর্তনের সাথে সাথে আগের মান বদলে নতুন মান রাখতে হয়।",
+      "whenNotToUse": "যখন আগের এবং নতুন দুটো তথ্যই আলাদাভাবে প্রয়োজন হয় (সেক্ষেত্রে দুটি ভিন্ন ভেরিয়েবল ব্যবহার করতে হয়)।"
+    },
+    {
+      "type": "visualization",
+      "title": "মেমোরি পরিবর্তনের দৃশ্য",
+      "description": "কীভাবে মেমোরির ভেতরের সংখ্যাটি বদলে যাচ্ছে",
+      "visualizationType": "memory_diagram",
+      "data": {
+        "variableName": "score",
+        "oldValue": "10",
+        "newValue": "20",
+        "action": "reassign"
+      },
+      "caption": "প্রথমে score বাক্সে ছিল 10। দ্বিতীয় লাইনে 20 আসায় পুরনো 10 বের হয়ে যায় এবং নতুন 20 ভেতরে বসে যায়।"
+    },
+    {
+      "type": "code_example",
+      "title": "কোডে মেমোরি আপডেট",
+      "explanation": "নিচের কোডটি লক্ষ্য করো—একই ভেরিয়েবল দুবার প্রিন্ট করা হয়েছে, কিন্তু মাঝে তার মান বদলে দেওয়া হয়েছে।",
+      "language": "python",
+      "code": "score = 10\nprint(score)\n\nscore = 20\nprint(score)",
+      "output": "10\n20",
+      "annotations": [
+        {
+          "lineNumber": 1,
+          "explanation": "Step 1: score ভেরিয়েবলে 10 জমা হলো।"
+        },
+        {
+          "lineNumber": 2,
+          "explanation": "Step 2: প্রথম print() বর্তমান মান 10 দেখালো।"
+        },
+        {
+          "lineNumber": 4,
+          "explanation": "Step 3: score-এর মান আপডেট করে 20 করা হলো (পুরনো 10 মুছে গেল)।"
+        },
+        {
+          "lineNumber": 5,
+          "explanation": "Step 4: দ্বিতীয় print() নতুন মান 20 দেখালো।"
+        }
+      ],
+      "postExplanation": "কোড সবসময় ওপর থেকে নিচে ক্রমানুসারে চলে। তাই প্রথমবার ১০ এবং আপডেট হওয়ার পর দ্বিতীয়বার ২০ প্রিন্ট হয়েছে।"
+    },
+    {
+      "type": "eee_example",
+      "title": "EEE পার্সপেক্টিভ: সেন্সরের ডেটা পরিবর্তন",
+      "context": "একটি স্মার্ট থার্মোমিটারে তাপমাত্রা পরিবর্তন কীভাবে রিড হয়?",
+      "hardware": "DHT11 Sensor + ESP32",
+      "domain": "sensor_networks",
+      "code": "temperature = 28\nprint(temperature)\n\n# Sensor reads new ambient heat\ntemperature = 29\nprint(temperature)",
+      "output": "28\n29",
+      "explanation": "রিয়েল-টাইম সেন্সর সিস্টেমে প্রতি সেকেন্ডে নতুন রিডিং আসে। আগের রিডিং ওভাররাইট করে লেটেস্ট টেম্পারেচার ভেরিয়েবলে আপডেট করা হয়।",
+      "realDeviceNote": "Memory must constantly reflect the dynamic physical environment."
+    },
+    {
+      "type": "ai_example",
+      "title": "AI পার্সপেক্টিভ: চ্যাটের কনটেক্সট আপডেট",
+      "context": "এআই কীভাবে কনভারসেশনের সর্বশেষ অবস্থা মনে রাখে?",
+      "aiDomain": "conversational_ai",
+      "code": "status = \"User is typing\"\nprint(status)\n\nstatus = \"Message received\"\nprint(status)",
+      "output": "User is typing\nMessage received",
+      "explanation": "একটি AI অ্যাসিস্ট্যান্ট বা চ্যাটবট ইউজারের বিভিন্ন অ্যাকশন অনুযায়ী তার অভ্যন্তরীণ অবস্থা (Status) আপডেট করতে ভেরিয়েবল রিঅ্যাসাইনমেন্ট ব্যবহার করে।",
+      "realWorldModel": "Dynamic state keeps the AI synced with real-time reality."
+    },
+    {
+      "type": "practice",
+      "title": "Mission Challenge: স্কোরের আপডেট",
+      "prompt": "তোমার প্রথম ডায়নামিক মেমোরি কোড করো!\n\n১. score নামে ভেরিয়েবল তৈরি করে তাতে 10 রাখো।\n২. print(score) দিয়ে প্রথম মানটি দেখাও।\n৩. এবার score ভেরিয়েবলটির মান আপডেট করে 25 করো।\n৪. সবশেষে আবার print(score) দিয়ে নতুন মানটি দেখাও।",
+      "starterCode": "# Write your code below\n\n",
+      "hints": [
+        "প্রথমে score = 10 লেখো এবং print(score) দাও।",
+        "এরপর score = 25 লিখে মেমোরি আপডেট করো।",
+        "সবশেষে আবার print(score) লেখো।"
+      ],
+      "expectedOutput": "10\n25",
+      "validation": {
+        "type": "regex_source",
+        "value": "(score\\s*=\\s*['\"]?10['\"]?)[\\s\\S]*(print\\(score\\))[\\s\\S]*(score\\s*=\\s*['\"]?25['\"]?)[\\s\\S]*(print\\(score\\))",
+        "ignoreWhitespace": true,
+        "ignoreCase": true
+      },
+      "solution": "score = 10\nprint(score)\n\nscore = 25\nprint(score)",
+      "solutionExplanation": "অসাধারণ! তুমি সফলভাবে পাইথনের মেমোরি আপডেট করেছো এবং দেখিয়েছো কীভাবে সময় অনুযায়ী ভেরিয়েবলের মান পরিবর্তন হয়।"
+    },
+    {
+      "type": "quiz",
+      "title": "জ্ঞান যাচাই",
+      "instructions": "নিচের কোডটি পর্যবেক্ষণ করে সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "নিচের কোডটি রান করলে আউটপুট কী আসবে?\n\nscore = 10\nscore = 20\nprint(score)",
+          "difficulty": "easy",
+          "options": [
+            "10",
+            "20",
+            "10 এবং 20 উভয়ই",
+            "এরর (Error) আসবে"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "প্রথমে score-এ 10 রাখা হলেও পরে তা 20 দিয়ে আপডেট করা হয়েছে। তাই print() করার সময় সর্বশেষ মান 20 প্রদর্শিত হবে।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: স্কোর আটকে গেছে!",
+      "scenario": "তোমার বন্ধু স্কোর আপডেট করতে গিয়ে ভুল চিহ্ন ব্যবহার করেছে। যার ফলে স্কোর ১০ থেকে ২০ হচ্ছে না। কোডটি ফিক্স করো।",
+      "buggyCode": "score = 10\nprint(score)\n\nscore == 20\nprint(score)",
+      "errorMessage": "Syntax/Logic Issue: score is not updated because == is used instead of =",
+      "bugLine": 4,
+      "bugType": "syntax",
+      "hints": [
+        "৪ নম্বর লাইনে চিহ্নের দিকে ভালো করে লক্ষ্য করো।",
+        "ভেরিয়েবলে নতুন মান অ্যাসাইন করার জন্য একক সমান চিহ্ন (=) ব্যবহার করতে হয়।"
+      ],
+      "fixedCode": "score = 10\nprint(score)\n\nscore = 20\nprint(score)",
+      "explanation": "পাইথনে মান রাখার জন্য একটি একক সমান (=) ব্যবহার করা হয়। ডাবল সমান (==) তুলনার জন্য ব্যবহার করা হয় যা আমরা পরে শিখব।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে গভীরভাবে ভাবো। তারপর Expert Thinking প্রকাশ করো।",
+      "prompts": [
+        "যদি সফটওয়্যারের কোনো ভেরিয়েবল একবার তৈরি করার পর আর কখনোই তার মান পরিবর্তন না করা যেত?",
+        "বাস্তব জীবনের কোন কোন সিস্টেম এমন অপরিবর্তনশীল মেমোরি দিয়ে বানানো অসম্ভব হয়ে পড়ত?",
+        "আজকের পর ভেরিয়েবল সম্পর্কে তোমার চিন্তাভাবনায় কী পরিবর্তন আসল?"
+      ],
+      "criticalThinkingQuestions": [
+        {
+          "question": "যদি সফটওয়্যারের কোনো ভেরিয়েবল একবার তৈরি করার পর আর কখনোই তার মান পরিবর্তন না করা যেত?",
+          "expertThinking": "যদি ভেরিয়েবলের মান পরিবর্তন না করা যেত, তবে সফটওয়্যার হতো একটি স্থির (Static) পোস্টারের মতো।\n\nবাস্তব পৃথিবী প্রতি মুহূর্তে পরিবর্তনশীল। সফটওয়্যার যদি সেই পরিবর্তনের সাথে তাল মিলিয়ে নিজের ডেটা আপডেট করতে না পারে, তবে সেটি কখনো আধুনিক অ্যাপ্লিকেশন হয়ে উঠতে পারবে না।\n\nReassignment সফটওয়্যারকে প্রাণ দেয় এবং সময়ের সাথে সাথে নতুন তথ্য গ্রহণ করার সক্ষমতা তৈরি করে।",
+          "realWorldEngineering": "একটি স্মার্টওয়াচ প্রতি সেকেন্ডে তোমার হৃদস্পন্দন (Heart Rate) মাপছে।\n\nযদি ভেরিয়েবল আপডেট না হতো, তবে সকালে যে হার্টরেট ছিল, সারাদিন ঘড়ির স্ক্রিনে সেটাই আটকে থাকত।\n\nলেটেস্ট ডেটা ওভাররাইট করার ক্ষমতা আছে বলেই স্মার্ট হেলথ ট্র্যাকিং সম্ভব।",
+          "beyondProgramming": "মানুষের ব্রেনও ঠিক একইভাবে কাজ করে।\n\nনতুন অভিজ্ঞতা ও সত্য জানার পর মানুষ নিজের পুরনো ভুল ধারণা আপডেট করে নেয়। যে সিস্টেম আপডেট হতে জানে না, সে সময়ের সাথে অচল হয়ে যায়।"
+        },
+        {
+          "question": "বাস্তব জীবনের কোন কোন সিস্টেম এমন অপরিবর্তনশীল মেমোরি দিয়ে বানানো অসম্ভব হয়ে পড়ত?",
+          "expertThinking": "ব্যাংকিং সিস্টেম, গেম, এয়ার ট্রাফিক কন্ট্রোল, রাইড শেয়ারিং (Uber/Pathao) — এদের কোনোটিই কাজ করত না।\n\nব্যাংক অ্যাকাউন্টে টাকা তোলা বা জমা দেওয়ার পর ব্যালেন্স পরিবর্তন হতে হয়। গাড়িতে স্পিড বাড়লে স্পিডোমিটার আপডেট হতে হয়।\n\nসফটওয়্যার ইঞ্জিনিয়ারিংয়ের ৯৫% কাজই হলো পরিবর্তিত অবস্থার হিসাব রাখা।",
+          "realWorldEngineering": "মহাকাশ গবেষণা যান (Space Rover) যখন মঙ্গলে নামে, সে প্রতি মিলি-সেকেন্ডে উচ্চতা (Altitude) আপডেট করে থ্রাস্টার কন্ট্রোল করে।\n\nএকবার মেমোরি স্টাক হলে রোভারটি সজোরে মাটিতে আছড়ে পড়ে ধ্বংস হয়ে যাবে।",
+          "beyondProgramming": "বিজ্ঞান ও রিসার্চের মূল ভিত্তি হলো পর্যবেক্ষণ ও আপডেট। নতুন ডেটা আসলে আগের হাইপোথিসিসকে আপডেট করা হয়।"
+        },
+        {
+          "question": "আজকের পর ভেরিয়েবল সম্পর্কে তোমার চিন্তাভাবনায় কী পরিবর্তন আসল?",
+          "expertThinking": "পূর্বে তুমি ভেবেছিলে ভেরিয়েবল মানে শুধু একটি ফিক্সড পাত্র যেখানে কোনো নাম লিখে রেখে দেওয়া হয়।\n\nআজ তুমি উপলব্ধি করলে যে ভেরিয়েবল মূলত 'বর্তমান অবস্থা' (Current State) কে ধারণ করে।\n\n'State' পরিবর্তনশীল, আর ভেরিয়েবল হলো সেই পরিবর্তনের চলমান দর্পণ।",
+          "realWorldEngineering": "আধুনিক সব ফ্রেমওয়ার্ক (যেমন React, Flutter, Game Engines) এই 'State' পরিবর্তনের ওপর ভিত্তি করেই পুরো ইউজার ইন্টারফেস পরিচালনা করে।",
+          "beyondProgramming": "ইঞ্জিনিয়ারিংয়ে স্ট্যাটিক সমাধান দুর্বল; ডাইনামিক এবং অ্যাডাপ্টিভ সমাধানই দীর্ঘস্থায়ী হয়।"
+        }
+      ],
+      "endScreen": {
+        "title": "Mission 003 Reflection Complete",
+        "message": "অভিনন্দন! তুমি সফলভাবে বুঝতে পেরেছ কেন সফটওয়্যারকে প্রতিনিয়ত মেমোরি আপডেট করতে হয়।",
+        "conclusion": "You are now building dynamic systems, not just static scripts."
+      }
+    },
+    {
+      "type": "mission_complete",
+      "title": "মিশন ০৩ সম্পন্ন!",
+      "summary": "তুমি এখন সফটওয়্যারের মেমোরিতে তথ্য জমা রাখতে পারো, তা ব্যবহার করতে পারো এবং বাস্তব পরিবর্তনের সাথে সাথে মেমোরি আপডেটও করতে পারো!",
+      "keyLearnings": [
+        "একটি ভেরিয়েবলে নতুন মান বসালে আগের মানটি স্বয়ংক্রিয়ভাবে মুছে যায়।",
+        "সফটওয়্যার সময়ের সাথে সাথে পরিবর্তিত বাস্তবতাকে ধারণ করতে ভেরিয়েবল রিঅ্যাসাইনমেন্ট ব্যবহার করে।",
+        "print() সবসময় মেমোরির সর্বশেষ সক্রিয় মানটি স্ক্রিনে প্রদর্শন করে।"
+      ]
     }
   ]
 }
