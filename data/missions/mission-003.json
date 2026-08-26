@@ -142,7 +142,7 @@
       "expectedOutput": "10\n25",
       "validation": {
         "type": "regex_source",
-        "value": "(score\\s*=\\s*['\"]?10['\"]?)[\\s\\S]*(print\\(score\\))[\\s\\S]*(score\\s*=\\s*['\"]?25['\"]?)[\\s\\S]*(print\\(score\\))",
+        "value": "(score\\s*=\\s*['\"]?10['\"]?)[\\s\\S]*(print\\s*\\(\\s*score\\s*\\))[\\s\\S]*(score\\s*=\\s*['\"]?25['\"]?)[\\s\\S]*(print\\s*\\(\\s*score\\s*\\))",
         "ignoreWhitespace": true,
         "ignoreCase": true
       },
