@@ -1,10 +1,10 @@
-{
+﻿{
   "missions": [
     {
       "id": "001",
       "title": "Software Memory and Variables",
-      "banglaTitle": "সফটওয়্যারের মেমোরি",
-      "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
+      "banglaTitle": "à¦¸à¦«à¦Ÿà¦“à¦¯à¦¼à§à¦¯à¦¾à¦°à§‡à¦° à¦®à§‡à¦®à§‹à¦°à¦¿",
+      "banglaSubtitle": "à¦¸à¦«à¦Ÿà¦“à¦¯à¦¼à§à¦¯à¦¾à¦° à¦•à¦¿ à¦®à¦¨à§‡ à¦°à¦¾à¦–à¦¤à§‡ à¦ªà¦¾à¦°à§‡?",
       "status": "published",
       "prerequisite": null,
       "primaryConcept": "Variables & Print",
@@ -14,8 +14,8 @@
     {
       "id": "002",
       "title": "Using Software Memory",
-      "banglaTitle": "মেমোরি ব্যবহার",
-      "banglaSubtitle": "মনে রাখা তথ্য কেন গুরুত্বপূর্ণ?",
+      "banglaTitle": "à¦®à§‡à¦®à§‹à¦°à¦¿ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦°",
+      "banglaSubtitle": "à¦®à¦¨à§‡ à¦°à¦¾à¦–à¦¾ à¦¤à¦¥à§à¦¯ à¦•à§‡à¦¨ à¦—à§à¦°à§à¦¤à§à¦¬à¦ªà§‚à¦°à§à¦£?",
       "status": "published",
       "prerequisite": "001",
       "primaryConcept": "print() and Variable Usage",
@@ -25,13 +25,25 @@
     {
       "id": "003",
       "title": "When Memory Changes",
-      "banglaTitle": "মেমোরি যখন বদলে যায়",
-      "banglaSubtitle": "বাস্তবতা বদলালে মেমোরি কীভাবে আপডেট হয়?",
+      "banglaTitle": "à¦®à§‡à¦®à§‹à¦°à¦¿ à¦¯à¦–à¦¨ à¦¬à¦¦à¦²à§‡ à¦¯à¦¾à§Ÿ",
+      "banglaSubtitle": "à¦¬à¦¾à¦¸à§à¦¤à¦¬à¦¤à¦¾ à¦¬à¦¦à¦²à¦¾à¦²à§‡ à¦®à§‡à¦®à§‹à¦°à¦¿ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦†à¦ªà¦¡à§‡à¦Ÿ à¦¹à§Ÿ?",
       "status": "published",
       "prerequisite": "002",
       "primaryConcept": "Variable Reassignment & Dynamic Memory",
       "estimatedMinutes": 18,
       "difficulty": "beginner"
+    },
+    {
+      "id": "004",
+      "title": "When Information Has a Type",
+      "banglaTitle": "সব তথ্য কি একই ধরনের?",
+      "banglaSubtitle": "কম্পিউটার কেন জানতে চায়, তুমি কী ধরনের তথ্য তাকে দিয়েছ?",
+      "status": "published",
+      "prerequisite": "003",
+      "primaryConcept": "Data Types: String vs Integer",
+      "estimatedMinutes": 15,
+      "difficulty": "beginner"
     }
   ]
 }
+
