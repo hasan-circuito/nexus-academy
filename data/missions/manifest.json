@@ -21,6 +21,17 @@
       "primaryConcept": "print() and Variable Usage",
       "estimatedMinutes": 20,
       "difficulty": "beginner"
+    },
+    {
+      "id": "003",
+      "title": "When Memory Changes",
+      "banglaTitle": "মেমোরি যখন বদলে যায়",
+      "banglaSubtitle": "বাস্তবতা বদলালে মেমোরি কীভাবে আপডেট হয়?",
+      "status": "published",
+      "prerequisite": "002",
+      "primaryConcept": "Variable Reassignment & Dynamic Memory",
+      "estimatedMinutes": 18,
+      "difficulty": "beginner"
     }
   ]
 }
