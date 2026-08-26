@@ -180,6 +180,14 @@ export interface AIExampleStep {
 // Step 9 — practice
 export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output' | 'regex_source';
 
+export interface ValidationFeedback {
+  onPass?: string;           // ✅ সাফল্যের মেসেজ
+  onOutputMismatch?: string; // আউটপুট না মিললে
+  onPatternFail?: string;    // regex/structure চেকে ফেল
+  onHardcoded?: string;      // চিটিং ধরা পড়লে
+  onMissingVariable?: string;// ভেরিয়েবল না থাকলে
+}
+
 export interface ValidationConfig {
   type: ValidationStrategy;
   value?: string;
@@ -188,6 +196,7 @@ export interface ValidationConfig {
   ignoreTrailingNewline?: boolean;
   strictMode?: boolean;
   expectedOutput?: string;
+  feedbackMessages?: ValidationFeedback;
 }
 
 export interface PracticeStep {
