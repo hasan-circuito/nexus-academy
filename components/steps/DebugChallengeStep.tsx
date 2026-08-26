@@ -15,7 +15,8 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
   const [isFixed, setIsFixed] = useState(false);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
-  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.type, step.buggyCode);
+  // Using step.title as the unique identifier so multiple debug steps in a mission don't share code
+  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.buggyCode);
 
   const handleRun = async () => {
     if (!code.trim()) return;

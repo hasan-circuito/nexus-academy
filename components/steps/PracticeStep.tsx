@@ -18,7 +18,8 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
-  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.type, step.starterCode || '');
+  // Using step.title as the unique identifier so multiple practice steps in a mission don't share code
+  const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.starterCode || '');
 
   const handleRun = async () => {
     if (!code.trim()) return;
