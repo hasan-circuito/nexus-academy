@@ -10,6 +10,8 @@ export class RegexSourceStrategy implements IValidationStrategy {
     sourceCode: string = ''
   ): EvaluationResult {
     const pattern = config.value || '.*';
+    const ignoreWhitespace = config.ignoreWhitespace ?? false;
+    const ignoreCase = config.ignoreCase ?? false;
 
     const baseResult: EvaluationResult = {
       passed: false,
@@ -25,13 +27,42 @@ export class RegexSourceStrategy implements IValidationStrategy {
       return { ...baseResult, message: 'Your code threw an error. Please fix it first.' };
     }
 
+    // Fix 1: Normalize source to make it less brittle
+    let testSource = sourceCode;
+    if (ignoreWhitespace) {
+      // Collapse spaces, optionally remove semicolons to support flexible styles
+      testSource = testSource.replace(/\s+/g, ' ').replace(/;/g, '').trim();
+    }
+
+    let regexPassed = false;
     try {
-      const regex = new RegExp(pattern);
-      if (regex.test(sourceCode)) {
-        return { ...baseResult, passed: true, score: 100, message: 'সঠিক হয়েছে! ভেরিয়েবলটি সফলভাবে মেমোরিতে সেভ হয়েছে।' };
-      }
+      let flags = '';
+      if (ignoreCase) flags += 'i';
+      
+      const regex = new RegExp(pattern, flags);
+      regexPassed = regex.test(testSource);
     } catch (e) {
       return { ...baseResult, message: 'Invalid Regex pattern configured in mission.' };
+    }
+    
+    // Fix 2: Smart output logic
+    const outputMatchesExactly = 
+      comparisonResult.expectedNormalized && 
+      comparisonResult.actualNormalized === comparisonResult.expectedNormalized;
+
+    if (regexPassed) {
+      if (config.expectedOutput && !outputMatchesExactly) {
+         return { ...baseResult, passed: false, message: 'তোমার কোডের কাঠামো ঠিক আছে, কিন্তু আউটপুটটি প্রত্যাশিত আউটপুটের সাথে মিলছে না।' };
+      }
+      return { ...baseResult, passed: true, score: 100, message: 'সঠিক হয়েছে! ভেরিয়েবলটি সফলভাবে মেমোরিতে সেভ এবং আপডেট হয়েছে।' };
+    }
+
+    // Regex failed, but output was correct? They probably hardcoded it.
+    if (outputMatchesExactly) {
+      return {
+        ...baseResult,
+        message: 'আউটপুট ঠিক আছে! কিন্তু তুমি কি আসলেই ভেরিয়েবল আপডেট করেছ? (শুধু সংখ্যাগুলো সরাসরি print করবে না, ভেরিয়েবল ব্যবহার করো!)'
+      };
     }
 
     return {
