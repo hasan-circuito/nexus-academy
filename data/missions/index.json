@@ -32,5 +32,22 @@
       "topicSlug": "using_variables"
     },
     "tags": ["python", "print", "usage", "memory"]
+  },
+  {
+    "id": "003",
+    "title": "When Memory Changes",
+    "banglaTitle": "মেমোরি যখন বদলে যায়",
+    "banglaSubtitle": "বাস্তবতা বদলালে মেমোরি কীভাবে আপডেট হয়?",
+    "description": "Learn how stored information can be updated when reality changes",
+    "status": "locked",
+    "estimatedMinutes": 18,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["002"],
+      "enablesIds": ["004"],
+      "relatedIds": [],
+      "topicSlug": "variable_reassignment"
+    },
+    "tags": ["python", "variable", "reassignment", "update", "state"]
   }
 ]
