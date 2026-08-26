@@ -26,18 +26,20 @@ export class SmartOutputSourceStrategy implements IValidationStrategy {
       return { ...baseResult, message: 'Your code threw an error. Please fix it first.' };
     }
 
-    // 2. Output Check (Output-First logic)
-    const outputMatchesExactly =
-      comparisonResult.expectedNormalized &&
-      comparisonResult.actualNormalized === comparisonResult.expectedNormalized;
+    // 2. Output Check (Output-First logic, optional)
+    if (config.expectedOutput) {
+      const outputMatchesExactly =
+        comparisonResult.expectedNormalized &&
+        comparisonResult.actualNormalized === comparisonResult.expectedNormalized;
 
-    if (!outputMatchesExactly) {
-      return {
-        ...baseResult,
-        message: fb.onOutputMismatch ?? 'আউটপুটটি প্রত্যাশিত আউটপুটের সাথে মিলছে না। আরেকবার চেষ্টা করো!',
-        diffExpected: comparisonResult.expectedNormalized,
-        diffActual: comparisonResult.actualNormalized,
-      };
+      if (!outputMatchesExactly) {
+        return {
+          ...baseResult,
+          message: fb.onOutputMismatch ?? 'আউটপুটটি প্রত্যাশিত আউটপুটের সাথে মিলছে না। আরেকবার চেষ্টা করো!',
+          diffExpected: comparisonResult.expectedNormalized,
+          diffActual: comparisonResult.actualNormalized,
+        };
+      }
     }
 
     // Normalize source slightly to handle basic spacing variations for pattern matching
