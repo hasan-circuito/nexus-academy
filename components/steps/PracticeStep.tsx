@@ -26,10 +26,14 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
     
     if (result.success) {
       // Fallback to exact_output for older missions without validation
-      const config = step.validation || { type: 'exact_output', value: step.expectedOutput };
+      const config = step.validation 
+        ? { ...step.validation, expectedOutput: step.expectedOutput }
+        : { type: 'exact_output' as const, value: step.expectedOutput, expectedOutput: step.expectedOutput };
       
       // Normalize and compare
-      const comparison = OutputComparator.compare(result.stdout, config.value);
+      // For exact_output, the value is expectedOutput. For other strategies, use expectedOutput explicitly
+      const comparisonTarget = config.type === 'exact_output' ? config.value : config.expectedOutput;
+      const comparison = OutputComparator.compare(result.stdout, comparisonTarget);
       
       const evalResult = ValidationEngine.evaluate(result, comparison, config, code);
       setEvaluation(evalResult);

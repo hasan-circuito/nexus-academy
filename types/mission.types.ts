@@ -187,6 +187,7 @@ export interface ValidationConfig {
   ignoreCase?: boolean;
   ignoreTrailingNewline?: boolean;
   strictMode?: boolean;
+  expectedOutput?: string;
 }
 
 export interface PracticeStep {
