@@ -141,10 +141,24 @@
       ],
       "expectedOutput": "10\n25",
       "validation": {
-        "type": "regex_source",
-        "value": "(score\\s*=\\s*['\"]?10['\"]?)[\\s\\S]*(print\\s*\\(\\s*score\\s*\\))[\\s\\S]*(score\\s*=\\s*['\"]?25['\"]?)[\\s\\S]*(print\\s*\\(\\s*score\\s*\\))",
+        "type": "smart_output_source",
+        "expectedOutput": "10\n25",
         "ignoreWhitespace": true,
-        "ignoreCase": true
+        "ignoreCase": true,
+        "requiredVariables": ["score"],
+        "forbiddenPatterns": ["print\\s*\\(\\s*10\\s*\\)", "print\\s*\\(\\s*25\\s*\\)"],
+        "requiredPatterns": [
+          "score\\s*=\\s*['\"]?10['\"]?",
+          "score\\s*=\\s*['\"]?25['\"]?",
+          "print\\s*\\(\\s*score\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! তুমি সফলভাবে পাইথনের মেমোরি আপডেট করেছ।",
+          "onOutputMismatch": "আউটপুট মিলছে না। score-এ প্রথমে 10 এবং পরে 25 রাখতে হবে।",
+          "onMissingVariable": "score নামে একটি ভেরিয়েবল তৈরি করো, সরাসরি print() করবে না!",
+          "onHardcoded": "চালাকি ধরা পড়েছে 😄! ভেরিয়েবল ব্যবহার করো, সরাসরি সংখ্যা print করবে না।",
+          "onPatternFail": "score ভেরিয়েবলটি আপডেট করা এবং print করা ঠিকমতো হয়নি।"
+        }
       },
       "solution": "score = 10\nprint(score)\n\nscore = 25\nprint(score)",
       "solutionExplanation": "অসাধারণ! তুমি সফলভাবে পাইথনের মেমোরি আপডেট করেছো এবং দেখিয়েছো কীভাবে সময় অনুযায়ী ভেরিয়েবলের মান পরিবর্তন হয়।"
