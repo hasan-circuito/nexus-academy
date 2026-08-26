@@ -3,8 +3,8 @@
     {
       "id": "001",
       "title": "Software Memory and Variables",
-      "banglaTitle": "à¦¸à¦«à¦Ÿà¦“à¦¯à¦¼à§à¦¯à¦¾à¦°à§‡à¦° à¦®à§‡à¦®à§‹à¦°à¦¿",
-      "banglaSubtitle": "à¦¸à¦«à¦Ÿà¦“à¦¯à¦¼à§à¦¯à¦¾à¦° à¦•à¦¿ à¦®à¦¨à§‡ à¦°à¦¾à¦–à¦¤à§‡ à¦ªà¦¾à¦°à§‡?",
+      "banglaTitle": "সফটওয়্যারের মেমোরি",
+      "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
       "status": "published",
       "prerequisite": null,
       "primaryConcept": "Variables & Print",
@@ -14,8 +14,8 @@
     {
       "id": "002",
       "title": "Using Software Memory",
-      "banglaTitle": "à¦®à§‡à¦®à§‹à¦°à¦¿ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦°",
-      "banglaSubtitle": "à¦®à¦¨à§‡ à¦°à¦¾à¦–à¦¾ à¦¤à¦¥à§à¦¯ à¦•à§‡à¦¨ à¦—à§à¦°à§à¦¤à§à¦¬à¦ªà§‚à¦°à§à¦£?",
+      "banglaTitle": "মেমোরি ব্যবহার",
+      "banglaSubtitle": "মনে রাখা তথ্য কীভাবে কাজে লাগাবো?",
       "status": "published",
       "prerequisite": "001",
       "primaryConcept": "print() and Variable Usage",
@@ -25,8 +25,8 @@
     {
       "id": "003",
       "title": "When Memory Changes",
-      "banglaTitle": "à¦®à§‡à¦®à§‹à¦°à¦¿ à¦¯à¦–à¦¨ à¦¬à¦¦à¦²à§‡ à¦¯à¦¾à§Ÿ",
-      "banglaSubtitle": "à¦¬à¦¾à¦¸à§à¦¤à¦¬à¦¤à¦¾ à¦¬à¦¦à¦²à¦¾à¦²à§‡ à¦®à§‡à¦®à§‹à¦°à¦¿ à¦•à§€à¦­à¦¾à¦¬à§‡ à¦†à¦ªà¦¡à§‡à¦Ÿ à¦¹à§Ÿ?",
+      "banglaTitle": "মেমোরি যখন বদলে যায়",
+      "banglaSubtitle": "মানুষের মনের মতো মেমোরির তথ্যও কি পাল্টায়?",
       "status": "published",
       "prerequisite": "002",
       "primaryConcept": "Variable Reassignment & Dynamic Memory",
@@ -46,4 +46,3 @@
     }
   ]
 }
-
