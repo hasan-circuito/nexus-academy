@@ -7,6 +7,7 @@ import { ContainsOutputStrategy } from './strategies/ContainsOutputStrategy';
 import { RegexOutputStrategy } from './strategies/RegexOutputStrategy';
 import { AnyNonEmptyOutputStrategy } from './strategies/AnyNonEmptyOutputStrategy';
 import { RegexSourceStrategy } from './strategies/RegexSourceStrategy';
+import { SmartOutputSourceStrategy } from './strategies/SmartOutputSourceStrategy';
 
 export class ValidationEngine {
   private static strategies: Record<ValidationStrategy, IValidationStrategy> = {
@@ -15,6 +16,7 @@ export class ValidationEngine {
     'regex_output': new RegexOutputStrategy(),
     'any_non_empty_output': new AnyNonEmptyOutputStrategy(),
     'regex_source': new RegexSourceStrategy(),
+    'smart_output_source': new SmartOutputSourceStrategy(),
   };
 
   public static evaluate(
