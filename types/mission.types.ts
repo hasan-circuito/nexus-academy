@@ -178,7 +178,7 @@ export interface AIExampleStep {
 }
 
 // Step 9 — practice
-export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output' | 'regex_source';
+export type ValidationStrategy = 'exact_output' | 'contains_output' | 'regex_output' | 'any_non_empty_output' | 'regex_source' | 'smart_output_source';
 
 export interface ValidationFeedback {
   onPass?: string;           // ✅ সাফল্যের মেসেজ
@@ -197,6 +197,9 @@ export interface ValidationConfig {
   strictMode?: boolean;
   expectedOutput?: string;
   feedbackMessages?: ValidationFeedback;
+  requiredVariables?: string[];
+  requiredPatterns?: string[];
+  forbiddenPatterns?: string[];
 }
 
 export interface PracticeStep {
