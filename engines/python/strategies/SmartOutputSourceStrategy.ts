@@ -65,13 +65,13 @@ export class SmartOutputSourceStrategy implements IValidationStrategy {
     if (config.requiredVariables && config.requiredVariables.length > 0) {
       for (const varName of config.requiredVariables) {
         // E.g. \bscore\s*=  (word boundary + score + optional spaces + =)
-        const assignmentPattern = \\b\\\s*=;
+        const assignmentPattern = `\\b${varName}\\s*=`;
         try {
           const regex = new RegExp(assignmentPattern, flags);
           if (!regex.test(testSource)) {
             return {
               ...baseResult,
-              message: fb.onMissingVariable ?? তুমি '\' নামের ভেরিয়েবলটি তৈরি করোনি বা তাতে কোনো মান রাখোনি।,
+              message: fb.onMissingVariable ?? `তুমি '${varName}' নামের ভেরিয়েবলটি তৈরি করোনি বা তাতে কোনো মান রাখোনি।`,
             };
           }
         } catch (e) {
