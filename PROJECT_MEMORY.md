@@ -95,9 +95,20 @@ nexus-academy/
 
 ---
 
-## Missions — 13 Fixed Steps (Every Mission)
+## Missions — Core Step Types
 
-`intro → story → analogy → concept → visualization → code_example → eee_example → ai_example → practice → quiz → debug_challenge → reflection → mission_complete`
+Standard step types available for every mission:
+`intro`, `story`, `analogy`, `concept`, `visualization`, `code_example`, `eee_example`, `ai_example`, `practice`, `quiz`, `debug_challenge`, `reflection`, `mission_complete`
+
+**Content Authoring Strategy (Progressive Scaffolding):**
+- **Practice Steps (2-4 per mission):**
+  - *Guided Practice*: Simple, directly mimics the `code_example` step.
+  - *Independent Practice*: Slight variation, requires recalling the rule.
+  - *Edge-case Practice*: Applying the rule to an unusual but real-world scenario (e.g., storing a phone number as a String).
+- **Debug Challenges (2-4 per mission):**
+  - *Syntax Bug*: A simple typo (missing quote, extra space). Tests pattern recognition.
+  - *Logic/Type Bug*: Code runs or crashes due to concept misunderstanding. Tests conceptual understanding.
+  - *Tricky/Contextual Bug*: Everything looks right, but the behavior is wrong for the real world. Tests expert thinking.
 
 Content is Bangla. `CuriosityBlock` is mandatory on every mission root. Steps rendered via registry pattern (no switch statements).
 
