@@ -1,34 +1,297 @@
 {
   "id": "009",
-  "title": "Locked Mission 9",
-  "titleBangla": "লক করা মিশন 9",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-008"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "Decision Making (If/Else)",
+  "banglaTitle": "সফটওয়্যার কীভাবে সিদ্ধান্ত নেয়?",
+  "banglaSubtitle": "বুলিয়ান লজিকের ওপর ভিত্তি করে কম্পিউটারের ডিসিশন মেকিং",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 3,
+    "practiceComplexity": 3,
+    "estimatedTotalMinutes": 45
+  },
+  "curiosity": {
+    "didYouKnow": "সফটওয়্যার নিজে থেকে কিছু ভাবতে পারে না, সে শুধু তোমার দেওয়া শর্ত (Condition) অনুযায়ী কাজ করে।",
+    "realWorldApplication": "এটিএম বুথে পিন কোড সঠিক হলে টাকা বের হয়, আর ভুল হলে এরর দেখায়।",
+    "aiApplication": "সেলফ-ড্রাইভিং গাড়ি সামনে বাধা দেখলে ব্রেক করবে নাকি পাশ কাটিয়ে যাবে, তা নির্ভর করে কন্ডিশনাল লজিকের ওপর।",
+    "eeeApplication": "একটি স্মার্ট লাইট সেন্সরের মান (Boolean) True হলে লাইট অন করে, False হলে অফ করে।",
+    "historicalFact": "প্রোগ্রামিংয়ে 'if' স্টেটমেন্ট প্রথম ব্যবহৃত হয় ১৯৫০-এর দশকে ফোরট্রান (FORTRAN) ভাষায়।",
+    "nextMissionPreview": "একই কাজ বারবার করার জন্য কি আমাদের বারবার কন্ডিশন লিখতে হবে?"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "009",
-      "title": "Welcome to Mission 9",
-      "banglaTitle": "মিশন 9-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "Decision Making (If/Else)",
+      "banglaTitle": "শর্তসাপেক্ষে সিদ্ধান্ত গ্রহণ",
+      "tagline": "বুলিয়ান ভ্যালুর ওপর নির্ভর করে প্রোগ্রাম কীভাবে পথ বেছে নেয়?",
+      "description": "আগের মিশনে তুমি বুলিয়ান (True/False) সম্পর্কে জেনেছ। আজ আমরা শিখব, এই True/False এর ওপর ভিত্তি করে পাইথন কীভাবে ডিসিশন নেয়। ঠিক যেমন তুমি বৃষ্টি (True) হলে ছাতা নাও, আর রোদ (False) হলে সানগ্লাস নাও!",
       "learningObjectives": [
-        "Patience"
+        "if, elif, এবং else এর কাজ বোঝা",
+        "কন্ডিশনাল লজিক দিয়ে প্রোগ্রামের ফ্লো কন্ট্রোল করা",
+        "ইন্ডেন্টেশনের (Indentation) গুরুত্ব বুঝতে পারা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 3
+    },
+    {
+      "type": "story",
+      "title": "স্মার্ট ফ্যানের বুদ্ধি",
+      "setting": "একটি স্মার্ট হোমের বেডরুমে...",
+      "content": "রুমে একটি স্মার্ট ফ্যান লাগানো আছে। ফ্যানটির কাজ হলো, রুমের তাপমাত্রা যদি ৩০ ডিগ্রির বেশি হয়, তবে সে নিজে থেকেই চালু হয়ে যাবে। আর যদি তাপমাত্রা ৩০ বা তার কম থাকে, তবে সে বন্ধ থাকবে। এখানে ফ্যানটি নিজে থেকে কিছুই ভাবছে না, সে শুধু একটি 'শর্ত' চেক করছে এবং সেই অনুযায়ী কাজ করছে।",
+      "moral": "সঠিক শর্ত (Condition) দিয়ে আমরা মেশিনকে স্মার্ট বানাতে পারি।"
+    },
+    {
+      "type": "analogy",
+      "title": "রেললাইনের সুইচ",
+      "realWorld": {
+        "label": "রেললাইনের মোড়",
+        "icon": "Train",
+        "description": "ট্রেন আসার সময় লাইনম্যান যদি সুইচ অন করে (True), ট্রেন ডানের লাইনে যায়। অফ থাকলে (False) বাঁয়ের লাইনে যায়।"
+      },
+      "pythonConcept": {
+        "label": "if-else স্টেটমেন্ট",
+        "icon": "GitMerge",
+        "description": "if এর কন্ডিশন True হলে কোডের একটি অংশ কাজ করে, False হলে else এর অংশটি কাজ করে।"
+      },
+      "connection": "রেললাইনের সুইচ যেমন ট্রেনের দিক পরিবর্তন করে, if-else তেমনি প্রোগ্রামের এক্সিকিউশনের দিক পরিবর্তন করে।",
+      "deeperInsight": "প্রোগ্রাম সবসময় উপর থেকে নিচে এক লাইনে চলে না, কন্ডিশনের ওপর ভিত্তি করে সে লাফ দিয়ে নির্দিষ্ট ব্লকে চলে যায়।"
+    },
+    {
+      "type": "concept",
+      "title": "if, elif, এবং else",
+      "content": "পাইথনে সিদ্ধান্ত নেওয়ার জন্য আমরা if, elif (else if), এবং else ব্যবহার করি। if এর পর একটি কন্ডিশন লিখতে হয় এবং শেষে একটি কোলন (:) দিতে হয়। এরপরের লাইনটি একটু ডানদিকে সরিয়ে (ইন্ডেন্ট করে) লিখতে হয়।",
+      "keyPoints": [
+        "if: যদি শর্তটি True হয়, তবে এই ব্লকের কাজ হবে।",
+        "elif: যদি আগের if এর শর্ত False হয় এবং এই নতুন শর্ত True হয়, তবে এটি কাজ করবে।",
+        "else: যদি উপরের কোনো শর্তই True না হয়, তবে else ব্লকের কাজ হবে (এর কোনো শর্ত থাকে না)।"
+      ],
+      "whyCallout": "ইন্ডেন্টেশন (৪টি স্পেস) না দিলে পাইথন বুঝতে পারবে না কোন কোডটি if এর ভেতরে আর কোনটি বাইরে!",
+      "whenToUse": "যখন কোনো শর্তের ওপর ভিত্তি করে আলাদা আলাদা ফলাফল দেখাতে হবে।",
+      "whenNotToUse": "যখন প্রতিটি কাজই পর্যায়ক্রমে সম্পন্ন করা বাধ্যতামূলক।",
+      "commonMisconception": "অনেকে মনে করে else এর সাথেও কন্ডিশন লিখতে হয়। কিন্তু else মানে হলো 'আর কোনো উপায় না থাকলে এটি করো'।"
+    },
+    {
+      "type": "visualization",
+      "title": "ফ্লোচার্টে ডিসিশন মেকিং",
+      "description": "কন্ডিশনাল লজিককে আমরা একটি ডায়মন্ড (Diamond) শেইপ দিয়ে কল্পনা করতে পারি। প্রোগ্রাম যখন ডায়মন্ডে পৌঁছায়, তখন একটি প্রশ্ন করা হয়। উত্তর 'হ্যাঁ' হলে এক পথে, আর 'না' হলে অন্য পথে প্রোগ্রাম এগিয়ে যায়।"
+    },
+    {
+      "type": "code_example",
+      "title": "কোডে স্মার্ট ফ্যান",
+      "explanation": "চলো দেখি পাইথনে কিভাবে স্মার্ট ফ্যানের লজিক লিখতে হয়।",
+      "language": "python",
+      "code": "temperature = 32\n\nif temperature > 30:\n    print(\"Fan is ON\")\nelse:\n    print(\"Fan is OFF\")",
+      "output": "Fan is ON",
+      "annotations": [
+        {
+          "lineNumber": 3,
+          "explanation": "কন্ডিশন চেক করা হচ্ছে, শেষে কোলন (:) আছে।"
+        },
+        {
+          "lineNumber": 4,
+          "explanation": "ইন্ডেন্টেশন দিয়ে বোঝানো হয়েছে এটি if ব্লকের ভেতরের কোড।"
+        }
+      ],
+      "postExplanation": "যেহেতু temperature (32) > 30 শর্তটি True, তাই if এর ভেতরের অংশটি প্রিন্ট হয়েছে।"
+    },
+    {
+      "type": "eee_example",
+      "title": "ইইই (EEE) অ্যাপ্লিকেশন: টেম্পারেচার সেন্সর",
+      "description": "ইলেকট্রিক্যাল ইঞ্জিনিয়ারিংয়ে মাইক্রোকন্ট্রোলারগুলো (যেমন: Arduino) সেন্সর থেকে ডেটা পড়ে এবং if-else লজিক ব্যবহার করে রিলে (Relay) সুইচ কন্ট্রোল করে, যা দিয়ে এসি বা হিটার চালু করা হয়।"
+    },
+    {
+      "type": "ai_example",
+      "title": "এআই (AI) অ্যাপ্লিকেশন: কন্টেন্ট ফিল্টারিং",
+      "description": "এআই সিস্টেমে যদি কনফিডেন্স স্কোর একটি নির্দিষ্ট থ্রেশহোল্ডের নিচে থাকে (if confidence < 0.8), তবে এআই নিজে সিদ্ধান্ত না দিয়ে সেটি মানুষের রিভিউয়ের জন্য পাঠিয়ে দেয় (Human-in-the-loop)।"
+    },
+    {
+      "type": "practice",
+      "title": "Guided Practice: Simple If",
+      "prompt": "একটি ভেরিয়েবল score তৈরি করো এবং তার মান 80 রাখো। একটি if স্টেটমেন্ট লেখো যা score 50 এর বেশি হলে 'Pass' প্রিন্ট করবে।",
+      "starterCode": "score = 80\n\n# if স্টেটমেন্ট লেখো\n",
+      "hints": [
+        "if score > 50: লিখে পরের লাইনে ৪টি স্পেস দিয়ে প্রিন্ট লেখো।"
+      ],
+      "displayHint": "কোলন এবং ইন্ডেন্টেশন মনে রেখো",
+      "expectedOutput": "Pass\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "if\\s+score\\s*>\\s*50\\s*:"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! তুমি প্রথম কন্ডিশনাল স্টেটমেন্ট লিখে ফেলেছ।",
+          "onPatternFail": "if স্টেটমেন্টের শেষে কোলন (:) দিয়েছ কি?"
+        }
+      },
+      "solution": "score = 80\nif score > 50:\n    print(\"Pass\")",
+      "solutionExplanation": "এখানে score 50 এর বেশি হওয়ায় কন্ডিশন True হয়েছে এবং 'Pass' প্রিন্ট হয়েছে।"
+    },
+    {
+      "type": "practice",
+      "title": "Independent Practice: If/Else",
+      "prompt": "একটি ভেরিয়েবল battery তৈরি করে তার মান 15 রাখো। যদি battery 20 এর কম হয় তবে 'Low Battery' প্রিন্ট করো, অন্যথায় 'Battery OK' প্রিন্ট করো।",
+      "starterCode": "battery = 15\n\n",
+      "hints": [
+        "if battery < 20: দিয়ে শুরু করো।",
+        "else: এর সাথে কোনো শর্ত থাকে পণ্ডিতথাকে না, শুধু কোলন হয়।"
+      ],
+      "displayHint": "if এবং else এর ব্যবহার",
+      "expectedOutput": "Low Battery\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "if\\s+battery\\s*<\\s*20\\s*:",
+          "else\\s*:"
+        ],
+        "feedbackMessages": {
+          "onPass": "খুব ভালো! তুমি এখন দুটি ভিন্ন সম্ভাবনার জন্য কোড লিখতে পারো।",
+          "onPatternFail": "else এর পর কোলন দিয়েছ এবং সঠিক মেসেজ প্রিন্ট করেছ কি?"
+        }
+      },
+      "solution": "battery = 15\nif battery < 20:\n    print(\"Low Battery\")\nelse:\n    print(\"Battery OK\")",
+      "solutionExplanation": "যেহেতু 15, 20 এর চেয়ে ছোট (True), তাই if এর ভেতরের অংশটি রান করেছে।"
+    },
+    {
+      "type": "practice",
+      "title": "Edge Case Practice: If/Elif/Else",
+      "prompt": "একটি traffic_light ভেরিয়েবলের মান 'yellow' সেট করো। যদি 'red' হয় তবে 'Stop', যদি 'yellow' হয় তবে 'Wait', অন্যথায় 'Go' প্রিন্ট করো।",
+      "starterCode": "traffic_light = \"yellow\"\n\n",
+      "hints": [
+        "একাধিক শর্ত চেক করতে মাঝে elif ব্যবহার করো।"
+      ],
+      "displayHint": "তিনটি ভিন্ন অবস্থা হ্যান্ডেল করা",
+      "expectedOutput": "Wait\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "elif\\s+traffic_light\\s*==\\s*['\"]yellow['\"]\\s*:"
+        ],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! তুমি এখন একাধিক কন্ডিশন নিখুঁতভাবে পরিচালনা করতে পারো।",
+          "onPatternFail": "elif ব্যবহারের নিয়ম কি ঠিকঠাক মেনেছ? '==' ব্যবহার করেছ কি?"
+        }
+      },
+      "solution": "traffic_light = \"yellow\"\nif traffic_light == \"red\":\n    print(\"Stop\")\nelif traffic_light == \"yellow\":\n    print(\"Wait\")\nelse:\n    print(\"Go\")",
+      "solutionExplanation": "পাইথন প্রথমে if চেক করে (False), তারপর elif চেক করে (True), তাই 'Wait' প্রিন্ট করে আর else এ যায় না।"
+    },
+    {
+      "type": "quiz",
+      "title": "কন্ডিশনাল কুইজ",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "if স্টেটমেন্টের কন্ডিশনের শেষে কোন চিহ্নটি বসাতে হয়?",
+          "difficulty": "easy",
+          "options": [
+            "সেমিকোলন (;)",
+            "কোলন (:)",
+            "ফুলস্টপ (.)",
+            "কমা (,)"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "পাইথনে কন্ডিশনের শেষে সব সময় কোলন (:) বসাতে হয়, যা বোঝায় এরপর একটি নতুন ব্লক শুরু হবে।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "কোনো কন্ডিশন ছাড়াই কোন স্টেটমেন্টটি কাজ করে?",
+          "difficulty": "easy",
+          "options": [
+            "if",
+            "elif",
+            "else",
+            "while"
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "else এর কোনো কন্ডিশন থাকে না। উপরের সব কন্ডিশন False হলে এটি কাজ করে।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: সিনট্যাক্স এরর",
+      "scenario": "একজন স্টুডেন্ট তার বয়স চেক করার কোড লিখেছে, কিন্তু সেটি এরর দিচ্ছে।",
+      "buggyCode": "age = 18\nif age >= 18\n    print(\"Adult\")",
+      "errorMessage": "SyntaxError: expected ':'",
+      "bugLine": 2,
+      "bugType": "syntax",
+      "hints": [
+        "if কন্ডিশনের শেষে একটি গুরুত্বপূর্ণ চিহ্ন মিসিং আছে।"
+      ],
+      "fixedCode": "age = 18\nif age >= 18:\n    print(\"Adult\")",
+      "explanation": "if এর কন্ডিশন লেখার পর সব সময় একটি কোলন (:) দিতে হয়। এর মাধ্যমে পাইথন বুঝতে পারে কন্ডিশনটি শেষ হয়েছে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: ইন্ডেন্টেশন এরর",
+      "scenario": "কোডটি দেখতে ঠিক মনে হলেও পাইথন বুঝতে পারছে না কোনটি if এর ভেতরের অংশ।",
+      "buggyCode": "weather = \"Rainy\"\nif weather == \"Rainy\":\nprint(\"Take an umbrella\")",
+      "errorMessage": "IndentationError: expected an indented block",
+      "bugLine": 3,
+      "bugType": "syntax",
+      "hints": [
+        "if এর ভেতরের কোডটিকে একটু ডানদিকে সরিয়ে লিখতে হয়।"
+      ],
+      "fixedCode": "weather = \"Rainy\"\nif weather == \"Rainy\":\n    print(\"Take an umbrella\")",
+      "explanation": "পাইথনে ব্লক বোঝানোর জন্য ইন্ডেন্টেশন (সাধারণত ৪টি স্পেস) ব্যবহার করা বাধ্যতামূলক।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: লজিক্যাল এরর",
+      "scenario": "স্মার্ট এসির কোড এমনভাবে লেখা হয়েছে যে রুম ঠান্ডা (20 ডিগ্রি) থাকলেও এসি চলতে শুরু করে!",
+      "buggyCode": "temperature = 20\nif temperature > 15:\n    print(\"Turn on AC\")\nelse:\n    print(\"Turn off AC\")",
+      "errorMessage": "LogicError: Incorrect condition",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "এসি তো গরম লাগলে চালু হওয়া উচিত। শর্তটা কি ঠিক আছে?"
+      ],
+      "fixedCode": "temperature = 20\nif temperature > 25:\n    print(\"Turn on AC\")\nelse:\n    print(\"Turn off AC\")",
+      "explanation": "কন্ডিশন হিসেবে `temperature > 25` বা এর কাছাকাছি কোনো লজিক দেওয়া উচিত ছিল, যাতে শুধু গরমেই এসি চালু হয়।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে ভাবো। তারপর Expert Thinking দেখো।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "যদি আমরা else ব্যবহার না করি, শুধু if ব্যবহার করি, তাহলে প্রোগ্রামে কী সমস্যা হতে পারে?",
+          "expertThinking": "অনেক সময় কোনো সমস্যাই হয় না, যদি আমাদের শুধু একটি নির্দিষ্ট শর্তেই কাজ করার প্রয়োজন থাকে। তবে শর্তটি False হলে কী করতে হবে তা প্রোগ্রাম জানবে না, তাই ওই অবস্থায় প্রোগ্রাম নীরবে কাজ শেষ করবে।",
+          "realWorldEngineering": "ব্যাংকিং সিস্টেমে যদি ব্যালেন্স পর্যাপ্ত না থাকে, তবে শুধু if দিয়ে কাজ করলে ট্রানজেকশন ফেইল হবে কিন্তু ইউজার কোনো এরর মেসেজ পাবে না। else ব্যবহার করে ইউজারকে সতর্ক করা যায়।",
+          "beyondProgramming": "এটি অনেকটা এমন— 'বৃষ্টি হলে ছাতা নিও', কিন্তু 'বৃষ্টি না হলে কী করব' তা বলা নেই। ফলে তুমি খালি হাতেই বের হবে।"
+        },
+        {
+          "question": "একাধিক if ব্যবহার করা আর একটি if-elif চেইন ব্যবহার করার মধ্যে পার্থক্য কী?",
+          "expertThinking": "একাধিক if ব্যবহার করলে পাইথন প্রতিটি শর্ত চেক করবে। কিন্তু if-elif চেইনে প্রথম যে শর্তটি True হবে, সেটি কাজ করার পর পাইথন বাকিগুলো আর চেক করবে না।",
+          "realWorldEngineering": "যখন অনেকগুলো সম্ভাবনার মধ্যে কেবল একটিই সঠিক হতে পারে (যেমন: গ্রেডিং সিস্টেমে A, B, C), তখন elif ব্যবহার করলে সিস্টেম দ্রুত কাজ করে (Optimization)।",
+          "beyondProgramming": "এটি অনেকটা মাল্টিপল চয়েস প্রশ্নের মতো, যেখানে একটি উত্তর পেয়ে গেলে তোমার আর অন্য অপশনগুলো পড়ার দরকার নেই।"
+        },
+        {
+          "question": "ইন্ডেন্টেশন না থাকলে পাইথন কেন কাজ করে না?",
+          "expertThinking": "অন্যান্য প্রোগ্রামিং ভাষা (যেমন C বা Java) ব্লক বোঝাতে সেকেন্ড ব্র্যাকেট {} ব্যবহার করে। পাইথনে কোডকে পরিচ্ছন্ন রাখার জন্য ব্র্যাকেটের বদলে স্পেস (ইন্ডেন্টেশন) ব্যবহার করা হয়। এটি না দিলে পাইথন বুঝবে না কোডের কোন অংশটুকু if এর অধীনে।",
+          "realWorldEngineering": "কোডের রিডেবিলিটি (Readability) একটি ভালো সফটওয়্যারের অন্যতম শর্ত। পাইথন ডিজাইনেই তোমাকে বাধ্য করে পরিষ্কার কোড লিখতে।",
+          "beyondProgramming": "বইয়ের প্যারাগ্রাফ যেমন ইন্ডেন্ট করে লিখলে বুঝতে সুবিধা হয় নতুন অনুচ্ছেদ শুরু হয়েছে, পাইথনেও ঠিক তেমনি।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 009 Complete",
+      "summary": "অভিনন্দন! তুমি এখন প্রোগ্রামকে সিদ্ধান্ত নিতে শেখাতে পারো।",
+      "keyLearnings": [
+        "if-elif-else ব্যবহার করে বিভিন্ন শর্তের জন্য আলাদা লজিক লেখা যায়。",
+        "কন্ডিশন স্টেটমেন্টের শেষে কোলন (:) দেওয়া আবশ্যক।",
+        "কোড ব্লক বোঝাতে সঠিক ইন্ডেন্টেশন (Indentation) ব্যবহার করতে হয়।"
+      ]
     }
   ]
 }

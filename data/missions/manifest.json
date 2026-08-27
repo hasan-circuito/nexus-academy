@@ -43,6 +43,72 @@
       "primaryConcept": "Data Types: String vs Integer",
       "estimatedMinutes": 15,
       "difficulty": "beginner"
+    },
+    {
+      "id": "005",
+      "title": "Type Conversion: Shape Shifting Data",
+      "banglaTitle": "ডেটার রূপান্তর: String থেকে Integer",
+      "banglaSubtitle": "কীভাবে এক ধরনের ডেটাকে অন্য ধরনের ডেটায় রূপান্তর করা যায়?",
+      "status": "published",
+      "prerequisite": "004",
+      "primaryConcept": "Type Conversion: Shape Shifting Data",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "006",
+      "title": "The Art of Listening: User Input",
+      "banglaTitle": "কম্পিউটারকে শুনতে শেখানো",
+      "banglaSubtitle": "কীভাবে ইউজারের কাছ থেকে তথ্য নিয়ে ডায়নামিক প্রোগ্রাম তৈরি করতে হয়?",
+      "status": "published",
+      "prerequisite": "005",
+      "primaryConcept": "The Art of Listening: User Input",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "007",
+      "title": "Arithmetic Operations",
+      "banglaTitle": "কম্পিউটারকে দিয়ে গণিত করানো",
+      "banglaSubtitle": "CPU-এর ভেতরের ক্যালকুলেটর",
+      "status": "published",
+      "prerequisite": "006",
+      "primaryConcept": "Arithmetic Operations",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "008",
+      "title": "Comparison & Booleans",
+      "banglaTitle": "তুলনা করা ও হ্যাঁ/না",
+      "banglaSubtitle": "কম্পিউটার কীভাবে সিদ্ধান্ত নেয় কোনটি বড়, কোনটি ছোট বা দুটি জিনিস একই কিনা?",
+      "status": "published",
+      "prerequisite": "007",
+      "primaryConcept": "Comparison & Booleans",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "009",
+      "title": "Decision Making (If/Else)",
+      "banglaTitle": "সফটওয়্যার কীভাবে সিদ্ধান্ত নেয়?",
+      "banglaSubtitle": "বুলিয়ান লজিকের ওপর ভিত্তি করে কম্পিউটারের ডিসিশন মেকিং",
+      "status": "published",
+      "prerequisite": "008",
+      "primaryConcept": "Decision Making (If/Else)",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
+    },
+    {
+      "id": "010",
+      "title": "Logical Operators",
+      "banglaTitle": "লজিকের খেলা: And, Or, Not",
+      "banglaSubtitle": "একাধিক শর্ত একসাথে কীভাবে মেলাতে হয়?",
+      "status": "published",
+      "prerequisite": "009",
+      "primaryConcept": "Logical Operators",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
     }
   ]
 }

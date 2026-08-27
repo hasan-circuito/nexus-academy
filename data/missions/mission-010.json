@@ -1,34 +1,312 @@
 {
   "id": "010",
-  "title": "Locked Mission 10",
-  "titleBangla": "লক করা মিশন 10",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-009"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "Logical Operators",
+  "banglaTitle": "লজিকের খেলা: And, Or, Not",
+  "banglaSubtitle": "একাধিক শর্ত একসাথে কীভাবে মেলাতে হয়?",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 3,
+    "newConceptCount": 3,
+    "practiceComplexity": 3,
+    "estimatedTotalMinutes": 45
+  },
+  "curiosity": {
+    "didYouKnow": "বাস্তব জীবনের অনেক সিদ্ধান্তই একাধিক শর্তের ওপর নির্ভর করে।",
+    "realWorldApplication": "ফেসবুকে লগইন করার জন্য তোমার ইমেইল 'এবং' (and) পাসওয়ার্ড দুটোই সঠিক হতে হয়।",
+    "aiApplication": "AI যখন ডিসিশন নেয়, তখন সে লক্ষ লক্ষ লজিক্যাল শর্ত (and, or, not) একসাথ করে তারপর চূড়ান্ত সিদ্ধান্ত নেয়।",
+    "eeeApplication": "ডিজিটাল ইলেকট্রনিক্সে AND, OR, NOT লজিক গেট দিয়ে পুরো প্রসেসর তৈরি হয়।",
+    "historicalFact": "জর্জ বুল ১৮৫৪ সালে এই লজিকগুলো গাণিতিকভাবে প্রকাশ করেন, যা বুলিও অ্যালজেবরা নামে পরিচিত এবং আজকের কম্পিউটিংয়ের ভিত্তি।",
+    "nextMissionPreview": "লজিক্যাল অপারেটর দিয়ে শর্ত চেক করার পর, আমরা শর্ত অনুযায়ী প্রোগ্রামকে আলাদা পথে চালানো শিখব।"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "010",
-      "title": "Welcome to Mission 10",
-      "banglaTitle": "মিশন 10-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "Logical Operators",
+      "banglaTitle": "একাধিক শর্তের সমন্বয়",
+      "tagline": "কীভাবে কম্পিউটার একাধিক শর্ত যাচাই করে সিদ্ধান্ত নেয়?",
+      "description": "আগের মিশনে তুমি একটিমাত্র শর্ত চেক করা শিখেছো। কিন্তু বাস্তব জীবনে আমাদের প্রায়ই একাধিক শর্ত একসাথে চেক করতে হয়। এই মিশনে আমরা শিখব কীভাবে and, or এবং not ব্যবহার করে জটিল সিদ্ধান্ত নেওয়া যায়।",
       "learningObjectives": [
-        "Patience"
+        "and অপারেটরের ব্যবহার এবং এর প্রয়োজনীয়তা বোঝা",
+        "or অপারেটরের কাজ এবং এর ব্যবহার শেখা",
+        "not অপারেটর দিয়ে সত্যকে মিথ্যা এবং মিথ্যাকে সত্যে রূপান্তর করা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 2
+    },
+    {
+      "type": "story",
+      "title": "ব্যাংকের ভল্ট",
+      "setting": "একটি সুরক্ষিত ব্যাংকের ভল্টের সামনে...",
+      "content": "ব্যাংকের মেইন ভল্ট খোলার জন্য ম্যানেজার এবং ক্যাশিয়ার দুজনেরই চাবি দরকার। শুধু ম্যানেজারের চাবিতে ভল্ট খুলবে না, শুধু ক্যাশিয়ারের চাবিতেও খুলবে না। দুজনের চাবিই (ম্যানেজার AND ক্যাশিয়ার) প্রয়োজন। আবার ধরো, ব্যাংকের মেন গেট খোলার জন্য কার্ড পাঞ্চ করা যেতে পারে অথবা ফিঙ্গারপ্রিন্ট দেওয়া যেতে পারে। যেকোনো একটি (কার্ড OR ফিঙ্গারপ্রিন্ট) হলেই দরজা খুলবে।",
+      "moral": "কখনো দুটি শর্তই পূরণ হতে হয় (AND), আবার কখনো যেকোনো একটি শর্ত পূরণ হলেই কাজ হয়ে যায় (OR)।"
+    },
+    {
+      "type": "analogy",
+      "title": "লগইন এবং ডিসকাউন্ট",
+      "realWorld": {
+        "label": "লগইন (AND) vs ডিসকাউন্ট (OR)",
+        "icon": "Key",
+        "description": "লগইন করতে ইমেইল এবং পাসওয়ার্ড দুটোই ঠিক হতে হবে। কিন্তু ডিসকাউন্ট পেতে স্টুডেন্ট আইডি অথবা কুপন কোড—যেকোনো একটি থাকলেই হবে।"
+      },
+      "pythonConcept": {
+        "label": "and / or",
+        "icon": "TerminalSquare",
+        "description": "পাইথনে `and` মানে হলো সব শর্ত True হতে হবে। আর `or` মানে হলো যেকোনো একটি শর্ত True হলেই পুরোটা True।"
+      },
+      "connection": "বাস্তব জীবনের এই 'এবং' ও 'অথবা' কেই আমরা পাইথনে `and` ও `or` দিয়ে প্রকাশ করি।",
+      "deeperInsight": "`not` হলো উল্টোটা। যদি লগইন না করা থাকে, তখন আমরা লিখি `not logged_in`।"
+    },
+    {
+      "type": "concept",
+      "title": "লজিক্যাল অপারেটর",
+      "content": "পাইথনে লজিক্যাল অপারেটর তিনটি: and, or, এবং not। এরা বুলিয়ান ভ্যালু (True/False) নিয়ে কাজ করে। \n- `and`: দুটি শর্তই True হলে রেজাল্ট True হবে।\n- `or`: যেকোনো একটি শর্ত True হলে রেজাল্ট True হবে।\n- `not`: True কে False এবং False কে True বানিয়ে দেয়।",
+      "keyPoints": [
+        "True and True = True (বাকি সব ক্ষেত্রে False)",
+        "False or False = False (বাকি সব ক্ষেত্রে True)",
+        "not True = False, not False = True"
+      ],
+      "whyCallout": "জটিল সিদ্ধান্ত নিতে একাধিক শর্তকে একসাথে মেলাতে লজিক্যাল অপারেটর অপরিহার্য।",
+      "whenToUse": "একাধিক ভেরিয়েবল বা কন্ডিশনের ওপর ভিত্তি করে কাজ করার সময়।",
+      "whenNotToUse": "যখন কেবল গাণিতিক হিসাব বা একটিমাত্র কন্ডিশন থাকে।",
+      "commonMisconception": "অনেকে `and` ও `or` এর মধ্যে গুলিয়ে ফেলে। মনে রেখো: and একটু কড়া (দুটোই লাগবে), or একটু সহজ (যেকোনো একটা হলেই চলবে)।"
+    },
+    {
+      "type": "visualization",
+      "title": "লজিকের টেবিল",
+      "description": "নিচে and এবং or এর একটি সাধারণ টেবিল দেওয়া হলো।",
+      "visualizationType": "truth_table",
+      "data": {
+        "headers": ["Condition 1", "Operator", "Condition 2", "Result"],
+        "rows": [
+          ["True", "and", "True", "True"],
+          ["True", "and", "False", "False"],
+          ["True", "or", "False", "True"],
+          ["False", "or", "False", "False"],
+          ["not True", "-", "-", "False"]
+        ]
+      }
+    },
+    {
+      "type": "code_example",
+      "title": "পাইথনে and, or, not",
+      "explanation": "চলো দেখি পাইথনে কোড করে এগুলো কীভাবে কাজ করে।",
+      "language": "python",
+      "code": "email_correct = True\npassword_correct = False\n\n# AND - দুটোই True হতে হবে\ncan_login = email_correct and password_correct\nprint(\"Can login?\", can_login)\n\n# OR - যেকোনো একটা True হলেই হবে\nhas_ticket = False\nhas_vip_pass = True\ncan_enter = has_ticket or has_vip_pass\nprint(\"Can enter?\", can_enter)\n\n# NOT - উল্টে দেওয়া\nis_raining = False\ncan_play_outside = not is_raining\nprint(\"Can play outside?\", can_play_outside)",
+      "output": "Can login? False\nCan enter? True\nCan play outside? True",
+      "annotations": [
+        {
+          "lineNumber": 5,
+          "explanation": "একটি False হওয়ায় and এর কারণে পুরোটা False হয়ে গেছে।"
+        },
+        {
+          "lineNumber": 11,
+          "explanation": "একটি True থাকায় or এর কারণে পুরোটা True হয়ে গেছে।"
+        }
+      ],
+      "postExplanation": "বুঝতে পারছ তো? লজিক্যাল অপারেটরগুলো কতটা বাস্তবমুখী!"
+    },
+    {
+      "type": "eee_example",
+      "title": "ইলেকট্রনিক্সে লজিক গেট",
+      "content": "কম্পিউটারের ভেতরে মাইক্রোচিপে অসংখ্য ছোট ছোট সুইচ থাকে, যাকে ট্রানজিস্টর বলে। এগুলোকে সাজিয়ে লজিক গেট (AND Gate, OR Gate, NOT Gate) তৈরি করা হয়। তুমি পাইথনে যে `and`, `or`, `not` লিখছ, হার্ডওয়্যারের ভেতরে সেগুলো এভাবেই ভোল্টেজ সিগন্যাল (1 এবং 0) দিয়ে কাজ করে।",
+      "image": "logic_gates.png"
+    },
+    {
+      "type": "ai_example",
+      "title": "AI এর সিদ্ধান্ত গ্রহণ",
+      "content": "অটোনোমাস (চালকবিহীন) গাড়ি কীভাবে সিদ্ধান্ত নেয়? যদি সামনে কোনো মানুষ থাকে (obstacle_ahead = True) AND গাড়ির স্পিড বেশি থাকে (high_speed = True), তবে গাড়িটি ইমারজেন্সি ব্রেক করবে। AI এর ভেতরে এমন হাজার হাজার লজিক্যাল শর্ত একই সময়ে কাজ করে।",
+      "image": "ai_logic.png"
+    },
+    {
+      "type": "practice",
+      "title": "লগইন চেক (and)",
+      "prompt": "একজন ইউজারের ইমেইল এবং পাসওয়ার্ড দুটোই ঠিক আছে কিনা তা চেক করতে `and` ব্যবহার করো। `is_valid_user` নামের ভেরিয়েবলে ফলাফলটি রাখো।",
+      "starterCode": "email_ok = True\npassword_ok = True\n\n# নিচে is_valid_user ভেরিয়েবলে and ব্যবহার করে লজিকটি লেখো\n\n\nprint(is_valid_user)\n",
+      "hints": [
+        "is_valid_user = email_ok and password_ok লেখো।"
+      ],
+      "displayHint": "দুটি শর্তই মেলাতে and ব্যবহার করো",
+      "expectedOutput": "True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": ["is_valid_user"],
+        "requiredPatterns": ["is_valid_user\\s*=\\s*email_ok\\s+and\\s+password_ok"],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি and এর ব্যবহার শিখে গেছ।",
+          "onPatternFail": "কোথাও ভুল হয়েছে! and ব্যবহার করেছো তো?",
+          "onMissingVariable": "is_valid_user ভেরিয়েবলটি তৈরি করেছ কি?"
+        }
+      },
+      "solution": "email_ok = True\npassword_ok = True\nis_valid_user = email_ok and password_ok\nprint(is_valid_user)",
+      "solutionExplanation": "লগইন সিস্টেমে এভাবেই ইমেইল এবং পাসওয়ার্ড দুটোই ঠিক আছে কিনা চেক করা হয়।"
+    },
+    {
+      "type": "practice",
+      "title": "ফ্রি শিপিং (or)",
+      "prompt": "ফ্রি শিপিং পাওয়ার জন্য গ্রাহকের কেনাকাটা ১০০০ টাকার বেশি হতে হবে অথবা তার কাছে কুপন থাকতে হবে। `has_free_shipping` ভেরিয়েবলে `or` ব্যবহার করে এটি চেক করো।",
+      "starterCode": "cart_amount = 800\nhas_coupon = True\n\n# cart_amount > 1000 অথবা has_coupon চেক করো\n\n\nprint(has_free_shipping)\n",
+      "hints": [
+        "has_free_shipping = (cart_amount > 1000) or has_coupon লেখো।"
+      ],
+      "displayHint": "যেকোনো একটি শর্ত মেলাতে or ব্যবহার করো",
+      "expectedOutput": "True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": ["has_free_shipping"],
+        "requiredPatterns": ["has_free_shipping\\s*=\\s*.*or.*has_coupon"],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! তুমি or দিয়ে যেকোনো একটি শর্ত পূরণ হওয়া চেক করতে পেরেছ।",
+          "onPatternFail": "or ব্যবহার করেছ কি? কার্ট অ্যামাউন্ট ১০০০ এর বেশি কিনা এবং কুপন আছে কিনা চেক করো।",
+          "onMissingVariable": "has_free_shipping তৈরি করেছ তো?"
+        }
+      },
+      "solution": "cart_amount = 800\nhas_coupon = True\nhas_free_shipping = (cart_amount > 1000) or has_coupon\nprint(has_free_shipping)",
+      "solutionExplanation": "অ্যামাউন্ট ১০০০ এর কম হলেও কুপন থাকায় গ্রাহক ফ্রি শিপিং পাবে।"
+    },
+    {
+      "type": "practice",
+      "title": "উন্নত লজিক (and/or)",
+      "prompt": "ধরো তুমি স্কলারশিপ পাওয়ার একটি লজিক বানাচ্ছো। স্কলারশিপ পেতে হলে জিপিএ 5.0 হতে হবে এবং (অ্যাথলেটিক অথবা ডিবেটার) হতে হবে। `gets_scholarship` ভেরিয়েবলে লজিকটি লেখো।",
+      "starterCode": "gpa = 5.0\nis_athlete = False\nis_debater = True\n\n# gets_scholarship ভেরিয়েবলে লজিকটি লেখো\n\n\nprint(gets_scholarship)\n",
+      "hints": [
+        "প্রথমে অ্যাথলেটিক অথবা ডিবেটার কিনা তা or দিয়ে ব্র্যাকেটের ভেতরে চেক করো: (is_athlete or is_debater)",
+        "এরপর তার সাথে gpa == 5.0 কে and দিয়ে যুক্ত করো।"
+      ],
+      "displayHint": "ব্র্যাকেট () ব্যবহার করে লজিক গ্রুপ করো",
+      "expectedOutput": "True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": ["gets_scholarship"],
+        "requiredPatterns": ["gets_scholarship\\s*=\\s*gpa\\s*==\\s*5\\.0\\s+and\\s*\\(\\s*is_athlete\\s+or\\s+is_debater\\s*\\)"],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! তুমি and ও or একসাথে ব্যবহার করতে শিখেছ।",
+          "onPatternFail": "ব্র্যাকেট ঠিকমতো ব্যবহার করেছ কি? (is_athlete or is_debater) কে ব্র্যাকেটে রাখতে হবে।",
+          "onMissingVariable": "gets_scholarship ভেরিয়েবলটি তৈরি করেছ তো?"
+        }
+      },
+      "solution": "gpa = 5.0\nis_athlete = False\nis_debater = True\ngets_scholarship = (gpa == 5.0) and (is_athlete or is_debater)\nprint(gets_scholarship)",
+      "solutionExplanation": "ব্র্যাকেট ব্যবহারের ফলে পাইথন আগে or এর কাজ করে এবং তারপর and এর সাথে মেলায়।"
+    },
+    {
+      "type": "quiz",
+      "title": "লজিক টেস্ট",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "True and False এর ফলাফল কী হবে?",
+          "difficulty": "easy",
+          "options": [
+            "True",
+            "False",
+            "None",
+            "Error"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "and অপারেটরে যেকোনো একটি False হলেই পুরোটা False হয়ে যায়।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "কোন অপারেটরটি যেকোনো একটি শর্ত পূরণ হলেই True রিটার্ন করে?",
+          "difficulty": "easy",
+          "options": [
+            "and",
+            "not",
+            "or",
+            "=="
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "or অপারেটর যেকোনো একটি True পেলেই পুরো স্টেটমেন্টকে True করে দেয়।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: লগইন এরর",
+      "scenario": "একজন লার্নার লগইন সিস্টেমে `and` এর জায়গায় ভুল করে অন্য কিছু ব্যবহার করেছে, ফলে ইমেইল ভুল হলেও ইউজার লগইন করতে পারছে!",
+      "buggyCode": "email_ok = False\npassword_ok = True\ncan_login = email_ok or password_ok\nprint(can_login)",
+      "errorMessage": "Security Risk: Login successful with wrong email!",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "লগইন করতে কি যেকোনো একটি ঠিক হলেই চলে?",
+        "or এর জায়গায় কী হওয়া উচিত?"
+      ],
+      "fixedCode": "email_ok = False\npassword_ok = True\ncan_login = email_ok and password_ok\nprint(can_login)",
+      "explanation": "লগইন করার জন্য ইমেইল এবং পাসওয়ার্ড—দুটিই সঠিক হতে হবে। তাই এখানে `and` ব্যবহার করতে হবে, `or` নয়।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: উল্টো লজিক",
+      "scenario": "একটি গেমে প্লেয়ারের কাছে ঢাল (shield) না থাকলে সে ড্যামেজ খাবে। লার্নার লজিকটি ঠিকমতো লিখতে পারছে না।",
+      "buggyCode": "has_shield = False\ntakes_damage = has_shield\nprint(takes_damage)",
+      "errorMessage": "Logic Error: takes_damage False দেখাচ্ছে, কিন্তু ড্যামেজ তো নেওয়ার কথা!",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "has_shield যদি False হয়, তবে takes_damage হওয়া উচিত True।",
+        "মান উল্টানোর জন্য কোন অপারেটর ব্যবহার করা হয়?"
+      ],
+      "fixedCode": "has_shield = False\ntakes_damage = not has_shield\nprint(takes_damage)",
+      "explanation": "`not` অপারেটর True কে False এবং False কে True বানায়। ঢাল না থাকলে (not has_shield), প্লেয়ার ড্যামেজ খাবে (True)।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: সিনেমা হলের টিকিট",
+      "scenario": "সিনেমা হলে ঢুকতে হলে বয়স ১৮ এর বেশি হতে হবে এবং সাথে টিকিট থাকতে হবে। কিন্তু ব্র্যাকেটের ভুলে লজিক কাজ করছে না!",
+      "buggyCode": "age = 16\nhas_ticket = True\ncan_enter = age > 18 or has_ticket\nprint(can_enter)",
+      "errorMessage": "Security Issue: Minor entered the cinema!",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "বয়স ১৮ এর বেশি হতে হবে 'এবং' টিকিট থাকতে হবে।",
+        "or এর জায়গায় কোন অপারেটর বসবে?"
+      ],
+      "fixedCode": "age = 16\nhas_ticket = True\ncan_enter = age > 18 and has_ticket\nprint(can_enter)",
+      "explanation": "সিনেমার নিয়মে দুটি শর্তই আবশ্যিক। তাই `or` এর পরিবর্তে `and` ব্যবহার করতে হবে।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রশ্নগুলো নিয়ে ভাবো, তারপর Expert Thinking এর সাথে মেলাও।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "পাসওয়ার্ড চেকিং এর ক্ষেত্রে যদি 'and' এর বদলে 'or' ব্যবহার করা হয়, তবে সিস্টেমে কী ধরনের নিরাপত্তা ঝুঁকি তৈরি হতে পারে?",
+          "expertThinking": "'or' ব্যবহার করলে ইমেইল অথবা পাসওয়ার্ড যেকোনো একটি সঠিক হলেই ইউজার লগইন করতে পারবে। একজন হ্যাকার যদি শুধু ইমেইল জানে, সে যেকোনো ভুল পাসওয়ার্ড দিয়েও সিস্টেমে ঢুকে যেতে পারবে!",
+          "realWorldEngineering": "সাইবার সিকিউরিটিতে Authentication সিস্টেম সবসময় 'and' লজিকে কাজ করে (সঠিক ইউজারনেম AND সঠিক পাসওয়ার্ড AND সঠিক ওটিপি)।",
+          "beyondProgramming": "এটি ব্যাংকের লকারের মতো, যেখানে চাবি অথবা পাসওয়ার্ড যেকোনো একটা দিয়ে খুলতে পারলে চোর সহজেই চুরি করতে পারবে।"
+        },
+        {
+          "question": "জটিল লজিক্যাল স্টেটমেন্টে ব্র্যাকেট () ব্যবহার করা কেন জরুরি?",
+          "expertThinking": "ব্র্যাকেট না দিলে পাইথন তার নিজস্ব নিয়মে (Operator Precedence) কাজ করবে, যা হয়তো তোমার প্রত্যাশিত লজিকের সাথে মিলবে পণ্ডিতের সাথে নাও মিলতে পারে। ব্র্যাকেট দিয়ে আমরা নির্দিষ্ট করে দেই কোন অংশটি আগে চেক করতে হবে।",
+          "realWorldEngineering": "জটিল অ্যালগরিদমে ছোট একটি লজিক ভুল পুরো সিস্টেমকে অচল করে দিতে পারে। ব্র্যাকেট ব্যবহার কোডকে বাগ-ফ্রি ও সহজে পড়ার যোগ্য (readable) করে তোলে।",
+          "beyondProgramming": "এটি গণিতের BODMAS নিয়মের মতো, যেখানে ব্র্যাকেটের কাজ আগে করতে হয়।"
+        },
+        {
+          "question": "অটোনোমাস গাড়িতে যদি 'সামনে বাধা আছে (obstacle_ahead)' সেন্সরটি নষ্ট হয়ে সবসময় False রিটার্ন করে, তাহলে 'not obstacle_ahead and can_drive' লজিকটি কী পরিণতি ডেকে আনতে পারে?",
+          "expertThinking": "সেন্সর নষ্ট হওয়ায় সিস্টেম সবসময় ভাববে সামনে কোনো বাধা নেই (not False = True)। ফলে গাড়িটি না থেমে চলতে থাকবে এবং বড় দুর্ঘটনা ঘটবে।",
+          "realWorldEngineering": "এ কারণেই ক্রিটিক্যাল সিস্টেমে ফেইল-সেফ (Fail-safe) মেকানিজম থাকে, যেখানে সেন্সর নষ্ট হলে গাড়ি নিজে থেকেই থেমে যায়।",
+          "beyondProgramming": "ভুল ডেটার ওপর ভিত্তি করে সঠিক লজিকও ভয়াবহ বিপদ ডেকে আনতে পারে।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 010 Complete",
+      "summary": "অভিনন্দন! তুমি এখন একাধিক শর্তকে মিলিয়ে কম্পিউটারের মতো জটিল সিদ্ধান্ত নিতে সক্ষম।",
+      "keyLearnings": [
+        "and অপারেটরে সব শর্ত সত্য হতে হয়।",
+        "or অপারেটরে যেকোনো একটি শর্ত সত্য হলেই হয়।",
+        "not অপারেটর সত্যকে মিথ্যা এবং মিথ্যাকে সত্য করে।"
+      ]
     }
   ]
 }

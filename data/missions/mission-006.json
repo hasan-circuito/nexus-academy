@@ -1,34 +1,324 @@
 {
   "id": "006",
-  "title": "Locked Mission 6",
-  "titleBangla": "লক করা মিশন 6",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-005"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "The Art of Listening: User Input",
+  "banglaTitle": "কম্পিউটারকে শুনতে শেখানো",
+  "banglaSubtitle": "কীভাবে ইউজারের কাছ থেকে তথ্য নিয়ে ডায়নামিক প্রোগ্রাম তৈরি করতে হয়?",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 2,
+    "practiceComplexity": 3,
+    "estimatedTotalMinutes": 45
+  },
+  "curiosity": {
+    "didYouKnow": "input() ফাংশন দিয়ে তুমি তোমার প্রোগ্রামকে বাইরের দুনিয়ার সাথে কথা বলতে শেখাতে পারো!",
+    "realWorldApplication": "ওয়েবসাইটে লগইন করার সময় যে ইউজারনেম ও পাসওয়ার্ড দাও, সেটিও এক ধরনের ইনপুট।",
+    "aiApplication": "চ্যাটজিপিটির মতো এআই সিস্টেম মূলত ইউজারের ইনপুটের ওপর ভিত্তি করেই কাজ করে।",
+    "eeeApplication": "একটি স্মার্ট হোম কন্ট্রোলারে ইউজার বাটন প্রেস করে ইনপুট দেয়, আর সিস্টেম সে অনুযায়ী লাইট জ্বালায়।",
+    "historicalFact": "আগের দিনের কম্পিউটারে ইনপুট দেওয়ার জন্য পাঞ্চ কার্ড ব্যবহার করা হতো, আর এখন আমরা কি-বোর্ড বা ভয়েস ব্যবহার করি।",
+    "nextMissionPreview": "ইউজার যদি ভুল ইনপুট দেয়, তবে প্রোগ্রাম কীভাবে সিদ্ধান্ত নেবে?"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "006",
-      "title": "Welcome to Mission 6",
-      "banglaTitle": "মিশন 6-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "The Art of Listening: User Input",
+      "banglaTitle": "কম্পিউটারকে শুনতে শেখানো",
+      "tagline": "তোমার প্রোগ্রাম কি শুধু নিজের কথাই বলবে, নাকি তোমার কথাও শুনবে?",
+      "description": "এতদিন আমরা ভেরিয়েবলে সরাসরি ডেটা বসিয়ে দিয়েছি (যেমন: age = 21)। একে বলে 'হার্ডকোডিং'। কিন্তু বাস্তব জীবনে একটি অ্যাপ বা সফটওয়্যার প্রতিটি ইউজারের জন্য আলাদাভাবে কাজ করে। এই মিশনে আমরা শিখবো কীভাবে input() ব্যবহার করে ইউজারের কাছ থেকে তথ্য নিতে হয় এবং Type Conversion এর মাধ্যমে তাকে সঠিক ডেটা টাইপে রূপান্তর করতে হয়।",
       "learningObjectives": [
-        "Patience"
+        "input() ফাংশন ব্যবহার করে ইউজারের কাছ থেকে ডেটা নেওয়া",
+        "input() কেন সবসময় String রিটার্ন করে তা বুঝতে পারা",
+        "int() বা float() ব্যবহার করে ইনপুটকে নাম্বারে রূপান্তর করা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 3
+    },
+    {
+      "type": "story",
+      "title": "অন্ধ রোবট আর ওয়েটার",
+      "setting": "একটি আধুনিক কফিশপে...",
+      "content": "ধরো, তুমি কফিশপে গেলে। সেখানে একটি রোবট ওয়েটার আছে। তাকে আগে থেকেই বলে দেওয়া হয়েছে 'সবাইকে ব্ল্যাক কফি দেবে'। তুমি চা চাইলেও সে তোমাকে ব্ল্যাক কফিই দেবে! এটি হলো একটি স্ট্যাটিক প্রোগ্রাম। কিন্তু ওয়েটার যদি তোমাকে জিজ্ঞেস করে 'আপনি কী খাবেন?', আর তোমার উত্তরের ওপর ভিত্তি করে কফি বানায়, তবে সেটি ডায়নামিক! input() ফাংশন তোমার প্রোগ্রামকে ঠিক এই শোনার ক্ষমতাই দেয়।",
+      "moral": "আগে থেকে ঠিক করে দেওয়া তথ্যের চেয়ে, ইউজারের কাছ থেকে জেনে নেওয়া তথ্য প্রোগ্রামকে অনেক বেশি স্মার্ট করে।"
+    },
+    {
+      "type": "analogy",
+      "title": "ম্যাসেজ বক্স",
+      "realWorld": {
+        "label": "ফর্ম পূরণ",
+        "icon": "Form",
+        "description": "কোনো অফিসে গেলে তোমাকে একটি ফর্ম দেওয়া হয়। তুমি সেখানে নিজের নাম ও বয়স লিখে জমা দাও।"
+      },
+      "pythonConcept": {
+        "label": "input() ফাংশন",
+        "icon": "Terminal",
+        "description": "input() হলো সেই ফর্মের মতো। এটি স্ক্রিনে একটি প্রশ্ন দেখায় এবং ইউজারের টাইপ করা উত্তরের জন্য অপেক্ষা করে।"
+      },
+      "connection": "ফর্ম পূরণের সময় যেমন তুমি টেক্সট লেখো, তেমনি input() দিয়ে নেওয়া সব তথ্যই পাইথন প্রাথমিকভাবে Text (String) হিসেবে গ্রহণ করে।",
+      "deeperInsight": "যেহেতু input() সবসময় String দেয়, তাই বয়স বা টাকার পরিমাণ দিয়ে গাণিতিক হিসাব করতে চাইলে তাকে কনভার্ট (Type Conversion) করে নিতে হয়।"
+    },
+    {
+      "type": "concept",
+      "title": "input() এবং Type Conversion এর রহস্য",
+      "content": "পাইথনে input() ব্যবহার করলে প্রোগ্রামটি সেখানে থেমে যায় এবং ইউজারের কিবোর্ড থেকে কিছু লেখার জন্য অপেক্ষা করে। এন্টার চাপলেই সেই লেখাটি একটি ভেরিয়েবলে সেভ হয়ে যায়। কিন্তু সবচেয়ে বড় ট্র্যাপ হলো: ইউজার যদি 25-ও লেখে, পাইথন সেটাকে \"25\" (String) হিসেবে সেভ করে। তাই যোগ-বিয়োগ করতে চাইলে int() দিয়ে তাকে নাম্বারে রূপান্তর করতে হয়।",
+      "keyPoints": [
+        "input(\"প্রশ্ন\") স্ক্রিনে প্রশ্ন দেখায় এবং উত্তরের জন্য অপেক্ষা করে।",
+        "input() সবসময় String (Text) আউটপুট দেয়।",
+        "নাম্বার হিসেবে ব্যবহার করতে int(আউটপুট) বা float(আউটপুট) করতে হয়।"
+      ],
+      "whyCallout": "ইনপুট হিসেবে আসা \"25\" আর \"5\" যোগ করলে 30 হয় না, হয়ে যায় \"255\"! তাই Type Conversion জরুরি।",
+      "whenToUse": "ইউজারের নাম, ঠিকানা, বয়স, বা যেকোনো ডায়নামিক ডেটা নেওয়ার জন্য।",
+      "whenNotToUse": "যেসব ভ্যালু কখনোই পরিবর্তন হবে না (যেমন: পাই এর মান 3.1416), সেগুলোর জন্য ইনপুট নেওয়ার দরকার নেই।",
+      "commonMisconception": "অনেকে ভাবে ইউজার নাম্বার টাইপ করলে ইনপুটটি স্বয়ংক্রিয়ভাবে Integer হয়ে যায়। এটি সম্পূর্ণ ভুল!"
+    },
+    {
+      "type": "visualization",
+      "title": "কীভাবে input() কাজ করে?",
+      "description": "ইনপুট গ্রহণ থেকে মেমোরিতে সেভ হওয়ার পুরো প্রক্রিয়া।",
+      "visualType": "flowchart",
+      "content": "১. প্রোগ্রাম থামে -> ২. স্ক্রিনে প্রম্পট দেখায় -> ৩. ইউজার টাইপ করে -> ৪. এন্টার চাপে -> ৫. টাইপ করা ডেটা String হিসেবে ভেরিয়েবলে জমা হয়।"
+    },
+    {
+      "type": "code_example",
+      "title": "ডায়নামিক গ্রিটিং এবং বয়স হিসাব",
+      "explanation": "input() দিয়ে নাম এবং বয়স নিয়ে তার সাথে Type Conversion এর ব্যবহার।",
+      "language": "python",
+      "code": "name = input(\"তোমার নাম কী? \")\nprint(\"Hello, \" + name)\n\nage_text = input(\"তোমার বয়স কত? \")\nage_number = int(age_text)\nnext_year_age = age_number + 1\n\nprint(\"আগামী বছর তোমার বয়স হবে:\")\nprint(next_year_age)",
+      "output": "তোমার নাম কী? Hasan\nHello, Hasan\nতোমার বয়স কত? 21\nআগামী বছর তোমার বয়স হবে:\n22",
+      "annotations": [
+        {
+          "lineNumber": 1,
+          "explanation": "ইউজার যা লিখবে তা name ভেরিয়েবলে String হিসেবে সেভ হবে।"
+        },
+        {
+          "lineNumber": 4,
+          "explanation": "বয়স ইনপুট নেওয়া হচ্ছে, যা age_text-এ String হিসেবে থাকবে (যেমন: \"21\")।"
+        },
+        {
+          "lineNumber": 5,
+          "explanation": "এখানে \"21\" (String) কে 21 (Integer) এ রূপান্তর করা হলো।"
+        }
+      ],
+      "postExplanation": "লক্ষ্য করো, বয়স নিয়ে যোগ করার আগেই আমরা int() ব্যবহার করে তাকে নাম্বার বানিয়ে নিয়েছি!"
+    },
+    {
+      "type": "eee_example",
+      "title": "স্মার্ট হোম টাইমার ইনপুট",
+      "scenario": "একটি স্মার্ট লাইট কতক্ষণ জ্বলবে, সেটা ইউজারের কাছ থেকে জানা।",
+      "concept": "মাইক্রোকন্ট্রোলার টাইমার সেট করার জন্য Number এক্সপেক্ট করে, Text নয়। তাই ইনপুটকে int-এ কনভার্ট করতে হয়।",
+      "code": "duration_text = input(\"কত সেকেন্ড লাইট জ্বলবে? \")\nduration = int(duration_text)\nprint(duration)",
+      "explanation": "সেন্সরের হার্ডওয়্যার টেক্সট বোঝে না, তাই int() দিয়ে কনভার্ট করা অত্যন্ত জরুরি।"
+    },
+    {
+      "type": "ai_example",
+      "title": "এআই চ্যাটবট প্রম্পট",
+      "scenario": "ইউজারের কাছ থেকে প্রশ্ন নেওয়া।",
+      "concept": "AI সিস্টেম এভাবেই মানুষের ভাষা ইনপুট হিসেবে গ্রহণ করে।",
+      "code": "prompt = input(\"আপনি কী জানতে চান? \")\nprint(\"AI উত্তর খুঁজছে: \" + prompt)",
+      "explanation": "Large Language Model (LLM) এভাবেই তোমার প্রম্পট বা কমান্ড গ্রহণ করে প্রসেসিং শুরু করে।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 1: তোমার প্রথম ইনপুট (Guided)",
+      "prompt": "input() ব্যবহার করে ইউজারের প্রিয় রং জানতে চাও এবং সেটি প্রিন্ট করো।",
+      "starterCode": "# 1. input() ফাংশন ব্যবহার করে ইউজারের প্রিয় রং জিজ্ঞেস করো।\n# প্রম্পট হিসেবে লেখো: \"তোমার প্রিয় রং কী? \"\n# ভ্যালুটিকে color নামের ভেরিয়েবলে রাখো।\ncolor = \n\n# 2. color ভেরিয়েবলটি প্রিন্ট করো।\nprint()\n",
+      "hints": [
+        "input() এর ভেতরে কোটেশন দিয়ে প্রশ্নটি লিখতে হবে।",
+        "print() এর ভেতরে ভেরিয়েবলের নাম দিতে হবে, কোনো কোটেশন ছাড়া।"
+      ],
+      "displayHint": "input(\"তোমার প্রিয় রং কী? \") ব্যবহার করো।",
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "color"
+        ],
+        "requiredPatterns": [
+          "input\\("
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি সফলভাবে ইউজারের ইনপুট মেমোরিতে নিতে পেরেছ।",
+          "onPatternFail": "তুমি কি input() ফাংশন ব্যবহার করেছ?",
+          "onMissingVariable": "color নামের ভেরিয়েবলটি তৈরি করেছ কি?"
+        }
+      },
+      "solution": "color = input(\"তোমার প্রিয় রং কী? \")\nprint(color)",
+      "solutionExplanation": "অসাধারণ! এভাবেই প্রোগ্রাম বাইরের দুনিয়ার সাথে যোগাযোগ স্থাপন করে।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 2: জন্মসাল থেকে বয়স (Independent)",
+      "prompt": "ইউজারের জন্মসাল ইনপুট নাও। তারপর 2026 থেকে সেটি বিয়োগ করে তার বয়স বের করো এবং প্রিন্ট করো। (Hint: বিয়োগ করার আগে ইনপুটকে int() দিয়ে Number বানিয়ে নিতে ভুলবে না!)",
+      "starterCode": "# জন্মসাল ইনপুট নাও\nbirth_year_text = input(\"তোমার জন্মসাল কত? \")\n\n# String কে Integer এ রূপান্তর করো\nbirth_year = \n\n# 2026 থেকে birth_year বিয়োগ করে age বের করো\nage = \n\n# age প্রিন্ট করো\n\n",
+      "hints": [
+        "int(birth_year_text) ব্যবহার করে রূপান্তর করো।",
+        "age = 2026 - birth_year ব্যবহার করে হিসাব করো।"
+      ],
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "birth_year",
+          "age"
+        ],
+        "requiredPatterns": [
+          "int\\(",
+          "2026\\s*-\\s*birth_year"
+        ],
+        "feedbackMessages": {
+          "onPass": "খুব ভালো! তুমি ইনপুট নেওয়ার পাশাপাশি Type Conversion-ও দারুণভাবে ব্যবহার করেছ।",
+          "onPatternFail": "কোথাও ভুল হয়েছে! int() দিয়ে কনভার্ট করেছ তো? এবং 2026 থেকে বিয়োগ করেছ?",
+          "onMissingVariable": "সবগুলো ভেরিয়েবল ঠিকমতো ডিক্লেয়ার করা হয়েছে কি?"
+        }
+      },
+      "solution": "birth_year_text = input(\"তোমার জন্মসাল কত? \")\nbirth_year = int(birth_year_text)\nage = 2026 - birth_year\nprint(age)",
+      "solutionExplanation": "ইনপুট সবসময় String হিসেবে আসে। গাণিতিক কাজ করার জন্য int() ব্যবহার করে তাকে Integer এ রূপান্তর করা অত্যাবশ্যক।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 3: জোড়া লাগানো নাকি যোগ করা? (Edge-case)",
+      "prompt": "ইউজারের কাছ থেকে দুটি নাম্বার ইনপুট নাও। তাদের যোগফল বের করে প্রিন্ট করো। মনে রেখো, কনভার্ট না করলে \"5\" + \"10\" মিলে \"510\" হয়ে যাবে!",
+      "starterCode": "num1_text = input(\"প্রথম নাম্বার: \")\nnum2_text = input(\"দ্বিতীয় নাম্বার: \")\n\n# তোমার কোড এখানে লেখো (Type Conversion এবং যোগফল প্রিন্ট)\n\n",
+      "hints": [
+        "num1_text এবং num2_text দুটোকেই int() দিয়ে কনভার্ট করে নতুন ভেরিয়েবলে রাখো।",
+        "তারপর নতুন ভেরিয়েবল দুটি যোগ করো।"
+      ],
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [],
+        "requiredPatterns": [
+          "int\\("
+        ],
+        "feedbackMessages": {
+          "onPass": "পারফেক্ট! String কে Number বানিয়ে যোগ করার ট্রিকটি তুমি ধরে ফেলেছ।",
+          "onPatternFail": "তুমি কি int() ব্যবহার করে রূপান্তর করেছ?"
+        }
+      },
+      "solution": "num1_text = input(\"প্রথম নাম্বার: \")\nnum2_text = input(\"দ্বিতীয় নাম্বার: \")\n\nnum1 = int(num1_text)\nnum2 = int(num2_text)\n\nprint(num1 + num2)",
+      "solutionExplanation": "ইনপুটগুলো String থাকায়, সরাসরি যোগ করলে তারা পাশাপাশি বসে যেত (Concatenation)। int() দিয়ে Number বানিয়ে নেওয়ায় গাণিতিক যোগফল (Addition) পাওয়া গেছে।"
+    },
+    {
+      "type": "quiz",
+      "title": "ইনপুট টেস্ট",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "input() ফাংশন বাই ডিফল্ট কোন ধরনের ডেটা রিটার্ন করে?",
+          "difficulty": "easy",
+          "options": [
+            "Integer (Number)",
+            "String (Text)",
+            "Float (Decimal)",
+            "Boolean (True/False)"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "ইউজার যাই টাইপ করুক না কেন, input() ফাংশন সবসময় তাকে String হিসেবেই রিটার্ন করে।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "যদি user_input = input(\"Enter a number: \") হয়, এবং ইউজার 50 টাইপ করে, তবে int(user_input) কী করবে?",
+          "difficulty": "medium",
+          "options": [
+            "\"50\" টেক্সটকে 50 নাম্বারে রূপান্তর করবে।",
+            "প্রোগ্রামটি ক্র্যাশ করবে।",
+            "50 কে \"50\" বানাবে।",
+            "কিছুই করবে না।"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "int() ফাংশন String-কে Integer-এ রূপান্তর করে, যাতে গাণিতিক হিসাব করা যায়।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ১: মিসিং কোটেশন",
+      "scenario": "একজন লার্নার ইউজারের নাম জানতে চেয়েছে, কিন্তু একটি সিনট্যাক্স এরর দেখাচ্ছে।",
+      "buggyCode": "name = input(তোমার নাম কী?)\nprint(name)",
+      "errorMessage": "SyntaxError: invalid syntax",
+      "bugLine": 1,
+      "bugType": "syntax",
+      "hints": [
+        "input() এর ভেতরের প্রম্পটটি একটি Text বা String।",
+        "String লেখার নিয়ম কী? দুপাশে কী দিতে হয়?"
+      ],
+      "fixedCode": "name = input(\"তোমার নাম কী?\")\nprint(name)",
+      "explanation": "input() এর ভেতরে যে প্রশ্ন বা প্রম্পট দেওয়া হয়, সেটি অবশ্যই কোটেশন মার্কের ভেতরে রাখতে হবে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ২: যোগ নাকি জোড়া লাগানো?",
+      "scenario": "একজন লার্নার দুটি নাম্বার ইনপুট নিয়ে যোগ করতে চেয়েছে। কিন্তু সে 10 এবং 20 ইনপুট দিলে আউটপুট দেখাচ্ছে 1020!",
+      "buggyCode": "x = input(\"Enter x: \")\ny = input(\"Enter y: \")\nprint(x + y)",
+      "errorMessage": "Logical Error: Output is 1020 instead of 30",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "input() সবসময় String দেয়।",
+        "String এর সাথে String যোগ করলে তারা পাশাপাশি বসে যায়।",
+        "x এবং y কে int() দিয়ে নাম্বার বানিয়ে নিতে হবে।"
+      ],
+      "fixedCode": "x = input(\"Enter x: \")\ny = input(\"Enter y: \")\nx_num = int(x)\ny_num = int(y)\nprint(x_num + y_num)",
+      "explanation": "\"10\" এবং \"20\" (String) যোগ করলে পাইথন তাদের পাশাপাশি বসিয়ে \"1020\" বানিয়ে দেয়। গাণিতিক যোগফলের জন্য তাদের Integer এ রূপান্তর করতে হয়।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ৩: বয়সের হিসাব ক্র্যাশ!",
+      "scenario": "একজনের জন্মসাল ইনপুট নিয়ে বয়স বের করার একটি প্রোগ্রাম লেখা হয়েছে। কিন্তু প্রোগ্রামটি ক্র্যাশ করছে!",
+      "buggyCode": "birth_year = input(\"Birth year: \")\nage = 2026 - birth_year\nprint(age)",
+      "errorMessage": "TypeError: unsupported operand type(s) for -: 'int' and 'str'",
+      "bugLine": 2,
+      "bugType": "contextual",
+      "hints": [
+        "2026 হলো একটি Number (Integer), কিন্তু birth_year হলো একটি String (Text)।",
+        "একটি নাম্বার থেকে একটি টেক্সট বিয়োগ করা যায় না।",
+        "birth_year কে int() ব্যবহার করে কনভার্ট করে নাও।"
+      ],
+      "fixedCode": "birth_year_text = input(\"Birth year: \")\nbirth_year = int(birth_year_text)\nage = 2026 - birth_year\nprint(age)",
+      "explanation": "Number থেকে String বিয়োগ করা যায় না, তাই পাইথন TypeError দিয়েছে। হিসাব করার আগে String কে Integer এ কনভার্ট করা বাধ্যতামূলক।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে ভাবো। তারপর Expert Thinking দেখো।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "input() ফাংশন কেন স্বয়ংক্রিয়ভাবে নাম্বারকে Integer হিসেবে না নিয়ে সবসময় String হিসেবে নেয়? এর পেছনে ডিজাইনারদের কী লজিক থাকতে পারে?",
+          "expertThinking": "কারণ পাইথন আগে থেকে জানে না ইউজার কী টাইপ করবে। ইউজার নাম, ফোন নাম্বার নাকি বয়স টাইপ করবে—সেটা ইউজারের ব্যাপার। কিবোর্ড থেকে আসা সবকিছুই আসলে ক্যারেক্টার বা টেক্সটের স্ট্রিম। তাই নিরাপদ পদ্ধতি হলো সবকিছুকেই String হিসেবে রিসিভ করা এবং প্রোগ্রামারকে কনভার্ট করার দায়িত্ব দেওয়া।",
+          "realWorldEngineering": "ফোন নাম্বার (যেমন 017...) যদি স্বয়ংক্রিয়ভাবে Integer হয়ে যেত, তবে সামনের 0 গায়েব হয়ে যেত! তাই String হিসেবে আসাই সবচেয়ে নিরাপদ।",
+          "beyondProgramming": "তুমি যখন কাউকে কাগজে কিছু লিখে দাও, সেটার অর্থ কী হবে তা নির্ভর করে যে পড়ছে তার ওপর। কম্পিউটারও সব ইনপুট একইভাবে রিসিভ করে, তারপর তুমি তাকে অর্থ বুঝিয়ে দাও।"
+        },
+        {
+          "question": "যদি কোনো হ্যাকার একটি ব্যাংকের সিস্টেমে input() এর জায়গায় নাম্বারের বদলে ম্যালিসিয়াস কোনো কোড বা টেক্সট লিখে দেয়, আর আমরা int() কনভারশন না করি, তবে কী হতে পারে?",
+          "expertThinking": "সিস্টেম যদি কনভার্ট বা ভ্যালিডেট না করে সরাসরি ইউজারের ইনপুটের ওপর নির্ভর করে কাজ করতে যায়, তবে পুরো সিস্টেম ক্র্যাশ করতে পারে বা হ্যাকার ডেটাবেজের কন্ট্রোল নিয়ে নিতে পারে। একে 'Injection Attack' বলে।",
+          "realWorldEngineering": "রিয়েল ওয়ার্ল্ড সফটওয়্যারে ইউজারের দেওয়া ইনপুটকে কখনোই ১০০% বিশ্বাস করা হয় পণ্ডিত। ইনপুট রিসিভ করার পর সবসময় চেক করা হয় যে সেটি সঠিক টাইপ এবং ফরম্যাটে আছে কি না।",
+          "beyondProgramming": "অপরিচিত কেউ তোমাকে কোনো ঠিকানা দিলে তুমি যেমন যাচাই না করে সেখানে চলে যাও না, তেমনি ইউজারের ইনপুট যাচাই না করে সিস্টেমে ঢুকতে দেওয়া উচিত নয়।"
+        },
+        {
+          "question": "ডায়নামিক প্রোগ্রাম (যেগুলো ইনপুট নেয়) কেন স্ট্যাটিক প্রোগ্রামের (যেগুলোতে হার্ডকোড করা থাকে) চেয়ে বেশি শক্তিশালী?",
+          "expertThinking": "কারণ ডায়নামিক প্রোগ্রাম বিভিন্ন পরিস্থিতিতে বিভিন্ন মানুষের জন্য কাজ করতে পারে। একটি স্ট্যাটিক ক্যালকুলেটর শুধু নির্দিষ্ট দুটি সংখ্যাই যোগ করতে পারবে, কিন্তু ডায়নামিক ক্যালকুলেটর পৃথিবীর যেকোনো সংখ্যা যোগ করতে পারবে।",
+          "realWorldEngineering": "ফেসবুক বা গুগলের মতো প্ল্যাটফর্মগুলো একটিই কোডবেজ ব্যবহার করে কোটি কোটি মানুষের জন্য পার্সোনালাইজড ডেটা দেখায়, কারণ তারা প্রতিনিয়ত ইউজারের ইনপুট প্রসেস করে।",
+          "beyondProgramming": "যে মানুষ অন্যের কথা শুনতে এবং সে অনুযায়ী নিজেকে মানিয়ে নিতে পারে, সে সব জায়গায় সফল হয়। প্রোগ্রামের ক্ষেত্রেও ঠিক তাই!"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 006 Complete",
+      "summary": "অভিনন্দন! তুমি তোমার প্রোগ্রামকে বাইরের দুনিয়ার সাথে কথা বলতে এবং শুনতে শিখিয়েছ। এখন তোমার তৈরি প্রোগ্রাম যেকোনো ইউজারের সাথে ইন্টারঅ্যাক্ট করতে পারবে।",
+      "keyLearnings": [
+        "input() ব্যবহার করে ইউজারের কাছ থেকে ডায়নামিক ডেটা নেওয়া যায়।",
+        "input() সবসময় ডেটাকে String হিসেবে গ্রহণ করে।",
+        "গাণিতিক কাজ করার জন্য ইনপুটকে int() বা float() দিয়ে কনভার্ট করে নিতে হয়।"
+      ]
     }
   ]
 }

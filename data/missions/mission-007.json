@@ -1,34 +1,306 @@
 {
   "id": "007",
-  "title": "Locked Mission 7",
-  "titleBangla": "লক করা মিশন 7",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-006"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "Arithmetic Operations",
+  "banglaTitle": "কম্পিউটারকে দিয়ে গণিত করানো",
+  "banglaSubtitle": "CPU-এর ভেতরের ক্যালকুলেটর",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 2,
+    "practiceComplexity": 3,
+    "estimatedTotalMinutes": 35
+  },
+  "curiosity": {
+    "didYouKnow": "CPU এর ভেতরে একটি অংশ আছে যার নাম ALU (Arithmetic Logic Unit), এটি প্রতি সেকেন্ডে কোটি কোটি গাণিতিক হিসাব করতে পারে!",
+    "realWorldApplication": "ব্যাংকে তোমার অ্যাকাউন্টের ইন্টারেস্ট হিসাব করা কিংবা ই-কমার্স সাইটে ডিসকাউন্ট দেওয়া সবই এই গাণিতিক অপারেশনের কাজ।",
+    "aiApplication": "AI মডেলগুলো শেখার সময় বিলিয়ন বিলিয়ন যোগ-বিয়োগ-গুণ-ভাগ করে নিজেদের ভুল সংশোধন করে।",
+    "eeeApplication": "ব্যাটারির কত শতাংশ চার্জ বাকি আছে তা বের করতে modulo (%) এবং ভাগ (/) ব্যাপকভাবে ব্যবহৃত হয়।",
+    "historicalFact": "প্রথম দিকের কম্পিউটারগুলো মূলত শুধু যুদ্ধের জন্য মিসাইলের ট্রাজেক্টরি হিসাব করতেই বিশাল বিশাল গাণিতিক অপারেশন করতো।",
+    "nextMissionPreview": "কম্পিউটার কি শুধু হিসাবই করতে পারে, নাকি সিদ্ধান্তও নিতে পারে?"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "007",
-      "title": "Welcome to Mission 7",
-      "banglaTitle": "মিশন 7-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "Arithmetic Operations",
+      "banglaTitle": "CPU-এর ভেতরের ক্যালকুলেটর",
+      "tagline": "কম্পিউটার কীভাবে যোগ, বিয়োগ, গুণ আর ভাগ করে?",
+      "description": "মিশন-০৪ এ তুমি ডেটা টাইপ সম্পর্কে জেনেছো। তুমি জেনেছো যে Number ডেটা টাইপ দিয়ে আমরা গাণিতিক হিসাব করতে পারি। এবার আমরা দেখবো কম্পিউটারকে দিয়ে কীভাবে বিভিন্ন গাণিতিক হিসাব করানো যায়।",
       "learningObjectives": [
-        "Patience"
+        "সাধারণ গণিত (+, -, *, /) কীভাবে কাজ করে তা বোঝা",
+        "Integer Division (//) এবং Modulo (%) এর কাজ শেখা",
+        "বাস্তব জীবনের সমস্যার সমাধানে গাণিতিক অপারেটর ব্যবহার করা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 2
+    },
+    {
+      "type": "story",
+      "title": "বাবার পিজা ভাগাভাগি",
+      "setting": "খাবারের টেবিলে...",
+      "content": "ধরো, বাবা ৮ টুকরা পিজা এনেছেন। তোমরা ৩ ভাইবোন। সবাই সমানভাবে পিজা খেতে চায়। এখন প্রত্যেকে কয়টি করে টুকরা পাবে? আর কয়টি টুকরা অবশিষ্ট থাকবে? এই সাধারণ হিসাবগুলো মানুষের মস্তিষ্ক খুব সহজেই করে ফেলে। কিন্তু কম্পিউটারকে এই হিসাব বোঝানোর জন্য আমাদের নির্দিষ্ট কিছু চিহ্ন বা অপারেটর ব্যবহার করতে হয়।",
+      "moral": "সঠিক অপারেটর ব্যবহার করে আমরা যেকোনো জটিল গাণিতিক সমস্যার সমাধান কম্পিউটারকে দিয়ে করাতে পারি।"
+    },
+    {
+      "type": "analogy",
+      "title": "ভাগফল বনাম ভাগশেষ",
+      "realWorld": {
+        "label": "পিজা ভাগ করা",
+        "icon": "Pizza",
+        "description": "৮ টুকরা পিজা ৩ জনের মধ্যে ভাগ করলে প্রত্যেকে পায় ২টি করে টুকরা (ভাগফল), আর ২ টুকরা অবশিষ্ট থাকে (ভাগশেষ)।"
+      },
+      "pythonConcept": {
+        "label": "// এবং %",
+        "icon": "DivideSquare",
+        "description": "পাইথনে 8 // 3 দিলে উত্তর আসবে 2 (ভাগফল), আর 8 % 3 দিলে উত্তর আসবে 2 (ভাগশেষ)।"
+      },
+      "connection": "যেমন বাস্তব জীবনে আমরা পূর্ণসংখ্যায় ভাগ করে অবশিষ্ট জিনিস আলাদা রাখি, পাইথনও // এবং % দিয়ে এই কাজটি নিঁখুতভাবে করতে পারে।",
+      "deeperInsight": "Modulo (%) অপারেটর প্রোগ্রামিংয়ে জোড়-বিজোড় নির্ণয় বা সময় হিসাব করার মতো কাজে জাদুর মতো কাজ করে!"
+    },
+    {
+      "type": "concept",
+      "title": "গাণিতিক অপারেটর (Operators)",
+      "content": "পাইথনে গণিত করার জন্য আমরা বিভিন্ন চিহ্ন ব্যবহার করি। এগুলোকে Operator বলে।\n\n১. যোগ (+)\n২. বিয়োগ (-)\n৩. গুণ (*)\n৪. সাধারণ ভাগ (/) - এটি দশমিক বা Float উত্তর দেয়। যেমন: 5 / 2 = 2.5\n৫. পূর্ণসংখ্যার ভাগ বা Integer Division (//) - এটি শুধু পূর্ণসংখ্যা উত্তর দেয় (দশমিকের পরের অংশ ফেলে দেয়)। যেমন: 5 // 2 = 2\n৬. ভাগশেষ বা Modulo (%) - এটি ভাগ করার পর কত অবশিষ্ট থাকে তা বের করে। যেমন: 5 % 2 = 1",
+      "keyPoints": [
+        "* (Asterisk) হলো গুণের চিহ্ন।",
+        "/ (Slash) হলো ভাগের চিহ্ন, এটি সবসময় দশমিক (Float) উত্তর দেয়।",
+        "// দিলে উত্তরের দশমিক অংশ বাদ যায়।",
+        "% দিয়ে ভাগশেষ বের করা হয়।"
+      ],
+      "whyCallout": "সঠিক হিসাবের জন্য সঠিক অপারেটর বেছে নেওয়া জরুরি। সময় হিসাব করতে % লাগে, আবার গড়ের জন্য / লাগে।",
+      "whenToUse": "যেকোনো ধরনের ক্যালকুলেশনের জন্য।",
+      "whenNotToUse": "টেক্সট (String) এর সাথে গণিত করতে যাবে পণ্ডিতি করতে যাবে না, এরর আসবে!",
+      "commonMisconception": "% চিহ্নটিকে অনেকেই পার্সেন্টেজ (Percentage) বা শতকরা হিসাব মনে করে। প্রোগ্রামিংয়ে এটি ভাগশেষ (Remainder) বের করে।"
+    },
+    {
+      "type": "visualization",
+      "title": "Modulo (%) এর ম্যাজিক",
+      "description": "ভাগশেষ কীভাবে কাজ করে তা দেখো",
+      "content": "10 % 3 = 1\nকারণ: 10 কে 3 দিয়ে ভাগ করলে 3 * 3 = 9 হয়। বাকি থাকে 1।\n\n10 % 2 = 0\nকারণ: 10 কে 2 দিয়ে ভাগ করলে 5 * 2 = 10 হয়। কিছু বাকি থাকে না (0)।\nকোনো সংখ্যা জোড় (Even) কি না তা বুঝতে আমরা সংখ্যাটিকে 2 দিয়ে Modulo করি। যদি উত্তর 0 হয়, তবে সংখ্যাটি জোড়!"
+    },
+    {
+      "type": "code_example",
+      "title": "পাইথনে ক্যালকুলেটর",
+      "explanation": "চলো দেখি পাইথনে বিভিন্ন অপারেটর কীভাবে কাজ করে।",
+      "language": "python",
+      "code": "a = 10\nb = 3\n\nprint(a + b)\nprint(a - b)\nprint(a * b)\nprint(a / b)   # সাধারণ ভাগ\nprint(a // b)  # পূর্ণসংখ্যার ভাগ\nprint(a % b)   # ভাগশেষ",
+      "output": "13\n7\n30\n3.3333333333333335\n3\n1",
+      "annotations": [
+        {
+          "lineNumber": 7,
+          "explanation": "দশমিক সহ ভাগফল"
+        },
+        {
+          "lineNumber": 8,
+          "explanation": "শুধু পূর্ণসংখ্যা অংশ"
+        },
+        {
+          "lineNumber": 9,
+          "explanation": "ভাগশেষ"
+        }
+      ],
+      "postExplanation": "খেয়াল করো, 10 / 3 এর উত্তর এসেছে দশমিকে। কিন্তু 10 // 3 এর উত্তর এসেছে শুধু 3।"
+    },
+    {
+      "type": "eee_example",
+      "title": "ব্যাটারির পার্সেন্টেজ হিসাব",
+      "scenario": "তোমার কাছে একটি 5000 mAh ব্যাটারি আছে। এর মধ্যে বর্তমানে 3500 mAh চার্জ আছে।",
+      "code": "total_capacity = 5000\ncurrent_charge = 3500\n\npercentage = (current_charge / total_capacity) * 100\nprint(percentage)",
+      "explanation": "এখানে আমরা সাধারণ ভাগ (/) এবং গুণ (*) ব্যবহার করে সহজেই ব্যাটারির চার্জের শতকরা হার বের করে ফেললাম।"
+    },
+    {
+      "type": "ai_example",
+      "title": "AI এর ভুল মাপা",
+      "scenario": "একটি AI মডেল প্রেডিক্ট করেছে যে বাড়ির দাম হবে 100 লাখ টাকা, কিন্তু আসল দাম 120 লাখ।",
+      "code": "predicted_price = 100\nactual_price = 120\n\nerror = actual_price - predicted_price\nprint(error)",
+      "explanation": "AI এভাবেই বিয়োগফল (-) বের করে বুঝতে পারে সে কতটা ভুল করেছে, এবং পরের বার আরও ভালো করার চেষ্টা করে।"
+    },
+    {
+      "type": "practice",
+      "title": "গাণিতিক অপারেশন",
+      "prompt": "দুটি ভেরিয়েবল num1 এবং num2 তে যথাক্রমে 15 এবং 4 রাখো। তারপর তাদের যোগফল, বিয়োগফল, গুণফল এবং ভাগফল (দশমিক সহ) প্রিন্ট করো।",
+      "starterCode": "num1 = 15\nnum2 = 4\n\n# যোগফল প্রিন্ট করো\n\n# বিয়োগফল প্রিন্ট করো\n\n# গুণফল প্রিন্ট করো\n\n# ভাগফল (দশমিক সহ) প্রিন্ট করো\n",
+      "hints": [
+        "+, -, *, / অপারেটরগুলো ব্যবহার করো।"
+      ],
+      "displayHint": "চারটি প্রিন্ট স্টেটমেন্ট ব্যবহার করো",
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "num1\\s*\\+\\s*num2",
+          "num1\\s*-\\s*num2",
+          "num1\\s*\\*\\s*num2",
+          "num1\\s*/\\s*num2"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! তুমি সাধারণ গণিতের সবগুলো কাজ সঠিকভাবে করেছো।",
+          "onPatternFail": "কোথাও ভুল হয়েছে! +, -, *, / অপারেটরগুলো ঠিকমতো ব্যবহার করেছ তো?"
+        }
+      },
+      "solution": "num1 = 15\nnum2 = 4\n\nprint(num1 + num2)\nprint(num1 - num2)\nprint(num1 * num2)\nprint(num1 / num2)",
+      "solutionExplanation": "খুবই সহজ! ঠিক ক্যালকুলেটরের মতোই কাজ করে।"
+    },
+    {
+      "type": "practice",
+      "title": "ভাগফল এবং ভাগশেষ",
+      "prompt": "ধরে নাও তোমার কাছে 25টি চকোলেট আছে এবং তোমরা 4 জন বন্ধু আছো। প্রত্যেকে কয়টি করে আস্ত চকোলেট পাবে তা বের করতে integer division (//) ব্যবহার করো এবং কয়টি চকোলেট অবশিষ্ট থাকবে তা বের করতে modulo (%) ব্যবহার করো।",
+      "starterCode": "chocolates = 25\nfriends = 4\n\n# প্রত্যেকে কয়টি করে পাবে? (integer division)\n\n# কয়টি অবশিষ্ট থাকবে? (modulo)\n",
+      "hints": [
+        "// দিয়ে ভাগফল এবং % দিয়ে ভাগশেষ বের করো।"
+      ],
+      "displayHint": "দুটি প্রিন্ট স্টেটমেন্ট ব্যবহার করো",
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "chocolates\\s*//\\s*friends",
+          "chocolates\\s*%\\s*friends"
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি // এবং % এর পার্থক্য পরিষ্কার বুঝতে পেরেছ।",
+          "onPatternFail": "ভুল হচ্ছে! আস্ত চকোলেট পেতে // এবং অবশিষ্ট বের করতে % ব্যবহার করো।"
+        }
+      },
+      "solution": "chocolates = 25\nfriends = 4\n\nprint(chocolates // friends)\nprint(chocolates % friends)",
+      "solutionExplanation": "প্রত্যেকে 6টি করে চকোলেট পাবে এবং 1টি চকোলেট অবশিষ্ট থাকবে।"
+    },
+    {
+      "type": "practice",
+      "title": "জোড় না বিজোড়?",
+      "prompt": "একটি সংখ্যা (যেমন 42) জোড় (Even) নাকি বিজোড় (Odd) তা কম্পিউটারের মাধ্যমে বুঝতে হলে সংখ্যাটিকে 2 দিয়ে modulo (%) করতে হয়। 42 কে 2 দিয়ে modulo করে ফলাফল প্রিন্ট করো।",
+      "starterCode": "number = 42\n\n# 2 দিয়ে modulo করে প্রিন্ট করো\n",
+      "hints": [
+        "number % 2 লিখে প্রিন্ট করো।"
+      ],
+      "displayHint": "ফলাফল যদি 0 হয়, তাহলে সংখ্যাটি জোড়!",
+      "expectedOutput": "",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredPatterns": [
+          "number\\s*%\\s*2"
+        ],
+        "feedbackMessages": {
+          "onPass": "একদম ঠিক! উত্তর 0 এসেছে, যার মানে সংখ্যাটি জোড়।",
+          "onPatternFail": "modulo (%) অপারেটর এবং 2 ব্যবহার করেছ কি?"
+        }
+      },
+      "solution": "number = 42\nprint(number % 2)",
+      "solutionExplanation": "যেহেতু 42 জোড় সংখ্যা, তাই 2 দিয়ে ভাগ করলে ভাগশেষ 0 আসে। বিজোড় সংখ্যা হলে ভাগশেষ 1 আসতো।"
+    },
+    {
+      "type": "quiz",
+      "title": "হিসাবের পরীক্ষা",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "15 // 4 এর ফলাফল কী হবে?",
+          "difficulty": "easy",
+          "options": [
+            "3",
+            "3.75",
+            "4",
+            "15"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "// শুধু পূর্ণসংখ্যা (ভাগফল) দেয়, দশমিকের পরের অংশ ফেলে দেয়।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "কোনো সংখ্যাকে 10 দিয়ে ভাগ করার পর ভাগশেষ বের করতে কোন অপারেটর ব্যবহার করবে?",
+          "difficulty": "easy",
+          "options": [
+            "//",
+            "/",
+            "%",
+            "*"
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "% (Modulo) অপারেটর ভাগশেষ বের করার জন্য ব্যবহৃত হয়।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: ভুল চিহ্ন",
+      "scenario": "একজন ইউজার দুটি সংখ্যা গুণ করতে চেয়েছিল, কিন্তু সে ভুল চিহ্ন ব্যবহার করেছে।",
+      "buggyCode": "a = 5\nb = 4\nresult = a x b\nprint(result)",
+      "errorMessage": "SyntaxError: invalid syntax",
+      "bugLine": 3,
+      "bugType": "syntax",
+      "hints": [
+        "কম্পিউটারে গুণের জন্য 'x' ব্যবহার করা যায় না।",
+        "গুণের জন্য * (Asterisk) চিহ্ন ব্যবহার করো।"
+      ],
+      "fixedCode": "a = 5\nb = 4\nresult = a * b\nprint(result)",
+      "explanation": "প্রোগ্রামিংয়ে গুণের জন্য * (Asterisk) ব্যবহার করা হয়, x নয়।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: আধা মানুষ!",
+      "scenario": "আমরা বাসের টিকিট বুকিংয়ের হিসাব করছি। 10 জনকে 3 টি বাসে সমানভাবে ভাগ করতে হবে। আমরা জানতে চাই প্রতি বাসে কয়জন আস্ত মানুষ বসবে।",
+      "buggyCode": "people = 10\nbuses = 3\nper_bus = people / buses\nprint(per_bus)",
+      "errorMessage": "Logic Error (Output: 3.333...)",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "সাধারণ ভাগ (/) দশমিক উত্তর দেয়, কিন্তু মানুষ তো আর দশমিক হতে পারে না!",
+        "পূর্ণসংখ্যায় ভাগ করার জন্য কোন অপারেটর লাগে?"
+      ],
+      "fixedCode": "people = 10\nbuses = 3\nper_bus = people // buses\nprint(per_bus)",
+      "explanation": "মানুষের সংখ্যা পূর্ণসংখ্যা হতে হবে। তাই সাধারণ ভাগ (/) এর বদলে Integer Division (//) ব্যবহার করতে হবে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: সময় হিসাব",
+      "scenario": "তোমার কাছে 125 মিনিট আছে। তুমি বের করতে চাও এটি কত ঘণ্টা এবং কত মিনিট।",
+      "buggyCode": "total_minutes = 125\nhours = total_minutes // 60\nremaining_minutes = total_minutes / 60\n\nprint(hours)\nprint(remaining_minutes)",
+      "errorMessage": "Logic Error (remaining_minutes দশমিক আসছে)",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "বাকি মিনিট (ভাগশেষ) বের করার জন্য ভাগ (/) দিলে হবে না।",
+        "ভাগশেষ বের করার অপারেটর কোনটি?"
+      ],
+      "fixedCode": "total_minutes = 125\nhours = total_minutes // 60\nremaining_minutes = total_minutes % 60\n\nprint(hours)\nprint(remaining_minutes)",
+      "explanation": "অতিরিক্ত মিনিট (ভাগশেষ) বের করার জন্য Modulo (%) ব্যবহার করতে হয়।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে ভাবো। তারপর Expert Thinking দেখো।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "কেন কম্পিউটারে / (সাধারণ ভাগ) এবং // (পূর্ণসংখ্যার ভাগ) দুটি আলাদা অপারেটর রাখা হয়েছে?",
+          "expertThinking": "বাস্তব জগতে আমরা যখন জিনিস ভাগ করি, তখন কিছু জিনিস খণ্ডিত করা যায় (যেমন: টাকা, পিজা), আবার কিছু জিনিস খণ্ডিত করা যায় না (যেমন: মানুষ, গাড়ি)। কম্পিউটারে এই দুটি পরিস্থিতি আলাদাভাবে হ্যান্ডেল করার জন্যই দুটি আলাদা অপারেটর রয়েছে।",
+          "realWorldEngineering": "পিক্সেল হিসাব করার সময় (স্ক্রিনের রেজোলিউশন) // ব্যবহৃত হয়, কারণ অর্ধেক পিক্সেল বলে কিছু নেই। আবার পার্সেন্টেজ হিসাব করার সময় / ব্যবহৃত হয়।",
+          "beyondProgramming": "আমাদের চারপাশের অনেক সমস্যাই শুধুমাত্র পূর্ণসংখ্যা দিয়ে সমাধান করতে হয়, সেখানে ভগ্নাংশ অর্থহীন।"
+        },
+        {
+          "question": "Modulo (%) অপারেটরকে প্রোগ্রামিংয়ের অন্যতম শক্তিশালী টুল বলা হয় কেন?",
+          "expertThinking": "Modulo শুধুমাত্র ভাগশেষই বের করে না, এটি যেকোনো সাইক্লিক বা ঘূর্ণায়মান প্যাটার্ন বুঝতে সাহায্য করে। যেমন, ঘড়ির কাঁটা ১২ এর পর আবার ১ এ ফিরে আসে (X % 12)। কোনো সংখ্যা জোড় না বিজোড় তা বুঝতে (X % 2) ব্যবহৃত হয়।",
+          "realWorldEngineering": "ক্যালেন্ডার অ্যাপ্লিকেশনে লিপ ইয়ার (Leap Year) বের করতে Modulo ব্যাপকভাবে ব্যবহৃত হয় (যেমন: year % 4 == 0)।",
+          "beyondProgramming": "জীবনের যেকোনো সাইক্লিক রুটিন বা প্যাটার্নকে গাণিতিকভাবে মডেলে রূপান্তর করতে Modulo এর ধারণাটি চমৎকার কাজ করে।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 007 Complete",
+      "summary": "অভিনন্দন! তুমি এখন কম্পিউটারকে দিয়ে যেকোনো গাণিতিক হিসাব করাতে পারো।",
+      "keyLearnings": [
+        "+, -, *, / দিয়ে সাধারণ গাণিতিক হিসাব করা যায়।",
+        "পূর্ণসংখ্যার ভাগফলের জন্য // ব্যবহার করা হয়।",
+        "ভাগশেষ বের করতে % (Modulo) ব্যবহার করা হয়।"
+      ]
     }
   ]
 }

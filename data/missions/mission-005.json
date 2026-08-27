@@ -1,34 +1,321 @@
 {
   "id": "005",
-  "title": "Locked Mission 5",
-  "titleBangla": "লক করা মিশন 5",
-  "description": "This mission is currently locked.",
-  "difficulty": "beginner",
-  "estimatedMinutes": 20,
-  "xpReward": 400,
-  "prerequisites": [
-    "mission-004"
-  ],
-  "curiosityBlock": {
-    "didYouKnow": "Placeholder",
-    "realWorldApplication": "Placeholder",
-    "aiApplication": "Placeholder",
-    "eeeApplication": "Placeholder",
-    "historicalFact": "Placeholder",
-    "nextMissionPreview": "Placeholder"
+  "title": "Type Conversion: Shape Shifting Data",
+  "banglaTitle": "ডেটার রূপান্তর: String থেকে Integer",
+  "banglaSubtitle": "কীভাবে এক ধরনের ডেটাকে অন্য ধরনের ডেটায় রূপান্তর করা যায়?",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 3,
+    "newConceptCount": 2,
+    "practiceComplexity": 3,
+    "estimatedTotalMinutes": 45
+  },
+  "curiosity": {
+    "didYouKnow": "কম্পিউটারের ডেটাগুলো অনেকটা ট্রান্সফরমারদের মতো! প্রয়োজন অনুযায়ী তাদের এক রূপ থেকে অন্য রূপে বদলানো যায়।",
+    "realWorldApplication": "ওয়েবসাইটে যখন কেউ ফর্ম পূরণ করে বয়স দেয়, তখন সেটি Text হিসেবে সার্ভারে যায়। পরে সেটাকে Number এ বদলে গাণিতিক কাজ করতে হয়。",
+    "aiApplication": "AI যখন মানুষের লেখা পড়ে সংখ্যা খোঁজে, তখন তাকে সেই লেখাকে গাণিতিক সংখ্যায় রূপান্তর করতে হয়।",
+    "eeeApplication": "সেন্সর থেকে আসা সিগন্যাল অনেক সময় স্ট্রিং আকারে থাকে, কাজ করার জন্য তাকে নাম্বারে কনভার্ট করতে হয়।",
+    "historicalFact": "প্রাথমিক প্রোগ্রামিং ভাষায় টাইপ কনভার্সন খুব জটিল ছিল, কিন্তু আধুনিক ভাষায় এটি অনেক সহজ।",
+    "nextMissionPreview": "ডেটাকে কনভার্ট করার পর তাদের দিয়ে আমরা আর কী কী কাজ করতে পারি?"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "005",
-      "title": "Welcome to Mission 5",
-      "banglaTitle": "মিশন 5-এ স্বাগতম",
-      "tagline": "Coming soon...",
-      "description": "This mission is currently under development. Stay tuned!",
+      "title": "Type Conversion: Shape Shifting Data",
+      "banglaTitle": "ডেটার রূপান্তর: String থেকে Integer",
+      "tagline": "প্রয়োজনের সময় টেক্সটকে সংখ্যায় আর সংখ্যাকে টেক্সটে বদলাবে কীভাবে?",
+      "description": "মিশন-০৪ এ আমরা দেখেছি String আর Integer আলাদা। কিন্তু বাস্তব জীবনে অনেক সময় আমাদের একটিকে অন্যটিতে রূপান্তর করতে হয়। এই মিশনে আমরা শিখবো কীভাবে int() এবং str() ব্যবহার করে ডেটার রূপ বদলানো যায়।",
       "learningObjectives": [
-        "Patience"
+        "int() ফাংশন ব্যবহার করে String কে Integer এ রূপান্তর করা",
+        "str() ফাংশন ব্যবহার করে Integer কে String এ রূপান্তর করা",
+        "কেন টাইপ কনভার্সন প্রয়োজন তা বোঝা"
       ],
-      "estimatedMinutes": 1
+      "estimatedMinutes": 3
+    },
+    {
+      "type": "story",
+      "title": "সেন্সরের ভুল বোঝাবুঝি",
+      "setting": "একটি স্মার্ট এগ্রিকালচার ফার্মে...",
+      "content": "ফার্মের টেম্পারেচার সেন্সরটি ওয়েদার স্টেশনে ডেটা পাঠাচ্ছে। কিন্তু একটি সমস্যা হলো! সেন্সরটি তাপমাত্রা পাঠাচ্ছে \"25\" (Text হিসেবে)। এদিকে মেইন কম্পিউটার প্রোগ্রাম করা আছে: তাপমাত্রা ৩০ এর বেশি হলে পানি দেওয়া শুরু করো। কিন্তু \"25\" এর সাথে ৩০ এর তুলনা সে করতে পারছে না! মেইন কম্পিউটারকে এখন এই টেক্সট \"25\" কে আসল সংখ্যা 25 এ বদলাতে হবে।",
+      "moral": "অনেক সময় অন্য সিস্টেম থেকে আসা ডেটা ভুল টাইপে থাকে, কাজ করার আগে তাকে সঠিক টাইপে রূপান্তর করে নিতে হয়।"
+    },
+    {
+      "type": "analogy",
+      "title": "বরফ আর পানি",
+      "realWorld": {
+        "label": "বরফ গলিয়ে পানি",
+        "icon": "Droplet",
+        "description": "বরফ আর পানি মূলতঃ একই জিনিস, কিন্তু তাদের রূপ আলাদা। প্রয়োজন অনুযায়ী বরফকে গলিয়ে পানি করা যায়, আবার পানিকে জমিয়ে বরফ করা যায়।"
+      },
+      "pythonConcept": {
+        "label": "str() এবং int()",
+        "icon": "Repeat",
+        "description": "\"25\" (String) আর 25 (Integer) এর ভেতরের তথ্য একই। int() দিয়ে String-কে Integer-এ, আর str() দিয়ে Integer-কে String-এ রূপান্তর করা যায়।"
+      },
+      "connection": "যেমন করে আমরা পদার্থের অবস্থার পরিবর্তন করি, ঠিক তেমনি পাইথনে আমরা ডেটার টাইপ পরিবর্তন করতে পারি।",
+      "deeperInsight": "ডেটার মিনিং ঠিক রেখে তার ব্যবহারযোগ্যতা পরিবর্তন করাই হলো টাইপ কনভার্সন।"
+    },
+    {
+      "type": "concept",
+      "title": "ম্যাজিক ফাংশন: int() এবং str()",
+      "content": "পাইথনে ডেটা রূপান্তরের জন্য দুটি খুব দরকারি টুল বা ফাংশন আছে। \n১. int(): এটি String কে Integer এ রূপান্তর করে (যদি String এর ভেতর শুধু সংখ্যা থাকে)। যেমন: int(\"50\") হয়ে যাবে 50। \n২. str(): এটি Integer কে String এ রূপান্তর করে। যেমন: str(100) হয়ে যাবে \"100\"।",
+      "keyPoints": [
+        "int() ব্যবহার করে টেক্সটকে গাণিতিক সংখ্যা বানানো যায়।",
+        "str() ব্যবহার করে সংখ্যাকে টেক্সট বানানো যায়।",
+        "সব টেক্সটকে সংখ্যা বানানো যায় না (যেমন int(\"Hello\") কাজ করবে না)।"
+      ],
+      "whyCallout": "ইউজার ইনপুট বা সেন্সর থেকে আসা ডেটা বেশিরভাগ সময়ই String হিসেবে আসে। ম্যাথ করার জন্য তাদের Integer এ কনভার্ট করা বাধ্যতামূলক।",
+      "whenToUse": "যোগ-বিয়োগ করার আগে String-কে Integer এ কনভার্ট করবে।",
+      "whenNotToUse": "এমন কোনো String-কে int() দিয়ে কনভার্ট করবে না যার ভেতরে অক্ষর (letter) আছে।",
+      "commonMisconception": "অনেকে ভাবে কনভার্ট করলে মেমোরির ভ্যালু বদলে যায়। আসলে ভ্যালু একই থাকে, শুধু তার টাইপ বা ক্যাটাগরি বদলে যায়।"
+    },
+    {
+      "type": "visualization",
+      "title": "কীভাবে রূপান্তর কাজ করে?",
+      "description": "নিচের ডায়াগ্রামটি দেখো। int() এবং str() ফাংশনগুলো একটি প্রসেসিং মেশিনের মতো কাজ করে।",
+      "content": "```mermaid\ngraph LR\n    A[\"25\" (String)] -->|int()| B[25 (Integer)]\n    C[100 (Integer)] -->|str()| D[\"100\" (String)]\n```"
+    },
+    {
+      "type": "code_example",
+      "title": "কোডে টাইপ কনভার্সন",
+      "explanation": "চলো দেখি পাইথনে কীভাবে এই রূপান্তরটি করতে হয়।",
+      "language": "python",
+      "code": "sensor_data = \"35\"\n# String কে Integer এ কনভার্ট করা হচ্ছে\nreal_temperature = int(sensor_data)\n\nage = 20\n# Integer কে String এ কনভার্ট করা হচ্ছে\nage_text = str(age)\n\nprint(real_temperature)\nprint(age_text)",
+      "output": "35\n20",
+      "annotations": [
+        {
+          "lineNumber": 1,
+          "explanation": "সেন্সর থেকে পাওয়া ডেটা String হিসেবে আছে।"
+        },
+        {
+          "lineNumber": 3,
+          "explanation": "int() ফাংশন দিয়ে \"35\" কে 35 (Number) বানানো হলো।"
+        },
+        {
+          "lineNumber": 7,
+          "explanation": "str() ফাংশন দিয়ে 20 কে \"20\" (Text) বানানো হলো।"
+        }
+      ],
+      "postExplanation": "আউটপুট দেখে বোঝা যায় না কোনটি String আর কোনটি Integer, কিন্তু পাইথন মেমোরিতে তাদের নতুন টাইপে সেভ করেছে।"
+    },
+    {
+      "type": "eee_example",
+      "title": "EEE Application: স্মার্ট থার্মোস্ট্যাট",
+      "scenario": "একটি আরডুইনো টেম্পারেচার সেন্সর থেকে ডাটা পাঠাচ্ছে পাইথন স্ক্রিপ্টে। কিন্তু সিরিয়াল পোর্ট দিয়ে আসা সব ডাটাই টেক্সট (String) হিসেবে আসে।",
+      "code": "serial_input = \"28\"\n# টেক্সট ডাটাকে নাম্বারে কনভার্ট করতে হবে\ntemp = int(serial_input)\n\n# এখন আমরা ম্যাথ করতে পারবো\ntarget_temp = temp - 5\nprint(\"Cooling target:\")\nprint(target_temp)",
+      "explanation": "সিরিয়াল কমিউনিকেশনে ডাটা সাধারণত বাইট বা স্ট্রিং আকারে আসে। সেই ডাটায় ম্যাথমেটিকাল অপারেশন চালানোর আগে তাকে int() বা float() দিয়ে নাম্বারে কনভার্ট করে নেওয়া একজন হার্ডওয়্যার ইঞ্জিনিয়ারের নিত্যদিনের কাজ।"
+    },
+    {
+      "type": "ai_example",
+      "title": "AI Application: ডেটা ক্লিনিং",
+      "scenario": "AI কে ট্রেনিং দেওয়ার জন্য একটি বিশাল ডেটাসেট প্রসেস করা হচ্ছে। দেখা গেল বয়স (Age) এর কলামটি টেক্সট হিসেবে সেভ হয়ে আছে!",
+      "code": "raw_age_data = \"45\"\n# AI মডেল String থেকে ম্যাথ বুঝতে পারে মিলিটারি\nprocessed_age = int(raw_age_data)\n\nprint(\"Age ready for AI model:\")\nprint(processed_age)",
+      "explanation": "AI বা মেশিন লার্নিং মডেলগুলো মূলতঃ ম্যাট্রিক্স এবং নাম্বারের ওপর কাজ করে। ডেটাসেটে কোনো টেক্সট-ফর্মেট নাম্বার থাকলে মডেল ট্রেনিং এর আগে সেগুলোকে প্রি-প্রসেস করে নাম্বারে কনভার্ট করে নিতে হয়।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 1: সেন্সরের ডেটা ঠিক করো",
+      "prompt": "sensor_value নামের ভেরিয়েবলে \"50\" সেভ করা আছে। একে int() দিয়ে কনভার্ট করে real_value নামের নতুন ভেরিয়েবলে রাখো এবং প্রিন্ট করো।",
+      "starterCode": "sensor_value = \"50\"\n# তোমার কোড নিচে লেখো:\n\n",
+      "hints": [
+        "real_value = int(sensor_value) লিখে কনভার্ট করো।"
+      ],
+      "displayHint": "int() ফাংশন ব্যবহার করো",
+      "expectedOutput": "50\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "sensor_value",
+          "real_value"
+        ],
+        "requiredPatterns": [
+          "int\\s*\\(\\s*sensor_value\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! তুমি স্ট্রিংকে ইন্টিজারে রূপান্তর করেছো।",
+          "onPatternFail": "কোথাও ভুল হয়েছে! int(sensor_value) ব্যবহার করেছ তো?",
+          "onMissingVariable": "real_value ভেরিয়েবলটি কি বানিয়েছো?"
+        }
+      },
+      "solution": "sensor_value = \"50\"\nreal_value = int(sensor_value)\nprint(real_value)",
+      "solutionExplanation": "এখানে int() ফাংশনটি sensor_value এর ভেতরের টেক্সট \"50\" কে নিয়ে একটি আসল সংখ্যা 50 এ পরিণত করেছে।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 2: নাম্বার থেকে টেক্সট",
+      "prompt": "score নামের ভেরিয়েবলে 100 সেভ করো। তারপর সেটিকে str() দিয়ে কনভার্ট করে score_text নামের ভেরিয়েবলে রাখো এবং দুটিকেই প্রিন্ট করো।",
+      "starterCode": "# 1. score ভেরিয়েবলে 100 (Number) সেভ করো\n\n# 2. score_text ভেরিয়েবলে score কে String এ কনভার্ট করে রাখো\n\n# 3. দুটিকেই প্রিন্ট করো\n",
+      "hints": [
+        "প্রথমে score = 100 লেখো।",
+        "তারপর score_text = str(score) লেখো।"
+      ],
+      "expectedOutput": "100\n100\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "score",
+          "score_text"
+        ],
+        "requiredPatterns": [
+          "str\\s*\\(\\s*score\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "খুব ভালো! তুমি নাম্বারকে টেক্সটে পরিণত করতে পেরেছ।",
+          "onPatternFail": "তুমি কি str(score) ব্যবহার করে কনভার্ট করেছ?",
+          "onMissingVariable": "score এবং score_text দুটি ভেরিয়েবলই কি তৈরি করা হয়েছে?"
+        }
+      },
+      "solution": "score = 100\nscore_text = str(score)\nprint(score)\nprint(score_text)",
+      "solutionExplanation": "str() ফাংশনটি যেকোনো নাম্বারকে নিয়ে তার চারপাশে কোটেশন বসিয়ে দেয় (মেমোরির ভেতরে)। ফলে সেটি একটি String এ পরিণত হয়।"
+    },
+    {
+      "type": "practice",
+      "title": "Practice 3: Edge Case (কঠিন ডেটা)",
+      "prompt": "ধরো একটি ওয়েবসাইট থেকে ইউজারের ইনপুট আসলো user_input = \"  85  \"। খেয়াল করো, নাম্বারের আগে-পরে স্পেস আছে! পাইথনের int() ফাংশন অনেক স্মার্ট, সে এই স্পেসগুলো নিজে থেকেই বাদ দিয়ে নাম্বারটি বের করে নিতে পারে। কনভার্ট করে দেখাও!",
+      "starterCode": "user_input = \"  85  \"\n# এটিকে int() দিয়ে কনভার্ট করে clean_number ভেরিয়েবলে রাখো এবং প্রিন্ট করো\n\n",
+      "hints": [
+        "আগের মতোই int(user_input) ব্যবহার করো, পাইথন বাকিটা সামলে নেবে।"
+      ],
+      "expectedOutput": "85\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "user_input",
+          "clean_number"
+        ],
+        "requiredPatterns": [
+          "int\\s*\\(\\s*user_input\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! পাইথনের int() ফাংশন যে স্পেস ইগনোর করতে পারে, সেটা তুমি প্রমাণ করে দিলে।",
+          "onPatternFail": "int(user_input) ব্যবহার করতে ভুলো না!",
+          "onMissingVariable": "clean_number ভেরিয়েবলটি কি তৈরি করেছ?"
+        }
+      },
+      "solution": "user_input = \"  85  \"\nclean_number = int(user_input)\nprint(clean_number)",
+      "solutionExplanation": "int() ফাংশনটি স্ট্রিংয়ের ভেতরে থাকা অতিরিক্ত হোয়াইটস্পেস (স্পেস) নিজে থেকেই ছেঁটে ফেলে এবং আসল নাম্বারটি বের করে আনে। এটি একটি দারুণ সুবিধা!"
+    },
+    {
+      "type": "quiz",
+      "title": "কনভার্সন কুইজ",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 100,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "text_value = \"150\" কে Number এ পরিণত করতে কোন ফাংশনটি ব্যবহার করবে?",
+          "difficulty": "easy",
+          "options": [
+            "str(text_value)",
+            "int(text_value)",
+            "number(text_value)",
+            "convert(text_value)"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "String থেকে Integer এ রূপান্তর করতে int() ফাংশন ব্যবহার করা হয়।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "num_value = 55 কে String এ পরিণত করতে কোন কোডটি সঠিক?",
+          "difficulty": "easy",
+          "options": [
+            "string(num_value)",
+            "text(num_value)",
+            "str(num_value)",
+            "int(num_value)"
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "Integer কে String এ রূপান্তর করতে str() ফাংশন ব্যবহার করা হয়।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ১: স্পেলিং মিস্টেক",
+      "scenario": "একজন লার্নার টেক্সট থেকে নাম্বারে কনভার্ট করতে চেয়েছে, কিন্তু একটি ছোট্ট ভুলের কারণে কোড কাজ করছে না।",
+      "buggyCode": "data = \"30\"\nnum = integer(data)\nprint(num)",
+      "errorMessage": "NameError: name 'integer' is not defined",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "পাইথনে পুরো integer শব্দ ব্যবহার করা হয় না।",
+        "ফাংশনটির নাম ৩ অক্ষরের। ভাবো তো কী হতে পারে?"
+      ],
+      "fixedCode": "data = \"30\"\nnum = int(data)\nprint(num)",
+      "explanation": "পাইথনে String কে Integer বানানোর ফাংশনের নাম integer() নয়, বরং সংক্ষেপে int()।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ২: ভুল ফাংশন",
+      "scenario": "লার্নার একটি নাম্বারকে টেক্সট বানাতে চেয়েছে। কিন্তু সে ভুল ফাংশন ব্যবহার করেছে!",
+      "buggyCode": "age = 25\nage_text = int(age)\nprint(age_text)",
+      "errorMessage": "No error, but logic is wrong. We want a string!",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "int() ফাংশন তো নাম্বার বানায়! টেক্সট বানানোর ফাংশন কোনটি?",
+        "টেক্সট মানে String, এর জন্য কোন ফাংশন ব্যবহার হয়?"
+      ],
+      "fixedCode": "age = 25\nage_text = str(age)\nprint(age_text)",
+      "explanation": "নাম্বারকে (Integer) টেক্সট (String) বানাতে str() ফাংশন ব্যবহার করতে হয়। int() ব্যবহার করলে সেটি নাম্বারই থেকে যায়।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো ৩: টেক্সটের ভেতর অক্ষর (Real World Bug)",
+      "scenario": "একটি ওয়েবসাইট থেকে ইউজারের দেওয়া ইনপুট নেওয়া হলো: \"20Years\"। এখন একে int() দিয়ে কনভার্ট করার চেষ্টা করা হচ্ছে।",
+      "buggyCode": "user_input = \"20Years\"\nage = int(user_input)\nprint(age)",
+      "errorMessage": "ValueError: invalid literal for int() with base 10: '20Years'",
+      "bugLine": 2,
+      "bugType": "syntax",
+      "hints": [
+        "int() ফাংশন শুধু সংখ্যার টেক্সটকে কনভার্ট করতে পারে।",
+        "\"20Years\" এর ভেতর Years শব্দটি আছে, যা কোনো সংখ্যা নয়! শব্দটুকু বাদ দিয়ে দাও।"
+      ],
+      "fixedCode": "user_input = \"20\"\nage = int(user_input)\nprint(age)",
+      "explanation": "int() ফাংশন খুবই কাজের, কিন্তু সে ম্যাজিশিয়ান নয়! তুমি যদি এমন কোনো String কে int() এর ভেতরে দাও যার মাঝে অ্যালফাবেট (A-Z) বা অন্য কোনো ক্যারেক্টার আছে, তবে সে কনভার্ট করতে পারবে গঠন করতে পারবে না এবং ValueError দেবে। ডেটা ক্লিন থাকা খুব জরুরি।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "নিচের পরিস্থিতিগুলো নিয়ে একটু চিন্তা করো।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "যদি তুমি int(\"Hello\") কমান্ডটি রান করো, তবে কম্পিউটারের কী করা উচিত বলে তুমি মনে করো? কেন?",
+          "expertThinking": "কম্পিউটারের একটি Error দেওয়া উচিত (এবং সে তাই দেয়)। কারণ \"Hello\" শব্দটির কোনো গাণিতিক মান নেই। একে কোনোভাবেই একটি পূর্ণসংখ্যায় রূপান্তর করা সম্ভব নয়।",
+          "realWorldEngineering": "ডেটা ভ্যালিডেশন: যখন ইউজারকে ফর্মে বয়স লিখতে বলা হয় এবং সে যদি ভুল করে তার নাম লিখে ফেলে, তখন সফটওয়্যারটি যাতে ক্র্যাশ না করে সেজন্য প্রোগ্রামারদের এই ধরনের Error হ্যান্ডেল করতে হয়।",
+          "beyondProgramming": "সবকিছুকে সব রূপে বদলানো যায় না। যেমন কাঠের টুকরোকে তুমি গলিয়ে পানি বানাতে পারবে না, কারণ তাদের মূল উপাদান আলাদা।"
+        },
+        {
+          "question": "কেন পাইথন নিজে থেকেই বুঝে নেয় না যে \"25\" মানে আসলে 25? কেন আমাদের আলাদা করে int() ফাংশন ব্যবহার করতে হয়?",
+          "expertThinking": "পাইথন একটি স্ট্রিক্ট (Strict) ভাষা। সে নিজে থেকে ডেটার ধরন পরিবর্তন করে না, যাতে ভুলবশত কোনো গাণিতিক ত্রুটি না হয়। তুমি যদি \"25\" এর সাথে \"30\" যোগ করতে চাও, তবে পাইথন ভেবে নিতে পারে তুমি টেক্সট দুটো পাশাপাশি বসাতে চাইছ (\"2530\")। তাই স্পষ্টভাবে int() বলে দেওয়াটাই নিরাপদ।",
+          "realWorldEngineering": "Explicit is better than implicit: এটি সফটওয়্যার ইঞ্জিনিয়ারিংয়ের একটি বড় নীতি। প্রোগ্রামার যা করবে, তা কোডে স্পষ্টভাবে লেখা থাকতে হবে। মেশিনকে অনুমান করতে দিলে বড়সড় দুর্ঘটনা ঘটতে পারে।",
+          "beyondProgramming": "চুক্তিনামা বা লিগ্যাল ডকুমেন্টে কোনো কিছু অনুমান করা যায় না, সবকিছু স্পষ্টভাবে লিখে দিতে হয়। পাইথনও সেভাবেই কাজ করে।"
+        },
+        {
+          "question": "সেন্সর ডেটা সবসময় String হিসেবে আসে কেন? প্রথম থেকেই তো Number হিসেবে আসতে পারতো!",
+          "expertThinking": "কম্পিউটার নেটওয়ার্ক বা তারের ভেতর দিয়ে যখন ডেটা পাঠানো হয়, তখন সেটি বাইট (Bytes) বা ক্যারেক্টার হিসেবে পাঠানো সবচেয়ে সহজ ও ইউনিভার্সাল পদ্ধতি। সেন্সর জানে না তুমি সেই ডেটা দিয়ে যোগ-বিয়োগ করবে নাকি স্ক্রিনে শুধু দেখাবে।",
+          "realWorldEngineering": "ইন্টারনেট প্রোটোকল (HTTP): আমরা যখন ওয়েবসাইট থেকে কোনো ডেটা ডাউনলোড করি বা API থেকে ডেটা নেই, তার বেশিরভাগই JSON বা Text ফরম্যাটে আসে। রিসিভারের দায়িত্ব হলো প্রয়োজন অনুযায়ী তাকে কনভার্ট করে নেওয়া।",
+          "beyondProgramming": "চিঠি পাঠানোর মতো। খামের ভেতরের কাগজটি (String) শুধু কিছু লেখা বহন করে। যিনি পড়ছেন, তিনিই সিদ্ধান্ত নেন এই লেখাটি কোনো নির্দেশ নাকি কোনো সংখ্যা।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 005 Complete",
+      "summary": "অভিনন্দন! তুমি এখন ডেটার রূপ বদলাতে পারো।",
+      "keyLearnings": [
+        "String কে Integer এ বদলাতে int() ব্যবহার করা হয়।",
+        "Integer কে String এ বদলাতে str() ব্যবহার করা হয়।",
+        "অক্ষর (Text characters) যুক্ত String কে Number এ রূপান্তর করা যায় না।"
+      ]
     }
   ]
 }
