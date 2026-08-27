@@ -101,14 +101,13 @@ Standard step types available for every mission:
 `intro`, `story`, `analogy`, `concept`, `visualization`, `code_example`, `eee_example`, `ai_example`, `practice`, `quiz`, `debug_challenge`, `reflection`, `mission_complete`
 
 **Content Authoring Strategy (Progressive Scaffolding):**
-- **Practice Steps (2-4 per mission):**
-  - *Guided Practice*: Simple, directly mimics the `code_example` step.
-  - *Independent Practice*: Slight variation, requires recalling the rule.
-  - *Edge-case Practice*: Applying the rule to an unusual but real-world scenario (e.g., storing a phone number as a String).
-- **Debug Challenges (2-4 per mission):**
-  - *Syntax Bug*: A simple typo (missing quote, extra space). Tests pattern recognition.
-  - *Logic/Type Bug*: Code runs or crashes due to concept misunderstanding. Tests conceptual understanding.
-  - *Tricky/Contextual Bug*: Everything looks right, but the behavior is wrong for the real world. Tests expert thinking.
+- **Practice Steps (3-4 per mission):**
+  - Problems should be practical and reinforce the core concept.
+- **Debug Challenges (3-4 per mission):**
+  - *1st Bug*: Simple and straightforward.
+  - *2nd Bug*: Slightly hard and tricky.
+  - *3rd Bug*: Trickier than the 2nd one, requiring deeper thought.
+  - *4th Bug (if needed)*: Most complex scenario.
 
 Content is Bangla. `CuriosityBlock` is mandatory on every mission root. Steps rendered via registry pattern (no switch statements).
 
