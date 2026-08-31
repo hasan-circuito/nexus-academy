@@ -6,21 +6,15 @@ import mission004 from '@/data/missions/mission-004.json';
 import mission005 from '@/data/missions/mission-005.json';
 import mission006 from '@/data/missions/mission-006.json';
 import mission007 from '@/data/missions/mission-007.json';
-import mission008 from '@/data/missions/mission-008.json';
-import mission009 from '@/data/missions/mission-009.json';
-import mission010 from '@/data/missions/mission-010.json';
 
-const missions: Record<string, any> = {
-  '001': mission001,
-  '002': mission002,
-  '003': mission003,
-  '004': mission004,
-  '005': mission005,
-  '006': mission006,
-  '007': mission007,
-  '008': mission008,
-  '009': mission009,
-  '010': mission010,
+const missions: Record<string, MissionData> = {
+  '001': mission001 as MissionData,
+  '002': mission002 as MissionData,
+  '003': mission003 as MissionData,
+  '004': mission004 as MissionData,
+  '005': mission005 as MissionData,
+  '006': mission006 as MissionData,
+  '007': mission007 as MissionData,
 };
 
 export async function getMissionIndex(): Promise<MissionIndexEntry[]> {
