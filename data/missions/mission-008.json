@@ -1,0 +1,223 @@
+{
+  "id": "008",
+  "title": "The Listening Software",
+  "banglaTitle": "সফটওয়্যার যখন কানে শোনে",
+  "banglaSubtitle": "প্রোগ্রামকে ইউজারের ডেটা গ্রহণ করতে শেখানো",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 1,
+    "practiceComplexity": 2,
+    "estimatedTotalMinutes": 20
+  },
+  "curiosity": {
+    "didYouKnow": "যখন তুমি input() লেখো, তখন কম্পিউটার তার কোটি কোটি হিসাবের কাজ থামিয়ে শুধু তোমার কীবোর্ড থেকে টাইপ করার জন্য অপেক্ষা করতে থাকে!",
+    "realWorldApplication": "ওয়েবসাইটের লগ-ইন ফর্মে ইউজারনেম এবং পাসওয়ার্ড মূলত ব্যাকএন্ডে ইনপুট হিসেবেই গৃহীত হয়।",
+    "aiApplication": "চ্যাটজিপিটি (ChatGPT)-র মতো এআই মডেলগুলোও প্রথমে একটি বিশাল input() ফাংশনের মাধ্যমে তোমার প্রশ্ন বা প্রম্পট গ্রহণ করে।",
+    "eeeApplication": "স্মার্টহোম ডিভাইসে ভয়েস কমান্ড শোনার জন্য মাইক্রোফোন সারাক্ষণ অডিও ইনপুট রিসিভ করতে থাকে।",
+    "historicalFact": "আগের দিনের পাঞ্চকার্ড কম্পিউটারে সরাসরি টাইপ করে ইনপুট দেওয়ার সুযোগ ছিল না। ছিদ্র করা কার্ড মেশিনে ঢুকিয়ে ইনপুট দিতে হতো।",
+    "nextMissionPreview": "নাম আর ঠিকানা তো নিলাম, কিন্তু ইউজারের কাছ থেকে কোনো বয়স বা টাকার অংক নিয়ে হিসাব করতে হলে কী করতে হবে?"
+  },
+  "steps": [
+    {
+      "type": "intro",
+      "missionNumber": "008",
+      "title": "The Listening Software",
+      "banglaTitle": "সফটওয়্যার যখন কানে শোনে",
+      "tagline": "স্ট্যাটিক থেকে ডায়নামিক সফটওয়্যার",
+      "description": "আগের সবগুলো মিশনে আমরা কোডের ভেতরেই ডেটা (যেমন: name = 'Nexus', price = 500) ফিক্সড করে দিয়েছিলাম। কিন্তু ভেবে দেখো তো, তুমি কি এমন কোনো ক্যালকুলেটর ব্যবহার করবে যেখানে শুধু 5 আর 10 যোগ করা যায়? একদমই না! একটি সত্যিকারের সফটওয়্যারকে অবশ্যই বাইরের পৃথিবীর (ইউজারের) কাছ থেকে ডেটা নেওয়ার ক্ষমতা থাকতে হবে। এই মিশনে আমরা সফটওয়্যারকে 'বোবা ও কালা' অবস্থা থেকে বের করে ইউজারের কথা শোনার ক্ষমতা দেবো।",
+      "learningObjectives": [
+        "input() ফাংশন ব্যবহার করে ইউজারের কাছ থেকে ডেটা নেওয়া",
+        "ইনপুট নেওয়ার সময় ইউজারকে একটি মেসেজ (Prompt) দেখানো",
+        "ইউজারের দেওয়া ইনপুটকে একটি ভেরিয়েবলে সংরক্ষণ করে তা প্রিন্ট করা"
+      ],
+      "estimatedMinutes": 2
+    },
+    {
+      "type": "story",
+      "title": "দ্য অটোমেটেড কফি শপ",
+      "setting": "একটি সম্পূর্ণ রোবট-চালিত কফি শপে...",
+      "content": "কফি শপের স্ক্রিনে লেখা ভেসে উঠলো 'Welcome to Nexus Coffee!'। কিন্তু এরপর আর কিছুই হলো না। রোবটটি জানে না কাস্টমার কী কফি চায়, বা কাস্টমারের নাম কী। প্রোগ্রামার কোডে লিখে রেখেছিল `coffee = 'Latte'`, তাই সে সবাইকে শুধু লাটেই দিতে থাকলো। কাস্টমাররা বিরক্ত হয়ে চলে গেলো। কারণ রোবটটি কথা বলতে পারলেও, কাস্টমারের কথা 'শোনার' কোনো উপায় তার ছিল না!",
+      "moral": "সফটওয়্যার যতক্ষণ না ইউজারের ডেটা গ্রহণ করতে পারে, ততক্ষণ সেটি সবার জন্য একই রকম (স্ট্যাটিক) আচরণ করে এবং বাস্তব জীবনে খুব একটা কাজে আসে না।"
+    },
+    {
+      "type": "analogy",
+      "title": "দ্য ওয়েটার অ্যান্ড দ্য অর্ডার প্যাড",
+      "realWorld": {
+        "label": "অর্ডার নেওয়া",
+        "icon": "MessageSquare",
+        "description": "রেস্তোরাঁয় ওয়েটার এসে জিজ্ঞেস করে, 'স্যার, আপনার নাম কী?' তারপর সে উত্তরের জন্য অপেক্ষা করে এবং তুমি যা বলো তা তার প্যাডে লিখে নেয়।"
+      },
+      "pythonConcept": {
+        "label": "input() ফাংশন",
+        "icon": "Terminal",
+        "description": "পাইথনে `input(\"তোমার নাম কী?\")` ঠিক ওয়েটারের মতো কাজ করে। এটি প্রশ্ন করে, প্রোগ্রাম থামিয়ে ইউজারের উত্তরের জন্য অপেক্ষা করে এবং উত্তরটি ভেরিয়েবলে লিখে নেয়।"
+      },
+      "connection": "যেমন `user_name = input(\"Enter your name: \")`। এখানে ওয়েটার (input) প্রশ্নটি করবে, তুমি উত্তর টাইপ করে Enter চাপলে সে সেটি `user_name` নামের বাক্সে (অর্ডার প্যাডে) জমা রাখবে।",
+      "deeperInsight": "input() এর ভেতরে যে টেক্সট দেওয়া হয়, তাকে 'প্রম্পট' (Prompt) বলে। এটি ইউজারকে বুঝিয়ে দেয় যে তাকে এখন কী টাইপ করতে হবে।"
+    },
+    {
+      "type": "concept",
+      "title": "ইনপুট নেওয়ার মেকানিজম",
+      "content": "ইউজারের কাছ থেকে ডেটা নিতে হলে পাইথনে `input()` ফাংশন ব্যবহার করতে হয়।\n\n১. **শুধু অপেক্ষা করা:** `input()` লিখলে প্রোগ্রাম শুধু থেমে থাকবে এবং কীবোর্ডের ইনপুটের জন্য অপেক্ষা করবে।\n২. **মেসেজ দেখানো:** `input(\"তোমার নাম কী? \")` লিখলে সে আগে মেসেজটি দেখাবে, তারপর অপেক্ষা করবে।\n৩. **মান সংরক্ষণ করা:** ইনপুট তো নিলো, কিন্তু সেটা রাখতে হবে কোথায়? তাই একে অ্যাসাইনমেন্ট পাইপলাইনের সাথে জুড়ে দিতে হয়: `name = input(\"Enter name: \")`।",
+      "keyPoints": [
+        "input() প্রোগ্রামকে সাময়িকভাবে থামিয়ে (pause) দেয়।",
+        "Enter বাটন না চাপা পর্যন্ত input() ফাংশন অপেক্ষা করতে থাকে।",
+        "print() এর সময় কমা (,) দিয়ে টেক্সট ও ভেরিয়েবল একসাথে দেখানো যায় (যেমন: print(\"Hello\", name))।"
+      ],
+      "whyCallout": "input() ছাড়া যেকোনো প্রোগ্রামই মূলত একটি 'ফিক্সড মুভি'র মতো, যা সবসময় একই জিনিস দেখায়। input() দিলে এটি একটি ইন্টারঅ্যাক্টিভ 'ভিডিও গেম' হয়ে ওঠে।",
+      "whenToUse": "যখনই সফটওয়্যারে ইউজার রেজিস্ট্রেশন, লগ-ইন, সার্চ বা মেসেজ নেওয়ার প্রয়োজন হয়।",
+      "whenNotToUse": "সিক্রেট ডেটা (পাসওয়ার্ড) নেওয়ার সময় সাধারণ input() ব্যবহার করলে তা স্ক্রিনে দেখা যায় (সেক্ষেত্রে অন্য বিশেষ মডিউল লাগে)।",
+      "commonMisconception": "অনেকে মনে করে input() শুধু স্ক্রিনে মেসেজ প্রিন্ট করে। কিন্তু এর আসল কাজ হলো ইউজারের ডেটা সিস্টেমের ভেতর টেনে আনা।"
+    },
+    {
+      "type": "code_example",
+      "title": "কোডে ইনপুটের ব্যবহার",
+      "explanation": "লক্ষ্য করো কীভাবে প্রোগ্রাম ইউজারের নাম নিয়ে তাকে তার নাম ধরে গ্রিটিংস জানাচ্ছে।",
+      "language": "python",
+      "code": "print(\"--- Welcome to Nexus System ---\")\n\nuser_name = input(\"Please enter your name: \")\nlocation = input(\"Where are you from? \")\n\nprint(\"Hello\", user_name)\nprint(\"Welcome from\", location)",
+      "output": "--- Welcome to Nexus System ---\nPlease enter your name: Hasan\nWhere are you from? Dhaka\nHello Hasan\nWelcome from Dhaka",
+      "annotations": [
+        {
+          "lineNumber": 3,
+          "explanation": "প্রোগ্রাম এখানে এসে থামবে। ইউজার Hasan টাইপ করে Enter দিলে তা user_name এ জমা হবে।"
+        },
+        {
+          "lineNumber": 4,
+          "explanation": "প্রোগ্রাম আবার থামবে। ইউজার Dhaka টাইপ করলে তা location এ জমা হবে।"
+        },
+        {
+          "lineNumber": 6,
+          "explanation": "কমা (,) ব্যবহার করে 'Hello' টেক্সটের সাথে user_name ভেরিয়েবলের মান জুড়ে দিয়ে প্রিন্ট করা হলো।"
+        }
+      ],
+      "postExplanation": "লক্ষ্য করো, কোড কিন্তু রান হওয়ার সময় ইউজারের উত্তরের ওপর ভিত্তি করে ডাইনামিক আউটপুট তৈরি করেছে!"
+    },
+    {
+      "type": "practice",
+      "title": "ইউজারকে গ্রিটিংস জানানো",
+      "prompt": "একটি সিস্টেম তৈরি করো যা ইউজারের কাছে তার নাম জানতে চাইবে এবং এরপর তাকে 'Welcome' বলে স্বাগত জানাবে।\n\nধাপ ১: input() ব্যবহার করে ইউজারের নাম নাও এবং সেটি 'player_name' ভেরিয়েবলে রাখো।\nধাপ ২: print() ব্যবহার করে 'Welcome' এবং ইউজারের নামটি প্রিন্ট করো।",
+      "starterCode": "# ইউজারের নাম ইনপুট নাও\nplayer_name = \n\n# Welcome মেসেজ প্রিন্ট করো\n",
+      "hints": [
+        "ইনপুট নিতে `input(\"What is your name? \")` ব্যবহার করো।",
+        "প্রিন্ট করার সময় কমা দিয়ে ভেরিয়েবল যোগ করো: `print(\"Welcome\", player_name)`।"
+      ],
+      "displayHint": "input() এবং print(\"Welcome\", player_name) ব্যবহার করো",
+      "expectedOutput": "What is your name? Alex\nWelcome Alex\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "player_name"
+        ],
+        "requiredPatterns": [
+          "input\\s*\\(",
+          "print\\s*\\(\\s*[\"']Welcome[\"']\\s*,\\s*player_name\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! তুমি সফটওয়্যারকে কানে শুনতে এবং রেসপন্স করতে শিখিয়েছ!",
+          "onPatternFail": "কোথাও ভুল হচ্ছে। input() ঠিকমতো লিখেছ কি? print এর ভেতর কমা (,) দিয়েছো তো?",
+          "onMissingVariable": "player_name ভেরিয়েবলটি কি সঠিকভাবে তৈরি করেছ?"
+        }
+      },
+      "solution": "player_name = input(\"What is your name? \")\nprint(\"Welcome\", player_name)",
+      "solutionExplanation": "প্রথমে ইনপুট নিয়ে player_name এ রাখা হলো। এরপর print ফাংশনে একটি ফিক্সড স্ট্রিং ('Welcome') এবং ভেরিয়েবল (player_name) কে কমা দিয়ে জুড়ে দেওয়া হলো।"
+    },
+    {
+      "type": "practice",
+      "title": "প্রিয় রং ও শখ",
+      "prompt": "ইউজারের কাছ থেকে তার প্রিয় রং (color) এবং শখ (hobby) ইনপুট হিসেবে নাও। তারপর নিচের মতো একটি বাক্য প্রিন্ট করো:\nYour favorite color is [color] and you like [hobby]\n\n(যেমন: ইউজার যদি Blue এবং Reading দেয়, তাহলে প্রিন্ট হবে: Your favorite color is Blue and you like Reading)",
+      "starterCode": "color = input(\"Favorite color: \")\nhobby = input(\"Your hobby: \")\n\n# নিচের লাইনে প্রিন্ট করো\n",
+      "hints": [
+        "print() এর ভেতর টেক্সট এবং ভেরিয়েবল কমা (,) দিয়ে আলাদা করে বসাতে হয়।",
+        "যেমন: `print(\"Your favorite color is\", color, \"and you like\", hobby)`"
+      ],
+      "displayHint": "কমা (,) দিয়ে স্ট্রিং এবং ভেরিয়েবল জোড়া লাগাও",
+      "expectedOutput": "Favorite color: Blue\nYour hobby: Reading\nYour favorite color is Blue and you like Reading\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "color",
+          "hobby"
+        ],
+        "requiredPatterns": [
+          "print\\s*\\(\\s*[\"']Your favorite color is[\"']\\s*,\\s*color\\s*,\\s*[\"']and you like[\"']\\s*,\\s*hobby\\s*\\)"
+        ],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! তুমি ডাইনামিক বাক্য তৈরি করতে শিখে গেছ।",
+          "onPatternFail": "বানান বা কমা (,) দেওয়ায় কোনো ভুল হয়েছে কি? হুবহু 'Your favorite color is' এবং 'and you like' ব্যবহার করো।",
+          "onMissingVariable": "color এবং hobby ভেরিয়েবল দুটো ঠিক আছে তো?"
+        }
+      },
+      "solution": "color = input(\"Favorite color: \")\nhobby = input(\"Your hobby: \")\n\nprint(\"Your favorite color is\", color, \"and you like\", hobby)",
+      "solutionExplanation": "print ফাংশন একাধিক জিনিস কমা দিয়ে গ্রহণ করতে পারে এবং সেগুলোর মাঝে নিজে থেকেই একটি করে স্পেস (space) বসিয়ে আউটপুট দেয়।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: অসম্পূর্ণ ফাংশন",
+      "scenario": "একজন ডেভেলপার কাস্টমারের ইনপুট নেওয়ার জন্য কোড লিখেছে, কিন্তু প্রোগ্রামটি ইনপুটের জন্য না থেমেই শেষ হয়ে যাচ্ছে!",
+      "buggyCode": "print(\"System starting...\")\nusername = input\nprint(\"Hello\", username)",
+      "errorMessage": "No runtime error, but outputs: Hello <built-in function input>",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "input একটি ফাংশন (Function)। পাইথনে যেকোনো ফাংশনকে কাজ করাতে হলে তার নামের শেষে ব্র্যাকেট () দিতে হয়।",
+        "input এর বদলে input() বা input(\"Name: \") লিখে দেখো।"
+      ],
+      "fixedCode": "print(\"System starting...\")\nusername = input(\"Enter your name: \")\nprint(\"Hello\", username)",
+      "explanation": "শুধু 'input' লিখলে ফাংশনটি কল বা চালু হয় না। এটি চালু করতে হলে অবশ্যই প্যারেন্থেসিস বা ব্র্যাকেট '()' দিতে হবে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: ভেরিয়েবল নাকি টেক্সট?",
+      "scenario": "প্রোগ্রামটি ইউজারের নাম ঠিকমতো নিচ্ছে, কিন্তু আউটপুট দেওয়ার সময় ইউজারের নামের বদলে 'name' শব্দটিই প্রিন্ট করে দিচ্ছে!",
+      "buggyCode": "name = input(\"Enter your name: \")\nprint(\"Hello, name\")",
+      "errorMessage": "Logic Error: Output is 'Hello, name' instead of the actual name",
+      "bugLine": 2,
+      "bugType": "logic",
+      "hints": [
+        "print() এর ভেতরে যখন ডাবল কোটেশন (\" \") এর মধ্যে কিছু লেখা হয়, তখন পাইথন সেটাকে হুবহু টেক্সট হিসেবেই প্রিন্ট করে দেয়।",
+        "ভেরিয়েবলের মান প্রিন্ট করতে হলে তাকে কোটেশনের বাইরে রাখতে হয়। কোটেশন শেষ করে কমা (,) দিয়ে name ভেরিয়েবলটি লেখো।"
+      ],
+      "fixedCode": "name = input(\"Enter your name: \")\nprint(\"Hello,\", name)",
+      "explanation": "কোটেশনের ভেতরের সবকিছু হলো ফিক্সড স্ট্রিং। ডাইনামিক ভেরিয়েবলকে কোটেশনের বাইরে রাখতে হবে, যাতে পাইথন তার ভেতরের মানটি পড়তে পারে।"
+    },
+    {
+      "type": "reflection",
+      "title": "Critical Thinking Lab",
+      "instruction": "প্রতিটি প্রশ্ন নিয়ে আগে নিজে ভাবো। তারপর Expert Thinking দেখো।",
+      "criticalThinkingQuestions": [
+        {
+          "question": "input() ফাংশনটি প্রোগ্রামকে সাময়িকভাবে থামিয়ে (pause) দেয় কেন? এটি না থামলে কী হতো?",
+          "expertThinking": "input() এর কাজই হলো বাইরের ডেটা সিস্টেমের ভেতর আনা। যদি এটি প্রোগ্রামকে না থামিয়ে সাথে সাথে পরের লাইনে চলে যেত, তবে ইউজারের ডেটা মেমোরিতে আসার আগেই প্রোগ্রাম ভুল ডেটা বা ফাঁকা ভেরিয়েবল নিয়ে কাজ করা শুরু করে দিত এবং ক্র্যাশ করত।",
+          "realWorldEngineering": "সফটওয়্যার ইঞ্জিনিয়ারিংয়ে একে বলা হয় Synchronous I/O (Input/Output)। অর্থাৎ, ইনপুট না আসা পর্যন্ত প্রসেসর ওই কাজের জন্য থমকে থাকে (ব্লকিং)।",
+          "beyondProgramming": "এটি অনেকটা ইন্টারভিউ দেওয়ার মতো। প্রশ্নকর্তা প্রশ্ন করার পর তোমার উত্তরের জন্য অপেক্ষা করেন। তিনি না থেমে নিজে নিজেই কথা বলতে থাকলে কোনো ইন্টারভিউ সম্পন্ন হতো না।"
+        },
+        {
+          "question": "input(\"Enter age:\") লিখলে ইউজার কী টাইপ করতে হবে তা বুঝতে পারে। যদি আমরা প্রম্পট (Prompt) মেসেজ না দিয়ে শুধু input() লিখি, তবে কী সমস্যা হতে পারে?",
+          "expertThinking": "শুধু input() লিখলে প্রোগ্রামটি থামবে এবং কার্সর ব্লিংক করবে, কিন্তু ইউজার বুঝতেই পারবে না যে সিস্টেম হ্যাং করেছে নাকি তার কাছে কোনো ডেটা চাচ্ছে। ইউজার এক্সপেরিয়েন্স (UX) এর ক্ষেত্রে এটি একটি বড় ভুল।",
+          "realWorldEngineering": "গ্রাফিক্যাল ইন্টারফেসে (UI) যেকোনো ইনপুট ফিল্ডের ওপর 'Placeholder' টেক্সট থাকে (যেমন: Search here...)। এটি না থাকলে সফটওয়্যারটি ব্যবহার অযোগ্য মনে হয়।",
+          "beyondProgramming": "যোগাযোগের সবচেয়ে বড় শর্ত হলো কনটেক্সট ক্লিয়ার থাকা। কাউকে কিছু জিজ্ঞাসা না করে শুধু তার দিকে তাকিয়ে থাকলে সে বিভ্রান্ত হয়ে যাবে।"
+        },
+        {
+          "question": "আমরা শিখেছি print() এর ভেতর কমা (,) দিলে সেটি স্ট্রিং এবং ভেরিয়েবলকে জোড়া লাগায়। তুমি কি বলতে পারো এর সুবিধা কী?",
+          "expertThinking": "কমা (,) ব্যবহার করলে পাইথন নিজে থেকেই বিভিন্ন ধরনের ডেটাকে (যেমন স্ট্রিং এবং ইন্টিজার) একসাথে এক লাইনে প্রিন্ট করতে পারে এবং মাঝখানে সুন্দর করে একটি স্পেস বসিয়ে দেয়। এর ফলে প্রোগ্রামারকে ম্যানুয়ালি স্পেস দেওয়া বা ডেটা টাইপ মেলানোর কষ্ট করতে হয় না।",
+          "realWorldEngineering": "সিস্টেম লগ (Logs) প্রিন্ট করার সময় এই পদ্ধতিটি খুব বেশি ব্যবহৃত হয়: `print(\"Error code:\", error_number)`",
+          "beyondProgramming": "এটি অনেকটা ট্রেনের বগি জোড়া লাগানোর মতো। ইঞ্জিন (print) বিভিন্ন সাইজের বগিকে (ডেটা) একটি হুকের (কমা) সাহায্যে অনায়াসে জুড়ে নিয়ে যায়।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "Mission 008 Complete",
+      "summary": "অভিনন্দন! তুমি তোমার সফটওয়্যারকে বাইরের পৃথিবীর (ইউজারের) কথা শোনার ক্ষমতা দিয়েছ।",
+      "keyLearnings": [
+        "input() ফাংশন প্রোগ্রামকে থামিয়ে ইউজারের উত্তরের জন্য অপেক্ষা করে।",
+        "ইনপুটের ভেতরে প্রম্পট (Prompt) দিয়ে ইউজারকে মেসেজ দেওয়া যায়।",
+        "print() ফাংশনে কমা (,) দিয়ে টেক্সট এবং ডাইনামিক ভেরিয়েবলকে সুন্দরভাবে একসাথে দেখানো যায়।"
+      ]
+    }
+  ]
+}

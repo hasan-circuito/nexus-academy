@@ -76,6 +76,17 @@
       "primaryConcept": "Division, Float Data Type, and Precision",
       "estimatedMinutes": 20,
       "difficulty": "beginner"
+    },
+    {
+      "id": "008",
+      "title": "The Listening Software",
+      "banglaTitle": "সফটওয়্যার যখন কানে শোনে",
+      "banglaSubtitle": "প্রোগ্রামকে ইউজারের ডেটা গ্রহণ করতে শেখানো",
+      "status": "published",
+      "prerequisite": "007",
+      "primaryConcept": "User Input and String Concatenation",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
     }
   ]
 }

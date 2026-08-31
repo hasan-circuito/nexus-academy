@@ -6,6 +6,7 @@ import mission004 from '@/data/missions/mission-004.json';
 import mission005 from '@/data/missions/mission-005.json';
 import mission006 from '@/data/missions/mission-006.json';
 import mission007 from '@/data/missions/mission-007.json';
+import mission008 from '@/data/missions/mission-008.json';
 
 const missions: Record<string, MissionData> = {
   '001': mission001 as MissionData,
@@ -15,6 +16,7 @@ const missions: Record<string, MissionData> = {
   '005': mission005 as MissionData,
   '006': mission006 as MissionData,
   '007': mission007 as MissionData,
+  '008': mission008 as MissionData,
 };
 
 export async function getMissionIndex(): Promise<MissionIndexEntry[]> {
@@ -33,9 +35,9 @@ export async function getMissionData(missionId: string): Promise<MissionData> {
   }
   
   // Handle case where json is imported as module with default export
-  if (data && data.default) {
+  if (data && (data as any).default) {
     console.log('[ContentService] unwrapping .default');
-    return data.default as unknown as MissionData;
+    return (data as any).default as MissionData;
   }
   
   return data as unknown as MissionData;
