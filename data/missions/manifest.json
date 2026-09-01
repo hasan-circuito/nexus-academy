@@ -87,6 +87,17 @@
       "primaryConcept": "User Input and String Concatenation",
       "estimatedMinutes": 20,
       "difficulty": "beginner"
+    },
+    {
+      "id": "009",
+      "title": "Dynamic Math",
+      "banglaTitle": "ক্যালকুলেটরে প্রাণদান",
+      "banglaSubtitle": "ইউজারের ইনপুট নিয়ে গাণিতিক হিসাব করা",
+      "status": "published",
+      "prerequisite": "008",
+      "primaryConcept": "Integer Type Conversion with Input",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
     }
   ]
 }
