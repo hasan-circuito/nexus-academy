@@ -5,7 +5,7 @@
   "banglaSubtitle": "কম্পিউটার কীভাবে ভাগ করে এবং দশমিক সংখ্যা (Float) ব্যবহার করে",
   "cognitiveLoadEstimate": {
     "readingLevel": 2,
-    "newConceptCount": 2,
+    "newConceptCount": 1,
     "practiceComplexity": 2,
     "estimatedTotalMinutes": 20
   },
@@ -161,17 +161,18 @@
     {
       "type": "debug_challenge",
       "title": "বাগ খোঁজো: অসীম শূন্যতা",
-      "scenario": "একজন ডাটা সায়েন্টিস্ট মোট ডেটাকে মোট ফাইলের সংখ্যা দিয়ে ভাগ করতে চেয়েছিল। কিন্তু ভুল করে ফাইলের সংখ্যা শূন্য দিয়ে দিয়েছে, আর প্রোগ্রাম ক্র্যাশ করেছে!",
-      "buggyCode": "total_data = 1000\nfiles = 0\nresult = total_data / files\nprint(result)",
+      "scenario": "একজন ডেভেলপার একটি সাবস্ক্রিপশন সিস্টেমে 'দৈনিক খরচ' বের করার প্রোগ্রাম লিখেছিল। একজন কাস্টমার ১৫ তারিখে সাবস্ক্রিপশন কিনে ঠিক ১৫ তারিখেই ক্যান্সেল করে দেয়। এরপরই প্রোগ্রামটি ক্র্যাশ করে!",
+      "buggyCode": "total_cost = 5000\nstart_day = 15\nend_day = 15\nduration = end_day - start_day\n\ndaily_cost = total_cost / duration\nprint(daily_cost)",
       "errorMessage": "ZeroDivisionError: division by zero",
-      "bugLine": 3,
+      "bugLine": 6,
       "bugType": "runtime",
       "hints": [
-        "গণিতের নিয়ম অনুযায়ী কোনো কিছুকে শূন্য (0) দিয়ে ভাগ করা সম্ভব নয় (অসংজ্ঞায়িত)।",
-        "কম্পিউটারও শূন্য দিয়ে ভাগ করতে পারে না। files এর মান পরিবর্তন করে 10 করে দাও।"
+        "প্রোগ্রামটি কেন ক্র্যাশ করলো তা বুঝতে `duration` ভেরিয়েবলের মান কত আসছে তা হিসাব করো।",
+        "start_day এবং end_day দুটোই 15। তাই `15 - 15 = 0` হয়ে গেছে, আর শূন্য দিয়ে ভাগ করা যায় না।",
+        "বাগটি ফিক্স করতে `end_day` এর মান বাড়িয়ে 20 করে দাও, যাতে duration শূন্য না থাকে।"
       ],
-      "fixedCode": "total_data = 1000\nfiles = 10\nresult = total_data / files\nprint(result)",
-      "explanation": "ZeroDivisionError একটি অত্যন্ত পরিচিত বাগ। শূন্য দিয়ে কখনোই ভাগ করা যায় না। files এর মান পরিবর্তন করায় সমস্যাটির সমাধান হয়েছে।"
+      "fixedCode": "total_cost = 5000\nstart_day = 15\nend_day = 20\nduration = end_day - start_day\n\ndaily_cost = total_cost / duration\nprint(daily_cost)",
+      "explanation": "ZeroDivisionError রিয়েল-লাইফ প্রোগ্রামে এভাবেই লুকিয়ে থাকে। সরাসরি 0 না লিখেও, ডেটার অবস্থার (State) কারণে ভাজক (divisor) যদি কখনো 0 হয়ে যায়, তবেই প্রোগ্রামটি ক্র্যাশ করে।"
     },
     {
       "type": "reflection",
