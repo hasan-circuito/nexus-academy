@@ -49,7 +49,7 @@ export interface MissionData {
   banglaSubtitle: string;
   cognitiveLoadEstimate: CognitiveLoadEstimate;
   curiosity: CuriosityBlock;           // Required — never optional
-  steps: MissionStep[];               // Exactly 13 steps in fixed order
+  steps: MissionStep[];               // Flexible length (e.g., 10-25 steps) based on mission complexity
 }
 
 export interface CognitiveLoadEstimate {

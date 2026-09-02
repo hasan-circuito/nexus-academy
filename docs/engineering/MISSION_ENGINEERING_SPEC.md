@@ -1409,13 +1409,207 @@ This becomes the candidate mission objective.
 6. Would splitting create artificial repetition?
 - Yes → merge.
 - No → keep split.
+Two programming constructs must not automatically become two missions merely because they have different syntax.
+Likewise, multiple constructs must not be forced into one mission merely because they appear under the same textbook chapter.
+Split a mission when the concepts require materially different mental models, learner questions, failure modes, or capabilities.
+For example:
++, -, *, /
+may form one coherent capability:
+performing basic numerical computation.
+
+But:
+// and %
+may represent a different conceptual question:
+extracting information from division.
+
+Therefore they are valid candidates for a separate mission.
+The decision must be based on learner cognition and capability, not on the number of operators.
+## Rule 5 — Never Split Artificially
+A concept must not be divided into multiple missions merely to create a longer curriculum.
+A split is justified only when the resulting missions each have:
+- a distinct learner problem,
+- a distinct transformation,
+- a distinct measurable capability,
+- and meaningful independent practice.
+If splitting produces only:
+"learn the syntax → repeat the same syntax → repeat it again"
+
+then the split is artificial and should be rejected.
+Every lesson and mission must justify its existence by contributing measurable learning value. 
+## Rule 6 — Never Compress Distinct Problems for Syllabus Efficiency
+The opposite mistake is equally prohibited.
+Do not combine multiple concepts merely because they belong to the same programming category or because doing so reduces the number of missions.
+A mission must be split when combining concepts creates significant:
+- cognitive overload,
+- hidden prerequisites,
+- multiple unrelated learner questions,
+- unrelated debugging models,
+- or multiple independent capabilities.
+Curriculum efficiency must never take priority over learner clarity.
+Nexus optimizes for reliable mastery, not minimum mission count.
+
+## Rule 7 — Every New Concept Must Earn Its Place
+A new concept may enter a mission only if it is necessary to produce the intended transformation.
+The author must be able to answer:
+"Why does the learner need this concept here?"
+
+If the answer is only:
+- "because it is the next Python topic,"
+- "because beginners should know it,"
+- "because it belongs in this chapter,"
+- or "because the syllabus has not covered it yet,"
+then the concept does not yet have sufficient justification.
+New concepts should emerge naturally from the limitations of the learner's current capability. This is consistent with the existing Nexus principle that progression should feel inevitable rather than arbitrary. 
+## Rule 8 — Future Concepts Must Never Become Hidden Dependencies
+A mission must not require a concept that the curriculum has not yet established as mastered.
+This applies especially to:
+- practice problems,
+- debugging challenges,
+- mini-projects,
+- quizzes,
+- examples,
+- and success criteria.
+For example, a mission teaching input() must not require subtraction if subtraction has not yet been taught and mastered.
+A learner who completes every previous mission correctly must never fail because the curriculum silently assumed knowledge that was never guaranteed.
+Hidden dependencies are curriculum defects, not learner defects. 
+## Rule 9 — The Previous Mission Defines the Starting State
+Every mission must be designed from the actual verified learner state produced by the previous mission, not from an imagined ideal beginner.
+Before designing a mission, the author must identify:
+- what the learner already knows,
+- what the learner can independently do,
+- what misconceptions may remain,
+- what limitations the learner has just encountered,
+- and what new problem naturally follows.
+The learner's starting state is therefore an explicit interface between missions.
+A mission consumes a learner state just as a software component consumes a defined interface.
+
+The existing Mission Engineering Framework already requires the learner's input state and output state to be explicitly defined. 
+## Rule 10 — Mastery Must Be Transferable
+A learner must not be considered mastered merely because they succeeded in the exact example used during instruction.
+Mastery evidence should progressively move through:
+Recognition → Guided Use → Independent Use → Variation → Transfer
+The learner should eventually demonstrate that they can apply the concept when:
+- values change,
+- context changes,
+- wording changes,
+- the example is unfamiliar,
+- or a common mistake is introduced.
+The exact level of transfer required depends on the mission.
+If changing the surface of the problem destroys the learner's ability to solve it, mastery has not yet been demonstrated.
+
+This follows the existing requirement that mission outcomes describe transferable abilities rather than completed activities. 
+## Rule 11 — Difficulty Must Increase Through Capability, Not Complexity
+The next mission should not become harder merely by introducing more syntax.
+Difficulty should increase through controlled changes such as:
+- less guidance,
+- greater independence,
+- unfamiliar context,
+- increased decision responsibility,
+- more precise debugging,
+- or meaningful transfer.
+Do not introduce several new concepts simultaneously simply to make a mission "advanced."
+A harder problem built from mastered concepts is often educationally stronger than an easier problem containing several unmastered concepts.
+## Rule 12 — Reinforcement Is Allowed, Re-Teaching Is Not
+Previously mastered concepts may appear in later missions when they are necessary for:
+- integration,
+- transfer,
+- retrieval,
+- debugging,
+- or realistic application.
+However, a later mission must not silently re-teach an old concept as though it were new.
+Every reused concept should have an explicit role:
+Foundation, reinforcement, integration, or transfer.
+
+If an old concept repeatedly requires full re-teaching, the curriculum should investigate whether genuine mastery was achieved earlier.
+This preserves both progression and maintenance discipline. 13-mission-authoring-playbook(1).mdMD
+## Rule 13 — A Mission May Preview, But Must Not Depend on, Future Knowledge
+A mission may occasionally mention or expose the existence of a future concept when doing so creates useful curiosity.
+However:
+- future concepts must not be required for success,
+- future syntax must not be necessary for practice,
+- future knowledge must not be assumed in assessment,
+- and previewing must never become accidental teaching.
+This allows Nexus to create curiosity without violating prerequisite order.
+Rule 14 — Practice Must Stay Inside the Mission Boundary
+Practice, debugging, quizzes, and mini-projects must validate the mission's current capability.
+They must not secretly expand the curriculum.
+If a mission teaches one concept but its exercises require three additional concepts, the mission boundary is broken.
+The existing Nexus playbook makes the same principle explicit for mini-projects: integration is allowed, but introducing future knowledge is not. 
+## Rule 15 — Split Decisions Require Evidence
+Before splitting one mission into multiple missions, the author should identify at least one concrete reason:
+- the learner cannot reasonably hold both concepts within one cognitive transformation,
+- the concepts solve different learner problems,
+- the practice requires unrelated capabilities,
+- one concept depends on mastery of another,
+- debugging becomes conceptually different,
+- or learner evidence shows meaningful confusion.
+Do not split because:
+"This topic looks large."
+
+Split because:
+"The learner is being asked to perform more than one meaningful transformation."
+
+## Rule 16 — Merge Decisions Require Evidence
+Two candidate missions may be merged when:
+- they solve essentially the same learner problem,
+- their transformations are inseparable,
+- their success criteria overlap substantially,
+- separating them would create artificial repetition,
+- and the combined mission remains cognitively manageable.
+The default is not "split" or "merge."
+The default is:
+Engineer the smallest mission boundary that preserves meaningful mastery.
+
+## Rule 17 — The First Learner Is Valid Curriculum Evidence
+Nexus's first learner is not merely a consumer of the curriculum.
+The learner's:
+- confusion,
+- unexpected ease,
+- repeated mistakes,
+- perceived jumps,
+- missing prerequisites,
+- and feedback
+are valid evidence for curriculum refinement.
+However, a single emotional reaction must not automatically rewrite the curriculum.
+Learner feedback should be interpreted alongside:
+- mission objectives,
+- observed performance,
+- prerequisite structure,
+- and transfer evidence.
+This turns the first learner into an empirical feedback source rather than an arbitrary curriculum authority.
+Rule 18 — Curriculum Decisions Must Be Reversible
+Early curriculum decisions must remain open to revision.
+A mission boundary is a design hypothesis until sufficient evidence demonstrates that it works.
+Therefore:
+- missions may be split,
+- missions may be merged,
+- order may change,
+- a concept may move earlier or later,
+- and mastery requirements may be refined.
+But such changes should be based on evidence and recorded reasoning rather than random author preference.
+Mastery Decision Procedure
+Before creating the next mission, the author must answer these questions in order:
+1. What can the learner reliably do now?
+If this cannot be answered, stop.
+2. What limitation or new problem naturally appears next?
+If there is no meaningful problem, do not create a new mission yet.
+3. What single capability solves that problem?
+This becomes the candidate mission objective.
+4. Does solving that problem require multiple independent transformations?
+- No → keep them in one mission.
+- Yes → evaluate each transformation as a separate mission candidate.
+5. Would combining them create meaningful cognitive overload or hidden dependencies?
+- Yes → split.
+- No → keep together.
+6. Would splitting create artificial repetition?
+- Yes → merge.
+- No → keep split.
 7. Can every practice, debug task, quiz, and project be completed using only established knowledge plus the mission's intended new capability?
 - No → redesign.
 - Yes → continue.
 8. Can mastery be observed through independent and transferable performance?
 - No → the mission is not yet engineered.
 - Yes → author the mission.
-
 
 ## The Core Law
 Nexus Academy must never design its curriculum by asking, "What Python topic comes next?"
@@ -1424,33 +1618,43 @@ It must ask, "What can this learner do now, what meaningful limitation do they e
 That single principle should govern mission ordering, splitting, merging, difficulty progression, and mastery decisions.
 
 ## Rule 19 — Pedagogy Evolves with Capability (The 5-Phase Architecture)
-As the learner's capability grows, the mission pedagogy must evolve to match their cognitive maturity. A 120-mission curriculum cannot rely on beginner-level scaffolding (like extensive analogies and hand-held debugging) for advanced ML topics. 
+As the learner's capability grows, the mission pedagogy must evolve to match their cognitive maturity. A 120+ mission curriculum cannot rely on beginner-level scaffolding for advanced ML topics. (Note: Total mission count is flexible and driven by necessity; it may exceed 150+ missions if required).
 
 The curriculum must scale across 5 defined phases:
 
-**Phase 1: Foundation (Missions 001–025)**
+**Phase 1: Foundation**
 - *Topics:* Variables, I/O, Operators, Control Flow, Basic Types.
-- *Format:* Deep Pedagogy. Every mission uses the full 13-step format (Story + Analogy + 3 Practice + 3 Debug + Critical Thinking). 
+- *Format:* Deep Pedagogy. Heavy use of Story, Analogy, and Critical Thinking.
 - *Goal:* Build the engineering mindset from zero.
 
-**Phase 2: Builder (Missions 026–050)**
+**Phase 2: Builder**
 - *Topics:* Functions, Data Structures, File Handling, Error Handling.
-- *Format:* Leaner Pedagogy. Stories become shorter, analogies are replaced by architecture diagrams, and exercises shift toward Mini-Projects (e.g., building a Contact Book).
+- *Format:* Leaner Pedagogy. Stories become shorter, analogies are replaced by architecture diagrams, and exercises shift toward Mini-Projects.
 - *Goal:* Transition from syntax mastery to tool creation.
 
-**Phase 3: Engineer (Missions 051–075)**
+**Phase 3: Engineer**
 - *Topics:* OOP, Modules, Functional Programming, Decorators, Generators, Testing.
-- *Format:* Problem-Driven. Introduces a complex system limitation -> introduces the advanced concept -> refactors the system. Critical thinking remains high.
-- *Goal:* Write professional, scalable code.
+- *Format:* Problem-Driven. Introduces a complex system limitation -> introduces the advanced concept -> refactors the system.
 
-**Phase 4: Data & ML Focus (Missions 076–100)**
+**Phase 4: Data & ML Focus**
 - *Topics:* NumPy, Pandas, Supervised Learning, NLP/LLM Basics.
-- *Format:* Data-Driven Projects. Each mission solves a real-world problem using datasets (e.g., predicting prices, text classification).
-- *Goal:* Build applied ML capabilities for AI startup operations.
+- *Format:* Data-Driven Projects. Solves real-world problems using datasets.
 
-**Phase 5: Professional (Missions 101–120)**
-- *Topics:* Advanced OOP, Concurrency, Memory Management, System Internals.
-- *Format:* Capstone Projects & Code Reviews. Missions mimic real-world sprint tickets, PR reviews, and interview challenges.
-- *Goal:* Job-ready Junior Developer.
+**Phase 5: Professional**
+- *Topics:* Advanced OOP, Concurrency, Memory Management, System Internals, API.
+- *Format:* Capstone Projects & Code Reviews. Mimics real-world sprint tickets.
 
 *Invariant:* The 'WHY' (Need) must remain in EVERY phase, but the 'HOW' (Format) must mature.
+
+## Rule 20 — Dynamic Step Flexibility (No 13-Step Hard Limit)
+A mission's internal step structure must adapt to its context.
+- A simple mission may complete in 10-12 steps.
+- A complex mission may require 20-25 steps.
+- If a concept requires deep analysis, it may be broken down into 3-4 sub-steps.
+Never force artificial padding just to reach a specific step count. Every step must serve the learner's cognitive journey.
+
+## Rule 21 — The Hidden State Debug Standard
+Professional developers rarely debug hardcoded syntax errors (e.g., `files = 0`). Real bugs emerge from dynamic system states.
+- **Rule:** Debug challenges must avoid spoon-feeding the error in the description.
+- **Implementation:** The bug should arise from a logical interaction (e.g., `duration = end_day - start_day` where both are 15, resulting in a hidden `0` that causes a ZeroDivisionError).
+- **Goal:** The learner must trace the logic and state flow to discover *why* the bug happened, rather than just reading the description to find the answer.
