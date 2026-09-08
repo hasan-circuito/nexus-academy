@@ -157,6 +157,56 @@
       "solutionExplanation": "যেহেতু ইনপুট নেওয়ার সময়ই ডেটা নাম্বারে (int) কনভার্ট হয়ে গেছে, তাই অনায়াসেই গুণ (*) অপারেটর ব্যবহার করে মোট দাম বের করা গেছে।"
     },
     {
+      "type": "quiz",
+      "title": "এক নজরে বুঝে ফেলো: ডাইনামিক গণিত ও কনভার্সন",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 70,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "কিবোর্ড থেকে ইউজারের কাছ থেকে একটি সংখ্যা ইনপুট নিয়ে সরাসরি পূর্ণসংখ্যা (Integer) হিসেবে মেমোরিতে রাখার সঠিক সিনট্যাক্স কোনটি?",
+          "difficulty": "easy",
+          "options": [
+            "num = input(int())",
+            "num = int(input())",
+            "num = str(input())",
+            "num = print(input())"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "input() আগে কিবোর্ড থেকে স্ট্রিং সংগ্রহ করে, তারপর int() ফাংশন সেই স্ট্রিংকে নাম্বারে রূপান্তর করে num এ অ্যাসাইন করে।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "যদি code হয় `x = int(input())` এবং ইউজার কিবোর্ডে 'hello' লিখে এন্টার দেয়, তাহলে পাইথন কোন এরর দেবে?",
+          "difficulty": "medium",
+          "options": [
+            "TypeError",
+            "ZeroDivisionError",
+            "ValueError",
+            "SyntaxError"
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "int() ফাংশন কেবল সংখ্যার মতো দেখতে টেক্সটকে (\"25\") নাম্বারে বদলাতে পারে। কোনো বর্ণ বা শব্দের (\"hello\") কোনো সংখ্যাগত মান না থাকায় পাইথন ValueError ছুড়ে দেয়।"
+        },
+        {
+          "id": "q3",
+          "questionType": "multiple_choice",
+          "question": "পাইথনে '5' + 5 রান করলে TypeError কেন হয়?",
+          "difficulty": "easy",
+          "options": [
+            "পাইথন গণিত করতে পারে না",
+            "একটি হলো String (টেক্সট) এবং অন্যটি হলো Integer (সংখ্যা); কনভার্সন ছাড়া এদের মাঝে যোগ করা অসম্ভব",
+            "কম্পিউটারের র‍্যাম শেষ হয়ে গেছে",
+            "5 একটি অবৈধ সংখ্যা"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "পাইথন একটি স্ট্রংলি-টাইপড ভাষা। টেক্সট এবং পূর্ণসংখ্যার ধরন সম্পূর্ণ আলাদা হওয়ায় এদের সরাসরি যোগ করা যায় না; আগে int('5') করে নিতে হয়।"
+        }
+      ]
+    },
+    {
       "type": "debug_challenge",
       "title": "বাগ খোঁজো: কনভার্সন মিস্টেক (TypeError)",
       "scenario": "একজন প্রোগ্রামার ইউজারের জন্মসাল নিয়ে বয়স বের করার চেষ্টা করছে, কিন্তু কোড রান করলেই 'TypeError' দেখাচ্ছে!",
