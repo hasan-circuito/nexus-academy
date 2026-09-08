@@ -1,8 +1,27 @@
+# AI Behavior Notice
+
+This Rulebook defines only how Critical Thinking content should be designed.
+
+All AI behavioral decisions are governed by the Nexus AI Decision & Collaboration Framework (NADF).
+
+This includes:
+
+- Decision Making
+- Approval Flow
+- Escalation
+- Hallucination Prevention
+- Scope Protection
+- Internal Review
+
+---
+
 # Critical Thinking Lab Engineering Rulebook
 Version: 3.0 (Production Draft)
 
 ---
 
+---
+
 # 1. Purpose
 
 Critical Thinking Lab is the final stage of every mission.
@@ -18,6 +37,8 @@ Programming teaches *how* to build.
 Critical Thinking teaches *why* it should be built.
 
 Every mission must end by expanding the learner's understanding beyond code.
+
+---
 
 ---
 
@@ -45,6 +66,8 @@ Critical Thinking Lab transforms programming concepts into engineering thinking.
 
 ---
 
+---
+
 # 3. Mission
 
 Every Critical Thinking Lab should help learners answer four questions.
@@ -60,6 +83,8 @@ Every Critical Thinking Lab should help learners answer four questions.
 If learners cannot answer these questions,
 
 the mission is not complete.
+
+---
 
 ---
 
@@ -92,6 +117,8 @@ Every mission follows the same structure.
 The structure never changes.
 
 Only the questions change.
+
+---
 
 ---
 
@@ -147,6 +174,8 @@ Never skip a stage.
 
 ---
 
+---
+
 # 6. Q1 — Why Does This Concept Exist?
 
 Purpose
@@ -181,6 +210,8 @@ Explain the human problem.
 
 ---
 
+---
+
 # 7. Q2 — Domain Spotlight
 
 Purpose
@@ -207,36 +238,6 @@ Possible domains include:
 - Research
 - Data Science
 - Cyber Security
-- Web Development
-- Mobile Development
-- Cloud Computing
-- Industrial Automation
-
-Selection Rule
-
-Ask yourself:
-
-"If this programming concept disappeared today...
-
-which field would suffer the most?"
-
-That becomes today's Domain Spotlight.
-
-Never choose a weaker example simply to maintain balance.# Critical Thinking Lab Engineering Rulebook
-Version: 3.0 (Production Draft)
-
----
-
-# 1. Purpose
-
-Critical Thinking Lab is the final stage of every mission.
-
-It is not a quiz.
-
-It is not another lesson.
-
-It is where learners stop memorizing programming syntax and start thinking like engineers.
-
 Programming teaches *how* to build.
 
 Critical Thinking teaches *why* it should be built.
@@ -245,223 +246,9 @@ Every mission must end by expanding the learner's understanding beyond code.
 
 ---
 
-# 2. Core Philosophy
-
-Every programming concept exists because it solves a real problem.
-
-Learners should never finish a mission thinking:
-
-> "Today I learned Variables."
-
-Instead, they should think:
-
-> "Now I understand why software needs memory."
-
-The objective is understanding.
-
-Not memorization.
-
-Not definitions.
-
-Not syntax repetition.
-
-Critical Thinking Lab transforms programming concepts into engineering thinking.
-
 ---
 
-# 3. Mission
-
-Every Critical Thinking Lab should help learners answer four questions.
-
-1. Why was this concept invented?
-
-2. Where does it create the biggest impact?
-
-3. What breaks without it?
-
-4. What could become possible because of it?
-
-If learners cannot answer these questions,
-
-the mission is not complete.
-
 ---
-
-# 4. Universal Structure
-
-Every mission follows the same structure.
-
-## Q1
-
-🌍 Why Does This Concept Exist?
-
-↓
-
-## Q2
-
-🚀 Domain Spotlight
-
-↓
-
-## Q3
-
-⚠️ Engineering Failure
-
-↓
-
-## Optional Q4
-
-🧠 Future Thinking
-
-The structure never changes.
-
-Only the questions change.
-
----
-
-# 5. Question Progression Rule
-
-Questions must become progressively deeper.
-
-Never randomize the order.
-
-Always follow this progression.
-
-Q1
-
-Understand
-
-↓
-
-Q2
-
-Connect
-
-↓
-
-Q3
-
-Challenge
-
-↓
-
-Q4
-
-Imagine
-
-The learner should experience a natural thinking journey.
-
-Understand the idea.
-
-↓
-
-See where it matters.
-
-↓
-
-Understand what happens if it fails.
-
-↓
-
-Imagine what it could create.
-
-Never reverse this order.
-
-Never skip a stage.
-
----
-
-# 6. Q1 — Why Does This Concept Exist?
-
-Purpose
-
-Connect programming with the original human problem.
-
-The learner should discover why this idea was invented before learning where it is used.
-
-Focus on:
-
-- Real life
-- Human thinking
-- Daily problems
-- Organization
-- Memory
-- Decision making
-- Communication
-- Safety
-- Efficiency
-
-Ask questions like:
-
-Why did humans need this idea?
-
-What problem existed before this concept?
-
-What became easier after this concept was invented?
-
-Never explain Python syntax here.
-
-Explain the human problem.
-
----
-
-# 7. Q2 — Domain Spotlight
-
-Purpose
-
-Show where this concept creates the greatest real-world impact.
-
-Choose only ONE domain.
-
-Never force AI.
-
-Never force EEE.
-
-Never rotate domains for variety.
-
-Choose the domain where today's concept is naturally the most important.
-
-Possible domains include:
-
-- Artificial Intelligence
-- Machine Learning
-- Robotics
-- Embedded Systems
-- EEE
-- Research
-- Data Science
-- Cyber Security
-- Web Development
-- Mobile Development
-- Cloud Computing
-- Industrial Automation
-
-Selection Rule
-
-Ask yourself:
-
-"If this programming concept disappeared today...
-
-which field would suffer the most?"
-
-That becomes today's Domain Spotlight.
-
-Never choose a weaker example simply to maintain balance.     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # 8. Q3 — Engineering Failure
 
@@ -504,6 +291,8 @@ Possible examples:
 Never use fantasy.
 
 Always use realistic engineering situations.
+
+---
 
 ---
 
