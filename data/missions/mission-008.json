@@ -155,6 +155,56 @@
       "solutionExplanation": "print ফাংশন একাধিক জিনিস কমা দিয়ে গ্রহণ করতে পারে এবং সেগুলোর মাঝে নিজে থেকেই একটি করে স্পেস (space) বসিয়ে আউটপুট দেয়।"
     },
     {
+      "type": "quiz",
+      "title": "এক নজরে বুঝে ফেলো: ইনপুট ও ব্যবহারকারীর কথা",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো।",
+      "passingScore": 70,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "age = input(\"Enter your age: \") এর পর ইউজার কিবোর্ডে 25 লিখে এন্টার দিলে age ভেরিয়েবলের ডেটা টাইপ কী হবে?",
+          "difficulty": "easy",
+          "options": [
+            "Integer (Number)",
+            "String (Text)",
+            "Float",
+            "Boolean"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "input() ফাংশন দিয়ে যা-ই নেওয়া হোক না কেন (সংখ্যা, স্পেস বা অক্ষর), পাইথন তা সবসময় String বা Text হিসেবে ফিরিয়ে দেয়।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "কম্পিউটার যখন input() স্টেটমেন্টে পৌঁছায়, তখন কী ঘটে?",
+          "difficulty": "easy",
+          "options": [
+            "কম্পিউটার বন্ধ হয়ে যায়",
+            "প্রোগ্রামের এক্সিকিউশন থেমে থাকে যতক্ষণ না ব্যবহারকারী কিবোর্ডে কিছু লিখে Enter চাপেন",
+            "প্রোগ্রামটি নিজে থেকেই একটি র্যান্ডম সংখ্যা বসিয়ে নেয়",
+            "সাথে সাথে ZeroDivisionError ক্র্যাশ করে"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "input() হলো একটি 'লিসেনিং' ফাংশন। এটি ব্যবহারকারীর ইনপুটের অপেক্ষায় প্রোগ্রামকে সাময়িকভাবে পজ (pause) করে রাখে।"
+        },
+        {
+          "id": "q3",
+          "questionType": "multiple_choice",
+          "question": "যদি user_input = input() তে ইউজার '10' দেয়, তবে user_input + '5' এর আউটপুট কী হবে?",
+          "difficulty": "medium",
+          "options": [
+            "15",
+            "\"105\"",
+            "50",
+            "Error"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "যেহেতু input() এর ফলাফল স্ট্রিং (\"10\"), তাই যোগ চিহ্ন (+) দুটি স্ট্রিংকে পাশাপাশি জোড়া লাগিয়ে \"105\" তৈরি করে (গাণিতিক যোগ করে না)।"
+        }
+      ]
+    },
+    {
       "type": "debug_challenge",
       "title": "বাগ খোঁজো: অসম্পূর্ণ ফাংশন",
       "scenario": "একজন ডেভেলপার কাস্টমারের ইনপুট নেওয়ার জন্য কোড লিখেছে, কিন্তু প্রোগ্রামটি ইনপুটের জন্য না থেমেই শেষ হয়ে যাচ্ছে!",
