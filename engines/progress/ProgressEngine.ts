@@ -1,4 +1,4 @@
-﻿// engines/progress/ProgressEngine.ts
+// engines/progress/ProgressEngine.ts
 // NEXUS Academy — Mission Progress Engine
 //
 // Two-phase mission completion:
@@ -10,6 +10,7 @@ import type { DataService } from '@/services/DataService';
 import { EventBus } from '@/engines/events/EventBus';
 import type { MissionCompletedEvent } from '@/engines/events/events.types';
 import type { MissionData } from '@/types/mission.types';
+import { initEngines } from '@/engines/init';
 
 export class ProgressEngine {
   private unsubscribers: Array<() => void> = [];
@@ -86,6 +87,8 @@ export class ProgressEngine {
    */
   static completeMission(mission: MissionData): void {
     if (typeof window === 'undefined') return;
+
+    initEngines(); // Ensure all engine subscribers are registered before emitting
 
     const progress = storage.getProgress();
 
