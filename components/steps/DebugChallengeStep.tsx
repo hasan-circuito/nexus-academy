@@ -74,8 +74,8 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
       const expectedResult = await engine.runCode(step.fixedCode, { inputs });
 
       if (expectedResult.stdout && expectedResult.stdout.trim().length > 0) {
-        const comparison = OutputComparator.compare(result.stdout, expectedResult.stdout);
-        if (comparison.actualNormalized !== comparison.expectedNormalized) {
+        const comparison = OutputComparator.compareWithInputs(result.stdout, expectedResult.stdout, inputs);
+        if (!comparison.matched) {
           setIsFixed(false);
           setEvaluation({
             passed: false,

@@ -137,14 +137,12 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunn
                     </div>
                   </div>
 
-                  {evaluation.validationType === 'exact_output' && (
-                    <div className="p-3 bg-black/30 rounded border border-yellow-900/20 text-yellow-200 text-xs">
-                      <span className="text-yellow-500 uppercase block mb-1 tracking-wider">Difference</span>
-                      {evaluation.diffActual && evaluation.diffExpected ? (
-                          <div>
-                            Your output has <strong>{evaluation.diffActual.length}</strong> characters, but expected has <strong>{evaluation.diffExpected.length}</strong>.
-                          </div>
-                      ) : 'No output produced.'}
+                  {evaluation.diffActual && evaluation.diffExpected && (
+                    <div className="p-3 bg-black/30 rounded border border-yellow-900/20 text-yellow-200 text-xs font-bangla">
+                      <span className="text-yellow-500 font-sans uppercase block mb-1 tracking-wider text-[11px] font-semibold">আউটপুট পার্থক্য (Difference)</span>
+                      <div>
+                        বামপাশের <strong className="text-green-400">Expected Output</strong> এবং ডানপাশের <strong className="text-red-400">Actual Output</strong> ভালো করে মিলিয়ে দেখো—কোথাও কোনো টেক্সট, বানান বা লজিকের অমিল রয়েছে কি না।
+                      </div>
                     </div>
                   )}
                 </>
