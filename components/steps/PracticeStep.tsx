@@ -22,6 +22,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   // Using step.title as the unique identifier so multiple practice steps in a mission don't share code
   const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.starterCode || '');
+  const detectedInputs = extractInputs(code, step.expectedOutput);
 
   const handleRun = async () => {
     if (!code.trim()) return;
@@ -86,6 +87,24 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             filename="practice.py" 
             height="250px" 
           />
+
+          {detectedInputs.length > 0 && (
+            <div className="flex items-center gap-2 text-xs font-bangla text-muted-foreground bg-primary/10 border border-primary/20 px-3 py-2 rounded-lg">
+              <span className="font-semibold text-primary flex items-center gap-1 shrink-0">
+                📥 নমুনা টেস্ট ইনপুট:
+              </span>
+              <div className="flex gap-1.5 flex-wrap items-center">
+                {detectedInputs.map((val, idx) => (
+                  <span key={idx} className="px-2 py-0.5 bg-background rounded text-foreground font-mono font-bold border border-border">
+                    {val}
+                  </span>
+                ))}
+              </div>
+              <span className="text-muted-foreground text-[11px] hidden sm:inline">
+                (অনলাইনে কোড টেস্ট করার জন্য সিস্টেম স্বয়ংক্রিয়ভাবে এই ইনপুটগুলো পাঠাচ্ছে)
+              </span>
+            </div>
+          )}
 
           <div className="flex items-center justify-between">
             <div className="flex gap-4 items-center">
