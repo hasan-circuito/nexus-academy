@@ -161,6 +161,10 @@ export interface MissionCompletingEvent {
   type: 'MISSION_COMPLETING';
   payload: {
     missionId: string;
+    hasQuiz: boolean;
+    hasPractice: boolean;
+    hasDebug: boolean;
+    hasReflection: boolean;
     timestamp: string;
   };
 }

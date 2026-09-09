@@ -1,11 +1,64 @@
-// engines/retention/SpacedRepetitionService.ts
+﻿// engines/retention/SpacedRepetitionService.ts
+// NEXUS Academy — Spaced Repetition Engine
+// Subscribes to MISSION_COMPLETED and schedules a review for the completed mission.
+
 import type { DataService } from '@/services/DataService';
+import { EventBus } from '@/engines/events/EventBus';
+import type { MissionCompletedEvent } from '@/engines/events/events.types';
 import { SM2_MIN_EF, SPACED_REPETITION_INTERVALS } from '@/types/progress.types';
 
 export class SpacedRepetitionService {
+  private unsubscribers: Array<() => void> = [];
+
   constructor(private dataService: DataService) {}
-  init(): void {}
-  destroy(): void {}
+
+  init(): void {
+    const unsub = EventBus.subscribe<MissionCompletedEvent>(
+      'MISSION_COMPLETED',
+      (event) => this.onMissionCompleted(event)
+    );
+    this.unsubscribers.push(unsub);
+  }
+
+  destroy(): void {
+    this.unsubscribers.forEach(unsub => unsub());
+    this.unsubscribers = [];
+  }
+
+  private onMissionCompleted(event: MissionCompletedEvent): void {
+    const { missionId, timestamp } = event.payload;
+
+    const schedule = this.dataService.getReviewSchedule();
+
+    // Avoid scheduling duplicates
+    const alreadyScheduled = schedule.some(item => item.missionId === missionId);
+    if (alreadyScheduled) return;
+
+    const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+
+    schedule.push({
+      missionId,
+      topicSlug: missionId,
+      scheduledFor: tomorrow,
+      intervalDays: 1,
+      reviewNumber: 1,
+      status: 'pending',
+      repetitions: 0,
+      easinessFactor: 2.5,
+    });
+
+    this.dataService.saveReviewSchedule(schedule);
+
+    EventBus.emit({
+      type: 'REVIEW_SCHEDULED',
+      payload: {
+        missionId,
+        intervalDays: 1,
+        scheduledFor: tomorrow,
+        timestamp,
+      },
+    });
+  }
 
   computeNextInterval(currentInterval: number, easinessFactor: number, repetitions: number, quality: number) {
     if (quality < 3) return { intervalDays: 1, easinessFactor, repetitions: 0 };

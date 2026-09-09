@@ -105,13 +105,13 @@ function IconGridDiagram({ items, caption }: { items: Array<{ icon?: string; lab
 }
 
 export function VisualizationStepComponent({ step }: { step: VisualizationStep }) {
-  const data = step.data as Record<string, unknown>;
+  const data = (step.data || {}) as Record<string, unknown>;
 
   const renderVisualization = () => {
     const type = step.visualizationType as string;
 
     // Flow diagram: data.steps = string[]
-    if (type === 'flow_diagram' || Array.isArray(data.steps)) {
+    if (type === 'flow_diagram' || (data && Array.isArray(data.steps))) {
       const nodes = (data.steps as string[]) || [];
       return <FlowDiagram nodes={nodes} caption={step.caption} />;
     }

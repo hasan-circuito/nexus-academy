@@ -29,9 +29,14 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
     const mp = prog.missions[missionData.id];
     if (!mp?.steps) return false;
     
-    const quizDone = (mp.steps['quiz'] as any)?.passed === true;
-    const practiceDone = (mp.steps['practice'] as any)?.passed === true;
-    const debugDone = (mp.steps['debug_challenge'] as any)?.passed === true;
+    // Check which step types actually exist in this mission
+    const hasQuiz = missionData.steps.some(s => s.type === 'quiz');
+    const hasPractice = missionData.steps.some(s => s.type === 'practice');
+    const hasDebug = missionData.steps.some(s => s.type === 'debug_challenge');
+    
+    const quizDone = !hasQuiz || (mp.steps['quiz'] as any)?.passed === true;
+    const practiceDone = !hasPractice || (mp.steps['practice'] as any)?.passed === true;
+    const debugDone = !hasDebug || (mp.steps['debug_challenge'] as any)?.passed === true;
     
     return quizDone && practiceDone && debugDone;
   };

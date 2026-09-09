@@ -9,11 +9,15 @@ export function AIExampleStepComponent({ step }: { step: AIExampleStep }) {
         </div>
         <div>
           <h2 className="text-2xl font-bold font-bangla-ui text-foreground">{step.title}</h2>
-          <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">{step.aiDomain.replace('_', ' ')}</span>
+          {step.aiDomain && (
+            <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">
+              {step.aiDomain.replace('_', ' ')}
+            </span>
+          )}
         </div>
       </div>
 
-      <p className="font-bangla text-muted-foreground">{step.context}</p>
+      <p className="font-bangla text-muted-foreground">{step.context || (step as any).scenario}</p>
       
       <div className="rounded-xl overflow-hidden border border-border font-mono text-sm shadow-md">
         <div className="bg-[#0d1117] p-6 text-purple-300"><pre><code>{step.code}</code></pre></div>

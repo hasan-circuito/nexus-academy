@@ -1,0 +1,1 @@
+param([string]$b64, [switch]$Append) $bytes = [System.Convert]::FromBase64String($b64); $path = "B:\nexus-academy\.agents\spec_miner_curriculum_0\handoff.md"; if ($Append) { [System.IO.File]::AppendAllText($path, [System.Text.Encoding]::UTF8.GetString($bytes)) } else { [System.IO.File]::WriteAllBytes($path, $bytes) } Write-Host "Current handoff length:" (Get-Item $path).Length

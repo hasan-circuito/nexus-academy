@@ -4,6 +4,7 @@ import type { MissionData } from '@/types/mission.types';
 import { useState } from 'react';
 import { CheckCircle2, XCircle, ChevronRight, Trophy } from 'lucide-react';
 import { saveStepEvidence } from '@/hooks/useProgress';
+import { EventBus } from '@/engines/events/EventBus';
 
 interface Props {
   step: QuizStep;
@@ -49,6 +50,31 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
         totalQuestions,
         correctAnswers: finalScore,
       });
+      // Emit quiz pass/fail event
+      const now = new Date().toISOString();
+      if (pct >= step.passingScore) {
+        EventBus.emit({
+          type: 'QUIZ_PASSED',
+          payload: {
+            missionId: _missionData.id,
+            score: pct,
+            attemptNumber: 1,
+            totalQuestions,
+            correctAnswers: finalScore,
+            timestamp: now,
+          },
+        });
+      } else {
+        EventBus.emit({
+          type: 'QUIZ_FAILED',
+          payload: {
+            missionId: _missionData.id,
+            score: pct,
+            attemptNumber: 1,
+            timestamp: now,
+          },
+        });
+      }
       setFinished(true);
     }
   };

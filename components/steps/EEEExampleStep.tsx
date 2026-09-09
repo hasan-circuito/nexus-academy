@@ -9,11 +9,15 @@ export function EEEExampleStepComponent({ step }: { step: EEEExampleStep }) {
         </div>
         <div>
           <h2 className="text-2xl font-bold font-bangla-ui text-foreground">{step.title}</h2>
-          <span className="text-xs font-semibold text-warning uppercase tracking-wider">{step.hardware} • {step.domain.replace('_', ' ')}</span>
+          {(step.hardware || step.domain) && (
+            <span className="text-xs font-semibold text-warning uppercase tracking-wider">
+              {step.hardware || 'Hardware'} • {step.domain ? step.domain.replace('_', ' ') : 'Domain'}
+            </span>
+          )}
         </div>
       </div>
 
-      <p className="font-bangla text-muted-foreground">{step.context}</p>
+      <p className="font-bangla text-muted-foreground">{step.context || (step as any).scenario}</p>
       
       <div className="rounded-xl overflow-hidden border border-border font-mono text-sm shadow-md">
         <div className="bg-[#0d1117] p-6 text-blue-300"><pre><code>{step.code}</code></pre></div>

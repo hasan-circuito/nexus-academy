@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { storage } from '@/services/LocalStorageDataService';
 import { createDefaultProgress, createDefaultMissionProgress, type LearnerProgress } from '@/types/progress.types';
 import { XPEngine } from '@/engines/xp/XPEngine';
+import { initEngines } from '@/engines/init';
 
 export function saveStepEvidence(
   missionId: string, 
@@ -30,6 +31,7 @@ export function useProgress() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    initEngines();
     queueMicrotask(() => setIsClient(true));
     const load = () => {
       const p = storage.getProgress();

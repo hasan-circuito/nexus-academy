@@ -3,6 +3,7 @@ import type { ReflectionStep, CriticalThinkingQuestion, MissionData } from '@/ty
 import { useState } from 'react';
 import { Brain, CheckCircle, ChevronDown, Cpu, Lightbulb, PenTool, ArrowRight } from 'lucide-react';
 import { EventBus } from '@/engines/events/EventBus';
+import { saveStepEvidence } from '@/hooks/useProgress';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // Expandable Accordion Item for Critical Thinking
@@ -171,6 +172,7 @@ export function ReflectionStepComponent({ step, missionData }: { step: Reflectio
         <EndScreen
           endScreen={step.endScreen}
           onDone={() => {
+            saveStepEvidence(missionData.id, 'reflection', { completed: true });
             EventBus.emit({ type: 'REFLECTION_COMPLETED', payload: { missionId: missionData.id, promptsAnswered: questions.length, totalPrompts: questions.length, timestamp: new Date().toISOString() } });
             setIsDone(true);
           }}
@@ -194,6 +196,7 @@ export function ReflectionStepComponent({ step, missionData }: { step: Reflectio
         setShowEndScreen(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
+        saveStepEvidence(missionData.id, 'reflection', { completed: true });
         EventBus.emit({ type: 'REFLECTION_COMPLETED', payload: { missionId: missionData.id, promptsAnswered: questions.length, totalPrompts: questions.length, timestamp: new Date().toISOString() } });
         setIsDone(true);
       }

@@ -5,14 +5,17 @@ import { useState } from 'react';
 import { useProgress } from '@/hooks/useProgress';
 import { XPEngine } from '@/engines/xp/XPEngine';
 import { storage } from '@/services/LocalStorageDataService';
+import { ProgressEngine } from '@/engines/progress/ProgressEngine';
 
 export function MissionCompleteStepComponent({ step, missionData }: { step: MissionCompleteStep; missionData: MissionData }) {
   const { progress, isClient } = useProgress();
   const [copied, setCopied] = useState(false);
 
   const isComplete = isClient && progress.missions[missionData.id]?.status === 'complete';
-  const xpEarned = isComplete ? (progress.missions[missionData.id].xpEarned || missionData.curiosity ? 400 : 0) : 400;
-  const score = isComplete ? progress.missions[missionData.id].understandingScore : 85;
+  const projected = isClient ? ProgressEngine.calculateProjectedScore(missionData) : { score: 0, xp: 0 };
+  
+  const xpEarned = isComplete ? (progress.missions[missionData.id].xpEarned || 0) : projected.xp;
+  const score = isComplete ? (progress.missions[missionData.id].understandingScore || 0) : projected.score;
 
   const projectedXP = isClient ? (progress.xp + (isComplete ? 0 : xpEarned)) : 0;
   const projectedXPState = isClient
