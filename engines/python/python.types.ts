@@ -13,6 +13,7 @@ export interface ExecutionResult {
 export interface ExecutionConfig {
   timeoutMs?: number;
   maxOutputChars?: number;
+  inputs?: string[];
 }
 
 export const DEFAULT_TIMEOUT_MS = 5000;

@@ -100,7 +100,7 @@ export class PythonWorkerClient {
     return this.initPromise;
   }
 
-  public async runCode(code: string): Promise<{ stdout: string; stderr: string; success: boolean; errorType?: string }> {
+  public async runCode(code: string, inputs?: string[]): Promise<{ stdout: string; stderr: string; success: boolean; errorType?: string }> {
     if (!this.isReady) {
       await this.init();
     }
@@ -141,7 +141,7 @@ export class PythonWorkerClient {
         }
       });
 
-      const req: WorkerRunRequest = { id, type: 'RUN_CODE', code };
+      const req: WorkerRunRequest = { id, type: 'RUN_CODE', code, inputs };
       this.worker!.postMessage(req);
     });
   }

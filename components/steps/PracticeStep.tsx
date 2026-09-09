@@ -12,6 +12,8 @@ import { EvaluationResult } from '@/engines/python/python.types';
 import { EventBus } from '@/engines/events/EventBus';
 import { saveStepEvidence } from '@/hooks/useProgress';
 
+import { extractInputs } from '@/engines/python/inputExtractor';
+
 export function PracticeStepComponent({ step, missionData }: { step: PracticeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
@@ -23,7 +25,8 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
 
   const handleRun = async () => {
     if (!code.trim()) return;
-    const result = await runCode(code);
+    const inputs = extractInputs(code, step.expectedOutput);
+    const result = await runCode(code, { inputs });
     
     if (result.success) {
       // Fallback to exact_output for older missions without validation

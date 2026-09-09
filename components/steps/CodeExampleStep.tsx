@@ -6,6 +6,8 @@ import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
 
+import { extractInputs } from '@/engines/python/inputExtractor';
+
 export function CodeExampleStepComponent({ step }: { step: CodeExampleStep }) {
   const [mode, setMode] = useState<'read' | 'edit'>('read');
   const [code, setCode] = useState(step.code);
@@ -23,7 +25,8 @@ export function CodeExampleStepComponent({ step }: { step: CodeExampleStep }) {
 
   const handleRun = () => {
     if (code.trim()) {
-      runCode(code);
+      const inputs = extractInputs(step.code, step.output);
+      runCode(code, { inputs });
     }
   };
 

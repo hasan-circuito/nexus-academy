@@ -39,7 +39,7 @@ export class PythonEngine {
     const maxOutputChars = config.maxOutputChars || MAX_OUTPUT_CHARS;
     
     // Run the code in the background Web Worker
-    const response = await this.workerClient.runCode(code);
+    const response = await this.workerClient.runCode(code, config.inputs);
 
     let stdoutBuffer = response.stdout;
     let stderrBuffer = response.stderr;

@@ -36,6 +36,7 @@ export interface WorkerInitError extends WorkerMessageBase {
 export interface WorkerRunRequest extends WorkerMessageBase {
   type: 'RUN_CODE';
   code: string;
+  inputs?: string[];
 }
 
 // Successful run response

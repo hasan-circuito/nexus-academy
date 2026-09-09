@@ -10,6 +10,8 @@ import { OutputComparator } from '@/engines/python/OutputComparator';
 import { EventBus } from '@/engines/events/EventBus';
 import { saveStepEvidence } from '@/hooks/useProgress';
 
+import { extractInputs } from '@/engines/python/inputExtractor';
+
 export function DebugChallengeStepComponent({ step, missionData }: { step: DebugChallengeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
@@ -20,7 +22,8 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
 
   const handleRun = async () => {
     if (!code.trim()) return;
-    const result = await runCode(code);
+    const inputs = extractInputs(code, step.explanation);
+    const result = await runCode(code, { inputs });
     
     if (result.success && !result.stderr) {
       setIsFixed(true);
