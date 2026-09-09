@@ -78,7 +78,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
         </div>
       )}
 
-      {isLoaded && !isDone && (
+      {isLoaded && (
         <div className="space-y-4">
           <PythonEditor 
             value={code} 
@@ -87,31 +87,42 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             height="250px" 
           />
 
-          <div className="flex gap-4">
-            <button 
-              onClick={handleRun}
-              disabled={isRunning || !code.trim()}
-              className="flex items-center space-x-2 px-6 py-2 font-semibold text-white bg-green-600 hover:bg-green-500 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Play size={18} className={isRunning ? 'animate-pulse' : ''} />
-              <span>{isRunning ? 'Running...' : 'Run Code'}</span>
-            </button>
-            
-            <button 
-              onClick={resetCode}
-              title="Reset to Original Code"
-              className="p-2 text-muted-foreground hover:bg-surface hover:text-foreground rounded-lg transition-colors border border-transparent hover:border-border"
-            >
-              <RotateCcw size={20} />
-            </button>
-
-            {hintIndex < step.hints.length && (
+          <div className="flex items-center justify-between">
+            <div className="flex gap-4 items-center">
               <button 
-                onClick={() => setHintIndex(prev => prev + 1)} 
-                className="px-4 py-2 text-sm font-medium text-info bg-info/10 hover:bg-info/20 rounded-lg transition-colors border border-info/20"
+                onClick={handleRun}
+                disabled={isRunning || !code.trim()}
+                className={`flex items-center space-x-2 px-6 py-2 font-semibold text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                  isDone ? 'bg-green-700 hover:bg-green-600' : 'bg-green-600 hover:bg-green-500'
+                }`}
               >
-                Show Hint ({step.hints.length - hintIndex} left)
+                <Play size={18} className={isRunning ? 'animate-pulse' : ''} />
+                <span>{isRunning ? 'Running...' : isDone ? 'Run Again' : 'Run Code'}</span>
               </button>
+              
+              <button 
+                onClick={resetCode}
+                title="Reset to Original Code"
+                className="p-2 text-muted-foreground hover:bg-surface hover:text-foreground rounded-lg transition-colors border border-transparent hover:border-border"
+              >
+                <RotateCcw size={20} />
+              </button>
+
+              {hintIndex < step.hints.length && (
+                <button 
+                  onClick={() => setHintIndex(prev => prev + 1)} 
+                  className="px-4 py-2 text-sm font-medium text-info bg-info/10 hover:bg-info/20 rounded-lg transition-colors border border-info/20"
+                >
+                  Show Hint ({step.hints.length - hintIndex} left)
+                </button>
+              )}
+            </div>
+
+            {isDone && (
+              <div className="flex items-center gap-2 text-emerald-400 font-bangla font-semibold text-sm bg-emerald-950/40 px-3 py-1.5 rounded-lg border border-emerald-800/40">
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span>অনুশীলন সম্পন্ন</span>
+              </div>
             )}
           </div>
 
@@ -121,13 +132,15 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             evaluation={evaluation} 
           />
 
-          <div className="space-y-2 mt-4">
-            {step.hints.slice(0, hintIndex).map((hint, i) => (
-              <div key={i} className="p-4 bg-surface rounded-lg border border-border font-bangla text-muted-foreground text-sm flex gap-3">
-                <HelpCircle className="w-5 h-5 shrink-0 text-info" /> {hint}
-              </div>
-            ))}
-          </div>
+          {step.hints.length > 0 && hintIndex > 0 && (
+            <div className="space-y-2 mt-4">
+              {step.hints.slice(0, hintIndex).map((hint, i) => (
+                <div key={i} className="p-4 bg-surface rounded-lg border border-border font-bangla text-muted-foreground text-sm flex gap-3">
+                  <HelpCircle className="w-5 h-5 shrink-0 text-info" /> {hint}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -135,15 +148,20 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
         <div className="space-y-6 animate-in fade-in zoom-in-95 duration-300 mt-8">
           <div className="p-6 rounded-xl border border-success/30 bg-success/10 text-success text-center">
             <Check className="w-12 h-12 mx-auto mb-2" />
-            <span className="font-bangla font-bold text-xl block">আউটপুট সঠিক।</span>
-            <span className="font-bangla font-bold text-xl block mt-2">খুব ভালো! তুমি এই Practice সম্পন্ন করেছ।</span>
+            <span className="font-bangla font-bold text-xl block">আউটপুট সঠিক!</span>
+            <span className="font-bangla font-semibold text-base block mt-1 text-success/90">খুব ভালো! তুমি এই অনুশীলনটি সফলভাবে সম্পন্ন করেছ।</span>
           </div>
           
           <div className="rounded-xl overflow-hidden border border-border font-mono text-sm">
+            <div className="bg-[#0d1117] p-4 text-xs font-sans text-muted-foreground border-b border-border/50 uppercase tracking-wider font-semibold">
+              Reference Solution
+            </div>
             <div className="bg-[#0d1117] p-6 text-blue-300"><pre><code>{step.solution}</code></pre></div>
-            <div className="bg-[#05070a] p-4 text-green-400 border-t border-border/50"><span className="text-xs text-muted-foreground uppercase mr-2">Expected Output / Goal</span>{step.displayHint || step.expectedOutput}</div>
+            <div className="bg-[#05070a] p-4 text-green-400 border-t border-border/50"><span className="text-xs text-muted-foreground uppercase mr-2">Expected Output / Goal:</span>{step.displayHint || step.expectedOutput}</div>
           </div>
-          <p className="font-bangla text-muted-foreground bg-surface p-4 rounded-lg border border-border">{step.solutionExplanation}</p>
+          {step.solutionExplanation && (
+            <p className="font-bangla text-muted-foreground bg-surface p-4 rounded-lg border border-border">{step.solutionExplanation}</p>
+          )}
         </div>
       )}
     </div>
