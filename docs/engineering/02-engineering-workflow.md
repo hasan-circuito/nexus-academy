@@ -84,9 +84,12 @@ Important decisions must be documented before a feature is considered complete.
 
 ---
 
-# 4. Engineering Lifecycle
+# 4. Engineering Lifecycle (Two-Track Architecture)
 
-Every feature must pass through the following lifecycle.
+Nexus Academy operates on a **Two-Track Engineering Standard** to balance enterprise platform reliability with rapid curriculum authoring:
+
+### Track 1 — Core Platform Infrastructure (The 16-Stage Lifecycle)
+Applies strictly to foundational software features, platform engines (`engines/`), Next.js components, storage systems, and architecture overhauls. Every infrastructure feature must pass through the following lifecycle:
 
 1. Problem Analysis
 2. Requirements Analysis
@@ -105,7 +108,14 @@ Every feature must pass through the following lifecycle.
 15. Release
 16. Next Sprint
 
-Skipping any stage is prohibited unless explicitly approved by the Project Owner.
+Skipping any stage in Track 1 is prohibited unless explicitly approved by the Project Owner.
+
+### Track 2 — Educational Content & Missions (The Agile 3-Step Pipeline)
+Applies to authoring, refining, and publishing learning missions (`data/missions/mission-*.json`). To prevent bureaucratic bottlenecks while guaranteeing uncompromising pedagogical quality, content authoring follows **MES Rule 23**:
+1. **Brief & Client Selection (Rule 22)**: 1-concept definition and B2B scenario.
+2. **JSON Authoring (Rules 20 & 21)**: Flexible steps with real hidden-state debugging.
+3. **Automated Quality Gate (Rule 23)**: Automated schema and Python AST compilation via `scripts/validate-missions.mjs`.
+*Protected by the Steel Guardrails: Strictly 1 new concept, zero untaught syntax, and non-negotiable quiz scoring.*
 
 ---
 

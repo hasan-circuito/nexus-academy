@@ -98,6 +98,17 @@
       "primaryConcept": "Integer Type Conversion with Input",
       "estimatedMinutes": 20,
       "difficulty": "beginner"
+    },
+    {
+      "id": "010",
+      "title": "Modern String Formatting",
+      "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+      "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
+      "status": "published",
+      "prerequisite": "009",
+      "primaryConcept": "f-strings & Dynamic Text Formatting",
+      "estimatedMinutes": 25,
+      "difficulty": "beginner"
     }
   ]
 }

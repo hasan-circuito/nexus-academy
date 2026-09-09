@@ -8,6 +8,7 @@ import mission006 from '@/data/missions/mission-006.json';
 import mission007 from '@/data/missions/mission-007.json';
 import mission008 from '@/data/missions/mission-008.json';
 import mission009 from '@/data/missions/mission-009.json';
+import mission010 from '@/data/missions/mission-010.json';
 
 const missions: Record<string, MissionData> = {
   '001': mission001 as MissionData,
@@ -19,6 +20,7 @@ const missions: Record<string, MissionData> = {
   '007': mission007 as MissionData,
   '008': mission008 as MissionData,
   '009': mission009 as MissionData,
+  '010': mission010 as MissionData,
 };
 
 export async function getMissionIndex(): Promise<MissionIndexEntry[]> {

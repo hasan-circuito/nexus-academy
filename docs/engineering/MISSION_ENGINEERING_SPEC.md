@@ -1470,3 +1470,20 @@ To combine Startup Simulation with diverse real-world scenarios, missions must u
 - **The Setup:** Tasks are assigned by a Senior Developer, Tech Lead, or Project Manager.
 - **The Domain:** Every mission features a different client industry (e.g., E-commerce, Healthcare, FinTech, Logistics) to ensure diverse, real-world abstract problem solving.
 - **Tone:** Professional, fast-paced, but encouraging. No childish analogies (magic, dragons) unless used briefly as an in-office joke.
+
+## Rule 23 — The Agile Content Pipeline (The 3-Step Standard & Steel Guardrails)
+To scale Nexus Academy to 120+ missions without bureaucratic paralysis while maintaining world-class pedagogical rigor, mission creation follows an Agile 3-Step Pipeline protected by Unbreakable Steel Guardrails.
+
+### The 3-Step Agile Pipeline
+1. **Step 1: Brief & Client Selection (1 min)**:
+   - Identify the single concept, the B2B client industry (Rule 22), and the hidden state bug (Rule 21).
+2. **Step 2: Mission JSON Authoring (15-20 mins)**:
+   - Author `data/missions/mission-XXX.json` using dynamic step counts (Rule 20) with deep pedagogical storytelling, hands-on practice, quiz, and reflection.
+3. **Step 3: Automated Quality Gate (Instant CI)**:
+   - Run `node scripts/validate-missions.mjs --mission XXX` to verify schema, quiz validity, and compile all Python code via native Python AST. If green -> commit & push!
+
+### The Steel Guardrails (Unbreakable Invariants)
+Speed must NEVER compromise learning integrity. The following rules are non-negotiable:
+- **Invariant 1 — The Single Concept Law (Strictly 1)**: Every mission introduces exactly ONE new capability (`newConceptCount: 1`). Stuffing 2-3 new topics into a single mission is strictly prohibited.
+- **Invariant 2 — Zero Untaught Syntax Barrier**: A mission must NEVER use any syntax, keyword, or construct that has not been explicitly taught in previous missions (Missions 1 to $N-1$). For example, before control flow missions, `if/else`, loops, and `def` are strictly forbidden in student exercises.
+- **Invariant 3 — Scoring Constitution Preservation**: Every mission must include at least one Quiz step (with valid questions, options, and passing score) and at least one Debug challenge to maintain the non-negotiable 40% Quiz + 25% Debug Understanding Score engine.
