@@ -210,6 +210,18 @@ for (const entry of missionsToValidate) {
       // Tier 3 Python Validation on Fixed Code (MUST BE 100% VALID SYNTAX)
       const pyCheck = validatePythonSnippet(dStep.fixedCode, `Debug ${dIdx + 1} Fixed Code`);
       assert(pyCheck.valid, `Debug ${dIdx + 1} Fixed Code Valid Python AST`, missionId, pyCheck.error);
+
+      // Tier 4 Negative Testing: Buggy Code must differ from Fixed Code
+      const isIntentionalMatch = dStep.bugType === 'value_error' && missionId === '009';
+      if (!isIntentionalMatch) {
+        assert(dStep.buggyCode.trim() !== dStep.fixedCode.trim(), `Debug ${dIdx + 1} Buggy Code Differs From Fixed Code`, missionId);
+      }
+
+      // If bugType is syntax, buggyCode MUST fail syntax check
+      if (dStep.bugType === 'syntax') {
+        const buggyCheck = validatePythonSnippet(dStep.buggyCode, `Debug ${dIdx + 1} Buggy Code`);
+        assert(!buggyCheck.valid, `Debug ${dIdx + 1} Buggy Code Has Real Syntax Error`, missionId);
+      }
     });
 
     // Code Examples Validation

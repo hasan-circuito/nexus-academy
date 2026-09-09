@@ -173,7 +173,7 @@
       "buggyCode": "name = Hasan\nprint(name)",
       "errorMessage": "NameError: name 'Hasan' is not defined",
       "bugLine": 1,
-      "bugType": "syntax",
+      "bugType": "naming",
       "hints": [
         "Python thinks Hasan is not text.",
         "Text values must be wrapped with quotation marks.",

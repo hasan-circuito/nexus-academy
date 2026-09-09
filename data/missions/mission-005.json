@@ -254,7 +254,7 @@
       "buggyCode": "val_text = \"50\"\nval_num = integer(val_text)\nprint(val_num)",
       "errorMessage": "NameError: name 'integer' is not defined",
       "bugLine": 2,
-      "bugType": "syntax",
+      "bugType": "naming",
       "hints": [
         "পাইথনে পুরো 'integer' শব্দটি ফাংশন হিসেবে ব্যবহার করা হয় না।",
         "সংক্ষেপে ৩ অক্ষরের কোন ফাংশনটি দিয়ে Integer এ কনভার্ট করা হয়?"
@@ -269,7 +269,7 @@
       "buggyCode": "total = 50\ntotal_text = string(total)\nprint(total_text)",
       "errorMessage": "NameError: name 'string' is not defined",
       "bugLine": 2,
-      "bugType": "syntax",
+      "bugType": "naming",
       "hints": [
         "পাইথনে পুরো 'string' শব্দটি ফাংশন হিসেবে ব্যবহার করা যায় না।",
         "সংক্ষেপে ৩ অক্ষরের কোন ফাংশনটি দিয়ে String এ কনভার্ট করা হয়?"

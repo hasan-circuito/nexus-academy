@@ -192,7 +192,7 @@
       "buggyCode": "score = 10\nprint(score)\n\nscore == 20\nprint(score)",
       "errorMessage": "Syntax/Logic Issue: score is not updated because == is used instead of =",
       "bugLine": 4,
-      "bugType": "syntax",
+      "bugType": "logic",
       "hints": [
         "৪ নম্বর লাইনে চিহ্নের দিকে ভালো করে লক্ষ্য করো।",
         "ভেরিয়েবলে নতুন মান অ্যাসাইন করার জন্য একক সমান চিহ্ন (=) ব্যবহার করতে হয়।"

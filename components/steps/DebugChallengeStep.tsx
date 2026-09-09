@@ -8,41 +8,121 @@ import { usePythonEngine } from '@/hooks/usePythonEngine';
 import { usePracticeCode } from '@/hooks/usePracticeCode';
 import { EventBus } from '@/engines/events/EventBus';
 import { saveStepEvidence } from '@/hooks/useProgress';
+import { OutputComparator } from '@/engines/python/OutputComparator';
+import { PythonEngine } from '@/engines/python/PythonEngine';
+import type { EvaluationResult } from '@/engines/python/python.types';
 
 import { extractInputs } from '@/engines/python/inputExtractor';
 
 export function DebugChallengeStepComponent({ step, missionData }: { step: DebugChallengeStep; missionData: MissionData }) {
   const [hintIndex, setHintIndex] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
+  const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   // Using step.title as the unique identifier so multiple debug steps in a mission don't share code
   const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.buggyCode);
   const detectedInputs = extractInputs(code, step.explanation);
 
+  const handleReset = () => {
+    resetCode();
+    setIsFixed(false);
+    setEvaluation(null);
+  };
+
   const handleRun = async () => {
     if (!code.trim()) return;
     const inputs = extractInputs(code, step.explanation);
     const result = await runCode(code, { inputs });
-    
-    if (result.success && !result.stderr) {
-      setIsFixed(true);
-      // Persist debug evidence
-      saveStepEvidence(missionData.id, 'debug_challenge', {
-        passed: true,
-        hintsUsed: hintIndex,
+
+    const normalize = (c: string) => c.replace(/\r\n/g, '\n').trim();
+
+    // 1. Check if user hasn't made any changes to the buggy code
+    const isSelfFix = normalize(step.fixedCode) === normalize(step.buggyCode);
+    if (!isSelfFix && normalize(code) === normalize(step.buggyCode)) {
+      setIsFixed(false);
+      setEvaluation({
+        passed: false,
+        score: 0,
+        message: 'বাগটি এখনও সমাধান করা হয়নি! মূল কোডটি অপরিবর্তিত রয়েছে।',
+        stdout: result.stdout,
+        stderr: result.stderr,
+        runtimeError: !!result.stderr,
+        validationType: 'exact_output'
       });
-      // Emit true completion (not self-reported)
-      EventBus.emit({
-        type: 'DEBUG_SOLVED',
-        payload: {
-          missionId: missionData.id,
-          hintsUsed: hintIndex,
-          attemptNumber: 1, // To be properly tracked in V2
-          timestamp: new Date().toISOString()
-        }
-      });
+      return;
     }
+
+    // 2. Check for syntax or runtime errors
+    if (!result.success || result.stderr) {
+      setIsFixed(false);
+      setEvaluation({
+        passed: false,
+        score: 0,
+        message: 'কোডে এখনও এরর রয়েছে! নিচের এরর মেসেজ দেখে ঠিক করো।',
+        stdout: result.stdout,
+        stderr: result.stderr,
+        runtimeError: true,
+        validationType: 'exact_output'
+      });
+      return;
+    }
+
+    // 3. Logic & Output Match Verification with reference fixedCode
+    try {
+      const engine = PythonEngine.getInstance();
+      const expectedResult = await engine.runCode(step.fixedCode, { inputs });
+
+      if (expectedResult.stdout && expectedResult.stdout.trim().length > 0) {
+        const comparison = OutputComparator.compare(result.stdout, expectedResult.stdout);
+        if (comparison.actualNormalized !== comparison.expectedNormalized) {
+          setIsFixed(false);
+          setEvaluation({
+            passed: false,
+            score: 0,
+            message: 'কোড রান করেছে, কিন্তু ফলাফল প্রত্যাশিত অনুযায়ী আসেনি। লজিকটি আরেকবার পরীক্ষা করো।',
+            stdout: result.stdout,
+            stderr: '',
+            runtimeError: false,
+            validationType: 'exact_output',
+            diffExpected: expectedResult.stdout,
+            diffActual: result.stdout
+          });
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('[DebugChallengeStep] Failed to execute reference fixedCode:', err);
+    }
+
+    // Passed all validation checks!
+    setIsFixed(true);
+    setEvaluation({
+      passed: true,
+      score: 100,
+      message: 'বাগ ফিক্স হয়েছে! কোড সফলভাবে রান করেছে এবং সঠিক আউটপুট দিয়েছে।',
+      stdout: result.stdout,
+      stderr: '',
+      runtimeError: false,
+      validationType: 'exact_output'
+    });
+
+    // Persist debug evidence
+    saveStepEvidence(missionData.id, 'debug_challenge', {
+      passed: true,
+      hintsUsed: hintIndex,
+    });
+
+    // Emit true completion (not self-reported)
+    EventBus.emit({
+      type: 'DEBUG_SOLVED',
+      payload: {
+        missionId: missionData.id,
+        hintsUsed: hintIndex,
+        attemptNumber: 1, // To be properly tracked in V2
+        timestamp: new Date().toISOString()
+      }
+    });
   };
 
   return (
@@ -109,7 +189,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
               </button>
 
               <button 
-                onClick={resetCode}
+                onClick={handleReset}
                 title="Reset to Original Code"
                 className="p-2 text-muted-foreground hover:bg-surface hover:text-foreground rounded-lg transition-colors border border-transparent hover:border-border"
               >
@@ -137,15 +217,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
           <ExecutionOutput 
             result={lastResult} 
             isRunning={isRunning} 
-            evaluation={isFixed && lastResult ? {
-              passed: true,
-              score: 100,
-              message: 'বাগ ফিক্স হয়েছে! কোড সফলভাবে রান করেছে।',
-              stdout: lastResult.stdout,
-              stderr: '',
-              runtimeError: false,
-              validationType: 'exact_output',
-            } : null}
+            evaluation={evaluation} 
           />
 
           {step.hints.length > 0 && hintIndex > 0 && (
