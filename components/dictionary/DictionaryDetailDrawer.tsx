@@ -18,6 +18,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import type { DictionaryEntry } from '@/types/dictionary.types';
+import type { ExecutionResult } from '@/engines/python/python.types';
 import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
@@ -40,14 +41,18 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
   onSelectRelatedTerm,
 }) => {
   const [sandboxCode, setSandboxCode] = useState('');
+  const [sandboxResult, setSandboxResult] = useState<ExecutionResult | null>(null);
+  const [collectedInputs, setCollectedInputs] = useState<string[]>([]);
   const [isSandboxOpen, setIsSandboxOpen] = useState(true);
 
-  const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
+  const { runCode, isRunning, error: engineError } = usePythonEngine();
 
-  // Synchronize starter code when entry changes
+  // Synchronize starter code & clear previous sandbox result when entry changes
   useEffect(() => {
     if (entry) {
       setSandboxCode(entry.sandbox?.starterCode || entry.exampleCode || '');
+      setSandboxResult(null);
+      setCollectedInputs([]);
     }
   }, [entry?.id]);
 
@@ -64,14 +69,25 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
 
   if (!isOpen || !entry) return null;
 
-  const handleRunSandbox = () => {
+  const handleRunSandbox = async () => {
     if (sandboxCode.trim()) {
-      runCode(sandboxCode);
+      setCollectedInputs([]);
+      const res = await runCode(sandboxCode, { inputs: [] });
+      setSandboxResult(res);
     }
+  };
+
+  const handleInputSubmit = async (val: string) => {
+    const nextInputs = [...collectedInputs, val];
+    setCollectedInputs(nextInputs);
+    const res = await runCode(sandboxCode, { inputs: nextInputs });
+    setSandboxResult(res);
   };
 
   const handleResetSandbox = () => {
     setSandboxCode(entry.sandbox?.starterCode || entry.exampleCode || '');
+    setSandboxResult(null);
+    setCollectedInputs([]);
   };
 
   return (
@@ -264,12 +280,12 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
             {isSandboxOpen && (
               <div className="rounded-2xl border border-border bg-[#0d1117] p-4 space-y-4 shadow-xl">
                 <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/50 pb-2">
-                  <span className="font-mono">sandbox.py</span>
+                  <span className="font-mono text-xs text-emerald-400 font-semibold">লাইভ কোড এক্সপেরিমেন্ট</span>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={handleResetSandbox}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface hover:bg-card border border-border text-xs transition-colors"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface hover:bg-card border border-border text-xs transition-colors cursor-pointer"
                       title="Reset starter code"
                     >
                       <RotateCcw className="w-3 h-3" />
@@ -279,7 +295,7 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
                       type="button"
                       onClick={handleRunSandbox}
                       disabled={isRunning}
-                      className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold text-xs transition-colors shadow"
+                      className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold text-xs transition-colors shadow cursor-pointer"
                     >
                       <Play className="w-3 h-3 fill-white" />
                       <span>{isRunning ? 'চলছে...' : 'রান করো'}</span>
@@ -296,10 +312,11 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
                   />
                 </div>
 
-                {/* Execution Output */}
+                {/* Execution Output with interactive terminal input */}
                 <ExecutionOutput
-                  result={lastResult}
+                  result={sandboxResult}
                   isRunning={isRunning}
+                  onInputSubmit={handleInputSubmit}
                 />
 
                 {/* Experiment Prompts */}

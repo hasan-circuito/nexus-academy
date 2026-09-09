@@ -2,12 +2,12 @@
 // NEXUS Academy — Interactive Problem-Solving & Knowledge Hub Page
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useDictionary } from '@/hooks/useDictionary';
+import { useInSituDrawer } from '@/hooks/useInSituDrawer';
 import { DictionaryHeader } from '@/components/dictionary/DictionaryHeader';
 import { CategoryFilterPills } from '@/components/dictionary/CategoryFilterPills';
 import { DictionaryCardGrid } from '@/components/dictionary/DictionaryCardGrid';
-import { DictionaryDetailDrawer } from '@/components/dictionary/DictionaryDetailDrawer';
 import type { DictionaryEntry } from '@/types/dictionary.types';
 
 export default function DictionaryPage() {
@@ -22,23 +22,13 @@ export default function DictionaryPage() {
     viewedTerms,
     toggleBookmark,
     trackTermViewed,
-    isBookmarked,
-    entries,
   } = useDictionary();
 
-  const [activeEntry, setActiveEntry] = useState<DictionaryEntry | null>(null);
+  const { openConcept } = useInSituDrawer();
 
   const handleSelectEntry = (entry: DictionaryEntry) => {
-    setActiveEntry(entry);
+    openConcept(entry.id);
     trackTermViewed(entry.id);
-  };
-
-  const handleSelectRelatedTerm = (termId: string) => {
-    const found = entries.find((e) => e.id === termId);
-    if (found) {
-      setActiveEntry(found);
-      trackTermViewed(found.id);
-    }
   };
 
   return (
@@ -78,16 +68,7 @@ export default function DictionaryPage() {
         onToggleBookmark={toggleBookmark}
         viewedIds={viewedTerms}
       />
-
-      {/* Detail Slide-Over Drawer */}
-      <DictionaryDetailDrawer
-        entry={activeEntry}
-        isOpen={!!activeEntry}
-        onClose={() => setActiveEntry(null)}
-        isBookmarked={activeEntry ? isBookmarked(activeEntry.id) : false}
-        onToggleBookmark={toggleBookmark}
-        onSelectRelatedTerm={handleSelectRelatedTerm}
-      />
     </div>
   );
 }
+

@@ -16,10 +16,10 @@ const QUICK_SUGGESTIONS = [
   { label: 'SyntaxError', query: 'SyntaxError' },
   { label: 'NameError', query: 'NameError' },
   { label: 'numbers joining', query: 'numbers joining' },
-  { label: 'missing quotes', query: 'quotes' },
-  { label: 'input() conversion', query: 'user_input' },
-  { label: 'f-strings', query: 'f_strings' },
-  { label: 'zero division', query: 'zero_division' },
+  { label: 'missing quotes', query: 'missing quotes' },
+  { label: 'input() conversion', query: 'input conversion' },
+  { label: 'f-strings', query: 'f-string' },
+  { label: 'zero division', query: 'zero division' },
 ];
 
 export const DictionaryHeader: React.FC<DictionaryHeaderProps> = ({

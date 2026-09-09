@@ -148,9 +148,16 @@ for (const entry of entries) {
     const fixVal = validatePythonSnippet(entry.troubleshooting.fixPattern.code, `${ctx} fixPattern`);
     assert(fixVal.valid, fixVal.error || `${ctx} fixPattern compiles cleanly`);
 
-    // Python AST validation for antiPattern
+    // Python AST validation for antiPattern:
+    // Syntax/Indentation error anti-patterns must trigger real syntax errors;
+    // Runtime/logic error anti-patterns must compile cleanly under AST.
+    const isSyntaxOrIndentError = ['syntax_error', 'indentation_error', 'assignment_flow'].includes(entry.id);
     const antiVal = validatePythonSnippet(entry.troubleshooting.antiPattern.code, `${ctx} antiPattern`);
-    assert(antiVal.valid, antiVal.error || `${ctx} antiPattern is syntactically valid Python code`);
+    if (isSyntaxOrIndentError) {
+      assert(!antiVal.valid, `${ctx} antiPattern is verified to trigger a syntax/indentation error in Python AST`);
+    } else {
+      assert(antiVal.valid, antiVal.error || `${ctx} antiPattern compiles cleanly under Python AST (runtime/logic error)`);
+    }
   }
 
   // Sandbox
@@ -179,6 +186,53 @@ for (const entry of entries) {
   }
 }
 
+// 5. Automated Search Engine Verification
+console.log('\n🔎 Validating DictionarySearchEngine keyword & symptom resolution...');
+
+// Dynamic import of search engine for testing
+const searchEngineModule = await import('../engines/dictionary/DictionarySearchEngine.ts');
+const DictionarySearchEngine = searchEngineModule.DictionarySearchEngine;
+const engine = new DictionarySearchEngine(entries);
+
+const searchTestCases = [
+  { query: 'missing quotes', expectedTopId: 'syntax_error' },
+  { query: 'quotes', expectedTopId: 'string' },
+  { query: 'variables', expectedTopId: 'variable' },
+  { query: 'integers', expectedTopId: 'integer' },
+  { query: 'floats', expectedTopId: 'float_type' },
+  { query: 'TypeError', expectedTopId: 'type_error' },
+  { query: 'SyntaxError', expectedTopId: 'syntax_error' },
+  { query: 'NameError', expectedTopId: 'name_error' },
+  { query: 'ZeroDivisionError', expectedTopId: 'zero_division' },
+  { query: 'IndentationError', expectedTopId: 'indentation_error' },
+  { query: 'ValueError', expectedTopId: 'value_error' },
+  { query: 'EOFError', expectedTopId: 'user_input' },
+  { query: 'int()', expectedTopId: 'integer' },
+  { query: 'str()', expectedTopId: 'string' },
+  { query: 'float()', expectedTopId: 'float_type' },
+  { query: 'print()', expectedTopId: 'print_function' },
+  { query: 'input()', expectedTopId: 'user_input' },
+  { query: 'f-string', expectedTopId: 'f_strings' },
+  { query: 'zero division', expectedTopId: 'zero_division' },
+  { query: 'reassignment', expectedTopId: 'reassignment' },
+];
+
+for (const tc of searchTestCases) {
+  const results = engine.search(tc.query);
+  const topResult = results[0]?.id;
+  assert(
+    topResult === tc.expectedTopId,
+    `Search for "${tc.query}" correctly yields "${tc.expectedTopId}" as top result (Got: "${topResult}")`
+  );
+}
+
+// Multi-word symptom search test
+const symptomResults = engine.search('numbers joining instead of adding').map((e) => e.id);
+assert(
+  symptomResults.includes('concatenation') && symptomResults.includes('type_error'),
+  `Search for "numbers joining instead of adding" includes both 'concatenation' and 'type_error'`
+);
+
 console.log('\n======================================================');
 console.log('📊 DICTIONARY VALIDATION SUMMARY:');
 console.log(`  Total Assertions Tested : ${totalAssertions}`);
@@ -190,6 +244,6 @@ if (failedAssertions > 0) {
   console.error(`❌ DICTIONARY VALIDATION FAILED with ${failedAssertions} errors.`);
   process.exit(1);
 } else {
-  console.log('🎉 ALL DICTIONARY ENTRIES PASSED SCHEMA, MENTAL MODEL, & PYTHON AST VALIDATION 100%!\n');
+  console.log('🎉 ALL DICTIONARY ENTRIES PASSED SCHEMA, MENTAL MODEL, PYTHON AST, & SEARCH VALIDATION 100%!\n');
   process.exit(0);
 }

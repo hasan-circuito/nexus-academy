@@ -18,7 +18,6 @@ export class DictionarySearchEngine {
 
   public search(query: string, options: SearchOptions = {}): DictionaryEntry[] {
     const rawQuery = (query || '').trim().toLowerCase();
-    const queryTokens = rawQuery.split(/\s+/).filter(Boolean);
 
     let candidates = this.entries;
 
@@ -34,14 +33,22 @@ export class DictionarySearchEngine {
     }
 
     // If query is empty, return candidate list in original order
-    if (queryTokens.length === 0) {
+    if (!rawQuery) {
       return candidates;
     }
+
+    const cleanQuery = rawQuery.replace(/[^a-z0-9_ ]/g, ' ').replace(/\s+/g, ' ').trim();
+    const queryTokens = Array.from(
+      new Set([
+        ...rawQuery.split(/\s+/).filter(Boolean),
+        ...cleanQuery.split(/\s+/).filter(Boolean),
+      ])
+    );
 
     const scored: Array<{ entry: DictionaryEntry; score: number }> = [];
 
     for (const entry of candidates) {
-      const score = this.calculateScore(entry, rawQuery, queryTokens);
+      const score = this.calculateScore(entry, rawQuery, cleanQuery, queryTokens);
       if (score > 0) {
         scored.push({ entry, score });
       }
@@ -52,10 +59,30 @@ export class DictionarySearchEngine {
     return scored.map((s) => s.entry);
   }
 
-  private calculateScore(entry: DictionaryEntry, rawQuery: string, tokens: string[]): number {
+  private getWordVariants(word: string): string[] {
+    const clean = word.toLowerCase().replace(/[^a-z0-9_]/g, '');
+    const variants = new Set<string>([clean, word.toLowerCase()]);
+    if (clean.endsWith('ies') && clean.length > 4) {
+      variants.add(clean.slice(0, -3) + 'y');
+    } else if (clean.endsWith('es') && clean.length > 4) {
+      variants.add(clean.slice(0, -2));
+      variants.add(clean.slice(0, -1));
+    } else if (clean.endsWith('s') && clean.length > 3) {
+      variants.add(clean.slice(0, -1));
+    }
+    return Array.from(variants).filter(Boolean);
+  }
+
+  private calculateScore(
+    entry: DictionaryEntry,
+    rawQuery: string,
+    cleanQuery: string,
+    tokens: string[]
+  ): number {
     let score = 0;
 
     const idLower = entry.id.toLowerCase();
+    const idSpaced = idLower.replace(/_/g, ' ');
     const termLower = entry.term.toLowerCase();
     const summaryLower = (entry.summary || '').toLowerCase();
     const defLower = (entry.englishDefinition || '').toLowerCase();
@@ -65,52 +92,107 @@ export class DictionarySearchEngine {
     const symptomsLower = (entry.troubleshooting?.symptoms || []).map((s) => s.toLowerCase());
 
     // 1. Full Query Matching (Highest Priority)
-    if (idLower === rawQuery) score += 100;
-    else if (idLower.includes(rawQuery)) score += 60;
+    if (idLower === rawQuery || idSpaced === rawQuery || idSpaced === cleanQuery) {
+      score += 150;
+    } else if (idLower.includes(cleanQuery) || (cleanQuery.length > 3 && cleanQuery.includes(idLower))) {
+      score += 60;
+    }
 
-    if (termLower === rawQuery) score += 90;
-    else if (termLower.includes(rawQuery)) score += 50;
+    if (termLower === rawQuery || termLower === cleanQuery) {
+      score += 120;
+    } else if (termLower.includes(rawQuery) || termLower.includes(cleanQuery)) {
+      score += 50;
+    }
 
+    let bestErrScore = 0;
     for (const err of errorsLower) {
-      if (err === rawQuery) score += 80;
-      else if (err.includes(rawQuery)) score += 50;
+      if (err === rawQuery || err === cleanQuery) bestErrScore = Math.max(bestErrScore, 100);
+      else if (err.includes(cleanQuery) || (cleanQuery.length > 4 && cleanQuery.includes(err))) {
+        bestErrScore = Math.max(bestErrScore, 60);
+      }
     }
+    score += bestErrScore;
 
+    let bestSymScore = 0;
     for (const symptom of symptomsLower) {
-      if (symptom === rawQuery || symptom.includes(rawQuery)) score += 70;
+      if (symptom === rawQuery || symptom === cleanQuery) bestSymScore = Math.max(bestSymScore, 90);
+      else if (symptom.includes(rawQuery) || symptom.includes(cleanQuery)) bestSymScore = Math.max(bestSymScore, 70);
+      else if (cleanQuery.length > 5 && cleanQuery.includes(symptom)) bestSymScore = Math.max(bestSymScore, 60);
     }
+    score += bestSymScore;
 
+    let bestTagScore = 0;
     for (const tag of tagsLower) {
-      if (tag === rawQuery) score += 50;
-      else if (tag.includes(rawQuery)) score += 30;
+      if (tag === rawQuery || tag === cleanQuery) bestTagScore = Math.max(bestTagScore, 60);
+      else if (tag.includes(cleanQuery)) bestTagScore = Math.max(bestTagScore, 30);
+    }
+    score += bestTagScore;
+
+    if (
+      defLower.includes(cleanQuery) ||
+      summaryLower.includes(cleanQuery) ||
+      insightLower.includes(cleanQuery)
+    ) {
+      score += 25;
     }
 
-    if (defLower.includes(rawQuery) || summaryLower.includes(rawQuery) || insightLower.includes(rawQuery)) {
-      score += 30;
-    }
-
-    // 2. Token Matching (For Multi-word queries like "numbers joining", "input conversion", "name error")
+    // 2. Token & Variant Matching
     for (const token of tokens) {
-      if (idLower.includes(token)) score += 25;
-      if (termLower.includes(token)) score += 20;
+      const variants = this.getWordVariants(token);
 
-      for (const err of errorsLower) {
-        if (err.includes(token)) score += 20;
-      }
+      for (const variant of variants) {
+        if (!variant || variant.length < 2) continue;
 
-      for (const symptom of symptomsLower) {
-        if (symptom.includes(token)) score += 20;
-      }
+        // Exact match against ID or spaced ID
+        if (idLower === variant || idSpaced === variant) {
+          score += 60;
+        } else if (variant.length >= 4 && (idLower.includes(variant) || variant.includes(idLower))) {
+          score += 25;
+        }
 
-      for (const tag of tagsLower) {
-        if (tag.includes(token)) score += 15;
-      }
+        // Match against term words
+        const termWords = termLower.replace(/[^a-z0-9_ ]/g, ' ').split(/\s+/);
+        if (termWords.includes(variant)) {
+          score += 40;
+        } else if (variant.length >= 4 && termLower.includes(variant)) {
+          score += 20;
+        }
 
-      if (defLower.includes(token) || summaryLower.includes(token) || insightLower.includes(token)) {
-        score += 10;
+        // Match against error types
+        let tokenErrScore = 0;
+        for (const err of errorsLower) {
+          if (err === variant) tokenErrScore = Math.max(tokenErrScore, 40);
+          else if (variant.length >= 4 && err.includes(variant)) tokenErrScore = Math.max(tokenErrScore, 20);
+        }
+        score += tokenErrScore;
+
+        // Match against symptoms
+        let tokenSymScore = 0;
+        for (const symptom of symptomsLower) {
+          if (symptom.includes(variant)) tokenSymScore = Math.max(tokenSymScore, 25);
+        }
+        score += tokenSymScore;
+
+        // Match against tags
+        let tokenTagScore = 0;
+        for (const tag of tagsLower) {
+          if (tag === variant) tokenTagScore = Math.max(tokenTagScore, 30);
+          else if (variant.length >= 4 && tag.includes(variant)) tokenTagScore = Math.max(tokenTagScore, 15);
+        }
+        score += tokenTagScore;
+
+        // Match against definition / summary
+        if (
+          defLower.includes(variant) ||
+          summaryLower.includes(variant) ||
+          insightLower.includes(variant)
+        ) {
+          score += 10;
+        }
       }
     }
 
     return score;
   }
 }
+

@@ -5,25 +5,29 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { storage } from '@/services/LocalStorageDataService';
 import { DictionarySearchEngine } from '@/engines/dictionary/DictionarySearchEngine';
-import type { DictionaryEntry, LearnerDictionaryProgress } from '@/types/dictionary.types';
+import {
+  createDefaultDictionaryProgress,
+  type DictionaryEntry,
+  type LearnerDictionaryProgress,
+} from '@/types/dictionary.types';
 
 export const DICTIONARY_CATEGORIES = [
   { id: 'all', label: 'সকল কনসেপ্ট (All)' },
   { id: 'python_core', label: 'পাইথন কোর (Core)' },
   { id: 'data_types', label: 'ডেটা টাইপস (Data Types)' },
-  { id: 'control_flow', label: 'কন্ট্রোল ফ্লো (Flow)' },
-  { id: 'tools', label: 'টুলস ও ফাংশন (Tools)' },
+  { id: 'tools', label: 'আই/ও ও ফরম্যাটিং (Tools)' },
   { id: 'bookmarked', label: 'বুকমার্ক করা (Saved)' },
 ] as const;
 
 export function useDictionary() {
-  const [entries, setEntries] = useState<DictionaryEntry[]>([]);
+  const [entries, setEntries] = useState<DictionaryEntry[]>(() => storage.getDictionaryEntries());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [progress, setProgress] = useState<LearnerDictionaryProgress>({
-    viewedTermIds: [],
-    bookmarks: [],
-    updatedAt: new Date().toISOString(),
+  const [progress, setProgress] = useState<LearnerDictionaryProgress>(() => {
+    if (typeof window !== 'undefined') {
+      return storage.getDictionaryProgress();
+    }
+    return createDefaultDictionaryProgress();
   });
 
   // Load entries and progress on mount & on storage update

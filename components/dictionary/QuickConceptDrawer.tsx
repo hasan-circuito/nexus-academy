@@ -10,11 +10,11 @@ import { DictionaryDetailDrawer } from './DictionaryDetailDrawer';
 
 export const QuickConceptDrawer: React.FC = () => {
   const { isOpen, activeTermId, closeDrawer, openConcept } = useInSituDrawer();
-  const [entries, setEntries] = useState<DictionaryEntry[]>([]);
+  const [entries, setEntries] = useState<DictionaryEntry[]>(() => storage.getDictionaryEntries());
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>([]);
 
   useEffect(() => {
-    // Load entries on mount
+    // Load entries and bookmarks on mount
     setEntries(storage.getDictionaryEntries());
     setBookmarkedIds(storage.getDictionaryProgress().bookmarks || []);
 
@@ -39,6 +39,24 @@ export const QuickConceptDrawer: React.FC = () => {
       ) || null
     );
   }, [activeTermId, entries]);
+
+  // Track viewed terms whenever the drawer opens for an active entry
+  useEffect(() => {
+    if (isOpen && activeEntry) {
+      const currentProgress = storage.getDictionaryProgress();
+      const viewed = new Set(currentProgress.viewedTermIds || []);
+      if (!viewed.has(activeEntry.id) || currentProgress.lastAccessedTermId !== activeEntry.id) {
+        viewed.add(activeEntry.id);
+        const updated = {
+          ...currentProgress,
+          viewedTermIds: Array.from(viewed),
+          lastAccessedTermId: activeEntry.id,
+          updatedAt: new Date().toISOString(),
+        };
+        storage.saveDictionaryProgress(updated);
+      }
+    }
+  }, [isOpen, activeEntry]);
 
   const isBookmarked = activeEntry ? bookmarkedIds.includes(activeEntry.id) : false;
 
