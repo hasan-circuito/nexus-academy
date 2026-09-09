@@ -1,0 +1,857 @@
+[
+  {
+    "id": "variable",
+    "term": "Variable",
+    "banglaTerm": "ভেরিয়েবল",
+    "summary": "কম্পিউটারের মেমোরিতে কোনো মান বা তথ্য সংরক্ষণ করার একটি নামযুক্ত পাত্র বা কন্টেইনার।",
+    "banglaDefinition": "ভেরিয়েবল হলো একটি নাম যার আড়ালে মেমোরির নির্দিষ্ট স্থানে কোনো ডেটা বা মান জমা থাকে। পরবর্তীতে নাম ধরে সেটিকে ব্যবহার বা পরিবর্তন করা যায়।",
+    "englishDefinition": "A named storage location in computer memory that holds a value which can be retrieved and modified during execution.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি লেবেল লাগানো স্টোরেজ বক্স বা জারের মতো—যেখানে কোনো জিনিস রাখা যায় এবং ড্রয়ারের বাইরে নাম লেখা থাকে।",
+      "explanation": "কম্পিউটার কোনো তথ্য নিজে থেকে মনে রাখতে পারে না। মেমোরিতে একটি নামযুক্ত ড্রয়ার তৈরি করে তার ভেতর তথ্য রাখা হয়, যাতে প্রয়োজনমতো নাম ধরে ডাকা যায়।",
+      "keyInsight": "ভেরিয়েবল মেমোরিতে একটি মান ধরে রাখে, যাতে যেকোনো সময় নাম ধরে সেটিকে ব্যবহার করা যায়।"
+    },
+    "troubleshooting": {
+      "symptoms": ["variable not saving", "using variable before creating", "forgetting assignment"],
+      "associatedErrors": ["NameError"],
+      "antiPattern": {
+        "code": "score = 50\nscore + 10\nprint(score)  # Output is still 50",
+        "explanation": "মান বৃদ্ধি করার পর তা পুনরায় ভেরিয়েবলে অ্যাসাইন না করলে মূল ভেরিয়েবলের মান অপরিবর্তিত থাকে।"
+      },
+      "fixPattern": {
+        "code": "score = 50\nscore = score + 10\nprint(score)  # Output is 60",
+        "explanation": "ভেরিয়েবলের নতুন মান সংরক্ষণ করতে অ্যাসাইনমেন্ট (=) অপারেটর দিয়ে আপডেট করতে হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "player_name = \"NEXUS Learner\"\nplayer_level = 1\nprint(\"Player:\", player_name)\nprint(\"Level:\", player_level)",
+      "experimentPrompts": [
+        "player_name পরিবর্তন করে তোমার নাম লেখো",
+        "player_level এর মান 5 করে আউটপুট দেখো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "001",
+      "relatedMissionIds": ["001", "002", "003"],
+      "relatedTermIds": ["print_function", "reassignment", "data_types"],
+      "tags": ["variable", "memory", "storage", "assignment", "basics"]
+    },
+    "exampleCode": "player_name = \"NEXUS Learner\"\nprint(player_name)",
+    "relatedTermIds": ["print_function", "reassignment", "data_types"],
+    "introducedInMissionId": "001",
+    "tags": ["variable", "memory", "storage", "assignment", "basics"]
+  },
+  {
+    "id": "print_function",
+    "term": "print() Function",
+    "banglaTerm": "প্রিন্ট ফাংশন",
+    "summary": "স্ক্রিন বা কনসোলে কোনো তথ্য বা আউটপুট প্রদর্শন করার প্রাথমিক পাইথন কমান্ড।",
+    "banglaDefinition": "print() একটি বিল্ট-ইন ফাংশন যা বন্ধনীর ভেতরের টেক্সট, সংখ্যা বা ভেরিয়েবলের মান স্ক্রিনে প্রদর্শন করে।",
+    "englishDefinition": "A built-in Python function used to display information, variables, or expressions to the standard output screen or console.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি ডিজিটাল ডিসপ্লে বোর্ড বা লাউডস্পিকার—যা ভেতরের বার্তা বাইরের সবাইকে পরিষ্কারভাবে দেখায়।",
+      "explanation": "প্রোগ্রামের ভেতরে কী ঘটছে বা কোনো ভেরিয়েবলে কী মান সংরক্ষিত আছে তা ব্যবহারকারীকে দেখাতে print() ব্যবহার করা হয়।",
+      "keyInsight": "print() শুধুমাত্র স্ক্রিনে আউটপুট দেখায়, কিন্তু কোনো তথ্য মেমোরিতে স্থায়ীভাবে জমা রাখে না।"
+    },
+    "troubleshooting": {
+      "symptoms": ["nothing appears on screen", "quotes appearing around variable name", "missing parentheses"],
+      "associatedErrors": ["SyntaxError", "NameError"],
+      "antiPattern": {
+        "code": "city = \"Dhaka\"\nprint(\"city\")  # Prints the literal word 'city'",
+        "explanation": "ভেরিয়েবলের নাম কোটেশনে রাখলে তার ভেতরের মান নয়, সরাসরি 'city' শব্দটি প্রিন্ট হয়।"
+      },
+      "fixPattern": {
+        "code": "city = \"Dhaka\"\nprint(city)  # Prints 'Dhaka'",
+        "explanation": "ভেরিয়েবলের মান দেখতে কোটেশন ছাড়া ভেরিয়েবলের নাম লিখতে হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "greeting = \"স্বাগতম!\"\nprint(greeting)\nprint(\"পাইথন কোডিং শেখা শুরু হলো!\")",
+      "experimentPrompts": [
+        "একাধিক ভেরিয়েবল কমা দিয়ে একসাথে প্রিন্ট করো",
+        "নতুন মেসেজ লিখে রান করে আউটপুট দেখো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "001",
+      "relatedMissionIds": ["001", "002"],
+      "relatedTermIds": ["variable", "string", "f_strings"],
+      "tags": ["print", "output", "display", "console", "function"]
+    },
+    "exampleCode": "greeting = \"Hello!\"\nprint(greeting)",
+    "relatedTermIds": ["variable", "string", "f_strings"],
+    "introducedInMissionId": "001",
+    "tags": ["print", "output", "display", "console", "function"]
+  },
+  {
+    "id": "reassignment",
+    "term": "Variable Reassignment",
+    "banglaTerm": "ভেরিয়েবল রি-অ্যাসাইনমেন্ট",
+    "summary": "একটি ভেরিয়েবলের পুরোনো মান সরিয়ে নতুন মান স্থাপন করার প্রক্রিয়া।",
+    "banglaDefinition": "একই ভেরিয়েবলে নতুন কোনো মান অ্যাসাইন করলে আগের সংরক্ষিত মানটি মুছে গিয়ে নতুন মানটি স্থান গ্রহণ করে।",
+    "englishDefinition": "The process of overwriting an existing variable's stored value with a new value using the assignment operator.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি কাচের জারে থাকা পুরোনো মার্বেল ফেলে দিয়ে নতুন রঙের মার্বেল রাখা।",
+      "explanation": "পাইথনে একই ভেরিয়েবলে নতুন মান রাখলে পুরোনো মানটি চিরতরে মুছে যায় এবং নতুন মানটি সংরক্ষিত হয়।",
+      "keyInsight": "ভেরিয়েবলে একবারে কেবল একটি মানই সংরক্ষিত থাকে; নতুন মান আগের মানকে প্রতিস্থাপন করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["old value still showing", "order of reassignment wrong", "value overwritten unexpectedly"],
+      "associatedErrors": ["NameError"],
+      "antiPattern": {
+        "code": "points = 100\npoints = 200\n# If you expected points to still be 100 here\nprint(points)  # prints 200",
+        "explanation": "আগের মানটি আর বিদ্যমান থাকে না, সরাসরি ২০০ হয়ে যায়।"
+      },
+      "fixPattern": {
+        "code": "initial_points = 100\ncurrent_points = 200\nprint(initial_points, current_points)",
+        "explanation": "উভয় মান দরকার হলে দুটি ভিন্ন ভেরিয়েবলে সংরক্ষণ করতে হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "stage = \"Beginning\"\nprint(\"Before:\", stage)\nstage = \"Advanced\"\nprint(\"After:\", stage)",
+      "experimentPrompts": [
+        "stage এর মান আরেকবার পরিবর্তন করে দেখো",
+        "মান পরিবর্তনের আগে ও পরে প্রিন্ট করে পার্থক্য মেলাও"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "003",
+      "relatedMissionIds": ["003", "006"],
+      "relatedTermIds": ["variable", "assignment_flow"],
+      "tags": ["reassignment", "update", "state", "variable", "overwrite"]
+    },
+    "exampleCode": "count = 1\ncount = 2\nprint(count)",
+    "relatedTermIds": ["variable", "assignment_flow"],
+    "introducedInMissionId": "003",
+    "tags": ["reassignment", "update", "state", "variable", "overwrite"]
+  },
+  {
+    "id": "data_types",
+    "term": "Data Types",
+    "banglaTerm": "ডেটা টাইপস",
+    "summary": "কম্পিউটার মেমোরিতে ডেটাকে কীভাবে বিবেচনা ও পরিচালনা করবে তার শ্রেণিবিভাগ।",
+    "banglaDefinition": "ডেটা টাইপ নির্দেশ করে মানটি কী ধরনের (যেমন টেক্সট, পূর্ণসংখ্যা, বা দশমিক) এবং তার ওপর কোন কোন অপারেশন বৈধ।",
+    "englishDefinition": "A classification that specifies which type of value a variable can hold and what mathematical or relational operations can be applied to it.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "বিভিন্ন আকৃতির পাত্র—তরল রাখার বোতল বনাম কঠিন জিনিস রাখার ড্রয়ার।",
+      "explanation": "পাইথন স্বয়ংক্রিয়ভাবে বোঝে কোনটা সংখ্যা আর কোনটা টেক্সট। টাইপের ওপর নির্ভর করে অপারেশনের বৈধতা ও ফলাফল।",
+      "keyInsight": "ডেটার ধরনের ওপর নির্ভর করে পাইথনে কোন অপারেশন বৈধ আর কোনটা অবৈধ।"
+    },
+    "troubleshooting": {
+      "symptoms": ["cannot operate on mixed types", "unexpected concatenation instead of addition"],
+      "associatedErrors": ["TypeError"],
+      "antiPattern": {
+        "code": "num_str = \"10\"\n# num_str + 5 raises TypeError\nprint(\"Cannot add text and number directly\")",
+        "explanation": "স্ট্রিং এবং পূর্ণসংখ্যার সরাসরি যোগফল বের করা সম্ভব নয়।"
+      },
+      "fixPattern": {
+        "code": "num_str = \"10\"\ntotal = int(num_str) + 5\nprint(total)  # 15",
+        "explanation": "যোগ করার আগে স্ট্রিংকে ইন্টিজারে রূপান্তর করতে হবে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "text = \"Hello\"\nnumber = 42\ndecimal = 3.14\nprint(type(text))\nprint(type(number))\nprint(type(decimal))",
+      "experimentPrompts": [
+        "type() দিয়ে বিভিন্ন ডেটা টাইপ পরীক্ষা করো",
+        "বুলিয়ান (True/False) তৈরি করে তার টাইপ প্রিন্ট করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "004",
+      "relatedMissionIds": ["004", "005"],
+      "relatedTermIds": ["string", "integer", "float_type", "type_conversion"],
+      "tags": ["data_types", "type", "category", "structure"]
+    },
+    "exampleCode": "x = 10\nprint(type(x))",
+    "relatedTermIds": ["string", "integer", "float_type", "type_conversion"],
+    "introducedInMissionId": "004",
+    "tags": ["data_types", "type", "category", "structure"]
+  },
+  {
+    "id": "string",
+    "term": "String (str)",
+    "banglaTerm": "স্ট্রিং",
+    "summary": "কোটেশন চিহ্নের ভেতরে রাখা টেক্সট বা অক্ষরের ধারাবাহিক ক্রম।",
+    "banglaDefinition": "এক বা একাধিক ক্যারেক্টারকে যখন কোটেশন ('...' বা \"...\") দিয়ে ঘিরে রাখা হয়, তখন তাকে স্ট্রিং বলা হয়।",
+    "englishDefinition": "A sequence of characters enclosed in single, double, or triple quotes used to represent text in Python.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "পুঁতির মালা—প্রতিটি পুঁতি একটি করে অক্ষর এবং দুই প্রান্তে কোটেশনের গিঁট লাগানো।",
+      "explanation": "যেকোনো লেখা, বাক্য বা প্রতীক কোটেশনের ভেতর রাখলে তা স্ট্রিং হিসেবে গণ্য হয়।",
+      "keyInsight": "কোটেশনের ভেতরে যা-ই থাকুক না কেন (এমনকি সংখ্যাও), পাইথন তা লেখা হিসেবেই বিবেচনা করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["numbers behaving as words", "unterminated string", "EOL while scanning string literal"],
+      "associatedErrors": ["SyntaxError", "TypeError"],
+      "antiPattern": {
+        "code": "price = \"50\"\n# price * 2 duplicates text into '5050' instead of 100\nresult = price * 2\nprint(result)  # prints '5050'",
+        "explanation": "স্ট্রিংকে গুণ করলে টেক্সটের পুনরাবৃত্তি ঘটে, গাণিতিক হিসাব হয় না।"
+      },
+      "fixPattern": {
+        "code": "price = 50\nresult = price * 2\nprint(result)  # prints 100",
+        "explanation": "গাণিতিক হিসাবের জন্য সংখ্যাকে কোটেশন ছাড়া লিখতে হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "title = \"NEXUS Academy\"\nprint(title)\nprint(title + \" - Python Coding\")",
+      "experimentPrompts": [
+        "বিভিন্ন টেক্সট স্ট্রিং তৈরি করো",
+        "স্ট্রিং গুণ করে দেখো কী হয় (যেমন: 'Ha' * 3)"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "004",
+      "relatedMissionIds": ["004", "008", "010"],
+      "relatedTermIds": ["data_types", "concatenation", "f_strings", "type_error"],
+      "tags": ["string", "str", "text", "quotes", "characters"]
+    },
+    "exampleCode": "msg = \"Hello World\"\nprint(msg)",
+    "relatedTermIds": ["data_types", "concatenation", "f_strings", "type_error"],
+    "introducedInMissionId": "004",
+    "tags": ["string", "str", "text", "quotes", "characters"]
+  },
+  {
+    "id": "integer",
+    "term": "Integer (int)",
+    "banglaTerm": "ইন্টিজার",
+    "summary": "কোনো দশমিক বা ভগ্নাংশ ছাড়া পূর্ণ সংখ্যা (ধনাত্মক, ঋণাত্মক বা শূন্য)।",
+    "banglaDefinition": "দশমিক বিন্দু ছাড়া যেকোনো ধনাত্মক, ঋণাত্মক সংখ্যা বা শূন্যকে পাইথনে ইন্টিজার বা int বলা হয়।",
+    "englishDefinition": "A whole number, positive, negative, or zero, without any decimal point or fractional component.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "গোটা মুদ্রা বা কয়েন—যা ভাঙানো যায় না, শুধু সম্পূর্ণ সংখ্যায় গোনা যায়।",
+      "explanation": "গণনা বা হিসাব-নিকাশে দশমিক ছাড়া নিখুঁত পূর্ণসংখ্যার জন্য int ব্যবহৃত হয়।",
+      "keyInsight": "ইন্টিজারে কোনো দশমিক বিন্দু (.) থাকে না; এটি নিখুঁত পূর্ণসংখ্যা নির্দেশ করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["fractional part lost", "cannot index with float", "int conversion failure"],
+      "associatedErrors": ["ValueError", "TypeError"],
+      "antiPattern": {
+        "code": "# int('45.8') fails because it has a decimal point\ntext_val = \"45.8\"\n# Directly converting to int raises ValueError",
+        "explanation": "দশমিকযুক্ত স্ট্রিংকে সরাসরি int() এ রূপান্তর করলে ValueError হয়।"
+      },
+      "fixPattern": {
+        "code": "text_val = \"45.8\"\ncount = int(float(text_val))\nprint(count)  # 45",
+        "explanation": "প্রথমে float() এ রূপান্তর করে পরে int() এ নিলে পূর্ণাংশ পাওয়া যায়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "apples = 10\nbonus = 5\ntotal = apples + bonus\nprint(\"Total apples:\", total)",
+      "experimentPrompts": [
+        "বিয়োগ এবং গুণ করে দেখো",
+        "নেগেটিভ ইন্টিজার দিয়ে হিসাব করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "004",
+      "relatedMissionIds": ["004", "006", "009"],
+      "relatedTermIds": ["data_types", "float_type", "arithmetic_ops", "type_conversion"],
+      "tags": ["integer", "int", "number", "whole", "math"]
+    },
+    "exampleCode": "score = 100\nprint(score)",
+    "relatedTermIds": ["data_types", "float_type", "arithmetic_ops", "type_conversion"],
+    "introducedInMissionId": "004",
+    "tags": ["integer", "int", "number", "whole", "math"]
+  },
+  {
+    "id": "float_type",
+    "term": "Float (float)",
+    "banglaTerm": "ফ্লোট",
+    "summary": "দশমিক বিন্দু সম্বলিত যেকোনো বাস্তব সংখ্যা।",
+    "banglaDefinition": "দশমিক বিন্দু যুক্ত যেকোনো সংখ্যাকে পাইথনে ফ্লোটিং-পয়েন্ট নাম্বার বা সংক্ষেপে float বলা হয়।",
+    "englishDefinition": "A number that contains a decimal point, representing fractional numbers in computer memory.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "একটি পরিমাপক স্কেল বা মাপার ফ্লাস্ক—যা সঠিক ভগ্নাংশ বা দশমিক অংশ মাপতে পারে।",
+      "explanation": "যখনই কোনো সংখ্যায় দশমিক বিন্দু থাকে, পাইথনে তা float টাইপ হয়।",
+      "keyInsight": "পাইথনে সাধারণ ভাগফল (/) সর্বদা float রিটার্ন করে, এমনকি নিঃশেষে বিভাজ্য হলেও।"
+    },
+    "troubleshooting": {
+      "symptoms": ["division returning float unexpectedly", "float precision imprecision", "unexpected decimal point"],
+      "associatedErrors": ["TypeError"],
+      "antiPattern": {
+        "code": "# Division / always produces a float (e.g. 4 / 2 -> 2.0)\nitems = 4 / 2\nprint(items, type(items))",
+        "explanation": "সাধারণ ভাগ (/) সবসময় দশমিকযুক্ত ফ্লোট সংখ্যা প্রদান করে।"
+      },
+      "fixPattern": {
+        "code": "# Floor division // produces an integer\nitems = 4 // 2\nprint(items, type(items))",
+        "explanation": "পূর্ণসংখ্যার ভাগফল দরকার হলে ফ্লোর ডিভিশন (//) ব্যবহার করো।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "temp_c = 36.6\ntemp_f = temp_c * 1.8 + 32\nprint(\"Fahrenheit:\", temp_f)",
+      "experimentPrompts": [
+        "দশমিক সংখ্যা গুণ ও ভাগ করে দেখো",
+        "type() দিয়ে টাইপ পরীক্ষা করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "007",
+      "relatedMissionIds": ["007", "009"],
+      "relatedTermIds": ["integer", "zero_division", "floor_division"],
+      "tags": ["float", "decimal", "division", "precision", "number"]
+    },
+    "exampleCode": "pi = 3.14159\nprint(pi)",
+    "relatedTermIds": ["integer", "zero_division", "floor_division"],
+    "introducedInMissionId": "007",
+    "tags": ["float", "decimal", "division", "precision", "number"]
+  },
+  {
+    "id": "type_conversion",
+    "term": "Type Conversion",
+    "banglaTerm": "টাইপ কনভার্শন",
+    "summary": "এক ডেটা টাইপের মানকে অন্য ডেটা টাইপে রূপান্তর করার পদ্ধতি।",
+    "banglaDefinition": "পাইথনের int(), str(), float() ইত্যাদি বিল্ট-ইন ফাংশন দিয়ে ডেটার টাইপ পরিবর্তন করার প্রক্রিয়া।",
+    "englishDefinition": "The process of converting a value from one data type to another, such as converting a numeric string into an integer.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "মুদ্রা বিনিময় বুথ—একটি নির্দিষ্ট নোট দিয়ে সমমূল্যের অন্য কারেন্সি সংগ্রহ করা।",
+      "explanation": "int(), str(), float() ফাংশন ব্যবহার করে এক ফরম্যাটের মানকে অন্য ফরম্যাটে রূপান্তর করা হয়।",
+      "keyInsight": "ইনপুট বা টেক্সট ডেটাকে দিয়ে গাণিতিক হিসাব করতে হলে অবশ্যই int() বা float() এ রূপান্তর করতে হয়।"
+    },
+    "troubleshooting": {
+      "symptoms": ["TypeError: can only concatenate str to str", "ValueError: invalid literal for int()"],
+      "associatedErrors": ["TypeError", "ValueError"],
+      "antiPattern": {
+        "code": "user_score = \"95\"\n# user_score + 5 raises TypeError\nprint(\"Cannot add string and int directly\")",
+        "explanation": "স্ট্রিং এবং ইন্টিজার সরাসরি যোগ করা যায় না।"
+      },
+      "fixPattern": {
+        "code": "user_score = \"95\"\nfinal_score = int(user_score) + 5\nprint(final_score)  # 100",
+        "explanation": "int() ফাংশন দিয়ে স্ট্রিংকে সংখ্যায় রূপান্তর করে যোগ করা হয়েছে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "raw_input = \"250\"\nprice = int(raw_input)\ntax = price * 0.15\nprint(\"Tax:\", tax)",
+      "experimentPrompts": [
+        "str() ব্যবহার করে সংখ্যাকে টেক্সট বানাও",
+        "float() ব্যবহার করে দশমিকে রূপান্তর করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "005",
+      "relatedMissionIds": ["005", "008", "009"],
+      "relatedTermIds": ["data_types", "string", "integer", "value_error"],
+      "tags": ["conversion", "casting", "int", "str", "float", "type"]
+    },
+    "exampleCode": "s = \"10\"\nn = int(s)\nprint(n + 5)",
+    "relatedTermIds": ["data_types", "string", "integer", "value_error"],
+    "introducedInMissionId": "005",
+    "tags": ["conversion", "casting", "int", "str", "float", "type"]
+  },
+  {
+    "id": "assignment_flow",
+    "term": "Assignment Flow",
+    "banglaTerm": "অ্যাসাইনমেন্ট ফ্লো",
+    "summary": "সমান চিহ্নের ডান পাশের হিসাব সম্পন্ন করে বাম পাশের ভেরিয়েবলে সংরক্ষণ করার নিয়ম।",
+    "banglaDefinition": "পাইথনে `=` অপারেটরের কাজ হলো প্রথমে ডানদিকের এক্সপ্রেশন মূল্যায়ন করা এবং প্রাপ্ত মান বামদিকের ভেরিয়েবলে রাখা।",
+    "englishDefinition": "The two-step execution model where the expression on the right side of the = operator is evaluated completely before being assigned to the variable on the left side.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "রান্নাঘর থেকে খাবার রান্না করে ডাইনিং টেবিলের পাত্রে পরিবেশন করার দুই ধাপের প্রক্রিয়া।",
+      "explanation": "পাইথনে `=` গাণিতিক সমতা বোঝায় না, এটি একটি নির্দেশের মতো: 'আগে ডান পাশের সম্পূর্ণ হিসাব শেষ করো, তারপর ফলাফলটি বাম পাশের ভেরিয়েবলে জমা রাখো'।",
+      "keyInsight": "অ্যাসাইনমেন্ট সর্বদা ডান দিক থেকে বাম দিকে (Right to Left) কাজ করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["SyntaxError: cannot assign to expression", "putting variable on right and value on left"],
+      "associatedErrors": ["SyntaxError"],
+      "antiPattern": {
+        "code": "# In Python, 10 = x is invalid syntax!\nx = 10\nx = x + 1\nprint(x)",
+        "explanation": "সবসময় মনে রাখবে বামপাশে শুধু ভেরিয়েবলের নাম থাকবে, কোনো সংখ্যা বা সমীকরণ নয়।"
+      },
+      "fixPattern": {
+        "code": "count = 5\ncount = count + 1\nprint(count)  # 6",
+        "explanation": "ডানপাশের count + 1 হিসাব হয়ে বামপাশের count এ জমা হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "balance = 1000\ndeposit = 500\nbalance = balance + deposit\nprint(\"Current Balance:\", balance)",
+      "experimentPrompts": [
+        "balance থেকে খরচ বিয়োগ করো",
+        "স্টেপ বাই স্টেপ ভ্যালু পরিবর্তন পর্যবেক্ষণ করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "006",
+      "relatedMissionIds": ["006", "003"],
+      "relatedTermIds": ["variable", "reassignment", "arithmetic_ops"],
+      "tags": ["assignment", "pipeline", "flow", "right-to-left", "equals"]
+    },
+    "exampleCode": "total = 10\ntotal = total + 5\nprint(total)",
+    "relatedTermIds": ["variable", "reassignment", "arithmetic_ops"],
+    "introducedInMissionId": "006",
+    "tags": ["assignment", "pipeline", "flow", "right-to-left", "equals"]
+  },
+  {
+    "id": "arithmetic_ops",
+    "term": "Arithmetic Operators",
+    "banglaTerm": "পাটিগাণিতিক অপারেটর",
+    "summary": "পাইথনে মৌলিক গাণিতিক কাজ (+, -, *, /, //, %) করার বিশেষ চিহ্ন।",
+    "banglaDefinition": "গাণিতিক হিসাব নিকাশ সম্পন্ন করার জন্য ব্যবহৃত চিহ্নসমূহ যেমন যোগ (+), বিয়োগ (-), গুণ (*), ভাগ (/), ফ্লোর ভাগ (//) এবং মডিউলো (%)।",
+    "englishDefinition": "Standard mathematical symbols used to perform operations such as addition, subtraction, multiplication, and division on numbers.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি স্ট্যান্ডার্ড পকেট ক্যালকুলেটরের বিভিন্ন অপারেশন বাটন।",
+      "explanation": "সংখ্যা বা ভেরিয়েবলের ওপর যোগ (+), বিয়োগ (-), গুণ (*), ভাগ (/), ফ্লোর ভাগ (//) এবং ভাগশেষ (%) সম্পন্ন করতে ব্যবহৃত হয়।",
+      "keyInsight": "অপারেটরগুলোর অগ্রাধিকার (BODMAS/PEMDAS) মেনে পাইথন ক্রমানুসারে হিসাব করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["unexpected operation order", "string multiplying instead of adding"],
+      "associatedErrors": ["TypeError", "ZeroDivisionError"],
+      "antiPattern": {
+        "code": "# Without parentheses, multiplication runs before addition\nresult = 10 + 5 * 2\nprint(result)  # prints 20",
+        "explanation": "যোগ আগে করতে চাইলে প্রথম বন্ধনী () ব্যবহার করতে হবে।"
+      },
+      "fixPattern": {
+        "code": "# Use parentheses to force addition first\nresult = (10 + 5) * 2\nprint(result)  # prints 30",
+        "explanation": "বন্ধনী ব্যবহার করে গণনার অগ্রাধিকার নিয়ন্ত্রণ করা হয়েছে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "a = 20\nb = 6\nprint(\"Add:\", a + b)\nprint(\"Sub:\", a - b)\nprint(\"Mul:\", a * b)\nprint(\"Div:\", a / b)\nprint(\"Floor:\", a // b)\nprint(\"Mod:\", a % b)",
+      "experimentPrompts": [
+        "অন্যান্য সংখ্যা দিয়ে ট্রাই করো",
+        "বন্ধনী ব্যবহার করে হিসাবের ফলাফল যাচাই করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "006",
+      "relatedMissionIds": ["006", "007", "009"],
+      "relatedTermIds": ["integer", "float_type", "assignment_flow", "zero_division"],
+      "tags": ["arithmetic", "math", "operators", "addition", "multiplication"]
+    },
+    "exampleCode": "result = 10 + 20\nprint(result)",
+    "relatedTermIds": ["integer", "float_type", "assignment_flow", "zero_division"],
+    "introducedInMissionId": "006",
+    "tags": ["arithmetic", "math", "operators", "addition", "multiplication"]
+  },
+  {
+    "id": "zero_division",
+    "term": "ZeroDivisionError & Division",
+    "banglaTerm": "শূন্য দিয়ে ভাগ ও জিরো ডিভিশন",
+    "summary": "কোনো সংখ্যাকে শূন্য (0) দিয়ে ভাগ করার চেষ্টা করলে সৃষ্ট ত্রুটি।",
+    "banglaDefinition": "গণিতের নিয়মে শূন্য দিয়ে ভাগ অসংজ্ঞায়িত। পাইথনেও কোনো সংখ্যাকে 0 দিয়ে ভাগ বা মডিউলো করার চেষ্টা করলে ZeroDivisionError ঘটে।",
+    "englishDefinition": "A runtime exception raised when a division or modulo operation is attempted with a denominator of zero.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "১০টি মিষ্টি শূন্যজন মানুষের মাঝে সমান ভাগে ভাগ করে দেওয়ার মতো অসম্ভব চেষ্টা।",
+      "explanation": "গণিতে যেমন শূন্য দিয়ে ভাগ করা অসংজ্ঞায়িত, পাইথনেও / বা // বা % এর ডানপাশে ০ দিলে সাথে সাথে ZeroDivisionError ঘটে।",
+      "keyInsight": "ভাজক (denominator) কখনও শূন্য হতে পারে না; গণনার আগে ভাজক চেক করা আবশ্যক।"
+    },
+    "troubleshooting": {
+      "symptoms": ["division by zero", "crash when variable becomes 0", "ZeroDivisionError: division by zero"],
+      "associatedErrors": ["ZeroDivisionError"],
+      "antiPattern": {
+        "code": "total = 100\ndivisor = 0\n# total / divisor raises ZeroDivisionError\nprint(\"Divisor is 0\")",
+        "explanation": "ভাজক হিসেবে শূন্য দেওয়ায় ভাগ অপারেশন ক্র্যাশ করেছে।"
+      },
+      "fixPattern": {
+        "code": "total = 100\ndivisor = 5\nresult = total / divisor\nprint(result)  # 20.0",
+        "explanation": "ভাজক হিসেবে সর্বদা অশূন্য সংখ্যা নিশ্চিত করতে হবে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "items = 50\ngroups = 5\nif groups != 0:\n    print(\"Items per group:\", items / groups)\nelse:\n    print(\"Cannot divide by zero!\")",
+      "experimentPrompts": [
+        "groups এর মান 0 দিয়ে if-else লজিক টেস্ট করো",
+        "groups এর মান 10 দিয়ে ভাগফল পরীক্ষা করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "007",
+      "relatedMissionIds": ["007", "009"],
+      "relatedTermIds": ["float_type", "floor_division", "arithmetic_ops"],
+      "tags": ["division", "zero_division", "ZeroDivisionError", "crash", "error"]
+    },
+    "exampleCode": "x = 10 / 2\nprint(x)",
+    "relatedTermIds": ["float_type", "floor_division", "arithmetic_ops"],
+    "introducedInMissionId": "007",
+    "tags": ["division", "zero_division", "ZeroDivisionError", "crash", "error"]
+  },
+  {
+    "id": "floor_division",
+    "term": "Floor Division (//)",
+    "banglaTerm": "ফ্লোর ডিভিশন",
+    "summary": "ভাগফলের শুধুমাত্র পূর্ণসংখ্যা অংশটি গ্রহণ করার অপারেশন (ভগ্নাংশ বাদ দেওয়া হয়)।",
+    "banglaDefinition": "দুইটি সংখ্যার ভাগফল থেকে দশমিকের পরের ভগ্নাংশ বাদ দিয়ে নিচের পূর্ণসংখ্যাটি প্রদান করে // অপারেটর।",
+    "englishDefinition": "An arithmetic operator (//) that divides two numbers and rounds down the quotient to the nearest whole integer.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি বাক্সে সমান আকারের প্যাকেট রাখা—অর্ধেক প্যাকেট রাখা যাবে না, শুধু সম্পূর্ণ কয়টি রাখা যায় তা গোনা।",
+      "explanation": "সাধারণ ভাগ (/) দশমিক সংখ্যা রিটার্ন করে, কিন্তু // ভগ্নাংশ সম্পূর্ণ বাদ দিয়ে নিচের পূর্ণসংখ্যায় নামিয়ে আনে।",
+      "keyInsight": "ফ্লোর ডিভিশন দশমিক অংশ কেটে ফেলে, এটি রাউন্ডিং করে না বরং ট্রাঙ্কেট করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["expecting float but got integer", "unexpected truncation of decimals"],
+      "associatedErrors": ["ZeroDivisionError"],
+      "antiPattern": {
+        "code": "total = 7\n# If you expected 3.5\nresult = total // 2\nprint(result)  # prints 3",
+        "explanation": "সঠিক দশমিক ফলাফল চাইলে // এর বদলে সাধারণ ভাগ / ব্যবহার করা উচিত।"
+      },
+      "fixPattern": {
+        "code": "total = 7\nresult = total / 2\nprint(result)  # prints 3.5",
+        "explanation": "দশমিক সহ পূর্ণ ভাগফলের জন্য একক স্ল্যাশ (/) ব্যবহার করো।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "candies = 23\nkids = 5\nper_kid = candies // kids\nleftover = candies % kids\nprint(\"Each kid gets:\", per_kid)\nprint(\"Candies leftover:\", leftover)",
+      "experimentPrompts": [
+        "বিভিন্ন সংখ্যার ফ্লোর ভাগ এবং ভাগশেষ পরীক্ষা করো",
+        "নেগেটিভ সংখ্যার ফ্লোর ডিভিশন কেমন হয় দেখো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "007",
+      "relatedMissionIds": ["007", "006"],
+      "relatedTermIds": ["float_type", "arithmetic_ops", "zero_division"],
+      "tags": ["floor_division", "integer_division", "math", "operators"]
+    },
+    "exampleCode": "result = 7 // 2\nprint(result)",
+    "relatedTermIds": ["float_type", "arithmetic_ops", "zero_division"],
+    "introducedInMissionId": "007",
+    "tags": ["floor_division", "integer_division", "math", "operators"]
+  },
+  {
+    "id": "user_input",
+    "term": "User Input (input())",
+    "banglaTerm": "ইউজার ইনপুট",
+    "summary": "কীবোর্ড থেকে ব্যবহারকারীর লেখা তথ্য প্রোগ্রামে গ্রহণ করার ফাংশন।",
+    "banglaDefinition": "input() ফাংশন ব্যবহারকারীর কীবোর্ড থেকে ইনপুট সংগ্রহ করে সর্বদা টেক্সট (String) আকারে ফেরত দেয়।",
+    "englishDefinition": "A built-in Python function that pauses program execution to accept textual input from the user via the keyboard.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি চিঠি ফেলার ড্রপবক্স বা মাইক্রোফোন—যা ইউজারের বার্তা শুনে কম্পিউটারে পৌঁছে দেয়।",
+      "explanation": "input() প্রোগ্রামকে সাময়িক থামিয়ে দেয় এবং ইউজার যতক্ষণ এন্টার না চাপবে ততক্ষণ অপেক্ষা করে।",
+      "keyInsight": "input() ফাংশন সবসময় টেক্সট বা স্ট্রিং (str) আকারে তথ্য প্রদান করে, এমনকি ইউজার সংখ্যা লিখলেও।"
+    },
+    "troubleshooting": {
+      "symptoms": ["numbers behaving as text after input", "TypeError when doing math with input"],
+      "associatedErrors": ["TypeError", "ValueError"],
+      "antiPattern": {
+        "code": "age_str = \"25\"  # simulating input()\n# age_str + 5 raises TypeError: can only concatenate str to str\nprint(\"Input is always string!\")",
+        "explanation": "ইনপুট থেকে পাওয়া মান স্ট্রিং হওয়ায় সংখ্যার সাথে সরাসরি যোগ করা যায় না।"
+      },
+      "fixPattern": {
+        "code": "age_str = \"25\"\nage = int(age_str)\nnext_age = age + 5\nprint(next_age)  # 30",
+        "explanation": "ইনপুট নেওয়া সংখ্যা দিয়ে গণিতের কাজ করতে int() দিয়ে রূপান্তর করতে হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "name = \"Hasan\"\nage = int(\"20\")\nprint(f\"Hello {name}, next year you will be {age + 1}.\")",
+      "experimentPrompts": [
+        "বিভিন্ন মান রূপান্তর করে দেখো",
+        "দশমিক ইনপুটের জন্য float() ব্যবহার করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "008",
+      "relatedMissionIds": ["008", "009"],
+      "relatedTermIds": ["type_conversion", "concatenation", "string"],
+      "tags": ["input", "user_input", "interactive", "console", "data_entry"]
+    },
+    "exampleCode": "val = \"10\"\nprint(val)",
+    "relatedTermIds": ["type_conversion", "concatenation", "string"],
+    "introducedInMissionId": "008",
+    "tags": ["input", "user_input", "interactive", "console", "data_entry"]
+  },
+  {
+    "id": "concatenation",
+    "term": "String Concatenation",
+    "banglaTerm": "স্ট্রিং কনক্যাটেনেশন",
+    "summary": "যোগ চিহ্ন (+) ব্যবহার করে একাধিক টেক্সট বা স্ট্রিংকে জোড়া লাগানোর পদ্ধতি।",
+    "banglaDefinition": "দুই বা ততোধিক স্ট্রিং এর মাঝে + অপারেটর ব্যবহার করে তাদেরকে সংযুক্ত করে একটি দীর্ঘ স্ট্রিং তৈরি করা।",
+    "englishDefinition": "The operation of joining two or more strings end-to-end using the addition operator (+).",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি ট্রেনের দুটি বগিকে কাপলিং দিয়ে জোড়া লাগানো।",
+      "explanation": "দুই বা ততোধিক স্ট্রিংয়ের মাঝে + চিহ্ন বসালে তারা পাশাপাশি বসে একটি দীর্ঘ স্ট্রিং গঠন করে।",
+      "keyInsight": "শুধুমাত্র স্ট্রিং এর সাথেই স্ট্রিং কনক্যাটেনেশন সম্ভব; সংখ্যার সাথে স্ট্রিং + করলে টাইপ এরর হয়।"
+    },
+    "troubleshooting": {
+      "symptoms": ["TypeError: can only concatenate str (not 'int') to str", "numbers joining instead of adding (e.g. '10' + '20' = '1020')"],
+      "associatedErrors": ["TypeError"],
+      "antiPattern": {
+        "code": "score = 100\n# \"Score: \" + score raises TypeError\nmsg = \"Score: \" + str(score)\nprint(msg)",
+        "explanation": "স্ট্রিংয়ের সাথে সরাসরি ইন্টিজার সংখ্যা জোড়া দেওয়া যায় না।"
+      },
+      "fixPattern": {
+        "code": "score = 100\nmsg = f\"Score: {score}\"\nprint(msg)",
+        "explanation": "f-string বা str() ব্যবহার করে টেক্সট ও সংখ্যা সুন্দরভাবে যুক্ত করা যায়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "first = \"NEXUS\"\nsecond = \"Academy\"\nfull = first + \" \" + second\nprint(full)",
+      "experimentPrompts": [
+        "মাঝখানে স্পেস বা যতিচিহ্ন যোগ করো",
+        "তিনটি স্ট্রিং জোড়া লাগিয়ে দেখো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "008",
+      "relatedMissionIds": ["008", "010"],
+      "relatedTermIds": ["string", "type_conversion", "f_strings", "type_error"],
+      "tags": ["concatenation", "join", "strings", "plus_operator", "text"]
+    },
+    "exampleCode": "greeting = \"Hello \" + \"World\"\nprint(greeting)",
+    "relatedTermIds": ["string", "type_conversion", "f_strings", "type_error"],
+    "introducedInMissionId": "008",
+    "tags": ["concatenation", "join", "strings", "plus_operator", "text"]
+  },
+  {
+    "id": "f_strings",
+    "term": "f-strings (Formatted Strings)",
+    "banglaTerm": "এফ-স্ট্রিং",
+    "summary": "স্ট্রিংয়ের শুরুতে 'f' লিখে বন্ধনী { } এর ভেতর সরাসরি ভেরিয়েবল বসানোর আধুনিক ও গতিশীল পদ্ধতি।",
+    "banglaDefinition": "f-string হলো পাইথন ৩.৬+ এর টেক্সট ফরম্যাটিং স্টাইল যেখানে স্ট্রিংয়ের শুরুতে f বসে এবং {} এর ভেতর যেকোনো এক্সপ্রেশন লেখা যায়।",
+    "englishDefinition": "A string literal prefixed with 'f' or 'F' that allows embedded Python expressions inside replacement fields marked by curly braces {}.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি শূন্যস্থান পূরণ করার ফরম—যেখানে বন্ধনীর ভেতর নির্দিষ্ট ভেরিয়েবলের তথ্য স্বয়ংক্রিয়ভাবে বসে যায়।",
+      "explanation": "কোটেশনের শুরুতে f লিখতে হয়। বন্ধনী {} এর ভেতরের পাইথন কোড হিসাব হয়ে সরাসরি টেক্সটে মিশে যায়।",
+      "keyInsight": "f-string এ আলাদা করে str() রূপান্তর বা + চিহ্ন ব্যবহারের ঝামেলা থাকে না; এটি কোডকে অনেক পরিচ্ছন্ন রাখে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["literal {var} appearing in output", "forgot 'f' prefix before string", "SyntaxError inside f-string expression"],
+      "associatedErrors": ["SyntaxError", "NameError"],
+      "antiPattern": {
+        "code": "name = \"Rahim\"\n# Forgot 'f' prefix\nmsg = \"Hello, {name}!\"\nprint(msg)  # prints 'Hello, {name}!'",
+        "explanation": "শুরুতে f না দিলে বন্ধনীগুলোকে পাইথন সাধারণ অক্ষর হিসেবে গণ্য করে।"
+      },
+      "fixPattern": {
+        "code": "name = \"Rahim\"\nmsg = f\"Hello, {name}!\"\nprint(msg)  # prints 'Hello, Rahim!'",
+        "explanation": "স্ট্রিংয়ের কোটেশনের ঠিক আগে 'f' যোগ করতে হবে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "item = \"Python Book\"\nprice = 450\nqty = 2\nprint(f\"Total for {qty} copies of {item}: {price * qty} Taka\")",
+      "experimentPrompts": [
+        "f-string এর ভেতর গাণিতিক হিসাব করে দেখো",
+        "নতুন ভেরিয়েবল তৈরি করে বাক্যে বসাও"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "010",
+      "relatedMissionIds": ["010", "008"],
+      "relatedTermIds": ["string", "concatenation", "print_function"],
+      "tags": ["f_strings", "formatting", "template", "clean_code", "interpolation"]
+    },
+    "exampleCode": "name = \"Alice\"\nprint(f\"Hello, {name}!\")",
+    "relatedTermIds": ["string", "concatenation", "print_function"],
+    "introducedInMissionId": "010",
+    "tags": ["f_strings", "formatting", "template", "clean_code", "interpolation"]
+  },
+  {
+    "id": "syntax_error",
+    "term": "SyntaxError",
+    "banglaTerm": "সিনট্যাক্স এরর",
+    "summary": "পাইথনের ব্যাকরণ বা কোড লেখার নিয়ম ভঙ্গ করলে ইন্টারপ্রেটার যে ত্রুটি দেখায়।",
+    "banglaDefinition": "কোড লেখার সময় বন্ধনী, কোটেশন বা কোলন মিস হলে কিংবা পাইথনের কাঠামোগত নিয়ম ভঙ্গ হলে প্রোগ্রাম চলার আগেই SyntaxError হয়।",
+    "englishDefinition": "An error detected by the Python parser when source code violates the formal grammatical rules of the Python language.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "ভাষার ব্যাকরণে যতিচিহ্ন ভুল করা—যেমন বাক্যের মাঝে অযথা দাড়ি দেওয়া বা কোটেশন বন্ধ না করা।",
+      "explanation": "কোটেশন শেষ না করা, বন্ধনী মিস করা বা কোলন না দিলে পাইথন কোড রান করার আগেই সিনট্যাক্স এরর দেয়।",
+      "keyInsight": "সিনট্যাক্স এরর হলে প্রোগ্রামের এক লাইন কোডও চলে না; এটি রান করার আগেই ধরা পড়ে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["invalid syntax", "unexpected EOF while parsing", "unterminated string literal", "code fails before running"],
+      "associatedErrors": ["SyntaxError"],
+      "antiPattern": {
+        "code": "# Missing closing quotes or parentheses causes SyntaxError\n# e.g.: print(\"Hello)\nprint(\"Always close your quotes!\")",
+        "explanation": "কোটেশন বা প্রথম বন্ধনী বন্ধ না করলে ইন্টারপ্রেটার কোথায় লাইন শেষ হয়েছে বুঝতে পারে না।"
+      },
+      "fixPattern": {
+        "code": "print(\"Hello world\")",
+        "explanation": "প্রতিটি কোটেশন এবং বন্ধনী সঠিকভাবে জোড়া মিলিয়ে শেষ করো।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "message = \"Syntax errors are easy to fix once you check quotes and brackets!\"\nprint(message)",
+      "experimentPrompts": [
+        "বন্ধনী ও কোটেশনের জোড়া মিলিয়ে কোড পরীক্ষা করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "001",
+      "relatedMissionIds": ["001", "002", "004"],
+      "relatedTermIds": ["print_function", "string", "indentation_error"],
+      "tags": ["syntax_error", "syntax", "grammar", "parsing", "error"]
+    },
+    "exampleCode": "print(\"Valid syntax\")",
+    "relatedTermIds": ["print_function", "string", "indentation_error"],
+    "introducedInMissionId": "001",
+    "tags": ["syntax_error", "syntax", "grammar", "parsing", "error"]
+  },
+  {
+    "id": "name_error",
+    "term": "NameError",
+    "banglaTerm": "নেইম এরর",
+    "summary": "তৈরি না করা বা ভুল বানানের কোনো ভেরিয়েবল বা ফাংশনের নাম ডাকার চেষ্টা করলে এই এরর হয়।",
+    "banglaDefinition": "পাইথনে কোনো ভেরিয়েবল বা আইডেন্টিফায়ার আগে তৈরি (define) না করে বা ভুল বানানে ব্যবহার করতে গেলে NameError ঘটে।",
+    "englishDefinition": "A runtime error raised when the code attempts to access a local or global identifier (variable or function) that has not been defined.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "এমন কাউকে ক্লাসে ডাকা যার নাম রেজিস্টার খাতায় বা হাজিরা বইয়ে ওঠেনি।",
+      "explanation": "পাইথন যখন এমন কোনো শব্দের মুখোমুখি হয় যা কোনো কি-ওয়ার্ড নয় এবং আগে ডিফাইনও করা হয়নি, তখন NameError দেয়।",
+      "keyInsight": "পাইথন কেস-সেন্সিটিভ (Case-sensitive); Name এবং name সম্পূর্ণ আলাদা দুটি জিনিস!"
+    },
+    "troubleshooting": {
+      "symptoms": ["name 'xyz' is not defined", "variable spelling mistake", "capitalization mistake"],
+      "associatedErrors": ["NameError"],
+      "antiPattern": {
+        "code": "user_score = 100\n# spelling mistake: user_scor instead of user_score\n# print(user_scor) raises NameError\nprint(user_score)",
+        "explanation": "ভেরিয়েবলের বানানে ভুল বা কেসিং অসঙ্গতি থাকলে পাইথন তাকে চিনতে পারে না।"
+      },
+      "fixPattern": {
+        "code": "user_score = 100\nprint(user_score)",
+        "explanation": "ভেরিয়েবল তৈরি করার সময়ের বানান ও ব্যবহারের সময়ের বানান হুবহু মেলাও।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "target_city = \"Chittagong\"\nprint(\"Target:\", target_city)",
+      "experimentPrompts": [
+        "বানান ও বড়/ছোট হাতের অক্ষরের মিল পরীক্ষা করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "002",
+      "relatedMissionIds": ["002", "001", "003"],
+      "relatedTermIds": ["variable", "print_function", "reassignment"],
+      "tags": ["name_error", "not_defined", "spelling", "case_sensitive", "identifier"]
+    },
+    "exampleCode": "city = \"Sylhet\"\nprint(city)",
+    "relatedTermIds": ["variable", "print_function", "reassignment"],
+    "introducedInMissionId": "002",
+    "tags": ["name_error", "not_defined", "spelling", "case_sensitive", "identifier"]
+  },
+  {
+    "id": "type_error",
+    "term": "TypeError",
+    "banglaTerm": "টাইপ এরর",
+    "summary": "কোনো ডেটা টাইপের ওপর এমন কাজ করার চেষ্টা করা যা ওই টাইপের জন্য অনুমোদিত নয়।",
+    "banglaDefinition": "যখন কোনো অনুপযুক্ত ডেটা টাইপের ওপর অপারেশন চালানো হয় (যেমন স্ট্রিং এর সাথে পূর্ণসংখ্যার সরাসরি যোগ), তখন পাইথন TypeError জারি করে।",
+    "englishDefinition": "An exception raised when an operation or function is applied to an object of an inappropriate or unsupported data type.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "গোলাকার প্লাগে চারকোনা সকেট ঢোকানোর চেষ্টা—টাইপ না মিললে অপারেশন সংযোগ পায় না।",
+      "explanation": "উদাহরণস্বরূপ, টেক্সট এবং সংখ্যার মধ্যে সরাসরি যোগ করার চেষ্টা করলে পাইথন টাইপ এরর জারি করে।",
+      "keyInsight": "টাইপ এরর সমাধান করতে হয় ডেটা কনভার্ট করে অথবা সঠিক ডেটা টাইপ নির্বাচন করে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["can only concatenate str (not 'int') to str", "unsupported operand type(s)", "numbers joining instead of adding"],
+      "associatedErrors": ["TypeError"],
+      "antiPattern": {
+        "code": "score = 50\n# \"Score is: \" + 50 raises TypeError\ntext = \"Score is: \" + str(score)\nprint(text)",
+        "explanation": "কোটেশনযুক্ত টেক্সট এবং সাধারণ সংখ্যার মধ্যে সরাসরি + চিহ্ন ব্যবহার করলে টাইপ এরর হয়।"
+      },
+      "fixPattern": {
+        "code": "score = 50\ntext = f\"Score is: {score}\"\nprint(text)",
+        "explanation": "f-string ব্যবহার করে অথবা str() ফাংশন দিয়ে রূপান্তর করে সমস্যার সমাধান করা হয়।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "items = 3\nprice = 150\nprint(f\"Total cost: {items * price}\")",
+      "experimentPrompts": [
+        "f-string দিয়ে যেকোনো টাইপের ভেরিয়েবল সহজে প্রিন্ট করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "005",
+      "relatedMissionIds": ["005", "004", "008"],
+      "relatedTermIds": ["data_types", "type_conversion", "concatenation", "value_error"],
+      "tags": ["type_error", "type_mismatch", "casting", "incompatible", "error"]
+    },
+    "exampleCode": "x = \"5\"\ny = int(x)\nprint(y + 10)",
+    "relatedTermIds": ["data_types", "type_conversion", "concatenation", "value_error"],
+    "introducedInMissionId": "005",
+    "tags": ["type_error", "type_mismatch", "casting", "incompatible", "error"]
+  },
+  {
+    "id": "indentation_error",
+    "term": "IndentationError",
+    "banglaTerm": "ইন্ডেন্টেশন এরর",
+    "summary": "কোড লাইনের শুরুর ফাঁকা জায়গা (স্পেস বা ট্যাব) পাইথনের নিয়ম অনুযায়ী সুষম না হলে এই ত্রুটি হয়।",
+    "banglaDefinition": "পাইথনে কোড ব্লক বোঝাতে স্পেস বা ইন্ডেন্টেশন ব্যবহার করা হয়। লাইনের শুরুতে অনাকাঙ্ক্ষিত ফাঁকা জায়গা দিলে IndentationError ঘটে।",
+    "englishDefinition": "A subclass of SyntaxError raised when code lines are incorrectly indented or improperly aligned.",
+    "category": "python_core",
+    "mentalModel": {
+      "analogy": "একটি বইয়ের অনুচ্ছেদের মার্জিন—সব সাধারণ লাইন একই সোজা দাগে থাকবে, কোনোটি অযথা ডানে সরে যাবে না।",
+      "explanation": "অন্যান্য ভাষার মতো পাইথনে কার্লি ব্র্যাকেট নেই, তাই কোডের ব্লক বোঝাতে ইন্ডেন্টেশন ব্যবহার করা হয়। লাইনের শুরুতে অযথা স্পেস দিলে এই এরর হয়।",
+      "keyInsight": "সাধারণ লাইনের শুরুতে কোনো ফাঁকা জায়গা রাখা যাবে না; ব্লকের ভেতরে সমানসংখ্যক স্পেস দিতে হবে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["unexpected indent", "unindent does not match any outer indentation level", "expected an indented block"],
+      "associatedErrors": ["IndentationError"],
+      "antiPattern": {
+        "code": "# Unnecessary spaces at the start of a regular line cause IndentationError\nx = 10\n#   y = 20  <- unexpected indent\ny = 20\nprint(x + y)",
+        "explanation": "সাধারণ লাইনের শুরুতে স্পেস দিলে পাইথন ভাবে এটি কোনো ব্লকের অংশ, যা ইন্ডেন্টেশন এরর তৈরি করে।"
+      },
+      "fixPattern": {
+        "code": "x = 10\ny = 20\nprint(x + y)",
+        "explanation": "সব লাইন বাম প্রান্তের সাথে সমান সোজা করে সাজিয়ে রাখো।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "name = \"NEXUS\"\nlevel = 5\nprint(\"Name:\", name)\nprint(\"Level:\", level)",
+      "experimentPrompts": [
+        "লাইনের শুরুর মার্জিন পরিষ্কার ও সমান রাখো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "001",
+      "relatedMissionIds": ["001", "006"],
+      "relatedTermIds": ["syntax_error", "variable"],
+      "tags": ["indentation_error", "indent", "whitespace", "spacing", "alignment"]
+    },
+    "exampleCode": "a = 1\nb = 2\nprint(a + b)",
+    "relatedTermIds": ["syntax_error", "variable"],
+    "introducedInMissionId": "001",
+    "tags": ["indentation_error", "indent", "whitespace", "spacing", "alignment"]
+  },
+  {
+    "id": "value_error",
+    "term": "ValueError",
+    "banglaTerm": "ভ্যালু এরর",
+    "summary": "ফাংশনটি সঠিক টাইপের ডেটা পেলেও তার ভেতরের মান বা ফরম্যাট অনুপযুক্ত হলে সৃষ্ট ত্রুটি।",
+    "banglaDefinition": "যখন কোনো ফাংশন এমন একটি আর্গুমেন্ট গ্রহণ করে যার টাইপ ঠিক আছে কিন্তু মান বা ফরম্যাট গ্রহণযোগ্য নয় (যেমন int(\"abc\")), তখন ValueError হয়।",
+    "englishDefinition": "A runtime exception raised when a built-in operation or function receives an argument that has the right data type but an inappropriate value.",
+    "category": "data_types",
+    "mentalModel": {
+      "analogy": "একটি কয়েন স্লটে ভুল আকারের বা ভুল দেশের মুদ্রা প্রবেশ করানো—স্লটটি ধাতু আশা করলেও মুদ্রাটি গৃহীত হয় না।",
+      "explanation": "int() ফাংশন স্ট্রিং গ্রহণ করতে পারে, কিন্তু স্ট্রিংটিতে যদি 'hello' থাকে তবে সেটিকে সংখ্যায় রূপান্তর করা অসম্ভব, ফলে ValueError হয়।",
+      "keyInsight": "টাইপ ঠিক আছে কিন্তু ভেতরের মান অসংগত হলে ValueError ঘটে।"
+    },
+    "troubleshooting": {
+      "symptoms": ["invalid literal for int() with base 10", "cannot convert string to number", "conversion crash"],
+      "associatedErrors": ["ValueError"],
+      "antiPattern": {
+        "code": "user_text = \"forty-two\"\n# int(user_text) raises ValueError because letters cannot form an integer\nprint(\"Cannot convert word to number\")",
+        "explanation": "int() শুধুমাত্র গাণিতিক সংখ্যাযুক্ত স্ট্রিং যেমন '42' রূপান্তর করতে পারে।"
+      },
+      "fixPattern": {
+        "code": "user_text = \"42\"\nnumber = int(user_text)\nprint(number + 8)  # 50",
+        "explanation": "রূপান্তর করার আগে নিশ্চিত করো স্ট্রিংটিতে কেবল অঙ্ক (digits) আছে।"
+      }
+    },
+    "sandbox": {
+      "starterCode": "numeric_str = \"123\"\nval = int(numeric_str)\nprint(\"Converted successfully:\", val)",
+      "experimentPrompts": [
+        "সঠিক সংখ্যার স্ট্রিং রূপান্তর করে পরীক্ষা করো"
+      ]
+    },
+    "curriculum": {
+      "introducedInMissionId": "005",
+      "relatedMissionIds": ["005", "009"],
+      "relatedTermIds": ["type_conversion", "type_error", "integer"],
+      "tags": ["value_error", "invalid_literal", "int_conversion", "parsing", "error"]
+    },
+    "exampleCode": "s = \"50\"\nn = int(s)\nprint(n)",
+    "relatedTermIds": ["type_conversion", "type_error", "integer"],
+    "introducedInMissionId": "005",
+    "tags": ["value_error", "invalid_literal", "int_conversion", "parsing", "error"]
+  }
+]

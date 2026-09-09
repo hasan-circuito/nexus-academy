@@ -4,7 +4,8 @@
 import React from 'react';
 import { ExecutionResult, EvaluationResult } from '@/engines/python/python.types';
 import { PythonErrorInterpreter } from '@/engines/python/PythonErrorInterpreter';
-import { Terminal, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
+import { Terminal, AlertCircle, CheckCircle2, Clock, BookOpen } from 'lucide-react';
+import { openConcept } from '@/hooks/useInSituDrawer';
 
 export interface ExecutionOutputProps {
   result: ExecutionResult | null;
@@ -135,6 +136,19 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({
               {interpretedError.correctedExample && (
                 <div className="bg-black/50 p-3 rounded font-mono text-xs text-red-300 whitespace-pre-wrap border border-red-900/30">
                   {interpretedError.correctedExample}
+                </div>
+              )}
+
+              {interpretedError.relatedDictionaryTermId && (
+                <div className="mt-3.5">
+                  <button
+                    type="button"
+                    onClick={() => openConcept(interpretedError.relatedDictionaryTermId!)}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-primary/20 hover:bg-primary/30 border border-primary/40 text-primary-foreground font-bangla text-xs font-semibold transition-all hover:scale-[1.02] shadow-sm cursor-pointer"
+                  >
+                    <BookOpen size={14} className="text-primary" />
+                    <span>ডিকশনারিতে কনসেপ্ট ও ফিক্স প্যাটার্ন দেখো ↗</span>
+                  </button>
                 </div>
               )}
 

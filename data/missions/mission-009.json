@@ -114,11 +114,11 @@
         ],
         "requiredPatterns": [
           "int\\s*\\(\\s*input",
-          "print\\s*\\(\\s*[\"']Total is[\"']\\s*,\\s*num1\\s*\\+\\s*num2\\s*\\)"
+          "print\\s*\\(\\s*(f?[\"']Total is|[\"']Total is[\"'])"
         ],
         "feedbackMessages": {
           "onPass": "দারুণ! তুমি ডাইনামিক ম্যাথ করা শিখে গেছ!",
-          "onPatternFail": "num2 কি int() দিয়ে ইনপুট নিয়েছ? print এর ভেতর num1 + num2 ঠিকমতো লিখেছ কি?",
+          "onPatternFail": "num2 কি int() দিয়ে ইনপুট নিয়েছ? 'Total is' লেখাটি প্রিন্ট করেছ কি?",
           "onMissingVariable": "num1 এবং num2 ভেরিয়েবল দুটো ঠিক আছে তো?"
         }
       },
@@ -145,7 +145,7 @@
           "quantity"
         ],
         "requiredPatterns": [
-          "print\\s*\\(\\s*[\"']Total cost is[\"']\\s*,\\s*price\\s*\\*\\s*quantity\\s*\\)"
+          "print\\s*\\(\\s*(f?[\"']Total cost is|[\"']Total cost is[\"'])"
         ],
         "feedbackMessages": {
           "onPass": "পারফেক্ট! রিয়েল ওয়ার্ল্ড সফটওয়্যার এভাবেই কাজ করে।",

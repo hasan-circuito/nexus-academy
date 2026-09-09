@@ -5,6 +5,7 @@ import { HelpCircle, Check, Play, RotateCcw } from 'lucide-react';
 import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
+import { PythonEngine } from '@/engines/python/PythonEngine';
 import { usePracticeCode } from '@/hooks/usePracticeCode';
 import { OutputComparator } from '@/engines/python/OutputComparator';
 import { ValidationEngine } from '@/engines/python/ValidationEngine';
@@ -40,7 +41,22 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
         : { type: 'exact_output' as const, value: step.expectedOutput, expectedOutput: step.expectedOutput };
       
       // Dynamic comparison using the actual inputs entered by the user
-      const comparisonTarget = config.type === 'exact_output' ? config.value : config.expectedOutput;
+      let comparisonTarget = config.type === 'exact_output' ? config.value : config.expectedOutput;
+
+      // If learner provided custom interactive inputs and reference solution exists,
+      // run reference solution with those exact inputs to compute the true programmatic expected output.
+      if (step.solution && inputs && inputs.length > 0) {
+        try {
+          const solutionRes = await PythonEngine.getInstance().runCode(step.solution, { inputs });
+          if (solutionRes.success && solutionRes.stdout) {
+            comparisonTarget = solutionRes.stdout;
+            config.expectedOutput = solutionRes.stdout;
+          }
+        } catch (e) {
+          // Keep static comparisonTarget on error
+        }
+      }
+
       const comparison = OutputComparator.compare(result.stdout, comparisonTarget, {
         code,
         userInputs: inputs,

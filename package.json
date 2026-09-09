@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node scripts/validate-missions.mjs && node scripts/test-event-bus.mjs",
+    "test": "node scripts/validate-missions.mjs && node scripts/test-event-bus.mjs && node scripts/validate-dictionary.mjs",
     "test:missions": "node scripts/validate-missions.mjs",
-    "test:events": "node scripts/test-event-bus.mjs"
+    "test:events": "node scripts/test-event-bus.mjs",
+    "test:dictionary": "node scripts/validate-dictionary.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

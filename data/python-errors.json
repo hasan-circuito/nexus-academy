@@ -5,7 +5,8 @@
     "explanation": "পাইথন তোমার কোডটি বুঝতে পারছে না কারণ এটি লেখার নিয়মে ভুল আছে।",
     "whyItHappened": "সাধারণত কোনো ব্র্যাকেট, কোটেশন মার্ক (\") বা কোলন (:) মিস হলে এই এররটি হয়।",
     "howToFix": "কোডটি ভালোভাবে চেক করো, কোনো চিহ্ন বাদ পড়েছে কিনা দেখো।",
-    "correctedExample": "ভুল: print(\"Hello) \nসঠিক: print(\"Hello\")"
+    "correctedExample": "ভুল: print(\"Hello) \nসঠিক: print(\"Hello\")",
+    "relatedDictionaryTermId": "syntax_error"
   },
   {
     "errorType": "NameError",
@@ -13,7 +14,8 @@
     "explanation": "তুমি এমন একটি নাম বা ভেরিয়েবল ব্যবহার করছো যা পাইথন চেনে না।",
     "whyItHappened": "হয়তো তুমি ভেরিয়েবলটি তৈরি করোনি, অথবা নামের বানানে ভুল করেছো।",
     "howToFix": "ভেরিয়েবলের নাম ঠিক আছে কিনা এবং এটি আগে তৈরি করা হয়েছে কিনা তা চেক করো।",
-    "correctedExample": "ভুল: print(nam) \nসঠিক: print(name)"
+    "correctedExample": "ভুল: print(nam) \nসঠিক: print(name)",
+    "relatedDictionaryTermId": "name_error"
   },
   {
     "errorType": "TypeError",
@@ -21,7 +23,8 @@
     "explanation": "তুমি দুটি ভিন্ন ধরণের ডেটা নিয়ে এমন কাজ করতে চাচ্ছো যা সম্ভব নয়।",
     "whyItHappened": "যেমন একটি স্ট্রিং (টেক্সট) এর সাথে একটি ইন্টিজার (সংখ্যা) যোগ করার চেষ্টা করলে এই এরর হয়।",
     "howToFix": "ডেটা টাইপগুলো চেক করো। টেক্সটের সাথে সংখ্যা যোগ করতে চাইলে সংখ্যাটিকে str() দিয়ে টেক্সটে রূপান্তর করে নাও।",
-    "correctedExample": "ভুল: age = \"Your age is \" + 20 \nসঠিক: age = \"Your age is \" + str(20)"
+    "correctedExample": "ভুল: age = \"Your age is \" + 20 \nসঠিক: age = \"Your age is \" + str(20)",
+    "relatedDictionaryTermId": "type_error"
   },
   {
     "errorType": "IndentationError",
@@ -29,7 +32,8 @@
     "explanation": "কোডের শুরুতে যে ফাঁকা জায়গা (space/tab) থাকে, সেখানে ভুল হয়েছে।",
     "whyItHappened": "পাইথন ব্লক (if, for, def ইত্যাদি) বোঝার জন্য নির্দিষ্ট পরিমাণ ফাঁকা জায়গা আশা করে। এছাড়া সাধারণ লাইনের শুরুতে কোনো স্পেস থাকা যায় না। আপনি হয়তো ভুল করে লাইনের শুরুতে স্পেস দিয়ে ফেলেছেন!",
     "howToFix": "লাইনের শুরুতে থাকা অতিরিক্ত স্পেস মুছে ফেলুন। আর যদি if/for ব্লক হয়, তবে ঠিক ৪টি স্পেস বা ১টি ট্যাব ব্যবহার করুন।",
-    "correctedExample": "ভুল (অযথা স্পেস):\n name = \"Hasan\"\n\nসঠিক:\nname = \"Hasan\""
+    "correctedExample": "ভুল (অযথা স্পেস):\n name = \"Hasan\"\n\nসঠিক:\nname = \"Hasan\"",
+    "relatedDictionaryTermId": "indentation_error"
   },
   {
     "errorType": "EOFError",
@@ -37,7 +41,8 @@
     "explanation": "প্রোগ্রাম ইউজারের কাছ থেকে input() আশা করছিল, কিন্তু ব্রাউজারের ইনপুট স্ট্রিম শেষ হয়ে গেছে।",
     "whyItHappened": "ব্রাউজার স্যান্ডবক্সে input() কল করার সময় ইনপুট ভ্যালু না পেলে বা ইনপুট শেষ হয়ে গেলে এই এরর হয়।",
     "howToFix": "input() ফাংশনে ইউজার ইনপুট পাঠানো নিশ্চিত করো, অথবা ভেরিয়েবলে সরাসরি ডেটা অ্যাসাইন করো।",
-    "correctedExample": "সরাসরি মান দিতে: name = \"Hasan\"\nইনপুট দিতে: name = input(\"Enter name: \")"
+    "correctedExample": "সরাসরি মান দিতে: name = \"Hasan\"\nইনপুট দিতে: name = input(\"Enter name: \")",
+    "relatedDictionaryTermId": "user_input"
   },
   {
     "errorType": "ZeroDivisionError",
@@ -45,7 +50,8 @@
     "explanation": "গণিতে কোনো সংখ্যাকে শূন্য (0) দিয়ে ভাগ করা যায় না। পাইথনেও তাই 0 দিয়ে ভাগ করতে গেলে এই এরর হয়।",
     "whyItHappened": "তুমি হর (denominator) হিসেবে 0 দিয়েছো, অথবা ভেরিয়েবলের মান কমে 0 হয়ে গেছে।",
     "howToFix": "নিশ্চিত করো যাতে ভাজক কখনো 0 না হয়।",
-    "correctedExample": "ভুল: 10 / 0 \nসঠিক: 10 / 2"
+    "correctedExample": "ভুল: 10 / 0 \nসঠিক: 10 / 2",
+    "relatedDictionaryTermId": "zero_division"
   },
   {
     "errorType": "ValueError",
@@ -53,7 +59,8 @@
     "explanation": "ফাংশনটি যে ধরনের মান আশা করছিল, তুমি ভুল ফরম্যাটের মান দিয়েছো।",
     "whyItHappened": "যেমন int(\"hello\") লেখার চেষ্টা করলে পাইথন অক্ষরের স্ট্রিংকে সংখ্যায় রূপান্তর করতে পারে না।",
     "howToFix": "int() এ কনভার্ট করার আগে নিশ্চিত করো স্ট্রিংটিতে শুধু সংখ্যা আছে।",
-    "correctedExample": "ভুল: int(\"dhaka\") \nসঠিক: int(\"2026\")"
+    "correctedExample": "ভুল: int(\"dhaka\") \nসঠিক: int(\"2026\")",
+    "relatedDictionaryTermId": "value_error"
   },
   {
     "errorType": "IndexError",

@@ -2,8 +2,8 @@
   {
     "id": "001",
     "title": "Software Memory and Variables",
-    "banglaTitle": "সফটওয়্যারের মেমোরি",
-    "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
+    "banglaTitle": "সফটওয়্যারের মেমোরি",
+    "banglaSubtitle": "সফটওয়্যার কি মনে রাখতে পারে?",
     "description": "Learn how software remembers information using variables",
     "status": "unlocked",
     "estimatedMinutes": 25,
@@ -20,7 +20,7 @@
     "id": "002",
     "title": "Using Software Memory",
     "banglaTitle": "মেমোরি ব্যবহার",
-    "banglaSubtitle": "মনে রাখা তথ্য কেন গুরুত্বপূর্ণ?",
+    "banglaSubtitle": "মনে রাখা তথ্য কীভাবে কাজে লাগাবো?",
     "description": "Learn how to use stored information with print()",
     "status": "locked",
     "estimatedMinutes": 20,
@@ -37,7 +37,7 @@
     "id": "003",
     "title": "When Memory Changes",
     "banglaTitle": "মেমোরি যখন বদলে যায়",
-    "banglaSubtitle": "বাস্তবতা বদলালে মেমোরি কীভাবে আপডেট হয়?",
+    "banglaSubtitle": "মানুষের মনের মতো মেমোরির তথ্যও কি পাল্টায়?",
     "description": "Learn how stored information can be updated when reality changes",
     "status": "locked",
     "estimatedMinutes": 18,
@@ -49,5 +49,124 @@
       "topicSlug": "variable_reassignment"
     },
     "tags": ["python", "variable", "reassignment", "update", "state"]
+  },
+  {
+    "id": "004",
+    "title": "When Information Has a Type",
+    "banglaTitle": "সব তথ্য কি একই ধরনের?",
+    "banglaSubtitle": "কম্পিউটার কেন জানতে চায়, তুমি কী ধরনের তথ্য তাকে দিয়েছ?",
+    "description": "Learn how data types differentiate numbers from text and why quotes matter",
+    "status": "locked",
+    "estimatedMinutes": 15,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["003"],
+      "enablesIds": ["005"],
+      "relatedIds": [],
+      "topicSlug": "data_types"
+    },
+    "tags": ["python", "data_types", "string", "integer", "types"]
+  },
+  {
+    "id": "005",
+    "title": "When Information Must Change Form",
+    "banglaTitle": "Information বদলাতে হলে কী হবে?",
+    "banglaSubtitle": "এক ধরনের ডেটাকে অন্য ধরনের ডেটায় কীভাবে নেওয়া যায়?",
+    "description": "Master converting between strings and integers with int() and str()",
+    "status": "locked",
+    "estimatedMinutes": 25,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["004"],
+      "enablesIds": ["006"],
+      "relatedIds": [],
+      "topicSlug": "type_conversion"
+    },
+    "tags": ["python", "type_conversion", "casting", "int", "str"]
+  },
+  {
+    "id": "006",
+    "title": "The Assignment Pipeline",
+    "banglaTitle": "অ্যাসাইনমেন্ট পাইপলাইন: হিসাব জমা রাখা",
+    "banglaSubtitle": "যোগ, বিয়োগ, গুণ এবং কম্পিউটারের ২-ধাপ বিশিষ্ট হিসাব প্রক্রিয়া",
+    "description": "Understand integer arithmetic and the right-to-left 2-step assignment pipeline",
+    "status": "locked",
+    "estimatedMinutes": 25,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["005"],
+      "enablesIds": ["007"],
+      "relatedIds": [],
+      "topicSlug": "assignment_pipeline"
+    },
+    "tags": ["python", "arithmetic", "assignment", "operators", "pipeline"]
+  },
+  {
+    "id": "007",
+    "title": "When Numbers Have Decimals",
+    "banglaTitle": "সংখ্যার ভগ্নাংশ: ভাগফল ও ফ্লোট",
+    "banglaSubtitle": "কম্পিউটার কীভাবে ভাগ করে এবং দশমিক সংখ্যা (Float) ব্যবহার করে",
+    "description": "Explore division, floating-point decimals, precision, and zero division rules",
+    "status": "locked",
+    "estimatedMinutes": 20,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["006"],
+      "enablesIds": ["008"],
+      "relatedIds": [],
+      "topicSlug": "floats_and_division"
+    },
+    "tags": ["python", "float", "division", "precision", "zero_division"]
+  },
+  {
+    "id": "008",
+    "title": "The Listening Software",
+    "banglaTitle": "সফটওয়্যার যখন কানে শোনে",
+    "banglaSubtitle": "প্রোগ্রামকে ইউজারের ডেটা গ্রহণ করতে শেখানো",
+    "description": "Accept user input and connect strings with concatenation",
+    "status": "locked",
+    "estimatedMinutes": 20,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["007"],
+      "enablesIds": ["009"],
+      "relatedIds": [],
+      "topicSlug": "user_input"
+    },
+    "tags": ["python", "input", "strings", "concatenation", "interactive"]
+  },
+  {
+    "id": "009",
+    "title": "Dynamic Math",
+    "banglaTitle": "ক্যালকুলেটরে প্রাণদান",
+    "banglaSubtitle": "ইউজারের ইনপুট নিয়ে গাণিতিক হিসাব করা",
+    "description": "Build dynamic interactive calculators with numeric input conversion",
+    "status": "locked",
+    "estimatedMinutes": 20,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["008"],
+      "enablesIds": ["010"],
+      "relatedIds": [],
+      "topicSlug": "dynamic_math"
+    },
+    "tags": ["python", "input", "conversion", "calculator", "math"]
+  },
+  {
+    "id": "010",
+    "title": "Modern String Formatting",
+    "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+    "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
+    "description": "Format modern dynamic text and clean messages using Python f-strings",
+    "status": "locked",
+    "estimatedMinutes": 25,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["009"],
+      "enablesIds": [],
+      "relatedIds": [],
+      "topicSlug": "f_strings"
+    },
+    "tags": ["python", "f_strings", "formatting", "strings", "clean_code"]
   }
 ]

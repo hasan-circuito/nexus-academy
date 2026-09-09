@@ -29,6 +29,7 @@ export interface ErrorInterpretation {
   whyItHappened: string;
   howToFix: string;
   correctedExample: string;
+  relatedDictionaryTermId?: string;
 }
 
 import type { ValidationConfig, ValidationStrategy } from '@/types/mission.types';

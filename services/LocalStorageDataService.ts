@@ -7,6 +7,12 @@ import {
   type ReviewItem, 
   type StudySession 
 } from '@/types/progress.types';
+import {
+  createDefaultDictionaryProgress,
+  type DictionaryEntry,
+  type LearnerDictionaryProgress,
+} from '@/types/dictionary.types';
+import dictionaryData from '@/data/dictionary.json';
 
 export class LocalStorageDataService implements DataService {
   private get<T>(key: string, defaultValue: T): T {
@@ -99,6 +105,18 @@ export class LocalStorageDataService implements DataService {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('nexus_session');
     }
+  }
+
+  getDictionaryEntries(): DictionaryEntry[] {
+    return dictionaryData as unknown as DictionaryEntry[];
+  }
+
+  getDictionaryProgress(): LearnerDictionaryProgress {
+    return this.get<LearnerDictionaryProgress>('nexus_dict_progress', createDefaultDictionaryProgress());
+  }
+
+  saveDictionaryProgress(progress: LearnerDictionaryProgress): void {
+    this.set('nexus_dict_progress', progress);
   }
 }
 

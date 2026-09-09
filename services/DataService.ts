@@ -15,6 +15,10 @@ import type {
   ReviewItem,
   StudySession,
 } from '@/types/progress.types';
+import type {
+  DictionaryEntry,
+  LearnerDictionaryProgress,
+} from '@/types/dictionary.types';
 
 export interface DataService {
   // --------------------------------------------------------
@@ -41,4 +45,11 @@ export interface DataService {
   getCurrentSession(): StudySession | null;
   saveSession(session: StudySession): void;
   clearCurrentSession(): void;
+
+  // --------------------------------------------------------
+  // Dictionary — entries and learner dictionary progress
+  // --------------------------------------------------------
+  getDictionaryEntries(): DictionaryEntry[];
+  getDictionaryProgress(): LearnerDictionaryProgress;
+  saveDictionaryProgress(progress: LearnerDictionaryProgress): void;
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Noto_Sans_Bengali, Hind_Siliguri, Geist } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { QuickConceptDrawer } from '@/components/dictionary/QuickConceptDrawer';
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -77,6 +78,9 @@ export default function RootLayout({
           <main className="flex-1 overflow-y-auto">
             {children}
           </main>
+
+          {/* Global In-Situ Slide-over Concept Drawer */}
+          <QuickConceptDrawer />
         </div>
       </body>
     </html>
