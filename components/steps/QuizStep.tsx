@@ -41,15 +41,22 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
       setSelected(null);
       setSubmitted(false);
     } else {
-      // Persist quiz evidence to localStorage
-      const finalScore = selected === q.correctOptionIndex ? score + 1 : score;
+      // Calculate final score deterministically from answers
+      const allAnswers = [...answers];
+      allAnswers[currentQuestion] = selected;
+      const finalScore = allAnswers.filter(
+        (ans, idx) => ans !== null && ans === step.questions[idx]?.correctOptionIndex
+      ).length;
       const pct = Math.round((finalScore / totalQuestions) * 100);
+
+      // Persist quiz evidence to localStorage
       saveStepEvidence(_missionData.id, 'quiz', {
         passed: pct >= step.passingScore,
         score: pct,
         totalQuestions,
         correctAnswers: finalScore,
       });
+
       // Emit quiz pass/fail event
       const now = new Date().toISOString();
       if (pct >= step.passingScore) {
@@ -80,7 +87,10 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
   };
 
   if (finished) {
-    const pct = Math.round((score / totalQuestions) * 100);
+    const finalScore = answers.filter(
+      (ans, idx) => ans !== null && ans === step.questions[idx]?.correctOptionIndex
+    ).length;
+    const pct = Math.round((finalScore / totalQuestions) * 100);
     const passed = pct >= step.passingScore;
     return (
       <div className="w-full max-w-2xl space-y-6 animate-in fade-in duration-500">
@@ -91,7 +101,7 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
           <p className={`font-semibold ${passed ? 'text-success' : 'text-warning'}`}>
             {passed ? 'Quiz Passed!' : `Needs Review (passing: ${step.passingScore}%)`}
           </p>
-          <p className="text-muted-foreground text-sm">{score} / {totalQuestions} correct</p>
+          <p className="text-muted-foreground text-sm">{finalScore} / {totalQuestions} correct</p>
         </div>
       </div>
     );
