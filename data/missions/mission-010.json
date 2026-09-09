@@ -114,8 +114,8 @@
     {
       "type": "practice",
       "title": "অনুশীলনী ১: স্টুডেন্ট আইডি কার্ড",
-      "prompt": "একটি স্টুডেন্ট আইডি কার্ড ফরম্যাট করো।\n\nভেরিয়েবল `student_name` এ \"Ayesha\" এবং `roll_no` এ 101 রাখো।\nএরপর f-string ব্যবহার করে প্রিন্ট করো: `Student: Ayesha | Roll: 101`",
-      "starterCode": "student_name = \"Ayesha\"\nroll_no = 101\n\n# f-string ব্যবহার করে প্রিন্ট করো\n",
+      "prompt": "একটি স্টুডেন্ট আইডি কার্ড ফরম্যাট করো:\n\nধাপ ১: `student_name` ভেরিয়েবলে \"Ayesha\" এবং `roll_no` ভেরিয়েবলে 101 রাখো।\nধাপ ২: f-string ব্যবহার করে প্রিন্ট করো: `Student: Ayesha | Roll: 101`",
+      "starterCode": "# ধাপ ১: student_name এবং roll_no ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: f-string ব্যবহার করে আইডি কার্ড প্রিন্ট করো\n",
       "hints": [
         "কোটেশনের আগে অবশ্যই 'f' লিখতে হবে: `f\"...\"`",
         "ভেতরে ভেরিয়েবল বসাতে কার্লি ব্রেস ব্যবহার করো: `f\"Student: {student_name} | Roll: {roll_no}\"`"
@@ -128,8 +128,8 @@
     {
       "type": "practice",
       "title": "অনুশীলনী ২: রেস্তোরাঁর খাবারের বিল",
-      "prompt": "একটি রেস্তোরাঁর বিল ক্যালকুলেটর বানাও।\n\nভেরিয়েবল `item` = \"Burger\", `price` = 180, এবং `quantity` = 3 তৈরি করো।\nএরপর f-string এর ভেতরে সরাসরি গুণ করে প্রিন্ট করো: `3 Burger(s) total bill is 540 Taka`",
-      "starterCode": "item = \"Burger\"\nprice = 180\nquantity = 3\n\n# f-string এর ভেতরে {quantity * price} ব্যবহার করে প্রিন্ট করো\n",
+      "prompt": "একটি রেস্তোরাঁর বিল ক্যালকুলেটর বানাও:\n\nধাপ ১: ভেরিয়েবল `item` = \"Burger\", `price` = 180, এবং `quantity` = 3 তৈরি করো।\nধাপ ২: f-string এর ভেতরে সরাসরি গুণ ({price * quantity} বা {quantity * price}) করে প্রিন্ট করো:\n`3 Burger(s) total bill is 540 Taka`",
+      "starterCode": "# ধাপ ১: item, price এবং quantity ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: f-string এর ভেতরে {quantity * price} গুণ করে বিল প্রিন্ট করো\n",
       "hints": [
         "f-string এর ভেতরে কার্লি ব্রেসেসে সরাসরি অঙ্ক করা যায়: `{quantity * price}`",
         "`print(f\"{quantity} {item}(s) total bill is {price * quantity} Taka\")` লিখে রান করো।"
@@ -142,8 +142,8 @@
     {
       "type": "practice",
       "title": "অনুশীলনী ৩: ডেলিভারি ট্র্যাকার",
-      "prompt": "ShopNexus এর জন্য একটি ডেলিভারি ট্র্যাকিং মেসেজ বানাও।\n\n`order_id` = 8841 এবং `days_left` = 2 নাও।\nএরপর f-string দিয়ে প্রিন্ট করো: `Order #8841 will arrive in 2 days.`",
-      "starterCode": "order_id = 8841\ndays_left = 2\n\n# প্রিন্ট করো Delivery Notification\n",
+      "prompt": "ShopNexus এর জন্য একটি ডেলিভারি ট্র্যাকিং মেসেজ বানাও:\n\nধাপ ১: `order_id` = 8841 এবং `days_left` = 2 ভেরিয়েবল দুটো তৈরি করো।\nধাপ ২: f-string দিয়ে প্রিন্ট করো: `Order #8841 will arrive in 2 days.`",
+      "starterCode": "# ধাপ ১: order_id এবং days_left ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: f-string দিয়ে ডেলিভারি নোটিফিকেশন প্রিন্ট করো\n",
       "hints": [
         "লক্ষ্য করো হ্যাশ (#) চিহ্নের পর সরাসরি order_id বসবে।",
         "`print(f\"Order #{order_id} will arrive in {days_left} days.\")` ব্যবহার করো।"
