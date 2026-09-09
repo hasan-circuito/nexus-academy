@@ -212,10 +212,7 @@ for (const entry of missionsToValidate) {
       assert(pyCheck.valid, `Debug ${dIdx + 1} Fixed Code Valid Python AST`, missionId, pyCheck.error);
 
       // Tier 4 Negative Testing: Buggy Code must differ from Fixed Code
-      const isIntentionalMatch = dStep.bugType === 'value_error' && missionId === '009';
-      if (!isIntentionalMatch) {
-        assert(dStep.buggyCode.trim() !== dStep.fixedCode.trim(), `Debug ${dIdx + 1} Buggy Code Differs From Fixed Code`, missionId);
-      }
+      assert(dStep.buggyCode.trim() !== dStep.fixedCode.trim(), `Debug ${dIdx + 1} Buggy Code Differs From Fixed Code`, missionId);
 
       // If bugType is syntax, buggyCode MUST fail syntax check
       if (dStep.bugType === 'syntax') {

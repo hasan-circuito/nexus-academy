@@ -225,19 +225,19 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ খোঁজো: ভুল ডেটা ইনপুট (ValueError)",
-      "scenario": "এই কোডটি একেবারে ঠিকভাবে লেখা হয়েছে। কিন্তু এক ইউজার বয়স (age) ইনপুট দিতে গিয়ে সংখ্যা না লিখে ইংরেজিতে 'Ten' লিখে এন্টার দিয়েছে। এরপরই কোডটি ক্র্যাশ করে!",
-      "buggyCode": "age = int(input(\"Enter your age: \"))\nprint(\"Next year you will be\", age + 1)",
-      "errorMessage": "ValueError: invalid literal for int() with base 10: 'Ten'",
+      "title": "বাগ খোঁজো: সুপারশপের আজব বিলিং সমস্যা",
+      "scenario": "একটি সুপারশপের ক্যাশ কাউন্টারে একজন ক্রেতা ৫০ টাকার ৩টি পণ্য কিনল। বিল প্রিন্ট করার পর দেখা গেল মোট দাম এসেছে: 'Total cost is 505050' টাকা! কোনো লাল কালির ক্র্যাশ এরর নেই, কিন্তু বিল কেন ১৫০ টাকার বদলে ৫০৫০৫০ হলো?",
+      "buggyCode": "price = input(\"Product price: \")\nquantity = int(input(\"Quantity: \"))\n\ntotal = price * quantity\nprint(\"Total cost is\", total)",
+      "errorMessage": "Logic Error: Output is 'Total cost is 505050' instead of 'Total cost is 150'",
       "bugLine": 1,
-      "bugType": "value_error",
+      "bugType": "logic",
       "hints": [
-        "ValueError মানে হলো তুমি int() ফাংশনকে এমন কিছু দিয়েছো যা সে নাম্বারে কনভার্ট করতে পারছে না।",
-        "তুমি যদি 'Ten' লেখো, পাইথন সেটাকে 10 বানাতে পারে না, কারণ সে শুধু '1', '2' এর মতো ডিজিটগুলোকে কনভার্ট করতে পারে।",
-        "বাগ ফিক্স বক্সে কোনো কোড পরিবর্তন করতে হবে না, শুধু মনে মনে চিন্তা করো কেন এই এররটি হলো।"
+        "লক্ষ্য করো, কোডটিতে কোনো পাইথন ক্র্যাশ বা লাল এরর নেই, কিন্তু আউটপুট ১৫০ এর বদলে ৫০৫০৫০ আসছে!",
+        "price ভেরিয়েবলটিতে input() নেওয়া হয়েছে কিন্তু int() ব্যবহার করা হয়নি। ফলে পাইথনে '50' (টেক্সট) কে 3 দিয়ে গুণ করায় লেখাটি ৩ বার পাশাপাশি বসে গেছে ('50' * 3 = '505050')।",
+        "price = int(input(\"Product price: \")) লিখে দামের ইনপুট নেওয়ার সময় int() যোগ করে পূর্ণসংখ্যায় রূপান্তর করো।"
       ],
-      "fixedCode": "age = int(input(\"Enter your age: \"))\nprint(\"Next year you will be\", age + 1)",
-      "explanation": "int() শুধু সংখ্যাবাচক স্ট্রিং (যেমন: '10') কে নাম্বারে কনভার্ট করতে পারে। যদি কেউ 'Ten' বা নিজের নাম ইনপুট দেয়, তবে int() বিভ্রান্ত হয়ে ValueError থ্রো করে। (পরবর্তী মিশনগুলোতে আমরা শিখবো কীভাবে এই এররগুলো ক্র্যাশ না করিয়ে হ্যন্ডেল করতে হয়)।"
+      "fixedCode": "price = int(input(\"Product price: \"))\nquantity = int(input(\"Quantity: \"))\n\ntotal = price * quantity\nprint(\"Total cost is\", total)",
+      "explanation": "পাইথনে কোনো স্ট্রিং টেক্সটকে (যেমন '50') সংখ্যা দিয়ে গুণ (*) করলে এরর হয় না, বরং লেখাটি বারবার রিপিট হয়ে যায়। তাই গাণিতিক গুণ করার জন্য উভয় ইনপুটকেই int() দিয়ে সংখ্যায় রূপান্তর করতে হয়।"
     },
     {
       "type": "reflection",
