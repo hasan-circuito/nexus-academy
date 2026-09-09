@@ -57,6 +57,18 @@ export function QuizStepComponent({ step, missionData: _missionData }: Props) {
         correctAnswers: finalScore,
       });
 
+      const stepIdx = _missionData.steps.findIndex(s => s === step || s.title === step.title);
+      if (stepIdx !== -1) {
+        saveStepEvidence(_missionData.id, `step_${stepIdx}`, {
+          passed: pct >= step.passingScore,
+          score: pct,
+          totalQuestions,
+          correctAnswers: finalScore,
+          stepType: 'quiz',
+          title: step.title,
+        });
+      }
+
       // Emit quiz pass/fail event
       const now = new Date().toISOString();
       if (pct >= step.passingScore) {

@@ -1,11 +1,11 @@
 'use client';
 
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle, X } from 'lucide-react';
 import { ProgressEngine } from '@/engines/progress/ProgressEngine';
 import type { MissionData } from '@/types/mission.types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useCallback, useState } from 'react';
-import { storage } from '@/services/LocalStorageDataService';
+import { MissionProgressGate, type IncompleteStepInfo } from '@/services/MissionProgressGate';
 
 interface Props {
   missionData: MissionData;
@@ -21,25 +21,8 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
   const hasNext = currentIndex < totalSteps - 1;
   const isLastStep = currentIndex === totalSteps - 1;
 
-  const [gateMessage, setGateMessage] = useState<string | null>(null);
-
-  const canCompleteMission = (): boolean => {
-    if (typeof window === 'undefined') return false;
-    const prog = storage.getProgress();
-    const mp = prog.missions[missionData.id];
-    if (!mp?.steps) return false;
-    
-    // Check which step types actually exist in this mission
-    const hasQuiz = missionData.steps.some(s => s.type === 'quiz');
-    const hasPractice = missionData.steps.some(s => s.type === 'practice');
-    const hasDebug = missionData.steps.some(s => s.type === 'debug_challenge');
-    
-    const quizDone = !hasQuiz || (mp.steps['quiz'] as any)?.passed === true;
-    const practiceDone = !hasPractice || (mp.steps['practice'] as any)?.passed === true;
-    const debugDone = !hasDebug || (mp.steps['debug_challenge'] as any)?.passed === true;
-    
-    return quizDone && practiceDone && debugDone;
-  };
+  const [incompleteSteps, setIncompleteSteps] = useState<IncompleteStepInfo[]>([]);
+  const [showGateModal, setShowGateModal] = useState(false);
 
   const handlePrev = useCallback(() => {
     if (hasPrev) router.push(`/mission/${missionId}/step/${currentIndex - 1}`);
@@ -50,8 +33,10 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
       router.push(`/mission/${missionId}/step/${currentIndex + 1}`);
     } else {
       // Last step: check completion gate before completing
-      if (!canCompleteMission()) {
-        setGateMessage('সব ধাপ (Quiz, Practice, Debug) সম্পন্ন করো!');
+      const missing = MissionProgressGate.getIncompleteSteps(missionData);
+      if (missing.length > 0) {
+        setIncompleteSteps(missing);
+        setShowGateModal(true);
         return;
       }
       try {
@@ -101,9 +86,69 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
           )}
         </button>
       </div>
-      {gateMessage && (
-        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 px-6 py-3 bg-warning/10 border border-warning/30 text-warning rounded-lg font-bangla text-sm animate-in fade-in duration-300 z-50">
-          {gateMessage}
+      {showGateModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in">
+          <div className="bg-card border border-warning/30 shadow-2xl rounded-2xl max-w-lg w-full p-6 space-y-5 text-left animate-in zoom-in-95">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-warning/20 text-warning flex items-center justify-center shrink-0">
+                  <AlertTriangle className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-foreground text-lg font-bangla-ui">
+                    মিশন সম্পূর্ণ করতে বাকি আছে!
+                  </h3>
+                  <p className="text-xs text-muted-foreground font-bangla">
+                    মিশন শেষ করতে নিচের ধাপগুলো সফলভাবে সম্পন্ন করুন:
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowGateModal(false)}
+                className="text-muted-foreground hover:text-foreground p-1 rounded-lg hover:bg-surface"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+              {incompleteSteps.map((step) => (
+                <div
+                  key={step.index}
+                  className="flex items-center justify-between gap-3 p-3 rounded-xl bg-surface border border-border hover:border-primary/40 transition-colors"
+                >
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[11px] font-semibold text-warning px-2 py-0.5 rounded-full bg-warning/10 inline-block mb-1">
+                      {step.category}
+                    </span>
+                    <p className="text-sm font-medium text-foreground truncate font-bangla">
+                      ধাপ {step.stepNumber}: {step.title}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setShowGateModal(false);
+                      router.push(`/mission/${missionId}/step/${step.index}`);
+                    }}
+                    className="shrink-0 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary-hover flex items-center gap-1.5 transition-all shadow-sm"
+                  >
+                    <span>এই ধাপে যাও</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-end pt-2 border-t border-border">
+              <button
+                onClick={() => setShowGateModal(false)}
+                className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-surface transition-colors"
+              >
+                বন্ধ করো
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </footer>

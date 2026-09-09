@@ -117,6 +117,15 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
       passed: true,
       hintsUsed: hintIndex,
     });
+    const stepIdx = missionData.steps.findIndex(s => s === step || s.title === step.title);
+    if (stepIdx !== -1) {
+      saveStepEvidence(missionData.id, `step_${stepIdx}`, {
+        passed: true,
+        hintsUsed: hintIndex,
+        title: step.title,
+        stepType: 'debug_challenge',
+      });
+    }
 
     // Emit true completion (not self-reported)
     EventBus.emit({

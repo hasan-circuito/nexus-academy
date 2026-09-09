@@ -1,17 +1,21 @@
 'use client';
 import type { MissionCompleteStep, MissionData } from '@/types/mission.types';
-import { Target, Trophy, Star, Copy, Bot, CheckCircle2, Unlock } from 'lucide-react';
+import { Target, Trophy, Star, Copy, Bot, CheckCircle2, Unlock, Lock, AlertTriangle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useProgress } from '@/hooks/useProgress';
 import { XPEngine } from '@/engines/xp/XPEngine';
 import { storage } from '@/services/LocalStorageDataService';
 import { ProgressEngine } from '@/engines/progress/ProgressEngine';
+import { MissionProgressGate } from '@/services/MissionProgressGate';
 
 export function MissionCompleteStepComponent({ step, missionData }: { step: MissionCompleteStep; missionData: MissionData }) {
+  const router = useRouter();
   const { progress, isClient } = useProgress();
   const [copied, setCopied] = useState(false);
 
   const isComplete = isClient && progress.missions[missionData.id]?.status === 'complete';
+  const incompleteSteps = isClient ? MissionProgressGate.getIncompleteSteps(missionData) : [];
   const projected = isClient ? ProgressEngine.calculateProjectedScore(missionData) : { score: 0, xp: 0 };
   
   const xpEarned = isComplete ? (progress.missions[missionData.id].xpEarned || 0) : projected.xp;
@@ -48,6 +52,50 @@ Can you give me a brief summary of what I should review next based on this topic
         <h2 className="text-4xl font-bold font-bangla-ui text-foreground">{step.title}</h2>
         <p className="text-xl font-bangla text-muted-foreground max-w-2xl mx-auto">{step.summary}</p>
       </div>
+
+      {/* Incomplete Steps Action Card */}
+      {!isComplete && incompleteSteps.length > 0 && (
+        <div className="p-6 rounded-2xl bg-warning/10 border border-warning/30 space-y-4 animate-in fade-in slide-in-from-top-2">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-warning/20 text-warning shrink-0">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="font-bold text-lg text-foreground font-bangla-ui">
+                মিশন সমাপ্তির জন্য বাকি ধাপসমূহ:
+              </h3>
+              <p className="text-sm text-muted-foreground font-bangla">
+                মিশনটি ফিনিশ ও পরবর্তী মিশন আনলক করার জন্য নিচের {incompleteSteps.length}টি ধাপ সফলভাবে সম্পন্ন করুন:
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            {incompleteSteps.map((s) => (
+              <div
+                key={s.index}
+                className="p-4 rounded-xl bg-card border border-border flex items-center justify-between gap-3 shadow-sm hover:border-primary/50 transition-colors"
+              >
+                <div className="min-w-0 flex-1">
+                  <span className="text-[11px] font-semibold text-warning px-2 py-0.5 rounded-full bg-warning/10 inline-block mb-1">
+                    {s.category}
+                  </span>
+                  <p className="text-sm font-medium text-foreground truncate font-bangla">
+                    ধাপ {s.stepNumber}: {s.title}
+                  </p>
+                </div>
+                <button
+                  onClick={() => router.push(`/mission/mission-${missionData.id}/step/${s.index}`)}
+                  className="shrink-0 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary-hover flex items-center gap-1.5 transition-all shadow-sm"
+                >
+                  <span>যাও</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Key Learnings */}
       {step.keyLearnings && step.keyLearnings.length > 0 && (
@@ -95,15 +143,27 @@ Can you give me a brief summary of what I should review next based on this topic
         </div>
       </div>
 
-      {/* Next Mission Unlock Notification — dynamic based on mission ID */}
-      <div className="p-6 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-6">
+      {/* Next Mission Unlock Notification — dynamic based on mission ID and completion state */}
+      <div className={`p-6 rounded-2xl border flex flex-col sm:flex-row items-center justify-between gap-6 transition-all ${
+        isComplete 
+          ? 'bg-primary/5 border-primary/20 shadow-sm' 
+          : 'bg-muted/20 border-border/80 opacity-80'
+      }`}>
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
-            <Unlock className="w-6 h-6" />
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+            isComplete ? 'bg-primary/20 text-primary' : 'bg-muted/40 text-muted-foreground'
+          }`}>
+            {isComplete ? <Unlock className="w-6 h-6" /> : <Lock className="w-6 h-6" />}
           </div>
           <div>
-            <h4 className="font-semibold text-foreground">{nextMissionLabel} Unlocked!</h4>
-            <p className="text-sm text-muted-foreground font-bangla">{missionData.curiosity?.nextMissionPreview || 'The next mission is now available.'}</p>
+            <h4 className="font-semibold text-foreground">
+              {isComplete ? `${nextMissionLabel} Unlocked!` : `${nextMissionLabel} (লকড)`}
+            </h4>
+            <p className="text-sm text-muted-foreground font-bangla">
+              {isComplete 
+                ? (missionData.curiosity?.nextMissionPreview || 'The next mission is now available.')
+                : 'বর্তমান মিশনের বাকি ধাপগুলো সফলভাবে সম্পন্ন করলে পরবর্তী মিশনটি স্বয়ংক্রিয়ভাবে আনলক হবে।'}
+            </p>
           </div>
         </div>
       </div>
