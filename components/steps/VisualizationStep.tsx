@@ -104,39 +104,84 @@ function IconGridDiagram({ items, caption }: { items: Array<{ icon?: string; lab
   );
 }
 
+// Render an ASCII/text diagram
+function AsciiDiagram({ diagram, caption }: { diagram: string; caption?: string }) {
+  return (
+    <div className="space-y-4 w-full">
+      <div className="p-6 md:p-8 rounded-2xl bg-card border border-border/80 shadow-xl overflow-x-auto relative group">
+        <div className="flex items-center justify-between border-b border-border/60 pb-3 mb-4">
+          <div className="flex items-center gap-2 text-xs font-semibold text-primary font-mono">
+            <Layers className="w-4 h-4" />
+            <span>পার্সিং ডায়াগ্রাম (Visual Parse Trace)</span>
+          </div>
+          <span className="text-[11px] text-muted-foreground font-bangla">
+            পাইথন কীভাবে স্ট্রিং বিশ্লেষণ করে
+          </span>
+        </div>
+        <pre className="font-mono text-sm md:text-base leading-relaxed text-emerald-400 font-medium whitespace-pre select-text">
+          {diagram}
+        </pre>
+      </div>
+      {caption && (
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 rounded-full bg-surface-elevated border border-border text-sm font-medium text-foreground">
+            <MonitorPlay className="w-4 h-4 text-primary" />
+            <span className="font-bangla text-xs sm:text-sm">{caption}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function VisualizationStepComponent({ step }: { step: VisualizationStep }) {
   const data = (step.data || {}) as Record<string, unknown>;
+  const hasDiagram = Boolean(step.diagram && step.diagram.trim().length > 0);
 
-  const renderVisualization = () => {
+  const renderStructuredVisualization = () => {
     const type = step.visualizationType as string;
 
     // Flow diagram: data.steps = string[]
     if (type === 'flow_diagram' || (data && Array.isArray(data.steps))) {
       const nodes = (data.steps as string[]) || [];
-      return <FlowDiagram nodes={nodes} caption={step.caption} />;
+      return <FlowDiagram nodes={nodes} caption={hasDiagram ? '' : step.caption} />;
     }
 
     // Key-value grid: data.pairs or data.items = {key: value}
     if (type === 'comparison' || (data.pairs && typeof data.pairs === 'object')) {
-      return <KeyValueDiagram data={data.pairs as Record<string, string>} caption={step.caption} />;
+      return <KeyValueDiagram data={data.pairs as Record<string, string>} caption={hasDiagram ? '' : step.caption} />;
     }
 
     // Icon grid: data.items = [{icon, label, description}]
     if (Array.isArray(data.items)) {
-      return <IconGridDiagram items={data.items as Array<{ icon?: string; label: string; description?: string }>} caption={step.caption} />;
+      return <IconGridDiagram items={data.items as Array<{ icon?: string; label: string; description?: string }>} caption={hasDiagram ? '' : step.caption} />;
     }
 
-    // Generic fallback: render all data keys as cards
-    return <KeyValueDiagram data={Object.fromEntries(Object.entries(data).map(([k, v]) => [k, String(v)]))} caption={step.caption} />;
+    // Generic fallback: render all data keys if any exist
+    if (Object.keys(data).length > 0) {
+      return <KeyValueDiagram data={Object.fromEntries(Object.entries(data).map(([k, v]) => [k, String(v)]))} caption={hasDiagram ? '' : step.caption} />;
+    }
+
+    return null;
   };
+
+  const structuredContent = renderStructuredVisualization();
 
   return (
     <div className="w-full max-w-4xl space-y-10 animate-in slide-in-from-bottom-4 duration-700">
       <div className="space-y-4 text-center">
         <h2 className="text-3xl font-bold font-bangla-ui text-foreground">{step.title}</h2>
-        <p className="text-lg font-bangla text-muted-foreground">{step.description}</p>
+        {step.description && (
+          <p className="text-lg font-bangla text-muted-foreground">{step.description}</p>
+        )}
       </div>
-      {renderVisualization()}
+
+      <div className="space-y-8">
+        {structuredContent}
+        {hasDiagram && (
+          <AsciiDiagram diagram={step.diagram!} caption={step.caption} />
+        )}
+      </div>
     </div>
   );
 }

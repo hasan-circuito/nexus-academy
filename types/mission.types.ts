@@ -126,10 +126,11 @@ export interface ConceptStep {
 export interface VisualizationStep {
   type: 'visualization';
   title: string;                     // Bangla
-  description: string;               // Bangla — what the visualization shows
-  visualizationType: VisualizationType;
-  data: VisualizationData;
+  description?: string;              // Bangla — what the visualization shows
+  visualizationType?: VisualizationType;
+  data?: VisualizationData;
   caption: string;                   // Bangla
+  diagram?: string;                  // Optional ASCII/text diagram
 }
 
 // Flexible shape — each visualizationType defines its own contract in VisualizationStep.tsx
