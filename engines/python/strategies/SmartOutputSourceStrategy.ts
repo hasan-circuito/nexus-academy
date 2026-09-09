@@ -29,8 +29,10 @@ export class SmartOutputSourceStrategy implements IValidationStrategy {
     // 2. Output Check (Output-First logic, optional)
     if (config.expectedOutput) {
       const outputMatchesExactly =
-        comparisonResult.expectedNormalized &&
-        comparisonResult.actualNormalized === comparisonResult.expectedNormalized;
+        comparisonResult.outputMatched !== undefined
+          ? comparisonResult.outputMatched
+          : comparisonResult.expectedNormalized &&
+            comparisonResult.actualNormalized === comparisonResult.expectedNormalized;
 
       if (!outputMatchesExactly) {
         return {

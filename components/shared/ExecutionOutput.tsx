@@ -10,10 +10,25 @@ export interface ExecutionOutputProps {
   result: ExecutionResult | null;
   isRunning: boolean;
   evaluation?: EvaluationResult | null;
+  onInputSubmit?: (val: string) => void;
 }
 
-export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunning, evaluation }) => {
-  if (isRunning) {
+export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ 
+  result, 
+  isRunning, 
+  evaluation,
+  onInputSubmit 
+}) => {
+  const [inputValue, setInputValue] = React.useState('');
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (result?.isAwaitingInput) {
+      inputRef.current?.focus();
+    }
+  }, [result?.isAwaitingInput, result?.pendingPrompt]);
+
+  if (isRunning && !result?.isAwaitingInput) {
     return (
       <div className="mt-4 p-4 rounded-lg border border-slate-700 bg-[#0f172a] shadow-inner font-mono text-sm animate-pulse">
         <div className="flex items-center text-slate-400 space-x-2">
@@ -44,7 +59,7 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunn
       <div className="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700 text-xs text-slate-400">
         <div className="flex items-center space-x-2">
           <Terminal size={14} />
-          <span>Output</span>
+          <span>{result.isAwaitingInput ? 'Terminal (কীবোর্ড ইনপুট দাও)' : 'Output'}</span>
         </div>
         <div className="flex items-center space-x-1">
           <Clock size={12} />
@@ -56,6 +71,45 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ result, isRunn
       {result.stdout && (
         <div className="p-4 font-mono text-sm text-green-400 whitespace-pre-wrap">
           {result.stdout}
+        </div>
+      )}
+
+      {/* Live Interactive Input in Terminal */}
+      {result.isAwaitingInput && (
+        <div className="px-4 py-3 bg-slate-900/80 border-t border-slate-700 font-mono text-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+          <div className="flex items-center text-emerald-300 font-semibold gap-1.5 shrink-0">
+            <span className="text-emerald-400 animate-pulse">❯</span>
+            <span>{result.pendingPrompt || 'Enter input: '}</span>
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (inputValue.trim()) {
+                onInputSubmit?.(inputValue.trim());
+                setInputValue('');
+              }
+            }}
+            className="flex-1 flex items-center gap-2"
+          >
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="তোমার উত্তর এখানে লিখে Enter চাপো..."
+              className="flex-1 bg-slate-950/90 text-yellow-300 px-3 py-1.5 rounded border border-emerald-500/40 focus:border-emerald-400 focus:outline-none font-mono text-sm shadow-inner"
+              autoComplete="off"
+              spellCheck={false}
+            />
+            <button
+              type="submit"
+              disabled={!inputValue.trim()}
+              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white rounded text-xs font-semibold transition-colors flex items-center gap-1 shrink-0"
+            >
+              <span>পাঠাও</span>
+              <span className="font-mono text-[10px] opacity-80">↵</span>
+            </button>
+          </form>
         </div>
       )}
 

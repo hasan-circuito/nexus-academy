@@ -2,6 +2,8 @@
 // NEXUS Academy — Output Normalization Engine
 
 import { ComparisonResult } from './python.types';
+import { extractInputs } from './inputExtractor';
+
 export class OutputComparator {
   /**
    * Normalizes output string by:
@@ -28,11 +30,38 @@ export class OutputComparator {
 
   /**
    * Normalizes the actual output and expected output.
+   * Supports dynamic input projection: when learner provides their own custom inputs,
+   * the reference expected output is projected to match the learner's inputs.
    */
-  public static compare(actual: string, expected?: string): ComparisonResult {
+  public static compare(
+    actual: string, 
+    expected?: string,
+    dynamicContext?: { code?: string; userInputs?: string[] }
+  ): ComparisonResult {
+    let targetExpected = expected || '';
+
+    if (expected && dynamicContext?.code && dynamicContext?.userInputs && dynamicContext.userInputs.length > 0) {
+      const sampleInputs = extractInputs(dynamicContext.code, expected);
+      if (sampleInputs.length > 0) {
+        let projected = expected;
+        sampleInputs.forEach((sample, idx) => {
+          const userVal = dynamicContext.userInputs![idx];
+          if (sample && userVal && sample !== userVal) {
+            projected = projected.split(sample).join(userVal);
+          }
+        });
+        targetExpected = projected;
+      }
+    }
+
+    const actualNormalized = OutputComparator.normalize(actual);
+    const expectedNormalized = OutputComparator.normalize(targetExpected);
+    const outputMatched = actualNormalized === expectedNormalized;
+
     return {
-      actualNormalized: OutputComparator.normalize(actual),
-      expectedNormalized: OutputComparator.normalize(expected),
+      actualNormalized,
+      expectedNormalized,
+      outputMatched,
     };
   }
 
@@ -41,13 +70,18 @@ export class OutputComparator {
    * If code uses input(), different prompt strings (or no prompt) shouldn't fail
    * as long as the inputs are consumed and the program's actual logic output matches.
    */
-  public static compareWithInputs(actual: string, expected: string, inputs: string[] = []): {
+  public static compareWithInputs(
+    actual: string, 
+    expected: string, 
+    inputs: string[] = [],
+    code?: string
+  ): {
     matched: boolean;
     actualNormalized: string;
     expectedNormalized: string;
   } {
-    const directComp = OutputComparator.compare(actual, expected);
-    if (directComp.actualNormalized === directComp.expectedNormalized) {
+    const directComp = OutputComparator.compare(actual, expected, { code, userInputs: inputs });
+    if (directComp.outputMatched) {
       return { matched: true, ...directComp };
     }
 

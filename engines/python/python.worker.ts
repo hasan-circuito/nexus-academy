@@ -61,36 +61,27 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
         const setupScript = `
 import builtins, sys, json
 
+class _NexusInputRequest(Exception):
+    def __init__(self, prompt):
+        self.prompt = prompt
+
 _inputs_queue = json.loads('''${inputsJson.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}''')
+_pending_prompt = None
 
 def _smart_input(prompt=''):
-    global _inputs_queue
-    if prompt:
-        sys.stdout.write(str(prompt))
-        sys.stdout.flush()
-    if _inputs_queue:
+    global _inputs_queue, _pending_prompt
+    p_str = str(prompt) if prompt is not None else ''
+    if _inputs_queue and len(_inputs_queue) > 0:
         val = _inputs_queue.pop(0)
+        if p_str:
+            sys.stdout.write(p_str)
+        sys.stdout.write(str(val) + '\\n')
+        sys.stdout.flush()
+        return str(val)
     else:
-        p = str(prompt).lower()
-        if 'name' in p:
-            val = 'Hasan'
-        elif 'where' in p or 'location' in p or 'city' in p:
-            val = 'Dhaka'
-        elif 'color' in p:
-            val = 'Blue'
-        elif 'hobby' in p:
-            val = 'Reading'
-        elif 'age' in p or 'year' in p:
-            val = '20'
-        elif 'num' in p or 'number' in p:
-            val = '10'
-        elif prompt and len(str(prompt).strip()) > 0 and not str(prompt).strip().endswith(':') and not str(prompt).strip().endswith('?'):
-            val = str(prompt).strip()
-        else:
-            val = 'Nexus'
-    sys.stdout.write(str(val) + '\\n')
-    sys.stdout.flush()
-    return str(val)
+        _pending_prompt = p_str
+        sys.stdout.flush()
+        raise _NexusInputRequest(p_str)
 
 builtins.input = _smart_input
 `;
@@ -104,6 +95,29 @@ builtins.input = _smart_input
           stderr: stderrBuffer.join('\n')
         } as WorkerResponse);
       } catch (err: any) {
+        // Check if user input is requested from the interactive terminal
+        let isInputReq = err.type === '_NexusInputRequest' || (err.message && err.message.includes('_NexusInputRequest'));
+        let pendingPrompt = '';
+        
+        try {
+          const p = self.pyodide.globals.get('_pending_prompt');
+          if (p !== undefined && p !== null) {
+            isInputReq = true;
+            pendingPrompt = String(p);
+            self.pyodide.globals.set('_pending_prompt', null);
+          }
+        } catch (e) {}
+
+        if (isInputReq) {
+          self.postMessage({
+            id: req.id,
+            type: 'AWAIT_INPUT',
+            prompt: pendingPrompt,
+            stdout: stdoutBuffer.join('\n'),
+          } as WorkerResponse);
+          return;
+        }
+
         // Pyodide Python errors
         self.postMessage({
           id: req.id,

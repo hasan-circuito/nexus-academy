@@ -8,6 +8,8 @@ export interface ExecutionResult {
   executionTimeMs: number;
   outputMatched?: boolean;
   errorType?: string;
+  isAwaitingInput?: boolean;
+  pendingPrompt?: string;
 }
 
 export interface ExecutionConfig {
@@ -34,6 +36,7 @@ import type { ValidationConfig, ValidationStrategy } from '@/types/mission.types
 export interface ComparisonResult {
   actualNormalized: string;
   expectedNormalized: string;
+  outputMatched?: boolean;
 }
 
 export interface EvaluationResult {

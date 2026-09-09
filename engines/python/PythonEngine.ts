@@ -55,20 +55,24 @@ export class PythonEngine {
       stderr: stderrBuffer,
       success: response.success,
       executionTimeMs,
-      errorType: response.errorType
+      errorType: response.errorType,
+      isAwaitingInput: response.isAwaitingInput,
+      pendingPrompt: response.pendingPrompt,
     };
 
-    // Emit domain event for future engines to consume (Open/Closed Principle)
-    EventBus.emit({
-      type: 'CODE_EXECUTED',
-      payload: {
-        code,
-        stdout: result.stdout,
-        stderr: result.stderr,
-        executionTimeMs: result.executionTimeMs,
-        success: result.success
-      }
-    });
+    // Emit domain event for future engines to consume when execution finishes (not pausing for input)
+    if (!result.isAwaitingInput) {
+      EventBus.emit({
+        type: 'CODE_EXECUTED',
+        payload: {
+          code,
+          stdout: result.stdout,
+          stderr: result.stderr,
+          executionTimeMs: result.executionTimeMs,
+          success: result.success
+        }
+      });
+    }
 
     return result;
   }

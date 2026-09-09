@@ -66,6 +66,15 @@ export class PythonWorkerClient {
         // Instead of rejecting, we return it as a structured error so the UI can interpret it
         pending.resolve({ stdout: '', stderr: res.error, success: false, errorType: res.errorType });
         break;
+      case 'AWAIT_INPUT':
+        pending.resolve({
+          stdout: res.stdout,
+          stderr: '',
+          success: true,
+          isAwaitingInput: true,
+          pendingPrompt: res.prompt,
+        });
+        break;
       case 'CANCEL_SUCCESS':
         pending.resolve(true);
         break;
@@ -100,7 +109,14 @@ export class PythonWorkerClient {
     return this.initPromise;
   }
 
-  public async runCode(code: string, inputs?: string[]): Promise<{ stdout: string; stderr: string; success: boolean; errorType?: string }> {
+  public async runCode(code: string, inputs?: string[]): Promise<{
+    stdout: string;
+    stderr: string;
+    success: boolean;
+    errorType?: string;
+    isAwaitingInput?: boolean;
+    pendingPrompt?: string;
+  }> {
     if (!this.isReady) {
       await this.init();
     }

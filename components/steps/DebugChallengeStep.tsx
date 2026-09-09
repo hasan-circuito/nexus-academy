@@ -18,22 +18,27 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
   const [hintIndex, setHintIndex] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
+  const [collectedInputs, setCollectedInputs] = useState<string[]>([]);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   // Using step.title as the unique identifier so multiple debug steps in a mission don't share code
   const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.buggyCode);
-  const detectedInputs = extractInputs(code, step.explanation);
 
   const handleReset = () => {
     resetCode();
     setIsFixed(false);
     setEvaluation(null);
+    setCollectedInputs([]);
   };
 
-  const handleRun = async () => {
-    if (!code.trim()) return;
-    const inputs = extractInputs(code, step.explanation);
+  const executeWithInputs = async (inputs: string[]) => {
     const result = await runCode(code, { inputs });
+
+    // If code is awaiting input from terminal
+    if (result.isAwaitingInput) {
+      setEvaluation(null);
+      return;
+    }
 
     const normalize = (c: string) => c.replace(/\r\n/g, '\n').trim();
 
@@ -74,7 +79,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
       const expectedResult = await engine.runCode(step.fixedCode, { inputs });
 
       if (expectedResult.stdout && expectedResult.stdout.trim().length > 0) {
-        const comparison = OutputComparator.compareWithInputs(result.stdout, expectedResult.stdout, inputs);
+        const comparison = OutputComparator.compareWithInputs(result.stdout, expectedResult.stdout, inputs, code);
         if (!comparison.matched) {
           setIsFixed(false);
           setEvaluation({
@@ -125,6 +130,18 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
     });
   };
 
+  const handleRun = async () => {
+    if (!code.trim()) return;
+    setCollectedInputs([]);
+    await executeWithInputs([]);
+  };
+
+  const handleInputSubmit = (val: string) => {
+    const nextInputs = [...collectedInputs, val];
+    setCollectedInputs(nextInputs);
+    executeWithInputs(nextInputs);
+  };
+
   return (
     <div className="w-full max-w-4xl space-y-6 animate-in slide-in-from-bottom-4 duration-700">
       <div className="flex items-center justify-between">
@@ -156,24 +173,6 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
             height="250px"
             highlightLine={isFixed ? undefined : step.bugLine}
           />
-
-          {detectedInputs.length > 0 && (
-            <div className="flex items-center gap-2 text-xs font-bangla text-muted-foreground bg-primary/10 border border-primary/20 px-3 py-2 rounded-lg">
-              <span className="font-semibold text-primary flex items-center gap-1 shrink-0">
-                📥 নমুনা টেস্ট ইনপুট:
-              </span>
-              <div className="flex gap-1.5 flex-wrap items-center">
-                {detectedInputs.map((val, idx) => (
-                  <span key={idx} className="px-2 py-0.5 bg-background rounded text-foreground font-mono font-bold border border-border">
-                    {val}
-                  </span>
-                ))}
-              </div>
-              <span className="text-muted-foreground text-[11px] hidden sm:inline">
-                (অনলাইনে কোড টেস্ট করার জন্য সিস্টেম স্বয়ংক্রিয়ভাবে এই ইনপুটগুলো পাঠাচ্ছে)
-              </span>
-            </div>
-          )}
 
           <div className="flex items-center justify-between">
             <div className="flex gap-4 items-center">
@@ -218,6 +217,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
             result={lastResult} 
             isRunning={isRunning} 
             evaluation={evaluation} 
+            onInputSubmit={handleInputSubmit}
           />
 
           {step.hints.length > 0 && hintIndex > 0 && (

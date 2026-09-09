@@ -18,27 +18,33 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const [hintIndex, setHintIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
+  const [collectedInputs, setCollectedInputs] = useState<string[]>([]);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   // Using step.title as the unique identifier so multiple practice steps in a mission don't share code
   const { code, updateCode, isLoaded, resetCode } = usePracticeCode(missionData.id, step.title, step.starterCode || '');
-  const detectedInputs = extractInputs(code, step.expectedOutput);
 
-  const handleRun = async () => {
-    if (!code.trim()) return;
-    const inputs = extractInputs(code, step.expectedOutput);
+  const executeWithInputs = async (inputs: string[]) => {
     const result = await runCode(code, { inputs });
     
+    // If execution paused to await user input from terminal
+    if (result.isAwaitingInput) {
+      setEvaluation(null);
+      return;
+    }
+
     if (result.success) {
       // Fallback to exact_output for older missions without validation
       const config = step.validation 
         ? { ...step.validation, expectedOutput: step.expectedOutput }
         : { type: 'exact_output' as const, value: step.expectedOutput, expectedOutput: step.expectedOutput };
       
-      // Normalize and compare
-      // For exact_output, the value is expectedOutput. For other strategies, use expectedOutput explicitly
+      // Dynamic comparison using the actual inputs entered by the user
       const comparisonTarget = config.type === 'exact_output' ? config.value : config.expectedOutput;
-      const comparison = OutputComparator.compare(result.stdout, comparisonTarget);
+      const comparison = OutputComparator.compare(result.stdout, comparisonTarget, {
+        code,
+        userInputs: inputs,
+      });
       
       const evalResult = ValidationEngine.evaluate(result, comparison, config, code);
       setEvaluation(evalResult);
@@ -65,6 +71,18 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
     }
   };
 
+  const handleRun = async () => {
+    if (!code.trim()) return;
+    setCollectedInputs([]);
+    await executeWithInputs([]);
+  };
+
+  const handleInputSubmit = (val: string) => {
+    const nextInputs = [...collectedInputs, val];
+    setCollectedInputs(nextInputs);
+    executeWithInputs(nextInputs);
+  };
+
   return (
     <div className="w-full max-w-4xl space-y-6 animate-in slide-in-from-bottom-4 duration-700">
       <h2 className="text-3xl font-bold font-bangla-ui text-foreground">{step.title}</h2>
@@ -87,24 +105,6 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             filename="practice.py" 
             height="250px" 
           />
-
-          {detectedInputs.length > 0 && (
-            <div className="flex items-center gap-2 text-xs font-bangla text-muted-foreground bg-primary/10 border border-primary/20 px-3 py-2 rounded-lg">
-              <span className="font-semibold text-primary flex items-center gap-1 shrink-0">
-                📥 নমুনা টেস্ট ইনপুট:
-              </span>
-              <div className="flex gap-1.5 flex-wrap items-center">
-                {detectedInputs.map((val, idx) => (
-                  <span key={idx} className="px-2 py-0.5 bg-background rounded text-foreground font-mono font-bold border border-border">
-                    {val}
-                  </span>
-                ))}
-              </div>
-              <span className="text-muted-foreground text-[11px] hidden sm:inline">
-                (অনলাইনে কোড টেস্ট করার জন্য সিস্টেম স্বয়ংক্রিয়ভাবে এই ইনপুটগুলো পাঠাচ্ছে)
-              </span>
-            </div>
-          )}
 
           <div className="flex items-center justify-between">
             <div className="flex gap-4 items-center">
@@ -149,6 +149,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             result={lastResult} 
             isRunning={isRunning} 
             evaluation={evaluation} 
+            onInputSubmit={handleInputSubmit}
           />
 
           {step.hints.length > 0 && hintIndex > 0 && (

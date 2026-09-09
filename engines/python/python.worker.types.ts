@@ -8,6 +8,7 @@ export type WorkerMessageType =
   | 'RUN_CODE'
   | 'RUN_SUCCESS'
   | 'RUN_ERROR'
+  | 'AWAIT_INPUT'
   | 'CANCEL' // For future cancellation support
   | 'CANCEL_SUCCESS';
 
@@ -46,6 +47,13 @@ export interface WorkerRunSuccess extends WorkerMessageBase {
   stderr: string;
 }
 
+// Worker awaits interactive user input from the terminal
+export interface WorkerAwaitInput extends WorkerMessageBase {
+  type: 'AWAIT_INPUT';
+  prompt: string;
+  stdout: string;
+}
+
 // Failed run response
 export interface WorkerRunError extends WorkerMessageBase {
   type: 'RUN_ERROR';
@@ -65,4 +73,10 @@ export interface WorkerCancelSuccess extends WorkerMessageBase {
 }
 
 export type WorkerRequest = WorkerInitRequest | WorkerRunRequest | WorkerCancelRequest;
-export type WorkerResponse = WorkerInitSuccess | WorkerInitError | WorkerRunSuccess | WorkerRunError | WorkerCancelSuccess;
+export type WorkerResponse = 
+  | WorkerInitSuccess 
+  | WorkerInitError 
+  | WorkerRunSuccess 
+  | WorkerRunError 
+  | WorkerAwaitInput 
+  | WorkerCancelSuccess;
