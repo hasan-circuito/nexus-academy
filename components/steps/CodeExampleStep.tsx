@@ -113,6 +113,7 @@ export function CodeExampleStepComponent({ step }: { step: CodeExampleStep }) {
           <ExecutionOutput 
             result={lastResult} 
             isRunning={isRunning} 
+            code={code}
           />
         </div>
       )}

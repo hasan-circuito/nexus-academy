@@ -166,6 +166,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             isRunning={isRunning} 
             evaluation={evaluation} 
             onInputSubmit={handleInputSubmit}
+            code={code}
           />
 
           {step.hints.length > 0 && hintIndex > 0 && (

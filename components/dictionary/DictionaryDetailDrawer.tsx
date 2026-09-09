@@ -317,6 +317,7 @@ export const DictionaryDetailDrawer: React.FC<DictionaryDetailDrawerProps> = ({
                   result={sandboxResult}
                   isRunning={isRunning}
                   onInputSubmit={handleInputSubmit}
+                  code={sandboxCode}
                 />
 
                 {/* Experiment Prompts */}

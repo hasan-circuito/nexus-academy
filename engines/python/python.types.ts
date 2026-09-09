@@ -30,6 +30,10 @@ export interface ErrorInterpretation {
   howToFix: string;
   correctedExample: string;
   relatedDictionaryTermId?: string;
+  lineNumber?: number;
+  offendingLine?: string;
+  suggestedFix?: string;
+  errorSubType?: string;
 }
 
 import type { ValidationConfig, ValidationStrategy } from '@/types/mission.types';

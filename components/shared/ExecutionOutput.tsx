@@ -12,13 +12,15 @@ export interface ExecutionOutputProps {
   isRunning: boolean;
   evaluation?: EvaluationResult | null;
   onInputSubmit?: (val: string) => void;
+  code?: string;
 }
 
 export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({ 
   result, 
   isRunning, 
   evaluation,
-  onInputSubmit 
+  onInputSubmit,
+  code
 }) => {
   const [inputValue, setInputValue] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -51,7 +53,7 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({
     );
   }
 
-  const interpretedError = result.stderr ? PythonErrorInterpreter.interpret(result.stderr, result.errorType) : null;
+  const interpretedError = result.stderr ? PythonErrorInterpreter.interpret(result.stderr, result.errorType, code) : null;
 
   return (
     <div className="mt-4 flex flex-col rounded-lg border border-slate-700 bg-[#0f172a] shadow-inner overflow-hidden">
@@ -119,17 +121,41 @@ export const ExecutionOutput: React.FC<ExecutionOutputProps> = ({
         <div className="p-4 bg-red-950/30 border-t border-red-900/50">
           <div className="flex items-start space-x-3">
             <AlertCircle className="text-red-500 mt-0.5 shrink-0" size={18} />
-            <div>
-              <h4 className="font-bold text-red-400 mb-1">{interpretedError.banglaTitle}</h4>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                <h4 className="font-bold text-red-400">{interpretedError.banglaTitle}</h4>
+                {interpretedError.lineNumber !== undefined && (
+                  <span className="px-2 py-0.5 rounded text-xs font-semibold bg-red-500/20 text-red-300 border border-red-500/30 font-bangla">
+                    লাইন {interpretedError.lineNumber}
+                  </span>
+                )}
+              </div>
+
+              {/* Offending line preview */}
+              {interpretedError.offendingLine && (
+                <div className="my-2.5 p-2.5 rounded-lg bg-black/60 border border-red-800/40 font-mono text-xs overflow-x-auto flex items-start gap-2">
+                  <span className="text-red-500 select-none font-bold shrink-0 font-bangla">ভুল লাইন:</span>
+                  <span className="text-red-200 break-all">{interpretedError.offendingLine}</span>
+                </div>
+              )}
+
+              {/* Directly suggested fix banner */}
+              {interpretedError.suggestedFix && (
+                <div className="my-2.5 p-2.5 rounded-lg bg-emerald-950/50 border border-emerald-700/50 font-mono text-xs overflow-x-auto flex items-start gap-2">
+                  <span className="text-emerald-400 select-none font-bold shrink-0 font-bangla">সরাসরি সমাধান:</span>
+                  <span className="text-emerald-200 font-semibold break-all">{interpretedError.suggestedFix}</span>
+                </div>
+              )}
+
               <p className="text-red-300 text-sm mb-2">{interpretedError.explanation}</p>
               
               <div className="text-red-200 text-sm mb-2">
-                <span className="font-semibold block mb-1">কেন হলো?</span>
+                <span className="font-semibold block mb-1 font-bangla">কেন হলো?</span>
                 {interpretedError.whyItHappened}
               </div>
               
               <div className="text-red-200 text-sm mb-3">
-                <span className="font-semibold block mb-1">কীভাবে ঠিক করবে?</span>
+                <span className="font-semibold block mb-1 font-bangla">কীভাবে ঠিক করবে?</span>
                 {interpretedError.howToFix}
               </div>
 

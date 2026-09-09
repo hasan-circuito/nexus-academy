@@ -218,6 +218,7 @@ export function DebugChallengeStepComponent({ step, missionData }: { step: Debug
             isRunning={isRunning} 
             evaluation={evaluation} 
             onInputSubmit={handleInputSubmit}
+            code={code}
           />
 
           {step.hints.length > 0 && hintIndex > 0 && (
