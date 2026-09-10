@@ -303,10 +303,7 @@ export default function SettingsPage() {
                 activeRing: 'ring-cyan-400/50 border-cyan-400',
               },
             ].map((theme) => {
-              const isSelected =
-                isClient &&
-                (settings.theme === theme.id ||
-                  (settings.theme === 'dark' && theme.id === 'midnight'));
+              const isSelected = isClient && settings.theme === theme.id;
 
               return (
                 <button
@@ -399,12 +396,26 @@ export default function SettingsPage() {
             })}
           </div>
 
-          {/* Secondary Options: Light Mode & System Auto */}
+          {/* Secondary Options: Default Dark, Light Mode & System Auto */}
           <div className="pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-xs text-muted-foreground">
               Standard Environment Modes:
             </span>
-            <div className="flex items-center gap-2 w-full sm:w-auto" role="radiogroup" aria-label="Standard Environment Modes">
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto" role="radiogroup" aria-label="Standard Environment Modes">
+              <button
+                role="radio"
+                aria-checked={isClient && settings.theme === 'dark'}
+                onClick={() => handleThemeChange('dark')}
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all ${
+                  isClient && settings.theme === 'dark'
+                    ? 'border-primary bg-primary/10 text-primary ring-1 ring-primary/40 font-semibold'
+                    : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Moon className="w-4 h-4" />
+                <span>Dark Mode (মূল ডার্ক - ডিফল্ট)</span>
+              </button>
+
               <button
                 role="radio"
                 aria-checked={isClient && settings.theme === 'light'}

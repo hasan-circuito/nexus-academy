@@ -49,7 +49,7 @@ export function TopNavbar() {
         </div>
       </div>
 
-      {/* Right: Quick Controls & Theme Switcher */}
+      {/* Right: Quick Controls */}
       <div className="flex items-center gap-2.5">
         {/* XP / Streak Status badge */}
         {isClient && (
