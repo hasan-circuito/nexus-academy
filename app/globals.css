@@ -218,11 +218,15 @@ body {
 /* Bangla body text — used via className="font-bangla" */
 .font-bangla {
   font-family: var(--font-bangla, 'Noto Sans Bengali', sans-serif);
+  line-height: 1.75;
+  letter-spacing: 0.015em;
 }
 
 /* Bangla UI labels — used via className="font-bangla-ui" */
 .font-bangla-ui {
   font-family: var(--font-bangla-ui, 'Hind Siliguri', sans-serif);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 /* ============================================================
@@ -281,6 +285,48 @@ body {
   border: 1px solid hsl(222, 20%, 18%, 0.5);
 }
 
+/* Glass panel */
+.glass-panel {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.theme-cyber-oasis .glass-panel {
+  background: hsla(225, 40%, 8%, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(185, 100%, 55%, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 1px 1px hsla(185, 100%, 55%, 0.1);
+}
+
+/* Ambient glow utilities */
+.ambient-glow-emerald {
+  box-shadow: 0 0 25px -4px hsla(158, 64%, 52%, 0.28), 0 0 10px -2px hsla(158, 64%, 52%, 0.18);
+}
+.ambient-glow-amber {
+  box-shadow: 0 0 25px -4px hsla(38, 92%, 55%, 0.28), 0 0 10px -2px hsla(38, 92%, 55%, 0.18);
+}
+.ambient-glow-lavender {
+  box-shadow: 0 0 25px -4px hsla(265, 80%, 75%, 0.28), 0 0 10px -2px hsla(265, 80%, 75%, 0.18);
+}
+.ambient-glow-cyan {
+  box-shadow: 0 0 25px -4px hsla(185, 100%, 55%, 0.28), 0 0 10px -2px hsla(185, 100%, 55%, 0.18);
+}
+.ambient-glow-violet {
+  box-shadow: 0 0 25px -4px hsla(260, 85%, 65%, 0.28), 0 0 10px -2px hsla(260, 85%, 65%, 0.18);
+}
+
+/* Breathing transitions for eye-friendly theme shifts */
+html, body, header, nav, main, aside, section, div, button, a, input, textarea, select, [role="dialog"] {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.monaco-editor, .monaco-editor * {
+  transition: none !important;
+}
+
 /* Code blocks */
 .code-block {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
@@ -299,38 +345,214 @@ body {
   }
 }
 
-.dark {
-  --background:           oklch(0.145 0 0);
-  --foreground:           oklch(0.985 0 0);
-  --card:           oklch(0.205 0 0);
-  --card-foreground:           oklch(0.985 0 0);
-  --popover:           oklch(0.205 0 0);
-  --popover-foreground:           oklch(0.985 0 0);
-  --primary:           oklch(0.922 0 0);
-  --primary-foreground:           oklch(0.205 0 0);
-  --secondary:           oklch(0.269 0 0);
-  --secondary-foreground:           oklch(0.985 0 0);
-  --muted:           oklch(0.269 0 0);
-  --muted-foreground:           oklch(0.708 0 0);
-  --accent:           oklch(0.269 0 0);
-  --accent-foreground:           oklch(0.985 0 0);
-  --destructive:           oklch(0.704 0.191 22.216);
-  --border:           oklch(1 0 0 / 10%);
-  --input:           oklch(1 0 0 / 15%);
-  --ring:           oklch(0.556 0 0);
-  --chart-1:           oklch(0.87 0 0);
-  --chart-2:           oklch(0.556 0 0);
-  --chart-3:           oklch(0.439 0 0);
-  --chart-4:           oklch(0.371 0 0);
-  --chart-5:           oklch(0.269 0 0);
-  --sidebar:           oklch(0.205 0 0);
-  --sidebar-foreground:           oklch(0.985 0 0);
-  --sidebar-primary:           oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground:           oklch(0.985 0 0);
-  --sidebar-accent:           oklch(0.269 0 0);
-  --sidebar-accent-foreground:           oklch(0.985 0 0);
-  --sidebar-border:           oklch(1 0 0 / 10%);
-  --sidebar-ring:           oklch(0.556 0 0);
+/* ============================================================
+ * 8. Theme System Tokens
+ * ============================================================ */
+
+/* 1. Midnight Sanctuary (Default Dark) */
+:root,
+.dark,
+.theme-midnight,
+.dark.theme-midnight {
+  --background:           hsl(222, 47%, 6%);     /* #0b0f19 Deep Charcoal Slate */
+  --foreground:           hsl(215, 30%, 95%);    /* Glare-free soft white */
+  --foreground-muted:     hsl(215, 20%, 68%);
+  --foreground-faint:     hsl(215, 15%, 45%);
+
+  --surface:              hsl(222, 40%, 9%);     /* #0f1624 */
+  --surface-elevated:     hsl(222, 35%, 13%);    /* #151e30 */
+  --surface-hover:        hsl(222, 30%, 18%);
+
+  --border:               hsl(222, 25%, 18%);
+  --border-hover:         hsl(222, 30%, 28%);
+
+  --card:                 hsl(222, 40%, 9%);
+  --card-foreground:      hsl(215, 30%, 95%);
+  --popover:              hsl(222, 40%, 9%);
+  --popover-foreground:   hsl(215, 30%, 95%);
+
+  --muted:                hsl(222, 35%, 13%);
+  --muted-foreground:     hsl(215, 20%, 65%);
+  --accent:               hsl(222, 35%, 16%);
+  --accent-foreground:    hsl(215, 30%, 95%);
+
+  --primary:              hsl(158, 64%, 52%);    /* Soft Emerald */
+  --primary-hover:        hsl(158, 70%, 58%);
+  --primary-muted:        hsla(158, 64%, 52%, 0.15);
+  --primary-foreground:   hsl(222, 47%, 6%);
+
+  --ring:                 hsl(158, 64%, 52%);
+  --input:                hsl(222, 25%, 20%);
+  --destructive:          oklch(0.704 0.191 22.216);
+  --destructive-muted:    hsl(0, 40%, 15%);
+
+  --sidebar-bg:           hsl(222, 47%, 5%);
+  --sidebar:              hsl(222, 47%, 5%);
+  --sidebar-hover:        hsl(222, 35%, 12%);
+  --sidebar-active:       hsla(158, 64%, 52%, 0.12);
+  --sidebar-border:       hsl(222, 25%, 16%);
+  --sidebar-foreground:   hsl(215, 30%, 95%);
+  --sidebar-primary:      hsl(158, 64%, 52%);
+  --sidebar-primary-foreground: hsl(222, 47%, 6%);
+  --sidebar-accent:       hsl(222, 35%, 12%);
+  --sidebar-accent-foreground: hsl(215, 30%, 95%);
+  --sidebar-ring:         hsl(158, 64%, 52%);
+
+  --xp:                   hsl(48, 96%, 53%);
+  --xp-muted:             hsl(48, 40%, 15%);
+}
+
+/* 2. Warm Zen (Library Sepia, Zero Blue-Light) */
+.theme-warm-zen,
+.dark.theme-warm-zen {
+  --background:           hsl(30, 15%, 8%);      /* #181512 Deep Warm Sepia */
+  --foreground:           hsl(40, 30%, 92%);     /* #f5efe6 Bone White */
+  --foreground-muted:     hsl(35, 18%, 70%);     /* #c2b7ab */
+  --foreground-faint:     hsl(35, 12%, 48%);
+
+  --surface:              hsl(30, 14%, 11%);     /* #201c18 */
+  --surface-elevated:     hsl(30, 12%, 15%);     /* #2a2520 */
+  --surface-hover:        hsl(30, 12%, 20%);
+
+  --border:               hsl(30, 12%, 20%);
+  --border-hover:         hsl(30, 20%, 30%);
+
+  --card:                 hsl(30, 14%, 11%);
+  --card-foreground:      hsl(40, 30%, 92%);
+  --popover:              hsl(30, 14%, 11%);
+  --popover-foreground:   hsl(40, 30%, 92%);
+
+  --muted:                hsl(30, 12%, 15%);
+  --muted-foreground:     hsl(35, 18%, 65%);
+  --accent:               hsl(30, 12%, 18%);
+  --accent-foreground:    hsl(40, 30%, 92%);
+
+  --primary:              hsl(38, 92%, 55%);     /* Mellow Amber */
+  --primary-hover:        hsl(38, 95%, 62%);
+  --primary-muted:        hsla(38, 92%, 55%, 0.16);
+  --primary-foreground:   hsl(30, 20%, 6%);
+
+  --ring:                 hsl(38, 92%, 55%);
+  --input:                hsl(30, 12%, 22%);
+  --destructive:          oklch(0.704 0.191 22.216);
+  --destructive-muted:    hsl(0, 40%, 15%);
+
+  --sidebar-bg:           hsl(30, 18%, 6%);
+  --sidebar:              hsl(30, 18%, 6%);
+  --sidebar-hover:        hsl(30, 14%, 12%);
+  --sidebar-active:       hsla(38, 92%, 55%, 0.14);
+  --sidebar-border:       hsl(30, 12%, 18%);
+  --sidebar-foreground:   hsl(40, 30%, 92%);
+  --sidebar-primary:      hsl(38, 92%, 55%);
+  --sidebar-primary-foreground: hsl(30, 20%, 6%);
+  --sidebar-accent:       hsl(30, 14%, 12%);
+  --sidebar-accent-foreground: hsl(40, 30%, 92%);
+  --sidebar-ring:         hsl(38, 92%, 55%);
+
+  --xp:                   hsl(42, 95%, 52%);
+  --xp-muted:             hsl(42, 40%, 15%);
+}
+
+/* 3. Nordic Frost (Polar Navy & Pastel Lavender/Mint) */
+.theme-nordic,
+.dark.theme-nordic {
+  --background:           hsl(220, 30%, 8%);     /* #0f141c Polar Navy */
+  --foreground:           hsl(210, 30%, 96%);    /* #f0f6fc Crisp Ice White */
+  --foreground-muted:     hsl(215, 20%, 70%);    /* #9cb0c9 */
+  --foreground-faint:     hsl(215, 15%, 50%);
+
+  --surface:              hsl(220, 28%, 12%);    /* #161e2b */
+  --surface-elevated:     hsl(220, 25%, 16%);    /* #1f2a3c */
+  --surface-hover:        hsl(220, 25%, 22%);
+
+  --border:               hsl(220, 20%, 22%);
+  --border-hover:         hsl(220, 30%, 32%);
+
+  --card:                 hsl(220, 28%, 12%);
+  --card-foreground:      hsl(210, 30%, 96%);
+  --popover:              hsl(220, 28%, 12%);
+  --popover-foreground:   hsl(210, 30%, 96%);
+
+  --muted:                hsl(220, 25%, 16%);
+  --muted-foreground:     hsl(215, 20%, 68%);
+  --accent:               hsl(220, 25%, 20%);
+  --accent-foreground:    hsl(210, 30%, 96%);
+
+  --primary:              hsl(265, 80%, 75%);    /* Pastel Lavender */
+  --primary-hover:        hsl(265, 85%, 80%);
+  --primary-muted:        hsla(265, 80%, 75%, 0.16);
+  --primary-foreground:   hsl(220, 30%, 8%);
+
+  --ring:                 hsl(265, 80%, 75%);
+  --input:                hsl(220, 20%, 22%);
+  --destructive:          oklch(0.704 0.191 22.216);
+  --destructive-muted:    hsl(0, 40%, 15%);
+
+  --sidebar-bg:           hsl(220, 35%, 6%);
+  --sidebar:              hsl(220, 35%, 6%);
+  --sidebar-hover:        hsl(220, 28%, 13%);
+  --sidebar-active:       hsla(265, 80%, 75%, 0.14);
+  --sidebar-border:       hsl(220, 20%, 18%);
+  --sidebar-foreground:   hsl(210, 30%, 96%);
+  --sidebar-primary:      hsl(265, 80%, 75%);
+  --sidebar-primary-foreground: hsl(220, 30%, 8%);
+  --sidebar-accent:       hsl(220, 28%, 13%);
+  --sidebar-accent-foreground: hsl(210, 30%, 96%);
+  --sidebar-ring:         hsl(265, 80%, 75%);
+
+  --xp:                   hsl(48, 96%, 53%);
+  --xp-muted:             hsl(48, 40%, 15%);
+}
+
+/* 4. Cyber-Oasis (Obsidian & Frosted Glassmorphism with Neon Glow) */
+.theme-cyber-oasis,
+.dark.theme-cyber-oasis {
+  --background:           hsl(225, 45%, 4%);     /* #06080d Deep Obsidian */
+  --foreground:           hsl(210, 40%, 98%);
+  --foreground-muted:     hsl(215, 25%, 72%);
+  --foreground-faint:     hsl(215, 20%, 48%);
+
+  --surface:              hsla(225, 35%, 8%, 0.78);
+  --surface-elevated:     hsla(225, 30%, 12%, 0.88);
+  --surface-hover:        hsla(225, 30%, 16%, 0.95);
+
+  --border:               hsla(185, 60%, 45%, 0.2);
+  --border-hover:         hsla(185, 70%, 55%, 0.42);
+
+  --card:                 hsla(225, 35%, 8%, 0.82);
+  --card-foreground:      hsl(210, 40%, 98%);
+  --popover:              hsla(225, 35%, 9%, 0.95);
+  --popover-foreground:   hsl(210, 40%, 98%);
+
+  --muted:                hsla(225, 30%, 12%, 0.8);
+  --muted-foreground:     hsl(215, 25%, 68%);
+  --accent:               hsla(225, 30%, 16%, 0.8);
+  --accent-foreground:    hsl(210, 40%, 98%);
+
+  --primary:              hsl(185, 100%, 55%);   /* Subtle Neon Cyan */
+  --primary-hover:        hsl(185, 100%, 65%);
+  --primary-muted:        hsla(185, 100%, 55%, 0.16);
+  --primary-foreground:   hsl(225, 45%, 4%);
+
+  --ring:                 hsl(185, 100%, 55%);
+  --input:                hsla(185, 50%, 30%, 0.25);
+  --destructive:          oklch(0.704 0.191 22.216);
+  --destructive-muted:    hsl(0, 40%, 15%);
+
+  --sidebar-bg:           hsl(225, 50%, 3%);
+  --sidebar:              hsl(225, 50%, 3%);
+  --sidebar-hover:        hsla(225, 35%, 10%, 0.9);
+  --sidebar-active:       hsla(185, 100%, 55%, 0.14);
+  --sidebar-border:       hsla(185, 60%, 45%, 0.18);
+  --sidebar-foreground:   hsl(210, 40%, 98%);
+  --sidebar-primary:      hsl(185, 100%, 55%);
+  --sidebar-primary-foreground: hsl(225, 45%, 4%);
+  --sidebar-accent:       hsla(225, 35%, 10%, 0.9);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-ring:         hsl(185, 100%, 55%);
+
+  --xp:                   hsl(48, 96%, 53%);
+  --xp-muted:             hsl(48, 40%, 15%);
 }
 
 .light {
@@ -362,6 +584,8 @@ body {
   --primary-hover:        hsl(190, 95%, 28%);
   --primary-muted:        hsl(190, 40%, 92%);
   --primary-foreground:   hsl(0, 0%, 100%);
+  --ring:                 hsl(190, 95%, 35%);
+  --input:                oklch(0.85 0 0);
   --destructive:          oklch(0.577 0.245 27.325);
   --destructive-muted:    hsl(0, 70%, 95%);
 }

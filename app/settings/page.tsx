@@ -235,61 +235,204 @@ export default function SettingsPage() {
       </section>
 
       <div className="space-y-6">
-        {/* 1. Theme Settings */}
-        <section className="p-6 rounded-xl border border-border bg-card space-y-4 shadow-sm">
-          <div>
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-              <Monitor className="w-5 h-5 text-primary" /> Appearance (চেহারা ও থিম)
-            </h2>
-            <p className="text-xs text-muted-foreground mt-1 font-bangla">
-              Choose your preferred interface theme. (আপনার পছন্দের ইন্টারফেস থিম বেছে নিন)
-            </p>
+        {/* 1. Theme Settings — Aesthetic & Eye-Friendly Themes */}
+        <section className="p-6 rounded-xl border border-border bg-card space-y-5 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
+                <Sparkles className="w-5 h-5 text-primary" /> Appearance Hub (চেহারা ও নান্দনিক থিম)
+              </h2>
+              <p className="text-xs text-muted-foreground mt-1 font-bangla">
+                Choose an eye-friendly, distraction-free appearance designed for the peace of the learner.
+              </p>
+            </div>
+            <span className="self-start sm:self-auto text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+              4 Peaceful Aesthetics
+            </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <button
-              onClick={() => handleThemeChange('dark')}
-              className={`flex flex-col items-center justify-center gap-3 p-4 rounded-xl border transition-all ${
-                isClient && settings.theme === 'dark'
-                  ? 'border-primary bg-primary/10 text-primary shadow-sm ring-1 ring-primary/40'
-                  : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Moon className="w-6 h-6" />
-              <div className="text-center">
-                <div className="text-sm font-medium">Dark Mode</div>
-                <div className="text-xs text-muted-foreground font-bangla">ডার্ক মোড</div>
-              </div>
-            </button>
 
-            <button
-              onClick={() => handleThemeChange('light')}
-              className={`flex flex-col items-center justify-center gap-3 p-4 rounded-xl border transition-all ${
-                isClient && settings.theme === 'light'
-                  ? 'border-primary bg-primary/10 text-primary shadow-sm ring-1 ring-primary/40'
-                  : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Sun className="w-6 h-6" />
-              <div className="text-center">
-                <div className="text-sm font-medium">Light Mode</div>
-                <div className="text-xs text-muted-foreground font-bangla">লাইট মোড</div>
-              </div>
-            </button>
+          {/* 4 Rich Theme Preview Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                id: 'midnight' as ThemeMode,
+                name: 'Midnight Sanctuary',
+                banglaName: 'মিডনাইট স্যাঙ্কচুয়ারি',
+                icon: '🌙',
+                badge: 'Eye-Friendly',
+                description: 'Deep Charcoal Slate (#0b0f19) with soft Emerald & Cyan glow. Zero glare, pure peaceful focus.',
+                swatches: ['#0b0f19', '#34d399', '#22d3ee', '#151e30'],
+                previewBg: '#0b0f19',
+                accentColor: '#34d399',
+                activeRing: 'ring-emerald-400/50 border-emerald-400',
+              },
+              {
+                id: 'warm-zen' as ThemeMode,
+                name: 'Warm Zen',
+                banglaName: 'ওয়ার্ম জেন',
+                icon: '🍵',
+                badge: 'Zero Blue Light',
+                description: 'Deep Warm Sepia (#181512) with glowing Amber & Bone White. Physical library book warmth.',
+                swatches: ['#181512', '#f59e0b', '#f5efe6', '#2a2520'],
+                previewBg: '#181512',
+                accentColor: '#f59e0b',
+                activeRing: 'ring-amber-400/50 border-amber-400',
+              },
+              {
+                id: 'nordic' as ThemeMode,
+                name: 'Nordic Frost',
+                banglaName: 'নর্ডিক ফ্রস্ট',
+                icon: '❄️',
+                badge: 'Clean Pastel',
+                description: 'Velvety Polar Navy (#0f141c) with pastel Lavender, Sapphire & Mint. Scandinavian tranquility.',
+                swatches: ['#0f141c', '#c084fc', '#6ee7b7', '#1f2a3c'],
+                previewBg: '#0f141c',
+                accentColor: '#c084fc',
+                activeRing: 'ring-purple-400/50 border-purple-400',
+              },
+              {
+                id: 'cyber-oasis' as ThemeMode,
+                name: 'Cyber-Oasis',
+                banglaName: 'সাইবার ওয়েসিস',
+                icon: '⚡',
+                badge: 'Futuristic Glass',
+                description: 'Deep Obsidian (#06080d) with frosted glassmorphism and subtle Neon Cyan ambient glow.',
+                swatches: ['#06080d', '#00f0ff', '#818cf8', 'rgba(34,211,238,0.2)'],
+                previewBg: '#06080d',
+                accentColor: '#00f0ff',
+                activeRing: 'ring-cyan-400/50 border-cyan-400',
+              },
+            ].map((theme) => {
+              const isSelected =
+                isClient &&
+                (settings.theme === theme.id ||
+                  (settings.theme === 'dark' && theme.id === 'midnight'));
 
-            <button
-              onClick={() => handleThemeChange('system')}
-              className={`flex flex-col items-center justify-center gap-3 p-4 rounded-xl border transition-all ${
-                isClient && settings.theme === 'system'
-                  ? 'border-primary bg-primary/10 text-primary shadow-sm ring-1 ring-primary/40'
-                  : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Monitor className="w-6 h-6" />
-              <div className="text-center">
-                <div className="text-sm font-medium">System Auto</div>
-                <div className="text-xs text-muted-foreground font-bangla">সিস্টেম অনুযায়ী</div>
-              </div>
-            </button>
+              return (
+                <button
+                  key={theme.id}
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => handleThemeChange(theme.id)}
+                  className={`group flex flex-col justify-between p-4 rounded-xl border text-left transition-all duration-300 relative overflow-hidden ${
+                    isSelected
+                      ? `bg-surface-elevated shadow-lg ring-2 ${theme.activeRing}`
+                      : 'border-border bg-surface hover:bg-surface-hover hover:border-border-hover'
+                  }`}
+                >
+                  {/* Top Header */}
+                  <div className="w-full space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl">{theme.icon}</span>
+                      <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-surface-elevated border border-border text-foreground-muted">
+                        {theme.badge}
+                      </span>
+                    </div>
+
+                    {/* Miniature UI Card Preview */}
+                    <div
+                      className="w-full h-16 rounded-lg p-2 border border-white/10 flex flex-col justify-between shadow-inner"
+                      style={{ backgroundColor: theme.previewBg }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex space-x-1">
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                          <span className="w-2 h-2 rounded-full bg-white/20" />
+                        </div>
+                        <span
+                          className="w-8 h-2 rounded-full opacity-80"
+                          style={{ backgroundColor: theme.accentColor }}
+                        />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div
+                          className="w-12 h-3.5 rounded text-[8px] font-bold flex items-center justify-center text-black"
+                          style={{ backgroundColor: theme.accentColor }}
+                        >
+                          Run
+                        </div>
+                        <div className="h-2 w-16 bg-white/15 rounded" />
+                      </div>
+                    </div>
+
+                    {/* Titles */}
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground tracking-tight">
+                        {theme.name}
+                      </h3>
+                      <p className="text-xs text-muted-foreground font-bangla mt-0.5">
+                        {theme.banglaName}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-muted-foreground line-clamp-2">
+                      {theme.description}
+                    </p>
+                  </div>
+
+                  {/* Footer with Swatches and Active Indicator */}
+                  <div className="w-full pt-4 mt-3 border-t border-border flex items-center justify-between">
+                    <div className="flex items-center -space-x-1.5">
+                      {theme.swatches.map((color, i) => (
+                        <span
+                          key={i}
+                          className="inline-block w-4 h-4 rounded-full border border-black/40 shadow-xs"
+                          style={{ backgroundColor: color }}
+                        />
+                      ))}
+                    </div>
+
+                    {isSelected ? (
+                      <span className="flex items-center gap-1 text-xs font-semibold text-primary">
+                        <Check className="w-3.5 h-3.5" /> Active
+                      </span>
+                    ) : (
+                      <span className="text-[11px] text-muted-foreground group-hover:text-foreground transition-colors">
+                        Select
+                      </span>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Secondary Options: Light Mode & System Auto */}
+          <div className="pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-xs text-muted-foreground">
+              Standard Environment Modes:
+            </span>
+            <div className="flex items-center gap-2 w-full sm:w-auto" role="radiogroup" aria-label="Standard Environment Modes">
+              <button
+                role="radio"
+                aria-checked={isClient && settings.theme === 'light'}
+                onClick={() => handleThemeChange('light')}
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all ${
+                  isClient && settings.theme === 'light'
+                    ? 'border-primary bg-primary/10 text-primary ring-1 ring-primary/40 font-semibold'
+                    : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Sun className="w-4 h-4" />
+                <span>Light Mode (দিনের আলো)</span>
+              </button>
+
+              <button
+                role="radio"
+                aria-checked={isClient && settings.theme === 'system'}
+                onClick={() => handleThemeChange('system')}
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all ${
+                  isClient && settings.theme === 'system'
+                    ? 'border-primary bg-primary/10 text-primary ring-1 ring-primary/40 font-semibold'
+                    : 'border-border bg-surface hover:bg-surface-hover text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Monitor className="w-4 h-4" />
+                <span>System Auto (সিস্টেম অনুযায়ী)</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -381,20 +524,25 @@ export default function SettingsPage() {
                   Syntax highlighting colors inside Monaco.
                 </p>
               </div>
-              <div className="flex bg-surface-elevated rounded-lg p-1 border border-border gap-1 shrink-0">
+              <div className="flex flex-wrap bg-surface-elevated rounded-lg p-1 border border-border gap-1 shrink-0 max-w-full sm:max-w-md">
                 {(
                   [
+                    { id: 'auto', label: 'Auto (Sync)' },
+                    { id: 'nexus-midnight', label: 'Midnight' },
+                    { id: 'nexus-warm-zen', label: 'Warm Zen' },
+                    { id: 'nexus-nordic', label: 'Nordic' },
+                    { id: 'nexus-cyber', label: 'Cyber' },
                     { id: 'vs-dark', label: 'VS Dark' },
                     { id: 'monokai', label: 'Monokai' },
-                    { id: 'hc-black', label: 'High Contrast' },
+                    { id: 'hc-black', label: 'HC Black' },
                   ] as { id: EditorTheme; label: string }[]
                 ).map((t) => (
                   <button
                     key={t.id}
                     onClick={() => handleEditorThemeChange(t.id)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                    className={`px-2.5 py-1.5 rounded-md text-xs font-medium transition-all ${
                       isClient && settings.editorTheme === t.id
-                        ? 'bg-card text-primary border border-border font-semibold shadow-sm'
+                        ? 'bg-card text-primary border border-border font-semibold shadow-sm ring-1 ring-primary/40'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >

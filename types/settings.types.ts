@@ -1,10 +1,10 @@
 // types/settings.types.ts
 // NEXUS Academy — Settings Schema and Types
 
-export type ThemeMode = 'dark' | 'light' | 'system';
+export type ThemeMode = 'midnight' | 'warm-zen' | 'nordic' | 'cyber-oasis' | 'dark' | 'light' | 'system';
 export type AppFontSize = 'standard' | 'large';
 export type EditorFontSize = 12 | 14 | 16 | 18;
-export type EditorTheme = 'vs-dark' | 'monokai' | 'hc-black';
+export type EditorTheme = 'auto' | 'nexus-midnight' | 'nexus-warm-zen' | 'nexus-nordic' | 'nexus-cyber' | 'vs-dark' | 'monokai' | 'hc-black';
 
 export interface NexusSettings {
   theme: ThemeMode;
@@ -22,10 +22,10 @@ export interface NexusSettings {
 export const DEV_MODE_PIN = 'nexus2026';
 
 export const DEFAULT_SETTINGS: NexusSettings = {
-  theme: 'dark',
+  theme: 'midnight',
   fontSize: 'standard',
   editorFontSize: 14,
-  editorTheme: 'vs-dark',
+  editorTheme: 'auto',
   editorLineWrap: true,
   editorFindEnabled: false,
   strictScoring: false,

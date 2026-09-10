@@ -39,10 +39,10 @@ globalThis.document = {
 
 // 2. Settings Schema & Service Implementation Verification
 const DEFAULT_SETTINGS = {
-  theme: 'dark',
+  theme: 'midnight',
   fontSize: 'standard',
   editorFontSize: 14,
-  editorTheme: 'vs-dark',
+  editorTheme: 'auto',
   editorLineWrap: true,
   editorFindEnabled: false,
   strictScoring: false,
@@ -55,10 +55,19 @@ const DEV_MODE_PIN = 'nexus2026';
 
 class SettingsServiceTest {
   sanitizeSettings(input) {
-    const validThemes = ['dark', 'light', 'system'];
+    const validThemes = ['midnight', 'warm-zen', 'nordic', 'cyber-oasis', 'dark', 'light', 'system'];
     const validFontSizes = ['standard', 'large'];
     const validEditorFontSizes = [12, 14, 16, 18];
-    const validEditorThemes = ['vs-dark', 'monokai', 'hc-black'];
+    const validEditorThemes = [
+      'auto',
+      'nexus-midnight',
+      'nexus-warm-zen',
+      'nexus-nordic',
+      'nexus-cyber',
+      'vs-dark',
+      'monokai',
+      'hc-black',
+    ];
 
     return {
       theme: validThemes.includes(input?.theme) ? input.theme : DEFAULT_SETTINGS.theme,
@@ -100,15 +109,34 @@ class SettingsServiceTest {
   applyThemeAndFont(settings) {
     const root = document.documentElement;
     let isDark = true;
-    if (settings.theme === 'light') isDark = false;
-    else if (settings.theme === 'system') isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let activeTheme = 'midnight';
+
+    if (settings.theme === 'light') {
+      isDark = false;
+    } else if (settings.theme === 'system') {
+      const prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
+      isDark = prefersDark;
+      activeTheme = prefersDark ? 'midnight' : 'light';
+    } else if (settings.theme === 'dark' || settings.theme === 'midnight') {
+      isDark = true;
+      activeTheme = 'midnight';
+    } else if (settings.theme === 'warm-zen' || settings.theme === 'nordic' || settings.theme === 'cyber-oasis') {
+      isDark = true;
+      activeTheme = settings.theme;
+    }
+
+    const themeClasses = ['theme-midnight', 'theme-warm-zen', 'theme-nordic', 'theme-cyber-oasis', 'light', 'dark'];
+    themeClasses.forEach((cls) => root.classList.remove(cls));
 
     if (isDark) {
       root.classList.add('dark');
-      root.classList.remove('light');
+      root.classList.add(`theme-${activeTheme}`);
+      root.setAttribute('data-theme', activeTheme);
+      root.style.colorScheme = 'dark';
     } else {
-      root.classList.remove('dark');
       root.classList.add('light');
+      root.setAttribute('data-theme', 'light');
+      root.style.colorScheme = 'light';
     }
 
     root.setAttribute('data-font-size', settings.fontSize);
@@ -201,10 +229,10 @@ console.log('1️⃣ Testing Default Settings & Sanitization:');
 check('Returns pristine DEFAULT_SETTINGS when storage empty', () => {
   mockStorage.clear();
   const s = service.getSettings();
-  assert.strictEqual(s.theme, 'dark');
+  assert.strictEqual(s.theme, 'midnight');
   assert.strictEqual(s.fontSize, 'standard');
   assert.strictEqual(s.editorFontSize, 14);
-  assert.strictEqual(s.editorTheme, 'vs-dark');
+  assert.strictEqual(s.editorTheme, 'auto');
   assert.strictEqual(s.editorLineWrap, true);
   assert.strictEqual(s.editorFindEnabled, false);
   assert.strictEqual(s.strictScoring, false);
@@ -222,16 +250,16 @@ check('Sanitizes invalid values gracefully', () => {
     editorLineWrap: 'not-a-bool',
     editorFindEnabled: null,
   });
-  assert.strictEqual(sanitized.theme, 'dark');
+  assert.strictEqual(sanitized.theme, 'midnight');
   assert.strictEqual(sanitized.fontSize, 'standard');
   assert.strictEqual(sanitized.editorFontSize, 14);
-  assert.strictEqual(sanitized.editorTheme, 'vs-dark');
+  assert.strictEqual(sanitized.editorTheme, 'auto');
   assert.strictEqual(sanitized.editorLineWrap, true);
   assert.strictEqual(sanitized.editorFindEnabled, false);
 });
 
 console.log('\n2️⃣ Testing Settings Updates & DOM Application:');
-check('Persists partial settings update and applies theme/font', () => {
+check('Persists partial settings update and applies light theme and font', () => {
   service.updateSettings({ theme: 'light', fontSize: 'large', editorFontSize: 16 });
   const s = service.getSettings();
   assert.strictEqual(s.theme, 'light');
@@ -239,7 +267,97 @@ check('Persists partial settings update and applies theme/font', () => {
   assert.strictEqual(s.editorFontSize, 16);
   assert.strictEqual(document.documentElement.classList.contains('light'), true);
   assert.strictEqual(document.documentElement.classList.contains('dark'), false);
+  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), false);
   assert.strictEqual(document.documentElement.classList.contains('font-large'), true);
+});
+
+check('Applies Midnight Sanctuary theme correctly', () => {
+  service.updateSettings({ theme: 'midnight' });
+  const s = service.getSettings();
+  assert.strictEqual(s.theme, 'midnight');
+  assert.strictEqual(document.documentElement.classList.contains('dark'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), true);
+  assert.strictEqual(document.documentElement.classList.contains('light'), false);
+  assert.strictEqual(document.documentElement['data-theme'], 'midnight');
+});
+
+check('Applies Warm Zen theme correctly (zero blue light)', () => {
+  service.updateSettings({ theme: 'warm-zen' });
+  const s = service.getSettings();
+  assert.strictEqual(s.theme, 'warm-zen');
+  assert.strictEqual(document.documentElement.classList.contains('dark'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-warm-zen'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), false);
+  assert.strictEqual(document.documentElement['data-theme'], 'warm-zen');
+});
+
+check('Applies Nordic Frost theme correctly', () => {
+  service.updateSettings({ theme: 'nordic' });
+  const s = service.getSettings();
+  assert.strictEqual(s.theme, 'nordic');
+  assert.strictEqual(document.documentElement.classList.contains('dark'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-nordic'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-warm-zen'), false);
+  assert.strictEqual(document.documentElement['data-theme'], 'nordic');
+});
+
+check('Applies Cyber-Oasis theme correctly', () => {
+  service.updateSettings({ theme: 'cyber-oasis' });
+  const s = service.getSettings();
+  assert.strictEqual(s.theme, 'cyber-oasis');
+  assert.strictEqual(document.documentElement.classList.contains('dark'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-cyber-oasis'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-nordic'), false);
+  assert.strictEqual(document.documentElement['data-theme'], 'cyber-oasis');
+});
+
+check('Maintains backwards compatibility for legacy "dark" theme', () => {
+  service.updateSettings({ theme: 'dark' });
+  const s = service.getSettings();
+  assert.strictEqual(s.theme, 'dark');
+  assert.strictEqual(document.documentElement.classList.contains('dark'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), true);
+});
+
+check('Auto-syncs Monaco editor theme with active application theme', () => {
+  function resolveMonacoTheme(editorTheme, appTheme) {
+    if (editorTheme && editorTheme !== 'auto') {
+      return editorTheme;
+    }
+    switch (appTheme) {
+      case 'warm-zen':
+        return 'nexus-warm-zen';
+      case 'nordic':
+        return 'nexus-nordic';
+      case 'cyber-oasis':
+        return 'nexus-cyber';
+      case 'light':
+        return 'vs';
+      case 'system':
+        if (typeof globalThis.window !== 'undefined' && globalThis.window.matchMedia) {
+          return globalThis.window.matchMedia('(prefers-color-scheme: dark)').matches ? 'nexus-midnight' : 'vs';
+        }
+        return 'nexus-midnight';
+      case 'midnight':
+      case 'dark':
+      default:
+        return 'nexus-midnight';
+    }
+  }
+
+  // Auto-sync checks
+  assert.strictEqual(resolveMonacoTheme('auto', 'midnight'), 'nexus-midnight');
+  assert.strictEqual(resolveMonacoTheme('auto', 'dark'), 'nexus-midnight');
+  assert.strictEqual(resolveMonacoTheme('auto', 'warm-zen'), 'nexus-warm-zen');
+  assert.strictEqual(resolveMonacoTheme('auto', 'nordic'), 'nexus-nordic');
+  assert.strictEqual(resolveMonacoTheme('auto', 'cyber-oasis'), 'nexus-cyber');
+  assert.strictEqual(resolveMonacoTheme('auto', 'light'), 'vs');
+  assert.strictEqual(resolveMonacoTheme('auto', 'system'), 'nexus-midnight');
+
+  // Explicit override checks
+  assert.strictEqual(resolveMonacoTheme('monokai', 'midnight'), 'monokai');
+  assert.strictEqual(resolveMonacoTheme('hc-black', 'warm-zen'), 'hc-black');
+  assert.strictEqual(resolveMonacoTheme('vs-dark', 'cyber-oasis'), 'vs-dark');
 });
 
 check('Dispatches event on setting save', () => {
@@ -314,19 +432,20 @@ check('Exports full valid backup JSON', () => {
   assert.strictEqual(filename.startsWith('nexus-backup-'), true);
   const parsed = JSON.parse(json);
   assert.strictEqual(parsed.progress.xp, 450);
-  assert.strictEqual(parsed.settings.editorTheme, 'vs-dark');
+  assert.strictEqual(parsed.settings.editorTheme, 'auto');
 });
 
 check('Imports backup JSON successfully', () => {
   const payload = JSON.stringify({
     progress: { xp: 900, level: 5, missions: { '001': { status: 'complete' }, '002': { status: 'complete' } } },
-    settings: { editorFontSize: 18, theme: 'dark' }
+    settings: { editorFontSize: 18, theme: 'warm-zen' }
   });
   const res = service.importBackup(payload);
   assert.strictEqual(res.success, true);
   const restoredProg = JSON.parse(localStorage.getItem('nexus_progress'));
   assert.strictEqual(restoredProg.xp, 900);
   assert.strictEqual(service.getSettings().editorFontSize, 18);
+  assert.strictEqual(service.getSettings().theme, 'warm-zen');
 });
 
 check('Rejects invalid backup file format without corrupting storage', () => {

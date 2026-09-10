@@ -49,10 +49,27 @@ export class SettingsService {
    * Sanitizes and validates settings object against expected schema.
    */
   public sanitizeSettings(input: Partial<NexusSettings>): NexusSettings {
-    const validThemes: ThemeMode[] = ['dark', 'light', 'system'];
+    const validThemes: ThemeMode[] = [
+      'midnight',
+      'warm-zen',
+      'nordic',
+      'cyber-oasis',
+      'dark',
+      'light',
+      'system',
+    ];
     const validFontSizes: AppFontSize[] = ['standard', 'large'];
     const validEditorFontSizes: EditorFontSize[] = [12, 14, 16, 18];
-    const validEditorThemes: EditorTheme[] = ['vs-dark', 'monokai', 'hc-black'];
+    const validEditorThemes: EditorTheme[] = [
+      'auto',
+      'nexus-midnight',
+      'nexus-warm-zen',
+      'nexus-nordic',
+      'nexus-cyber',
+      'vs-dark',
+      'monokai',
+      'hc-black',
+    ];
 
     return {
       theme: validThemes.includes(input?.theme as ThemeMode) ? (input.theme as ThemeMode) : DEFAULT_SETTINGS.theme,
@@ -129,21 +146,34 @@ export class SettingsService {
       }
     }
 
-    // 1. Theme application
+    // 1. Theme determination & application
     let isDark = true;
+    let activeTheme = 'midnight';
+
     if (s.theme === 'light') {
       isDark = false;
     } else if (s.theme === 'system') {
-      isDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
+      const prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
+      isDark = prefersDark;
+      activeTheme = prefersDark ? 'midnight' : 'light';
+    } else if (s.theme === 'dark' || s.theme === 'midnight') {
+      isDark = true;
+      activeTheme = 'midnight';
+    } else if (s.theme === 'warm-zen' || s.theme === 'nordic' || s.theme === 'cyber-oasis') {
+      isDark = true;
+      activeTheme = s.theme;
     }
 
+    const themeClasses = ['theme-midnight', 'theme-warm-zen', 'theme-nordic', 'theme-cyber-oasis', 'light', 'dark'];
+    themeClasses.forEach((cls) => root.classList.remove(cls));
+
     if (isDark) {
-      root.classList.add('dark');
-      root.classList.remove('light');
+      root.classList.add('dark', `theme-${activeTheme}`);
+      if (root.setAttribute) root.setAttribute('data-theme', activeTheme);
       if (root.style) root.style.colorScheme = 'dark';
     } else {
-      root.classList.remove('dark');
       root.classList.add('light');
+      if (root.setAttribute) root.setAttribute('data-theme', 'light');
       if (root.style) root.style.colorScheme = 'light';
     }
 

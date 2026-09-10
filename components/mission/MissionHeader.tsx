@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getMissionData } from '@/services/ContentService';
+import { ThemeSwitcher } from '@/components/layout/ThemeSwitcher';
 
 export function MissionHeader() {
   const pathname = usePathname();
@@ -45,7 +46,8 @@ export function MissionHeader() {
             />
           </div>
         </div>
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex justify-end items-center gap-2">
+          <ThemeSwitcher compact />
           <Link
             href="/dashboard"
             className="p-2 rounded-full hover:bg-surface-hover text-muted-foreground transition-colors"
