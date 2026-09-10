@@ -17,6 +17,7 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const MISSIONS_DIR = path.join(ROOT_DIR, 'data', 'missions');
 const MANIFEST_PATH = path.join(MISSIONS_DIR, 'manifest.json');
+const CURRICULUM_GRAPH_PATH = path.join(ROOT_DIR, 'data', 'curriculum', 'curriculum-graph.json');
 
 // Parse CLI flags
 const args = process.argv.slice(2);
@@ -39,6 +40,15 @@ if (!fs.existsSync(MANIFEST_PATH)) {
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf-8'));
 const publishedMissions = manifest.missions || [];
 
+let curriculumGraph = null;
+if (fs.existsSync(CURRICULUM_GRAPH_PATH)) {
+  try {
+    curriculumGraph = JSON.parse(fs.readFileSync(CURRICULUM_GRAPH_PATH, 'utf-8'));
+  } catch (err) {
+    console.warn(`⚠️ Warning: Could not parse curriculum graph: ${err.message}`);
+  }
+}
+
 const missionsToValidate = targetMissionId
   ? publishedMissions.filter(m => m.id === targetMissionId)
   : publishedMissions;
@@ -49,31 +59,60 @@ if (missionsToValidate.length === 0) {
 }
 
 // Helper: Compile Python code snippet using local Python AST with UTF-8 support
-function validatePythonSnippet(code, contextName) {
+// Also inspects code against forbiddenSyntax AST node names
+function validatePythonSnippet(code, contextName, forbiddenSyntax = []) {
   if (!code || typeof code !== 'string' || !code.trim()) {
     return { valid: true, warning: 'Empty snippet' };
   }
 
-  // Pass code to Python AST parser with explicit UTF-8 decoding
+  const payload = JSON.stringify({
+    code,
+    forbidden: Array.isArray(forbiddenSyntax) ? forbiddenSyntax : []
+  });
+
   const pyScript = `
-import ast, sys
+import ast, sys, json
 try:
-    source = sys.stdin.buffer.read().decode('utf-8')
-    ast.parse(source)
+    data = json.loads(sys.stdin.buffer.read().decode('utf-8'))
+    source = data.get('code', '')
+    forbidden = set(data.get('forbidden', []))
+    tree = ast.parse(source)
+    violations = []
+    for node in ast.walk(tree):
+        name = type(node).__name__
+        if name in forbidden:
+            line = getattr(node, 'lineno', 1)
+            violations.append(f"Line {line}: Forbidden syntax construct '{name}' detected")
+    if violations:
+        sys.stderr.write("\\n".join(violations))
+        sys.exit(2)
     sys.exit(0)
+except SyntaxError as e:
+    line_info = f" on line {e.lineno}" if getattr(e, 'lineno', None) is not None else ""
+    sys.stderr.write(f"SyntaxError{line_info}: {e.msg}")
+    sys.exit(1)
 except Exception as e:
     sys.stderr.write(str(e))
     sys.exit(1)
 `;
 
   const pyProcess = spawnSync('python', ['-c', pyScript], {
-    input: Buffer.from(code, 'utf-8'),
+    input: Buffer.from(payload, 'utf-8'),
     env: {
       ...process.env,
       PYTHONUTF8: '1',
       PYTHONIOENCODING: 'utf-8',
     },
   });
+
+  if (pyProcess.status === 2) {
+    const errorMsg = pyProcess.stderr ? pyProcess.stderr.toString('utf-8').trim() : 'Forbidden construct detected';
+    return {
+      valid: false,
+      isForbidden: true,
+      error: `[${contextName}] Zero Untaught Syntax Barrier Violation:\n${errorMsg}\nSnippet preview:\n${code.slice(0, 120)}...`
+    };
+  }
 
   if (pyProcess.status !== 0) {
     const errorMsg = pyProcess.stderr ? pyProcess.stderr.toString('utf-8').trim() : 'SyntaxError in code';
@@ -121,6 +160,18 @@ for (const entry of missionsToValidate) {
   } catch (err) {
     assert(false, 'JSON Syntactic Validity', missionId, err.message);
     continue;
+  }
+
+  // Fetch curriculum contract for forbidden syntax
+  let missionForbiddenSyntax = [];
+  if (curriculumGraph) {
+    const graphMissions = Array.isArray(curriculumGraph)
+      ? curriculumGraph
+      : (curriculumGraph.missions || []);
+    const graphEntry = graphMissions.find(m => m.id === missionId);
+    if (graphEntry && Array.isArray(graphEntry.forbiddenSyntax)) {
+      missionForbiddenSyntax = graphEntry.forbiddenSyntax;
+    }
   }
 
   // Tier 1: Schema & Core Metadata
@@ -193,9 +244,9 @@ for (const entry of missionsToValidate) {
       assert(typeof pStep.prompt === 'string' && pStep.prompt.length > 0, `Practice ${pIdx + 1} Prompt Present`, missionId);
       assert(typeof pStep.solution === 'string' && pStep.solution.trim().length > 0, `Practice ${pIdx + 1} Solution Present`, missionId);
 
-      // Tier 3 Python Validation on Solution
-      const pyCheck = validatePythonSnippet(pStep.solution, `Practice ${pIdx + 1} Solution`);
-      assert(pyCheck.valid, `Practice ${pIdx + 1} Solution Valid Python AST`, missionId, pyCheck.error);
+      // Tier 3 Python Validation on Solution (AST compilation & Zero Untaught Syntax Barrier)
+      const pyCheck = validatePythonSnippet(pStep.solution, `Practice ${pIdx + 1} Solution`, missionForbiddenSyntax);
+      assert(pyCheck.valid, `Practice ${pIdx + 1} Solution Valid Python AST & Allowed Syntax`, missionId, pyCheck.error);
     });
 
     // Debug Challenges Validation
@@ -207,9 +258,9 @@ for (const entry of missionsToValidate) {
       assert(typeof dStep.fixedCode === 'string' && dStep.fixedCode.length > 0, `Debug ${dIdx + 1} Fixed Code Present`, missionId);
       assert(Array.isArray(dStep.hints) && dStep.hints.length >= 1, `Debug ${dIdx + 1} Has Hints`, missionId);
 
-      // Tier 3 Python Validation on Fixed Code (MUST BE 100% VALID SYNTAX)
-      const pyCheck = validatePythonSnippet(dStep.fixedCode, `Debug ${dIdx + 1} Fixed Code`);
-      assert(pyCheck.valid, `Debug ${dIdx + 1} Fixed Code Valid Python AST`, missionId, pyCheck.error);
+      // Tier 3 Python Validation on Fixed Code (MUST BE 100% VALID SYNTAX & FREE OF FORBIDDEN NODES)
+      const pyCheck = validatePythonSnippet(dStep.fixedCode, `Debug ${dIdx + 1} Fixed Code`, missionForbiddenSyntax);
+      assert(pyCheck.valid, `Debug ${dIdx + 1} Fixed Code Valid Python AST & Allowed Syntax`, missionId, pyCheck.error);
 
       // Tier 4 Negative Testing: Buggy Code must differ from Fixed Code
       assert(dStep.buggyCode.trim() !== dStep.fixedCode.trim(), `Debug ${dIdx + 1} Buggy Code Differs From Fixed Code`, missionId);
@@ -218,6 +269,12 @@ for (const entry of missionsToValidate) {
       if (dStep.bugType === 'syntax') {
         const buggyCheck = validatePythonSnippet(dStep.buggyCode, `Debug ${dIdx + 1} Buggy Code`);
         assert(!buggyCheck.valid, `Debug ${dIdx + 1} Buggy Code Has Real Syntax Error`, missionId);
+      } else {
+        // For non-syntax bugs, buggy code must also respect forbidden syntax barrier
+        const buggyForbiddenCheck = validatePythonSnippet(dStep.buggyCode, `Debug ${dIdx + 1} Buggy Code`, missionForbiddenSyntax);
+        if (buggyForbiddenCheck.isForbidden) {
+          assert(false, `Debug ${dIdx + 1} Buggy Code Free of Forbidden Syntax`, missionId, buggyForbiddenCheck.error);
+        }
       }
     });
 

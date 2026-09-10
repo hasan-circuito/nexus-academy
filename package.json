@@ -12,7 +12,11 @@
     "test:events": "node scripts/test-event-bus.mjs",
     "test:dictionary": "node scripts/validate-dictionary.mjs",
     "test:diagnostics": "node scripts/test-error-diagnostics.mjs",
-    "test:settings": "node scripts/test-settings.mjs"
+    "test:settings": "node scripts/test-settings.mjs",
+    "mission:preflight": "node scripts/curriculum-pipeline.mjs preflight",
+    "mission:scaffold": "node scripts/curriculum-pipeline.mjs scaffold",
+    "mission:validate": "node scripts/curriculum-pipeline.mjs validate",
+    "mission:package": "node scripts/curriculum-pipeline.mjs package"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
