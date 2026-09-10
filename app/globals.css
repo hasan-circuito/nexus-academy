@@ -333,6 +333,44 @@ body {
   --sidebar-ring:           oklch(0.556 0 0);
 }
 
+.light {
+  color-scheme: light;
+  --background:           oklch(0.985 0 0);
+  --foreground:           oklch(0.145 0 0);
+  --card:                 oklch(0.985 0 0);
+  --card-foreground:      oklch(0.145 0 0);
+  --popover:              oklch(0.985 0 0);
+  --popover-foreground:   oklch(0.145 0 0);
+  --surface:              hsl(220, 20%, 96%);
+  --surface-elevated:     hsl(220, 20%, 92%);
+  --surface-hover:        hsl(220, 20%, 88%);
+  --border:               oklch(0.85 0 0);
+  --border-hover:         hsl(220, 15%, 70%);
+  --muted:                oklch(0.95 0 0);
+  --muted-foreground:     oklch(0.45 0 0);
+  --foreground-muted:     hsl(215, 20%, 40%);
+  --foreground-faint:     hsl(215, 15%, 60%);
+  --sidebar-bg:           hsl(220, 20%, 95%);
+  --sidebar-hover:        hsl(220, 20%, 90%);
+  --sidebar-active:       hsl(190, 40%, 92%);
+  --sidebar-border:       oklch(0.85 0 0);
+  --sidebar:              oklch(0.985 0 0);
+  --sidebar-foreground:   oklch(0.145 0 0);
+  --sidebar-primary:      oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --primary:              hsl(190, 95%, 35%);
+  --primary-hover:        hsl(190, 95%, 28%);
+  --primary-muted:        hsl(190, 40%, 92%);
+  --primary-foreground:   hsl(0, 0%, 100%);
+  --destructive:          oklch(0.577 0.245 27.325);
+  --destructive-muted:    hsl(0, 70%, 95%);
+}
+
+html[data-font-size="large"],
+html.font-large {
+  font-size: 112.5%;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

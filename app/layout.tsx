@@ -68,7 +68,28 @@ export default function RootLayout({
   ].join(' ');
 
   return (
-    <html lang="en" className={cn("h-full", "antialiased", "dark", fontVars, "font-sans", geist.variable)}>
+    <html lang="en" suppressHydrationWarning className={cn("h-full", "antialiased", "dark", fontVars, "font-sans", geist.variable)}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var s = JSON.parse(localStorage.getItem('nexus_settings') || '{}');
+                var isDark = s.theme === 'light' ? false : (s.theme === 'system' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true);
+                if (!isDark) {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.classList.add('light');
+                  document.documentElement.style.colorScheme = 'light';
+                }
+                if (s.fontSize === 'large') {
+                  document.documentElement.classList.add('font-large');
+                  document.documentElement.setAttribute('data-font-size', 'large');
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full bg-background text-foreground">
         <div className="flex h-screen overflow-hidden">
           {/* Sidebar — persistent navigation shell */}

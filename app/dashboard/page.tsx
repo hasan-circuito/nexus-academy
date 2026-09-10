@@ -4,19 +4,23 @@ import { Play, Lock, BookOpen, Star, Target, Flame, Trophy, Activity, ArrowRight
 import manifest from '@/data/missions/manifest.json';
 import mission001 from '@/data/missions/mission-001.json';
 import { useProgress } from '@/hooks/useProgress';
+import { useSettings } from '@/hooks/useSettings';
 
 // Metadata removed for client component
 
 export default function DashboardPage() {
   const { progress, xpState, isClient } = useProgress();
+  const { settings } = useSettings();
 
   const missions = manifest.missions.map(entry => {
     const persistedMission = progress.missions[entry.id];
     const isFirstMission = entry.prerequisite === null;
     const isLocked = isClient 
-      ? (persistedMission 
-          ? (persistedMission.status !== 'unlocked' && persistedMission.status !== 'complete' && persistedMission.status !== 'in_progress') 
-          : !isFirstMission)
+      ? (settings.devPreviewAllMissions
+          ? false
+          : (persistedMission 
+              ? (persistedMission.status !== 'unlocked' && persistedMission.status !== 'complete' && persistedMission.status !== 'in_progress') 
+              : !isFirstMission))
       : !isFirstMission;
     const isCompleted = isClient ? persistedMission?.status === 'complete' : false;
     
@@ -42,6 +46,23 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold text-foreground">Welcome back, Learner</h1>
         <p className="text-foreground-muted">Ready to master the Python mindset today?</p>
       </section>
+
+      {/* Developer Mode Banner */}
+      {isClient && settings.devPreviewAllMissions && (
+        <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30 text-sm">
+          <div className="flex items-center gap-2.5">
+            <span className="px-2 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-md bg-primary/20 text-primary">
+              Dev Mode
+            </span>
+            <span className="text-foreground font-medium">
+              Developer Preview Mode Active: All missions 001–010 are unlocked for testing and review.
+            </span>
+          </div>
+          <Link href="/settings" className="text-xs font-semibold text-primary hover:underline shrink-0 ml-4">
+            Settings &rarr;
+          </Link>
+        </div>
+      )}
 
       {/* Continue Learning */}
       <section className="space-y-4">
