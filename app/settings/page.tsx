@@ -24,6 +24,9 @@ import {
   Sparkles,
   Search,
   WrapText,
+  Coffee,
+  Compass,
+  Cpu,
 } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
 import {
@@ -84,7 +87,7 @@ export default function SettingsPage() {
 
   const handleFontSizeChange = (fontSize: AppFontSize) => {
     updateSettings({ fontSize });
-    showToast(`UI Font size set to ${fontSize === 'large' ? 'Large (বড়)' : 'Standard (সাধারণ)'}`);
+    showToast(`UI font size set to ${fontSize === 'large' ? 'Large' : 'Standard'}`);
   };
 
   const handleEditorFontSizeChange = (size: EditorFontSize) => {
@@ -112,19 +115,19 @@ export default function SettingsPage() {
   const handleToggleStrictScoring = () => {
     const next = !settings.strictScoring;
     updateSettings({ strictScoring: next });
-    showToast(next ? 'Strict scoring enabled (কঠোর মূল্যায়ন সক্রিয়)' : 'Strict scoring disabled');
+    showToast(next ? 'Strict evaluation mode enabled' : 'Strict evaluation mode disabled');
   };
 
   const handleToggleSound = () => {
     const next = !settings.soundEnabled;
     updateSettings({ soundEnabled: next });
-    showToast(next ? 'Sound effects enabled (শব্দ সক্রিয়)' : 'Sound effects muted (শব্দ নিঃশব্দ)');
+    showToast(next ? 'Sound effects enabled' : 'Sound effects muted');
   };
 
   const handleToggleDevPreview = () => {
     const next = !settings.devPreviewAllMissions;
     updateSettings({ devPreviewAllMissions: next });
-    showToast(next ? 'Dev Preview Mode: All missions 001–010 unlocked!' : 'Dev Preview Mode disabled');
+    showToast(next ? 'Dev Preview Mode: All missions unlocked!' : 'Dev Preview Mode disabled');
   };
 
   // Developer PIN submission
@@ -135,7 +138,7 @@ export default function SettingsPage() {
       setIsPinModalOpen(false);
       setPinInput('');
       setPinError('');
-      showToast('Developer Mode unlocked! (ডেভেলপার মোড আনলক হয়েছে)', 'success');
+      showToast('Developer Mode unlocked!', 'success');
     } else {
       setPinError('Incorrect PIN. Please check the secret code.');
     }
@@ -159,7 +162,7 @@ export default function SettingsPage() {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('Backup downloaded successfully! (ব্যাকআপ ডাউনলোড সম্পন্ন)', 'success');
+      showToast('Backup downloaded successfully!', 'success');
     } catch {
       showToast('Failed to export backup.', 'error');
     }
@@ -198,7 +201,7 @@ export default function SettingsPage() {
   const handleConfirmReset = () => {
     resetAllProgress();
     setIsResetModalOpen(false);
-    showToast('All progress reset to default. (সকল অগ্রগতি মুছে ফেলা হয়েছে)', 'info');
+    showToast('All progress reset to default.', 'info');
   };
 
   return (
@@ -209,15 +212,15 @@ export default function SettingsPage() {
           {toast.type === 'success' && <Check className="w-5 h-5 text-success shrink-0" />}
           {toast.type === 'error' && <AlertTriangle className="w-5 h-5 text-destructive shrink-0" />}
           {toast.type === 'info' && <Sparkles className="w-5 h-5 text-primary shrink-0" />}
-          <span className="text-sm font-medium font-bangla-ui">{toast.message}</span>
+          <span className="text-sm font-medium">{toast.message}</span>
         </div>
       )}
 
       {/* Page Header */}
       <section className="space-y-2">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-foreground font-bangla-ui flex items-center gap-3">
-            Settings <span className="text-lg font-normal text-muted-foreground font-bangla">(সেটিংস)</span>
+          <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
+            Settings
           </h1>
           <button
             onClick={() => {
@@ -229,8 +232,8 @@ export default function SettingsPage() {
             Reset Defaults
           </button>
         </div>
-        <p className="text-muted-foreground text-sm font-bangla">
-          Manage your app preferences, editor, and learning environment. (আপনার পছন্দ ও শিক্ষার পরিবেশ কাস্টমাইজ করুন)
+        <p className="text-muted-foreground text-sm">
+          Manage your application preferences, code editor, and learning environment.
         </p>
       </section>
 
@@ -239,11 +242,11 @@ export default function SettingsPage() {
         <section className="p-6 rounded-xl border border-border bg-card space-y-5 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-                <Sparkles className="w-5 h-5 text-primary" /> Appearance Hub (চেহারা ও নান্দনিক থিম)
+              <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" /> Appearance
               </h2>
-              <p className="text-xs text-muted-foreground mt-1 font-bangla">
-                Choose an eye-friendly, distraction-free appearance designed for the peace of the learner.
+              <p className="text-xs text-muted-foreground mt-1">
+                Choose an eye-friendly, distraction-free appearance designed for focused learning.
               </p>
             </div>
             <span className="self-start sm:self-auto text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
@@ -257,8 +260,8 @@ export default function SettingsPage() {
               {
                 id: 'midnight' as ThemeMode,
                 name: 'Midnight Sanctuary',
-                banglaName: 'মিডনাইট স্যাঙ্কচুয়ারি',
-                icon: '🌙',
+                icon: Moon,
+                iconColor: 'text-emerald-400',
                 badge: 'Eye-Friendly',
                 description: 'Deep Charcoal Slate (#0b0f19) with soft Emerald & Cyan glow. Zero glare, pure peaceful focus.',
                 swatches: ['#0b0f19', '#34d399', '#22d3ee', '#151e30'],
@@ -269,8 +272,8 @@ export default function SettingsPage() {
               {
                 id: 'warm-zen' as ThemeMode,
                 name: 'Warm Zen',
-                banglaName: 'ওয়ার্ম জেন',
-                icon: '🍵',
+                icon: Coffee,
+                iconColor: 'text-amber-400',
                 badge: 'Zero Blue Light',
                 description: 'Deep Warm Sepia (#181512) with glowing Amber & Bone White. Physical library book warmth.',
                 swatches: ['#181512', '#f59e0b', '#f5efe6', '#2a2520'],
@@ -281,8 +284,8 @@ export default function SettingsPage() {
               {
                 id: 'nordic' as ThemeMode,
                 name: 'Nordic Frost',
-                banglaName: 'নর্ডিক ফ্রস্ট',
-                icon: '❄️',
+                icon: Compass,
+                iconColor: 'text-purple-400',
                 badge: 'Clean Pastel',
                 description: 'Velvety Polar Navy (#0f141c) with pastel Lavender, Sapphire & Mint. Scandinavian tranquility.',
                 swatches: ['#0f141c', '#c084fc', '#6ee7b7', '#1f2a3c'],
@@ -293,8 +296,8 @@ export default function SettingsPage() {
               {
                 id: 'cyber-oasis' as ThemeMode,
                 name: 'Cyber-Oasis',
-                banglaName: 'সাইবার ওয়েসিস',
-                icon: '⚡',
+                icon: Cpu,
+                iconColor: 'text-cyan-400',
                 badge: 'Futuristic Glass',
                 description: 'Deep Obsidian (#06080d) with frosted glassmorphism and subtle Neon Cyan ambient glow.',
                 swatches: ['#06080d', '#00f0ff', '#818cf8', 'rgba(34,211,238,0.2)'],
@@ -304,6 +307,7 @@ export default function SettingsPage() {
               },
             ].map((theme) => {
               const isSelected = isClient && settings.theme === theme.id;
+              const ThemeIcon = theme.icon;
 
               return (
                 <button
@@ -320,7 +324,9 @@ export default function SettingsPage() {
                   {/* Top Header */}
                   <div className="w-full space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl">{theme.icon}</span>
+                      <div className="p-2 rounded-lg bg-surface-elevated border border-border">
+                        <ThemeIcon className={`w-5 h-5 ${theme.iconColor}`} />
+                      </div>
                       <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-surface-elevated border border-border text-foreground-muted">
                         {theme.badge}
                       </span>
@@ -358,9 +364,6 @@ export default function SettingsPage() {
                       <h3 className="text-sm font-semibold text-foreground tracking-tight">
                         {theme.name}
                       </h3>
-                      <p className="text-xs text-muted-foreground font-bangla mt-0.5">
-                        {theme.banglaName}
-                      </p>
                     </div>
 
                     {/* Description */}
@@ -413,7 +416,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Moon className="w-4 h-4" />
-                <span>Dark Mode (মূল ডার্ক - ডিফল্ট)</span>
+                <span>Dark Mode</span>
               </button>
 
               <button
@@ -427,7 +430,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Sun className="w-4 h-4" />
-                <span>Light Mode (দিনের আলো)</span>
+                <span>Light Mode</span>
               </button>
 
               <button
@@ -441,7 +444,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Monitor className="w-4 h-4" />
-                <span>System Auto (সিস্টেম অনুযায়ী)</span>
+                <span>System Preference</span>
               </button>
             </div>
           </div>
@@ -449,15 +452,15 @@ export default function SettingsPage() {
 
         {/* 2. Typography Settings */}
         <section className="p-6 rounded-xl border border-border bg-card space-y-4 shadow-sm">
-          <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-            <Type className="w-5 h-5 text-primary" /> Typography & Reading (টাইপোগ্রাফি ও ফন্ট সাইজ)
+          <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <Type className="w-5 h-5 text-primary" /> Typography & Reading
           </h2>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl border border-border bg-surface">
             <div>
-              <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                UI & Bangla Font Size (বাংলা ও ইউআই টেক্সট আকার)
+              <h3 className="font-medium text-foreground text-sm">
+                Reading Font Size
               </h3>
-              <p className="text-xs text-muted-foreground font-bangla mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5">
                 Adjust text size for reading comfort across missions and explanations.
               </p>
             </div>
@@ -470,7 +473,7 @@ export default function SettingsPage() {
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                Standard (সাধারণ)
+                Standard
               </button>
               <button
                 onClick={() => handleFontSizeChange('large')}
@@ -480,7 +483,7 @@ export default function SettingsPage() {
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                Large (বড়)
+                Large
               </button>
             </div>
           </div>
@@ -489,11 +492,11 @@ export default function SettingsPage() {
         {/* 3. Python Editor Preferences */}
         <section className="p-6 rounded-xl border border-border bg-card space-y-4 shadow-sm">
           <div>
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-              <Code2 className="w-5 h-5 text-primary" /> Python Editor (কোড এডিটর পছন্দসমূহ)
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <Code2 className="w-5 h-5 text-primary" /> Code Editor
             </h2>
-            <p className="text-xs text-muted-foreground mt-1 font-bangla">
-              Customize your coding workspace and Monaco editor settings.
+            <p className="text-xs text-muted-foreground mt-1">
+              Customize your coding workspace and editor settings.
             </p>
           </div>
 
@@ -501,10 +504,10 @@ export default function SettingsPage() {
             {/* Editor Font Size */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl border border-border bg-surface">
               <div>
-                <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                  Editor Font Size (এডিটরে কোডের ফন্ট সাইজ)
+                <h3 className="font-medium text-foreground text-sm">
+                  Font Size
                 </h3>
-                <p className="text-xs text-muted-foreground font-bangla mt-0.5">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   Choose the font size used in Python coding environments.
                 </p>
               </div>
@@ -528,11 +531,11 @@ export default function SettingsPage() {
             {/* Editor Theme */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl border border-border bg-surface">
               <div>
-                <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                  Editor Theme (কোড এডিটর থিম)
+                <h3 className="font-medium text-foreground text-sm">
+                  Syntax Highlighting Theme
                 </h3>
-                <p className="text-xs text-muted-foreground font-bangla mt-0.5">
-                  Syntax highlighting colors inside Monaco.
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Syntax highlighting colors inside the code editor.
                 </p>
               </div>
               <div className="flex flex-wrap bg-surface-elevated rounded-lg p-1 border border-border gap-1 shrink-0 max-w-full sm:max-w-md">
@@ -568,10 +571,10 @@ export default function SettingsPage() {
               <div className="flex items-start gap-3">
                 <WrapText className="w-5 h-5 text-muted-foreground mt-0.5 shrink-0" />
                 <div>
-                  <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                    Word Wrap (স্বয়ংক্রিয় লাইন ব্রেকিং)
+                  <h3 className="font-medium text-foreground text-sm">
+                    Word Wrap
                   </h3>
-                  <p className="text-xs text-muted-foreground font-bangla">
+                  <p className="text-xs text-muted-foreground">
                     Wrap long lines of code within the visible editor area so horizontal scrolling is avoided.
                   </p>
                 </div>
@@ -581,7 +584,7 @@ export default function SettingsPage() {
                 className={`w-12 h-6 rounded-full transition-colors relative shrink-0 p-0.5 ${
                   isClient && settings.editorLineWrap ? 'bg-primary' : 'bg-surface-elevated border border-border'
                 }`}
-                aria-label="Toggle line wrap"
+                aria-label="Toggle word wrap"
               >
                 <div
                   className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -596,11 +599,11 @@ export default function SettingsPage() {
               <div className="flex items-start gap-3">
                 <Search className="w-5 h-5 text-muted-foreground mt-0.5 shrink-0" />
                 <div>
-                  <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                    Editor Find Widget (Ctrl+F সার্চ উইজেট)
+                  <h3 className="font-medium text-foreground text-sm">
+                    Find & Replace (Ctrl+F)
                   </h3>
-                  <p className="text-xs text-muted-foreground font-bangla max-w-md">
-                    Disabled by default to prevent the search dialog popup from accidentally blocking the learner&apos;s code view.
+                  <p className="text-xs text-muted-foreground max-w-md">
+                    Disabled by default to prevent the search dialog popup from accidentally blocking the code view.
                   </p>
                 </div>
               </div>
@@ -624,10 +627,10 @@ export default function SettingsPage() {
         {/* 4. Learning Preferences */}
         <section className="p-6 rounded-xl border border-border bg-card space-y-4 shadow-sm">
           <div>
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-              <BrainCircuit className="w-5 h-5 text-primary" /> Learning Preferences (শেখার পছন্দ ও প্রতিক্রিয়া)
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <BrainCircuit className="w-5 h-5 text-primary" /> Learning Preferences
             </h2>
-            <p className="text-xs text-muted-foreground mt-1 font-bangla">
+            <p className="text-xs text-muted-foreground mt-1">
               Configure pedagogical rigor and sound feedback.
             </p>
           </div>
@@ -636,10 +639,10 @@ export default function SettingsPage() {
             {/* Strict Scoring */}
             <div className="flex items-center justify-between p-4 rounded-xl border border-border bg-surface">
               <div>
-                <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                  Strict Scoring (কঠোর মূল্যায়ন মোড)
+                <h3 className="font-medium text-foreground text-sm">
+                  Strict Evaluation Mode
                 </h3>
-                <p className="text-xs text-muted-foreground font-bangla max-w-md mt-0.5">
+                <p className="text-xs text-muted-foreground max-w-md mt-0.5">
                   Require higher accuracy in quizzes and debug challenges before marking a mission complete.
                 </p>
               </div>
@@ -648,7 +651,7 @@ export default function SettingsPage() {
                 className={`w-12 h-6 rounded-full transition-colors relative shrink-0 p-0.5 ${
                   isClient && settings.strictScoring ? 'bg-primary' : 'bg-surface-elevated border border-border'
                 }`}
-                aria-label="Toggle strict scoring"
+                aria-label="Toggle strict evaluation mode"
               >
                 <div
                   className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -667,10 +670,10 @@ export default function SettingsPage() {
                   <VolumeX className="w-5 h-5 text-muted-foreground mt-0.5 shrink-0" />
                 )}
                 <div>
-                  <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                    Sound Effects & Feedback (সাউন্ড এফেক্ট)
+                  <h3 className="font-medium text-foreground text-sm">
+                    Audio Feedback
                   </h3>
-                  <p className="text-xs text-muted-foreground font-bangla mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     Play audio cues upon step completion, achievements, and level-ups.
                   </p>
                 </div>
@@ -680,7 +683,7 @@ export default function SettingsPage() {
                 className={`w-12 h-6 rounded-full transition-colors relative shrink-0 p-0.5 ${
                   isClient && settings.soundEnabled ? 'bg-primary' : 'bg-surface-elevated border border-border'
                 }`}
-                aria-label="Toggle sound feedback"
+                aria-label="Toggle audio feedback"
               >
                 <div
                   className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -695,8 +698,8 @@ export default function SettingsPage() {
         {/* 5. Developer Mode (Mission Unlocker) */}
         <section className="p-6 rounded-xl border border-border bg-card space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 font-bangla-ui">
-              <KeyRound className="w-5 h-5 text-primary" /> Developer Mode (ডেভেলপার মোড)
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <KeyRound className="w-5 h-5 text-primary" /> Developer Mode
             </h2>
             {isClient && settings.devModeUnlocked ? (
               <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20">
@@ -713,11 +716,11 @@ export default function SettingsPage() {
             {!isClient || !settings.devModeUnlocked ? (
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <h3 className="font-medium text-foreground text-sm font-bangla-ui">
-                    Developer & Reviewer Controls
+                  <h3 className="font-medium text-foreground text-sm">
+                    Mission Unlocker (Preview All Missions)
                   </h3>
-                  <p className="text-xs text-muted-foreground font-bangla">
-                    Unlock developer tools to preview and test all missions 001–010 without prerequisite restrictions.
+                  <p className="text-xs text-muted-foreground">
+                    Unlock developer tools to preview and test all missions without prerequisite restrictions.
                   </p>
                 </div>
                 <button
@@ -735,11 +738,11 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-foreground text-sm font-bangla-ui flex items-center gap-2">
-                      Developer Preview Mode (সকল মিশন আনলক মোড)
+                    <h3 className="font-medium text-foreground text-sm flex items-center gap-2">
+                      Mission Unlocker (Preview All Missions)
                     </h3>
-                    <p className="text-xs text-muted-foreground font-bangla mt-0.5">
-                      When enabled, all missions 001–010 on the dashboard are treated as unlocked for immediate testing and QA.
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      When enabled, all missions on the dashboard are treated as unlocked for immediate testing and QA.
                     </p>
                   </div>
                   <button
@@ -747,7 +750,7 @@ export default function SettingsPage() {
                     className={`w-12 h-6 rounded-full transition-colors relative shrink-0 p-0.5 ${
                       settings.devPreviewAllMissions ? 'bg-primary' : 'bg-surface-elevated border border-border'
                     }`}
-                    aria-label="Toggle developer preview mode"
+                    aria-label="Toggle mission unlocker"
                   >
                     <div
                       className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -776,10 +779,10 @@ export default function SettingsPage() {
         {/* 6. Danger Zone & Data Management */}
         <section className="p-6 rounded-xl border border-destructive/30 bg-destructive/5 space-y-4 shadow-sm">
           <div>
-            <h2 className="text-lg font-semibold text-destructive flex items-center gap-2 font-bangla-ui">
-              <ShieldAlert className="w-5 h-5" /> Danger Zone & Data Management (ডাটা ব্যাকআপ ও রিসেট)
+            <h2 className="text-lg font-semibold text-destructive flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5" /> Data Management & Danger Zone
             </h2>
-            <p className="text-xs text-muted-foreground mt-1 font-bangla">
+            <p className="text-xs text-muted-foreground mt-1">
               Export your progress for safekeeping, import on a new machine, or start fresh.
             </p>
           </div>
@@ -791,7 +794,7 @@ export default function SettingsPage() {
                 <h3 className="font-medium text-foreground text-sm flex items-center gap-2">
                   <FileJson className="w-4 h-4 text-primary" /> Export Backup (.json)
                 </h3>
-                <p className="text-xs text-muted-foreground mt-1 font-bangla">
+                <p className="text-xs text-muted-foreground mt-1">
                   Download a complete backup of your XP, mission states, settings, and memory.
                 </p>
               </div>
@@ -809,7 +812,7 @@ export default function SettingsPage() {
                 <h3 className="font-medium text-foreground text-sm flex items-center gap-2">
                   <Upload className="w-4 h-4 text-primary" /> Import Progress (.json)
                 </h3>
-                <p className="text-xs text-muted-foreground mt-1 font-bangla">
+                <p className="text-xs text-muted-foreground mt-1">
                   Restore previously exported progress and settings from a JSON file.
                 </p>
               </div>
@@ -832,10 +835,10 @@ export default function SettingsPage() {
           {/* Reset Progress */}
           <div className="p-4 rounded-xl border border-destructive/20 bg-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3 className="font-medium text-foreground text-sm font-bangla-ui flex items-center gap-2">
-                <RotateCcw className="w-4 h-4 text-destructive" /> Reset Learning Progress (অগ্রগতি সম্পূর্ণ রিসেট)
+              <h3 className="font-medium text-foreground text-sm flex items-center gap-2">
+                <RotateCcw className="w-4 h-4 text-destructive" /> Reset All Progress
               </h3>
-              <p className="text-xs text-muted-foreground font-bangla mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5">
                 Permanently delete all your XP, levels, quiz scores, and mission states.
               </p>
             </div>
@@ -928,12 +931,12 @@ export default function SettingsPage() {
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground font-bangla leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Are you sure you want to proceed? All your completed missions, quizzes, earned XP, levels, and learning history will be permanently wiped clean.
             </p>
 
             <div className="p-3.5 rounded-xl bg-surface border border-border flex items-center justify-between gap-3">
-              <div className="text-xs text-muted-foreground font-bangla">
+              <div className="text-xs text-muted-foreground">
                 Recommended: Download a backup file before resetting.
               </div>
               <button

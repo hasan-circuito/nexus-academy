@@ -3,14 +3,25 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSettings } from '@/hooks/useSettings';
 import { type ThemeMode } from '@/types/settings.types';
-import { Check, ChevronDown, Sparkles } from 'lucide-react';
+import {
+  Check,
+  ChevronDown,
+  Sparkles,
+  Moon,
+  Coffee,
+  Compass,
+  Cpu,
+  Sun,
+  Monitor,
+  type LucideIcon,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface ThemeOption {
   id: ThemeMode;
   name: string;
-  banglaName: string;
-  icon: string;
+  icon: LucideIcon;
+  iconColor: string;
   badge: string;
   description: string;
   swatches: string[];
@@ -21,8 +32,8 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'midnight',
     name: 'Midnight Sanctuary',
-    banglaName: 'মিডনাইট স্যাঙ্কচুয়ারি',
-    icon: '🌙',
+    icon: Moon,
+    iconColor: 'text-emerald-400',
     badge: 'Eye-Friendly',
     description: 'Charcoal Slate, calming Emerald & Cyan. Zero glare.',
     swatches: ['#0b0f19', '#34d399', '#22d3ee'],
@@ -31,8 +42,8 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'warm-zen',
     name: 'Warm Zen',
-    banglaName: 'ওয়ার্ম জেন',
-    icon: '🍵',
+    icon: Coffee,
+    iconColor: 'text-amber-400',
     badge: 'Zero Blue Light',
     description: 'Deep Sepia & glowing Amber. Library warmth for night study.',
     swatches: ['#181512', '#f59e0b', '#f5efe6'],
@@ -41,8 +52,8 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'nordic',
     name: 'Nordic Frost',
-    banglaName: 'নর্ডিক ফ্রস্ট',
-    icon: '❄️',
+    icon: Compass,
+    iconColor: 'text-purple-400',
     badge: 'Clean Pastel',
     description: 'Polar Navy with pastel Lavender & Mint. Modern serene code.',
     swatches: ['#0f141c', '#c084fc', '#6ee7b7'],
@@ -51,8 +62,8 @@ export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'cyber-oasis',
     name: 'Cyber-Oasis',
-    banglaName: 'সাইবার ওয়েসিস',
-    icon: '⚡',
+    icon: Cpu,
+    iconColor: 'text-cyan-400',
     badge: 'Futuristic Glass',
     description: 'Obsidian & frosted glass with subtle Neon Cyan glow.',
     swatches: ['#06080d', '#00f0ff', '#818cf8'],
@@ -60,9 +71,9 @@ export const THEME_OPTIONS: ThemeOption[] = [
   },
 ];
 
-export const SECONDARY_THEMES: { id: ThemeMode; name: string; icon: string; banglaName: string }[] = [
-  { id: 'light', name: 'Light Mode', icon: '☀️', banglaName: 'লাইট মোড' },
-  { id: 'system', name: 'System Auto', icon: '💻', banglaName: 'সিস্টেম অনুযায়ী' },
+export const SECONDARY_THEMES: { id: ThemeMode; name: string; icon: LucideIcon }[] = [
+  { id: 'light', name: 'Light Mode', icon: Sun },
+  { id: 'system', name: 'System Preference', icon: Monitor },
 ];
 
 interface ThemeSwitcherProps {
@@ -122,8 +133,8 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="true"
         aria-expanded={isOpen}
-        aria-label="Change Theme (থিম পরিবর্তন)"
-        title="Change Theme (থিম পরিবর্তন)"
+        aria-label="Change Theme"
+        title="Change Theme"
         className={cn(
           'flex items-center gap-2 rounded-lg border border-border transition-all duration-200',
           'bg-surface hover:bg-surface-hover text-foreground shadow-sm',
@@ -132,8 +143,14 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
           isOpen && 'ring-1 ring-primary/40 border-primary/50'
         )}
       >
-        <span className="text-sm leading-none select-none">
-          {activeTheme ? activeTheme.icon : activeThemeId === 'light' ? '☀️' : '💻'}
+        <span className="flex items-center justify-center select-none">
+          {activeTheme ? (
+            <activeTheme.icon className={cn('w-4 h-4', activeTheme.iconColor)} />
+          ) : activeThemeId === 'light' ? (
+            <Sun className="w-4 h-4 text-amber-400" />
+          ) : (
+            <Monitor className="w-4 h-4 text-muted-foreground" />
+          )}
         </span>
         {!compact && (
           <>
@@ -161,9 +178,9 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
         >
           {/* Header */}
           <div className="px-2 py-1 flex items-center justify-between border-b border-border pb-2">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground font-bangla-ui">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
               <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span>Learner Themes (শান্ত ও সুন্দর থিম)</span>
+              <span>Learner Themes</span>
             </div>
             <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider px-1.5 py-0.5 rounded bg-surface border border-border">
               Eye-Friendly
@@ -176,6 +193,7 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
               const isSelected =
                 activeThemeId === theme.id ||
                 (activeThemeId === 'dark' && theme.id === 'midnight');
+              const Icon = theme.icon;
 
               return (
                 <button
@@ -188,7 +206,9 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
                       : 'border-transparent hover:border-border hover:bg-surface text-muted-foreground hover:text-foreground'
                   )}
                 >
-                  <span className="text-xl mt-0.5 select-none">{theme.icon}</span>
+                  <div className="p-1.5 rounded-md bg-surface border border-border mt-0.5 shrink-0">
+                    <Icon className={cn('w-4 h-4', theme.iconColor)} />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-xs font-semibold text-foreground tracking-tight">
@@ -214,9 +234,6 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
                           />
                         ))}
                       </div>
-                      <span className="text-[10px] text-foreground-faint font-bangla">
-                        {theme.banglaName}
-                      </span>
                     </div>
                   </div>
                 </button>
@@ -229,6 +246,7 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
             <div className="grid grid-cols-2 gap-1.5">
               {SECONDARY_THEMES.map((sec) => {
                 const isSelected = activeThemeId === sec.id;
+                const SecIcon = sec.icon;
                 return (
                   <button
                     key={sec.id}
@@ -240,7 +258,7 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
                         : 'border-transparent hover:border-border hover:bg-surface text-muted-foreground hover:text-foreground'
                     )}
                   >
-                    <span>{sec.icon}</span>
+                    <SecIcon className="w-3.5 h-3.5" />
                     <span className="truncate">{sec.name}</span>
                     {isSelected && <Check className="w-3 h-3 ml-auto text-primary" />}
                   </button>
