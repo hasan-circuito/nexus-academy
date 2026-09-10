@@ -11,7 +11,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
+const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
@@ -189,9 +191,15 @@ for (const entry of entries) {
 // 5. Automated Search Engine Verification
 console.log('\n🔎 Validating DictionarySearchEngine keyword & symptom resolution...');
 
-// Dynamic import of search engine for testing
-const searchEngineModule = await import('../engines/dictionary/DictionarySearchEngine.ts');
-const DictionarySearchEngine = searchEngineModule.DictionarySearchEngine;
+// Load search engine with jiti for Node 20 / CI compatibility
+let DictionarySearchEngine;
+try {
+  const jiti = require('jiti')(process.cwd());
+  DictionarySearchEngine = jiti('./engines/dictionary/DictionarySearchEngine.ts').DictionarySearchEngine;
+} catch {
+  const searchEngineModule = await import('../engines/dictionary/DictionarySearchEngine.ts');
+  DictionarySearchEngine = searchEngineModule.DictionarySearchEngine;
+}
 const engine = new DictionarySearchEngine(entries);
 
 const searchTestCases = [
