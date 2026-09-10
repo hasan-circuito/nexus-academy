@@ -1,13 +1,10 @@
 'use client';
 
-import React from 'react';
 import { usePathname } from 'next/navigation';
-import { ThemeSwitcher } from './ThemeSwitcher';
-import { Zap, Volume2, VolumeX, Flame, Star, ShieldCheck } from 'lucide-react';
+import { Volume2, VolumeX, Flame, Star } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
 import { useProgress } from '@/hooks/useProgress';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
 
 export function TopNavbar() {
   const pathname = usePathname();
@@ -86,9 +83,6 @@ export function TopNavbar() {
             <VolumeX className="w-4 h-4 text-muted-foreground" />
           )}
         </button>
-
-        {/* Quick Theme Switcher */}
-        <ThemeSwitcher />
       </div>
     </header>
   );

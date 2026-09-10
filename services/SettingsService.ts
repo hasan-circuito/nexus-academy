@@ -148,27 +148,31 @@ export class SettingsService {
 
     // 1. Theme determination & application
     let isDark = true;
-    let activeTheme = 'midnight';
+    let activeTheme: ThemeMode | string = 'dark';
 
     if (s.theme === 'light') {
       isDark = false;
+      activeTheme = 'light';
     } else if (s.theme === 'system') {
       const prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
       isDark = prefersDark;
-      activeTheme = prefersDark ? 'midnight' : 'light';
-    } else if (s.theme === 'dark' || s.theme === 'midnight') {
-      isDark = true;
-      activeTheme = 'midnight';
-    } else if (s.theme === 'warm-zen' || s.theme === 'nordic' || s.theme === 'cyber-oasis') {
+      activeTheme = prefersDark ? 'dark' : 'light';
+    } else if (s.theme === 'midnight' || s.theme === 'warm-zen' || s.theme === 'nordic' || s.theme === 'cyber-oasis') {
       isDark = true;
       activeTheme = s.theme;
+    } else {
+      isDark = true;
+      activeTheme = 'dark';
     }
 
     const themeClasses = ['theme-midnight', 'theme-warm-zen', 'theme-nordic', 'theme-cyber-oasis', 'light', 'dark'];
     themeClasses.forEach((cls) => root.classList.remove(cls));
 
     if (isDark) {
-      root.classList.add('dark', `theme-${activeTheme}`);
+      root.classList.add('dark');
+      if (activeTheme !== 'dark') {
+        root.classList.add(`theme-${activeTheme}`);
+      }
       if (root.setAttribute) root.setAttribute('data-theme', activeTheme);
       if (root.style) root.style.colorScheme = 'dark';
     } else {

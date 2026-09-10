@@ -69,34 +69,38 @@ export default function RootLayout({
   ].join(' ');
 
   return (
-    <html lang="en" suppressHydrationWarning className={cn("h-full", "antialiased", "dark", "theme-midnight", fontVars, "font-sans", geist.variable)}>
+    <html lang="en" suppressHydrationWarning className={cn("h-full", "antialiased", "dark", fontVars, "font-sans", geist.variable)}>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
                 var s = JSON.parse(localStorage.getItem('nexus_settings') || '{}');
-                var t = s.theme || 'midnight';
+                var t = s.theme || 'dark';
                 var isDark = true;
-                var activeTheme = 'midnight';
+                var activeTheme = 'dark';
                 if (t === 'light') {
                   isDark = false;
+                  activeTheme = 'light';
                 } else if (t === 'system') {
                   var prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
                   isDark = prefersDark;
-                  activeTheme = prefersDark ? 'midnight' : 'light';
-                } else if (t === 'warm-zen' || t === 'nordic' || t === 'cyber-oasis') {
+                  activeTheme = prefersDark ? 'dark' : 'light';
+                } else if (t === 'midnight' || t === 'warm-zen' || t === 'nordic' || t === 'cyber-oasis') {
                   isDark = true;
                   activeTheme = t;
                 } else {
                   isDark = true;
-                  activeTheme = 'midnight';
+                  activeTheme = 'dark';
                 }
                 var root = document.documentElement;
                 var themeClasses = ['theme-midnight', 'theme-warm-zen', 'theme-nordic', 'theme-cyber-oasis', 'light', 'dark'];
                 themeClasses.forEach(function(c) { root.classList.remove(c); });
                 if (isDark) {
-                  root.classList.add('dark', 'theme-' + activeTheme);
+                  root.classList.add('dark');
+                  if (activeTheme !== 'dark') {
+                    root.classList.add('theme-' + activeTheme);
+                  }
                   root.setAttribute('data-theme', activeTheme);
                   root.style.colorScheme = 'dark';
                 } else {

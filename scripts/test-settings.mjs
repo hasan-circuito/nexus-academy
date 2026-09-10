@@ -39,7 +39,7 @@ globalThis.document = {
 
 // 2. Settings Schema & Service Implementation Verification
 const DEFAULT_SETTINGS = {
-  theme: 'midnight',
+  theme: 'dark',
   fontSize: 'standard',
   editorFontSize: 14,
   editorTheme: 'auto',
@@ -109,20 +109,21 @@ class SettingsServiceTest {
   applyThemeAndFont(settings) {
     const root = document.documentElement;
     let isDark = true;
-    let activeTheme = 'midnight';
+    let activeTheme = 'dark';
 
     if (settings.theme === 'light') {
       isDark = false;
+      activeTheme = 'light';
     } else if (settings.theme === 'system') {
       const prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
       isDark = prefersDark;
-      activeTheme = prefersDark ? 'midnight' : 'light';
-    } else if (settings.theme === 'dark' || settings.theme === 'midnight') {
-      isDark = true;
-      activeTheme = 'midnight';
-    } else if (settings.theme === 'warm-zen' || settings.theme === 'nordic' || settings.theme === 'cyber-oasis') {
+      activeTheme = prefersDark ? 'dark' : 'light';
+    } else if (settings.theme === 'midnight' || settings.theme === 'warm-zen' || settings.theme === 'nordic' || settings.theme === 'cyber-oasis') {
       isDark = true;
       activeTheme = settings.theme;
+    } else {
+      isDark = true;
+      activeTheme = 'dark';
     }
 
     const themeClasses = ['theme-midnight', 'theme-warm-zen', 'theme-nordic', 'theme-cyber-oasis', 'light', 'dark'];
@@ -130,7 +131,9 @@ class SettingsServiceTest {
 
     if (isDark) {
       root.classList.add('dark');
-      root.classList.add(`theme-${activeTheme}`);
+      if (activeTheme !== 'dark') {
+        root.classList.add(`theme-${activeTheme}`);
+      }
       root.setAttribute('data-theme', activeTheme);
       root.style.colorScheme = 'dark';
     } else {
@@ -229,7 +232,7 @@ console.log('1️⃣ Testing Default Settings & Sanitization:');
 check('Returns pristine DEFAULT_SETTINGS when storage empty', () => {
   mockStorage.clear();
   const s = service.getSettings();
-  assert.strictEqual(s.theme, 'midnight');
+  assert.strictEqual(s.theme, 'dark');
   assert.strictEqual(s.fontSize, 'standard');
   assert.strictEqual(s.editorFontSize, 14);
   assert.strictEqual(s.editorTheme, 'auto');
@@ -250,7 +253,7 @@ check('Sanitizes invalid values gracefully', () => {
     editorLineWrap: 'not-a-bool',
     editorFindEnabled: null,
   });
-  assert.strictEqual(sanitized.theme, 'midnight');
+  assert.strictEqual(sanitized.theme, 'dark');
   assert.strictEqual(sanitized.fontSize, 'standard');
   assert.strictEqual(sanitized.editorFontSize, 14);
   assert.strictEqual(sanitized.editorTheme, 'auto');
@@ -311,12 +314,13 @@ check('Applies Cyber-Oasis theme correctly', () => {
   assert.strictEqual(document.documentElement['data-theme'], 'cyber-oasis');
 });
 
-check('Maintains backwards compatibility for legacy "dark" theme', () => {
+check('Applies default/clean "dark" theme without forcing theme-midnight', () => {
   service.updateSettings({ theme: 'dark' });
   const s = service.getSettings();
   assert.strictEqual(s.theme, 'dark');
   assert.strictEqual(document.documentElement.classList.contains('dark'), true);
-  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), true);
+  assert.strictEqual(document.documentElement.classList.contains('theme-midnight'), false);
+  assert.strictEqual(document.documentElement['data-theme'], 'dark');
 });
 
 check('Auto-syncs Monaco editor theme with active application theme', () => {

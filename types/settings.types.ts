@@ -22,7 +22,7 @@ export interface NexusSettings {
 export const DEV_MODE_PIN = 'nexus2026';
 
 export const DEFAULT_SETTINGS: NexusSettings = {
-  theme: 'midnight',
+  theme: 'dark',
   fontSize: 'standard',
   editorFontSize: 14,
   editorTheme: 'auto',
