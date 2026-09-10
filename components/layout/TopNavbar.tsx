@@ -22,7 +22,7 @@ export function TopNavbar() {
     if (pathname === '/' || pathname === '/dashboard') return { title: 'Dashboard', bangla: 'ড্যাশবোর্ড' };
     if (pathname.startsWith('/progress')) return { title: 'Learning Journey', bangla: 'শেখার অগ্রগতি' };
     if (pathname.startsWith('/dictionary')) return { title: 'Problem Solving Hub', bangla: 'কনসেপ্ট ও প্রবলেম সলভিং' };
-    if (pathname.startsWith('/settings')) return { title: 'Settings & Appearance', bangla: 'সেটিংস ও থিম' };
+    if (pathname.startsWith('/settings')) return { title: 'Settings', bangla: '' };
     if (pathname.startsWith('/about')) return { title: 'About NEXUS', bangla: 'সম্পর্কে' };
     if (pathname.startsWith('/debug')) return { title: 'Debug Lab', bangla: 'ডিবাগ ল্যাব' };
     if (pathname.startsWith('/mission')) return { title: 'Mission Overview', bangla: 'মিশন ওভারভিউ' };
@@ -42,9 +42,11 @@ export function TopNavbar() {
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold text-foreground tracking-tight">{title}</span>
-            <span className="hidden sm:inline-block text-xs text-muted-foreground font-bangla">
-              ({bangla})
-            </span>
+            {bangla ? (
+              <span className="hidden sm:inline-block text-xs text-muted-foreground font-bangla">
+                ({bangla})
+              </span>
+            ) : null}
           </div>
         </div>
       </div>

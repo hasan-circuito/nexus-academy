@@ -72,6 +72,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
 ];
 
 export const SECONDARY_THEMES: { id: ThemeMode; name: string; icon: LucideIcon }[] = [
+  { id: 'dark', name: 'Dark Mode', icon: Moon },
   { id: 'light', name: 'Light Mode', icon: Sun },
   { id: 'system', name: 'System Preference', icon: Monitor },
 ];
@@ -116,10 +117,9 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
     };
   }, [isOpen]);
 
-  const activeThemeId = isClient ? settings.theme : 'midnight';
-  const activeTheme =
-    THEME_OPTIONS.find((t) => t.id === activeThemeId) ||
-    (activeThemeId === 'dark' ? THEME_OPTIONS[0] : null);
+  const activeThemeId = isClient ? settings.theme : 'dark';
+  const activeAestheticTheme = THEME_OPTIONS.find((t) => t.id === activeThemeId) || null;
+  const activeSecondaryTheme = SECONDARY_THEMES.find((t) => t.id === activeThemeId) || null;
 
   const handleSelectTheme = (themeId: ThemeMode) => {
     updateSettings({ theme: themeId });
@@ -144,18 +144,24 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
         )}
       >
         <span className="flex items-center justify-center select-none">
-          {activeTheme ? (
-            <activeTheme.icon className={cn('w-4 h-4', activeTheme.iconColor)} />
+          {activeAestheticTheme ? (
+            <activeAestheticTheme.icon className={cn('w-4 h-4', activeAestheticTheme.iconColor)} />
           ) : activeThemeId === 'light' ? (
             <Sun className="w-4 h-4 text-amber-400" />
-          ) : (
+          ) : activeThemeId === 'system' ? (
             <Monitor className="w-4 h-4 text-muted-foreground" />
+          ) : (
+            <Moon className="w-4 h-4 text-foreground" />
           )}
         </span>
         {!compact && (
           <>
             <span className="font-medium tracking-tight">
-              {activeTheme ? activeTheme.name : activeThemeId === 'light' ? 'Light' : 'System'}
+              {activeAestheticTheme
+                ? activeAestheticTheme.name
+                : activeSecondaryTheme
+                ? activeSecondaryTheme.name
+                : 'Dark Mode'}
             </span>
             <ChevronDown
               className={cn(
@@ -190,9 +196,7 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
           {/* 4 Aesthetic Theme Cards */}
           <div className="space-y-1.5">
             {THEME_OPTIONS.map((theme) => {
-              const isSelected =
-                activeThemeId === theme.id ||
-                (activeThemeId === 'dark' && theme.id === 'midnight');
+              const isSelected = activeThemeId === theme.id;
               const Icon = theme.icon;
 
               return (
@@ -243,7 +247,7 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
 
           {/* Divider */}
           <div className="border-t border-border pt-1.5">
-            <div className="grid grid-cols-2 gap-1.5">
+            <div className="grid grid-cols-3 gap-1.5">
               {SECONDARY_THEMES.map((sec) => {
                 const isSelected = activeThemeId === sec.id;
                 const SecIcon = sec.icon;
@@ -251,16 +255,19 @@ export function ThemeSwitcher({ compact = false, className }: ThemeSwitcherProps
                   <button
                     key={sec.id}
                     onClick={() => handleSelectTheme(sec.id)}
+                    title={sec.name}
                     className={cn(
-                      'flex items-center justify-center gap-2 p-2 rounded-lg text-xs font-medium transition-colors border',
+                      'flex items-center justify-center gap-1.5 p-2 rounded-lg text-xs font-medium transition-colors border',
                       isSelected
-                        ? 'border-primary/50 bg-primary/10 text-primary'
+                        ? 'border-primary/50 bg-primary/10 text-primary font-semibold shadow-xs'
                         : 'border-transparent hover:border-border hover:bg-surface text-muted-foreground hover:text-foreground'
                     )}
                   >
-                    <SecIcon className="w-3.5 h-3.5" />
-                    <span className="truncate">{sec.name}</span>
-                    {isSelected && <Check className="w-3 h-3 ml-auto text-primary" />}
+                    <SecIcon className="w-3.5 h-3.5 shrink-0" />
+                    <span className="truncate">
+                      {sec.id === 'dark' ? 'Dark' : sec.id === 'light' ? 'Light' : 'System'}
+                    </span>
+                    {isSelected && <Check className="w-3 h-3 ml-0.5 text-primary shrink-0" />}
                   </button>
                 );
               })}

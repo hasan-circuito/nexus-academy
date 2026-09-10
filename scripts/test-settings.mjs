@@ -465,6 +465,35 @@ check('Danger Zone resets progress to clean defaults', () => {
   assert.strictEqual(localStorage.getItem('nexus_memory'), null);
 });
 
+console.log('\n6️⃣ Testing UI Professionalism & English Standards:');
+check('Settings page has zero residual Bengali unicode and zero emojis', async () => {
+  const fs = await import('node:fs');
+  const content = fs.readFileSync('app/settings/page.tsx', 'utf8');
+  const bangla = content.match(/[\u0980-\u09FF]/g);
+  assert.strictEqual(bangla, null, `Found residual Bengali in settings: ${bangla}`);
+  const emoji = content.match(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu);
+  assert.strictEqual(emoji, null, `Found residual emojis in settings: ${emoji}`);
+});
+
+check('ThemeSwitcher includes Standard Dark, Light, and System in SECONDARY_THEMES', async () => {
+  const fs = await import('node:fs');
+  const content = fs.readFileSync('components/layout/ThemeSwitcher.tsx', 'utf8');
+  assert.strictEqual(content.includes("id: 'dark'"), true, 'ThemeSwitcher must include dark theme');
+  assert.strictEqual(content.includes("id: 'light'"), true, 'ThemeSwitcher must include light theme');
+  assert.strictEqual(content.includes("id: 'system'"), true, 'ThemeSwitcher must include system theme');
+  const bangla = content.match(/[\u0980-\u09FF]/g);
+  assert.strictEqual(bangla, null, `Found residual Bengali in ThemeSwitcher: ${bangla}`);
+  const emoji = content.match(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]/gu);
+  assert.strictEqual(emoji, null, `Found residual emojis in ThemeSwitcher: ${emoji}`);
+});
+
+check('TopNavbar omits Bengali subtitles when viewing Settings', async () => {
+  const fs = await import('node:fs');
+  const content = fs.readFileSync('components/layout/TopNavbar.tsx', 'utf8');
+  assert.strictEqual(content.includes('সেটিংস'), false, 'TopNavbar must not contain সেটিংস');
+  assert.strictEqual(content.includes('থিম'), false, 'TopNavbar must not contain থিম');
+});
+
 console.log(`\n======================================================`);
 console.log(`📊 SETTINGS VALIDATION SUMMARY:`);
 console.log(`  Total Tests Run: ${total}`);
