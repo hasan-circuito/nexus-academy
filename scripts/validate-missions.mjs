@@ -19,12 +19,24 @@ const MISSIONS_DIR = path.join(ROOT_DIR, 'data', 'missions');
 const MANIFEST_PATH = path.join(MISSIONS_DIR, 'manifest.json');
 const CURRICULUM_GRAPH_PATH = path.join(ROOT_DIR, 'data', 'curriculum', 'curriculum-graph.json');
 
-// Parse CLI flags
+// Parse CLI flags: supports --mission <id>, --mission=<id>, or positional <id>
 const args = process.argv.slice(2);
 let targetMissionId = null;
-const missionArgIdx = args.indexOf('--mission');
-if (missionArgIdx !== -1 && args[missionArgIdx + 1]) {
-  targetMissionId = args[missionArgIdx + 1].padStart(3, '0');
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  if (arg === '--mission' && args[i + 1]) {
+    targetMissionId = args[i + 1];
+    break;
+  } else if (arg.startsWith('--mission=')) {
+    targetMissionId = arg.split('=')[1];
+    break;
+  } else if (!arg.startsWith('-') && /^\d+$/.test(arg)) {
+    targetMissionId = arg;
+    break;
+  }
+}
+if (targetMissionId) {
+  targetMissionId = targetMissionId.replace(/[^0-9]/g, '').padStart(3, '0');
 }
 
 console.log('\n======================================================');
@@ -49,9 +61,42 @@ if (fs.existsSync(CURRICULUM_GRAPH_PATH)) {
   }
 }
 
-const missionsToValidate = targetMissionId
-  ? publishedMissions.filter(m => m.id === targetMissionId)
-  : publishedMissions;
+let missionsToValidate = [];
+if (targetMissionId) {
+  const inManifest = publishedMissions.find(m => m.id === targetMissionId);
+  if (inManifest) {
+    missionsToValidate = [inManifest];
+  } else {
+    // If not in manifest, check if mission file exists on disk (e.g. newly scaffolded or unpublished mission)
+    const filePath = path.join(MISSIONS_DIR, `mission-${targetMissionId}.json`);
+    if (fs.existsSync(filePath)) {
+      try {
+        const fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        const graphMissions = curriculumGraph ? (Array.isArray(curriculumGraph) ? curriculumGraph : (curriculumGraph.missions || [])) : [];
+        const graphEntry = graphMissions.find(m => m.id === targetMissionId);
+        const candidatePrereq = graphEntry && graphEntry.prerequisite !== undefined
+          ? graphEntry.prerequisite
+          : (fileContent.prerequisite !== undefined ? fileContent.prerequisite : (parseInt(targetMissionId, 10) > 1 ? String(parseInt(targetMissionId, 10) - 1).padStart(3, '0') : null));
+        missionsToValidate = [{
+          id: targetMissionId,
+          title: fileContent.title || graphEntry?.title || `Mission ${targetMissionId}`,
+          banglaTitle: fileContent.banglaTitle || graphEntry?.banglaTitle || '',
+          banglaSubtitle: fileContent.banglaSubtitle || graphEntry?.banglaSubtitle || '',
+          prerequisite: candidatePrereq,
+          status: 'draft'
+        }];
+      } catch (err) {
+        console.error(`❌ Found mission file ${filePath} but failed to parse JSON: ${err.message}`);
+        process.exit(1);
+      }
+    } else {
+      console.error(`❌ No missions found to validate (target: ${targetMissionId} not found in manifest or at ${filePath})`);
+      process.exit(1);
+    }
+  }
+} else {
+  missionsToValidate = publishedMissions;
+}
 
 if (missionsToValidate.length === 0) {
   console.error(`❌ No missions found to validate (target: ${targetMissionId || 'all published'})`);
@@ -104,6 +149,13 @@ except Exception as e:
       PYTHONIOENCODING: 'utf-8',
     },
   });
+
+  if (pyProcess.error) {
+    return {
+      valid: false,
+      error: `[${contextName}] Failed to execute Python process: ${pyProcess.error.message}`
+    };
+  }
 
   if (pyProcess.status === 2) {
     const errorMsg = pyProcess.stderr ? pyProcess.stderr.toString('utf-8').trim() : 'Forbidden construct detected';
@@ -272,9 +324,7 @@ for (const entry of missionsToValidate) {
       } else {
         // For non-syntax bugs, buggy code must also respect forbidden syntax barrier
         const buggyForbiddenCheck = validatePythonSnippet(dStep.buggyCode, `Debug ${dIdx + 1} Buggy Code`, missionForbiddenSyntax);
-        if (buggyForbiddenCheck.isForbidden) {
-          assert(false, `Debug ${dIdx + 1} Buggy Code Free of Forbidden Syntax`, missionId, buggyForbiddenCheck.error);
-        }
+        assert(!buggyForbiddenCheck.isForbidden, `Debug ${dIdx + 1} Buggy Code Free of Forbidden Syntax`, missionId, buggyForbiddenCheck.error);
       }
     });
 

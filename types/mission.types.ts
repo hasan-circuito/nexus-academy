@@ -264,7 +264,7 @@ export interface ReflectionStep {
   type: 'reflection';
   title: string;                    // Bangla
   instruction: string;              // Bangla — "নিচের প্রশ্নগুলো নিয়ে ভাবো"
-  prompts: string[];                // Bangla — exactly 3 reflection questions (used in simple mode)
+  prompts?: string[];               // Bangla — exactly 3 reflection questions (used in simple mode)
   // If criticalThinkingQuestions is provided, use the Critical Thinking Lab UI instead of simple prompts
   criticalThinkingQuestions?: CriticalThinkingQuestion[];
   endScreen?: {                     // Optional ending card shown after all questions are done

@@ -324,6 +324,20 @@ export function runScaffold(missionId, { dryRun = false, force = false } = {}) {
             ],
             correctOptionIndex: 0,
             explanation: 'এটি সফটওয়্যারের নির্ভরযোগ্যতা ও পাঠযোগ্যতা নিশ্চিত করে।'
+          },
+          {
+            id: 'q2',
+            questionType: 'multiple_choice',
+            question: `কোড এক্সিকিউশনের ক্ষেত্রে কোন নিয়মটি সত্য?`,
+            difficulty: 'medium',
+            options: [
+              'কোড ওপর থেকে নিচে ক্রমানুসারে লাইন বাই লাইন এক্সিকিউট হয়',
+              'কোড নিচ থেকে ওপরের দিকে উল্টোভাবে এক্সিকিউট হয়',
+              'কোডের লাইনগুলো এলোমেলোভাবে রান হয়',
+              'কম্পিউটার কোনো নির্দেশনা ছাড়াই নিজে কোড লেখে'
+            ],
+            correctOptionIndex: 0,
+            explanation: 'পাইথন স্ক্রিপ্ট ক্রমানুসারে ওপরের লাইন থেকে নিচের লাইনে এক্সিকিউট হয়।'
           }
         ]
       },
@@ -347,6 +361,11 @@ export function runScaffold(missionId, { dryRun = false, force = false } = {}) {
         type: 'reflection',
         title: `ক্রিটিক্যাল থিংকিং ল্যাব: ইঞ্জিনিয়ারিং মাইন্ডসেট`,
         instruction: `একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে নিচের প্রশ্নটি গভীরভাবে ভেবে উত্তর দাও:`,
+        prompts: [
+          `${capability} বাস্তব সফটওয়্যারে কীভাবে কাজে লাগবে?`,
+          `ভুল স্টেট সিকোয়েন্সের কারণে কী ধরনের সমস্যা হতে পারে?`,
+          `লজিক ডিজাইন করার সময় কোন কোন বিষয়ের দিকে খেয়াল রাখা দরকার?`
+        ],
         criticalThinkingQuestions: [
           {
             question: `বাস্তব সফটওয়্যার সিস্টেমে ভুল স্টেট সিকোয়েন্সের কারণে কী কী মারাত্মক সমস্যা হতে পারে?`,
@@ -430,6 +449,12 @@ export function runPackage(missionId) {
   const graphMissions = Array.isArray(graph) ? graph : (graph.missions || []);
   const contract = graphMissions.find(m => m.id === missionId);
 
+  if (!contract) {
+    console.error(`❌ Contract for Mission ${missionId} not found in data/curriculum/curriculum-graph.json.`);
+    console.error(`   A pedagogical contract must exist in curriculum-graph.json before packaging.`);
+    return false;
+  }
+
   // Step 3: Register in manifest.json
   console.log(`Step 2: Registering in data/missions/manifest.json...`);
   const manifest = loadJson(MANIFEST_PATH);
@@ -464,8 +489,7 @@ export function runPackage(missionId) {
   console.log(`Step 3: Registering in data/missions/index.json...`);
   const index = loadJson(INDEX_PATH);
   const existingIndexIdx = index.findIndex(m => m.id === missionId);
-
-  const introStep = (mission.steps || []).find(s => s.type === 'intro');
+  const existingDesc = existingIndexIdx !== -1 ? index[existingIndexIdx].description : null;
   const prereqId = manifestEntry.prerequisite;
 
   const indexEntry = {
@@ -473,13 +497,13 @@ export function runPackage(missionId) {
     title: mission.title,
     banglaTitle: mission.banglaTitle,
     banglaSubtitle: mission.banglaSubtitle || '',
-    description: introStep?.description || `Master ${manifestEntry.primaryConcept} with practical engineering exercises`,
+    description: existingDesc || `Master ${manifestEntry.primaryConcept} with practical engineering exercises`,
     status: parseInt(missionId, 10) === 1 ? 'unlocked' : 'locked',
     estimatedMinutes: manifestEntry.estimatedMinutes,
     difficulty: manifestEntry.difficulty,
     knowledgeGraph: {
       prerequisiteIds: prereqId ? [prereqId] : [],
-      enablesIds: [],
+      enablesIds: existingIndexIdx !== -1 ? (index[existingIndexIdx].knowledgeGraph?.enablesIds || []) : [],
       relatedIds: [],
       topicSlug: (contract?.newCapability || mission.title).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
     },
@@ -487,8 +511,6 @@ export function runPackage(missionId) {
   };
 
   if (existingIndexIdx !== -1) {
-    // Preserve existing enablesIds if any
-    indexEntry.knowledgeGraph.enablesIds = index[existingIndexIdx].knowledgeGraph?.enablesIds || [];
     index[existingIndexIdx] = indexEntry;
     console.log(`  ✓ Updated existing index entry for M${missionId}.`);
   } else {
@@ -531,6 +553,20 @@ export function runPackage(missionId) {
   }
   console.log(`  ✓ TypeScript compilation clean (0 errors).`);
 
+  // Step 7: Verify full mission suite passes
+  console.log(`Step 6: Verifying full mission suite integrity with new mission...`);
+  const fullValRes = spawnSync('node', [VALIDATE_SCRIPT_PATH], {
+    cwd: ROOT_DIR,
+    stdio: 'inherit',
+    env: process.env
+  });
+
+  if (fullValRes.status !== 0) {
+    console.error(`❌ Full mission test suite check failed after registering M${missionId}!`);
+    return false;
+  }
+  console.log(`  ✓ Full mission suite verified 100%.`);
+
   console.log('\n======================================================');
   console.log(`🎉 MISSION ${missionId} SUCCESSFULLY PACKAGED & PUBLISHED!`);
   console.log('======================================================\n');
@@ -541,10 +577,18 @@ export function runPackage(missionId) {
 // CLI ROUTER & ENTRY POINT
 // ============================================================================
 const args = process.argv.slice(2);
-const subcommand = args[0];
-const rawMissionId = args[1];
-const dryRun = args.includes('--dry-run');
-const force = args.includes('--force');
+if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
+  printUsage();
+  process.exit(0);
+}
+
+const flags = new Set(args.filter(a => a.startsWith('-')));
+const positional = args.filter(a => !a.startsWith('-'));
+
+const subcommand = positional[0];
+const rawMissionId = positional[1];
+const dryRun = flags.has('--dry-run');
+const force = flags.has('--force');
 
 function printUsage() {
   console.log(`
@@ -562,19 +606,20 @@ Subcommands:
 Examples:
   node scripts/curriculum-pipeline.mjs preflight 001
   node scripts/curriculum-pipeline.mjs scaffold 011 --dry-run
+  node scripts/curriculum-pipeline.mjs scaffold --dry-run 011
   node scripts/curriculum-pipeline.mjs validate 010
   node scripts/curriculum-pipeline.mjs package 010
 `);
 }
 
-if (!subcommand || subcommand === '--help' || subcommand === '-h') {
+if (!subcommand) {
   printUsage();
   process.exit(0);
 }
 
 const missionId = normalizeMissionId(rawMissionId);
 if (!missionId) {
-  console.error(`❌ Error: Valid 3-digit mission ID required (e.g. 001, 010). Received: "${rawMissionId}"`);
+  console.error(`❌ Error: Valid 3-digit mission ID required (e.g. 001, 010). Received: "${rawMissionId || ''}"`);
   printUsage();
   process.exit(1);
 }

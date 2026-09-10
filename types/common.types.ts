@@ -30,7 +30,7 @@ export type MissionStatus = 'locked' | 'unlocked' | 'in_progress' | 'complete';
  * Bug types that appear in debug challenge steps.
  * See DATA_SCHEMA.md DebugChallengeStep for usage.
  */
-export type BugType = 'syntax' | 'logic' | 'runtime' | 'indentation' | 'naming';
+export type BugType = 'syntax' | 'logic' | 'logical' | 'runtime' | 'type_error' | 'indentation' | 'naming';
 
 /**
  * Question types for quiz steps.
