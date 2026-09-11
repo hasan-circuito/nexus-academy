@@ -4,18 +4,18 @@
   "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
   "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
   "cognitiveLoadEstimate": {
-    "readingLevel": 2,
+    "readingLevel": 1,
     "newConceptCount": 1,
-    "practiceComplexity": 2,
-    "estimatedTotalMinutes": 20
+    "practiceComplexity": 1,
+    "estimatedTotalMinutes": 15
   },
   "curiosity": {
-    "didYouKnow": "বুলিয়ান এলজেবরা ১৮৫৪ সালে গণিতবিদ জর্জ বুল (George Boole) আবিষ্কার করেন। আজকের সব কম্পিউটার প্রসেসর এই মৌলিক সত্য-মিথ্যার লজিকের ওপর ভিত্তি করেই চলে!",
-    "realWorldApplication": "PayPal ও Stripe-এর মতো ফিনটেক জায়ান্টরা কোটি কোটি লেনদেনের নিরাপত্তা যাচাই করতে প্রতিদিন শত কোটি বুলিয়ান ফ্ল্যাগ প্রসেস করে।",
-    "aiApplication": "নিউরাল নেটওয়ার্ক ও এআই মডেলে অ্যাক্টিভেশন গেট এবং সেফটি ফিল্টারের ডিসিশন বাউন্ডারি বুলিয়ান স্টেটে রূপান্তরিত হয়ে আউটপুট দেয়।",
-    "eeeApplication": "ডিজিটাল ইলেকট্রনিক্সে ট্রানজিস্টরের অন (5V) ও অফ (0V) স্টেট পাইথনের True ও False বুলিয়ানের সরাসরি হার্ডওয়্যার রূপ।",
-    "historicalFact": "পাইথনের প্রথম দিকের সংস্করণে আলাদা বুলিয়ান টাইপ ছিল না; পরবর্তীতে পাইথন ২.৩ এ অফিসিয়ালি True এবং False কি-ওয়ার্ড যোগ করা হয়।",
-    "nextMissionPreview": "বুলিয়ান দিয়ে True বা False মনে রাখতে পারলাম। কিন্তু বাস্তব জীবনে কি কোনো প্রোগ্রামার কোডে বসে বসে হাতে লিখে True বা False সেট করবে? সফটওয়্যার নিজে নিজে ডেটা তুলনা করে কীভাবে বুঝবে কোনটা সত্য আর কোনটা মিথ্যা?"
+    "didYouKnow": "বুলিয়ান কথাটি এসেছে গণিতবিদ জর্জ বুল (George Boole)-এর নাম থেকে, যিনি গণিতে সত্য ও মিথ্যার লজিক তৈরি করেছিলেন।",
+    "realWorldApplication": "স্মার্টফোনে ডার্ক মোড চালু আছে কি না, বা ওয়াই-ফাই কানেক্টেড কি না—তা সফটওয়্যার মনে রাখে একটি সাধারণ বুলিয়ান ফ্ল্যাগ দিয়ে।",
+    "aiApplication": "একটি চ্যাটবট কি উত্তর লেখা শেষ করেছে কি না (is_finished), তা ট্র্যাক করতেও সাধারণ বুলিয়ান ভ্যালু ব্যবহার করা হয়।",
+    "eeeApplication": "ইলেকট্রনিক্সে বিদ্যুতের উপস্থিতি (High/1) এবং অনুপস্থিতি (Low/0)—পাইথনে True ও False দিয়ে ঠিক সেটাই প্রকাশ করা হয়।",
+    "historicalFact": "কম্পিউটারের একদম শুরুতে সব প্রোগ্রামিংই ছিল ০ এবং ১ এর সুইচিং, যা আজকের আধুনিক পাইথনে True এবং False।",
+    "nextMissionPreview": "আমরা কোডে হাতে লিখে is_active = True সেট করলাম। কিন্তু সফটওয়্যার নিজে নিজে বাস্তব ডেটা দেখে কীভাবে ঠিক করবে কখন True হবে আর কখন False হবে?"
   },
   "steps": [
     {
@@ -23,212 +23,207 @@
       "missionNumber": "011",
       "title": "Boolean Logic",
       "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
-      "tagline": "সফটওয়্যারের বাইনারি সুইচ: True এবং False",
-      "description": "মিশন ০১০-এ আমরা f-string দিয়ে টেক্সট ও নাম্বার খুব সুন্দরভাবে ফরম্যাট করে মেসেজ তৈরি করা শিখেছি। কিন্তু সফটওয়্যার কি শুধু নাম আর দাম মনে রাখলেই চলে? একটি সফটওয়্যারকে প্রতি মুহূর্তে সিস্টেমের অবস্থা (State) মনে রাখতে হয়—ব্যবহারকারী কি লগইন করা? অ্যাকাউন্ট কি ভেরিফাইড? সিস্টেম কি এক্সেস দিতে প্রস্তুত?\n\nআমরা যদি এই অন/অফ অবস্থাগুলোকে সাধারণ টেক্সট (যেমন: \"True\", \"yes\") দিয়ে মনে রাখার চেষ্টা করি, তবে একটু বানানের ভুলেই সিকিউরিটি ভেঙে পড়তে পারে! কম্পিউটারের প্রসেসর যেমন ০ আর ১ বোঝে, তেমনই সফটওয়্যারেও এমন একটি নিবেদিত ডেটা টাইপ প্রয়োজন যার মান কেবল দুটি হতে পারে: সত্য (True) অথবা মিথ্যা (False)। এই মিশনে আমরা সফটওয়্যারের সেই মৌলিক সুইচ — বুলিয়ান (Boolean) ডেটা টাইপ শিখব।",
+      "tagline": "সফটওয়্যার যখন শুধু দুটি অবস্থা মনে রাখে: True এবং False",
+      "description": "আগের মিশনে (Mission 010) আমরা f-string দিয়ে নাম ও টেক্সট সুন্দরভাবে সাজিয়ে দেখানো শিখেছি। কিন্তু সফটওয়্যারকে সবসময় বড় বড় বাক্য মনে রাখতে হয় না; অনেক সময় তাকে শুধু একটি সোজা প্রশ্নের উত্তর মনে রাখতে হয়—'লাইট কি অন নাকি অফ?', 'ইউজার কি লগইন করা নাকি আনলগড?'।\n\nএই হ্যাঁ/না বা অন/অফ অবস্থা মনে রাখার জন্য পাইথনে আছে একটি বিশেষ ডেটা টাইপ—বুলিয়ান (Boolean)। যার মান কেবল দুটি: True (সত্য) অথবা False (মিথ্যা)। এই মিশনে আমরা সফটওয়্যারে এই মৌলিক বাইনারি সুইচ তৈরি করা শিখব।",
       "learningObjectives": [
-        "বুলিয়ান ডেটা টাইপ (True ও False) এর গুরুত্ব ও মেমোরি স্টেট বোঝা",
+        "বুলিয়ান ডেটা টাইপের দুটি মৌলিক মান: True এবং False চেনা",
         "কোটেশন ছাড়া কি-ওয়ার্ড হিসেবে True ও False লেখার নিয়ম শেখা",
-        "f-string ও প্রিন্ট স্টেটমেন্টে বুলিয়ান ফ্ল্যাগ প্রদর্শন করা",
-        "অথেন্টিকেশন ও সিকিউরিটি সিস্টেমে হিডেন স্টেট বাগ ডিবাগ করার দক্ষতা অর্জন"
+        "ভেরিয়েবলে বুলিয়ান মান সংরক্ষণ ও f-string দিয়ে প্রদর্শন করা",
+        "ভেরিয়েবল রিঅ্যাসাইন করে সফটওয়্যার স্টেট আপডেট করা"
       ],
-      "estimatedMinutes": 3
+      "estimatedMinutes": 2
     },
     {
       "type": "story",
-      "title": "অস্পষ্ট সুইচের বিপদ",
-      "setting": "একটি সিকিউরিটি ও এক্সেস কন্ট্রোল সিস্টেমে...",
-      "content": "একটি ব্যাংকিং সফটওয়্যারে ব্যবহারকারীর অ্যাকাউন্ট ভেরিফাইড কি না তা ট্র্যাক করার জন্য একজন ডেভেলপার সাধারণ টেক্সট ব্যবহার করেছিল:\n\nis_verified = \"True\"\nis_blocked = \"False\"\n\nসবকিছু ঠিকঠাক চলছিল। কিন্তু কিছুদিন পর দেখা গেল ব্লক করে দেওয়া ইউজারও দিব্যি পেমেন্ট পাঠিয়ে দিচ্ছে! সিস্টেমের লগ ফাইল চেক করতে গিয়ে দেখা গেল, ডেটাবেজ আপডেট করার সময় অন্য একজন ডেভেলপার লিখেছিল:\n\nis_blocked = \"false\" (ছোট হাতের f)\n\nআর ফর্মে অন্য একজন লিখেছিল: is_blocked = \"no\"!\n\nযেহেতু টেক্সটের কোনো সুনির্দিষ্ট সীমা নেই, তাই স্ট্রিং দিয়ে অন/অফ ট্র্যাক করতে গিয়ে পুরো সিকিউরিটি যাচাই এলোমেলো হয়ে গিয়েছিল। কারণ পাইথনে কোটেশনের ভেতরে যেকোনো লেখা থাকলেই সেটিকে সাধারণ টেক্সট হিসেবে গণ্য করা হয়।\n\nপ্রোগ্রামার তখন উপলব্ধি করল: সফটওয়্যারের অবস্থা (State) বোঝাতে টেক্সট ব্যবহার করা চরম বিপজ্জনক। সফটওয়্যারে কোনো ধূসর এলাকা থাকা চলবে না; এর প্রয়োজন একটি খাঁটি বাইনারি সুইচ—যা কেবল True অথবা False হতে পারে!",
-      "moral": "সফটওয়্যারের নিরাপত্তায় যেকোনো ধূসর বা অস্পষ্ট টেক্সট বিপজ্জনক। বাইনারি অবস্থার জন্য শুধুই খাঁটি True এবং False ব্যবহার করা উচিত।"
+      "title": "টেক্সটের ফাঁদে হারানো সুইচ",
+      "setting": "একটি সাধারণ ইউজার প্রোফাইল সিস্টেমে...",
+      "content": "রাহাত একটি অ্যাপের জন্য কোড লিখছিল। সেখানে ইউজার একটিভ আছে কি না তা ট্র্যাক করতে সে লিখেছিল:\n\nis_active = \"True\"\n\nসবকিছু ঠিকঠাক চলছিল। কিন্তু অন্য এক সহকর্মী কোডে লিখে ফেলল:\n\nis_active = \"true\" (ছোট হাতের t)\n\nআর আরেকজন লিখে বসল:\n\nis_active = \"yes\"!\n\nযেহেতু টেক্সটের কোনো সুনির্দিষ্ট নিয়ম নেই—যে কেউ যেভাবে খুশি শব্দ লিখতে পারে—তাই অ্যাপটি বুঝতে পারছিল না ইউজারের আসল অবস্থা কী! সামান্য বানানের বা অক্ষরের অমিল হলেই পুরো সিস্টেম বিভ্রান্ত হয়ে যেত।\n\nরাহাত বুঝতে পারল: যেখানে কেবল দুটি অবস্থা সম্ভব (হ্যাঁ অথবা না), সেখানে টেক্সট ব্যবহার করা নিরাপদ নয়। সফটওয়্যারের এমন একটি নির্দিষ্ট মান দরকার যা কোনো টেক্সট নয়, বরং একটি খাঁটি অন/অফ সুইচ—যা শুধু True অথবা False হতে পারে!",
+      "moral": "যেখানে শুধু দুটি অবস্থা প্রয়োজন, সেখানে সাধারণ টেক্সটের বদলে খাঁটি বুলিয়ান ব্যবহার করাই নিরাপদ ও নির্ভরযোগ্য।"
     },
     {
       "type": "analogy",
-      "title": "ইলেকট্রিক সুইচ ও সিকিউরিটি গেট",
+      "title": "ঘরের লাইটের সুইচ",
       "realWorld": {
-        "label": "ঘরের লাইটের সুইচ",
+        "label": "দেয়ালের ইলেকট্রিক সুইচ",
         "icon": "ToggleRight",
-        "description": "ঘরের লাইটের সুইচের অবস্থা মাত্র দুটি—হয় অন (ON), নয়তো অফ (OFF)। সেখানে কোনো 'মাঝামাঝি' অবস্থা নেই।"
+        "description": "ঘরের লাইটের সুইচের অবস্থা মাত্র দুটি—হয় অন (ON), নয়তো অফ (OFF)। এর মাঝে কোনো মাঝামাঝি অবস্থা নেই।"
       },
       "pythonConcept": {
-        "label": "বুলিয়ান লিটারেল (True / False)",
+        "label": "বুলিয়ান মান (True / False)",
         "icon": "Binary",
-        "description": "পাইথনের মেমোরিতেও বুলিয়ান মাত্র দুটি মান ধারণ করতে পারে: `True` (সত্য বা অন) অথবা `False` (মিথ্যা বা অফ)।"
+        "description": "পাইথনেও বুলিয়ান ভেরিয়েবল মাত্র দুটি মান ধারণ করতে পারে: True (অন/হ্যাঁ) অথবা False (অফ/না)।"
       },
-      "connection": "সুইচের অন/অফ দিয়ে যেমন ফ্যান বা বাল্ব নিয়ন্ত্রণ করা হয়, তেমনই পাইথনে True এবং False ফ্ল্যাগ দিয়ে সফটওয়্যারের সিকিউরিটি স্টেট নিয়ন্ত্রণ করা হয়।",
-      "deeperInsight": "সবচেয়ে গুরুত্বপূর্ণ বিষয়: True ও False পাইথনের সংরক্ষিত কি-ওয়ার্ড। এদের চারপাশে কোনো কোটেশন (\") থাকে না। কোটেশন দিলেই তা সুইচের বদলে সাধারণ টেক্সটে পরিণত হয়!"
+      "connection": "সুইচ টিপে যেমন বাতি অন বা অফ করা হয়, কোডেও ভেরিয়েবলে True বা False রেখে সিস্টেমের অবস্থা অন বা অফ রাখা হয়।",
+      "deeperInsight": "সবচেয়ে গুরুত্বপূর্ণ বিষয়: True ও False পাইথনের নিজস্ব কি-ওয়ার্ড। এদের চারপাশে কোনো কোটেশন চিহ্ন (\" \") থাকে না। কোটেশন দিলেই তা সাধারণ টেক্সট হয়ে যায়।"
     },
     {
       "type": "concept",
-      "title": "বুলিয়ান ডেটা টাইপের নিয়ম ও ব্যবহার",
-      "content": "পাইথনে বুলিয়ান (Boolean বা `bool`) হলো এমন একটি মৌলিক ডেটা টাইপ যার মান কেবল দুটি হতে পারে: `True` অথবা `False`।\n\n**বুলিয়ান ব্যবহারের ৩টি strict  নিয়ম:**\n১. **প্রথম অক্ষর বড় হাতের:** পাইথনে `True` এর 'T' এবং `False` এর 'F' অবশ্যই Capital Letter হতে হবে। ছোট হাতের `true` বা `false` লিখলে পাইথন NameError দিয়ে ক্র্যাশ করবে।\n২. **কখনো কোটেশন নয়:** `True` একটি বুলিয়ান মান, কিন্তু `\"True\"` হলো সাধারণ স্ট্রিং (str)। কোটেশন ব্যবহার করলে পাইথন এটিকে টেক্সট মনে করে।\n৩. **ভেরিয়েবলে সংরক্ষণ ও প্রিন্ট:** অন্য যেকোনো মানের মতো বুলিয়ান মানকেও ভেরিয়েবলে রাখা যায় এবং print() দিয়ে প্রদর্শন করা যায়:\n`is_verified = True`\n`print(is_verified)  # আউটপুট: True`\n\n**f-string এ বুলিয়ান:**\n`is_active = False`\n`print(f\"Account status: {is_active}\")`\nআউটপুট হবে: `Account status: False`।",
+      "title": "বুলিয়ান (bool) ডেটা টাইপের নিয়ম",
+      "content": "পাইথনে বুলিয়ান (Boolean বা bool) হলো সত্য এবং মিথ্যা প্রকাশের ডেটা টাইপ।\n\n**বুলিয়ান ব্যবহারের ৩টি নিয়ম:**\n\n১. **প্রথম অক্ষর সর্বদা বড় হাতের:**\nপাইথনে True এর T এবং False এর F অবশ্যই Capital Letter হতে হবে। ছোট হাতের true বা false লিখলে পাইথন চিনতে পারবে না এবং NameError দেবে।\n\n২. **কখনো কোটেশন ব্যবহার করবে না:**\n`is_open = True`  # এটি একটি খাঁটি বুলিয়ান সুইচ\n`is_open = \"True\"` # এটি ৪ অক্ষরের একটি সাধারণ টেক্সট (String)\nকোটেশন দিলে পাইথন এটিকে সুইচ হিসেবে না দেখে সাধারণ লেখা হিসেবে বিবেচনা করে।\n\n৩. **প্রিন্ট ও f-string এ ব্যবহার:**\nবুলিয়ান ভ্যালু অন্য যেকোনো ভেরিয়েবলের মতোই সরাসরি প্রিন্ট করা যায়:\n`is_online = True`\n`print(f\"User Online: {is_online}\")`\nআউটপুট আসবে: `User Online: True`।",
       "keyPoints": [
-        "বুলিয়ান কেবল দুটি মান গ্রহণ করে: True এবং False।",
-        "True এবং False এর T ও F সর্বদা বড় হাতের (Case Sensitive)।",
-        "বুলিয়ান মানে কোটেশন ব্যবহার করা নিষিদ্ধ—কোটেশন দিলে তা স্ট্রিং হয়ে যায়।",
-        "সফটওয়্যারে ফ্ল্যাগ বা সিকিউরিটি স্টেট (যেমন: is_active, has_access) বোঝাতে বুলিয়ান ব্যবহৃত হয়।"
+        "বুলিয়ানের মান কেবল দুটি: True এবং False।",
+        "True ও False লেখার সময় T এবং F অবশ্যই বড় হাতের হতে হবে।",
+        "বুলিয়ানে কোনো কোটেশন মার্ক (\" বা ') বসে না।",
+        "ভেরিয়েবলে বুলিয়ান মান সংরক্ষণ করে print() বা f-string দিয়ে দেখানো যায়।"
       ],
-      "whyCallout": "স্ট্রিংয়ে 'yes', 'no', 'true' লেখার টাইপো এরিয়ে সফটওয়্যার স্টেটকে ১০০% সুনির্দিষ্ট ও সুরক্ষিত রাখাই বুলিয়ানের উদ্দেশ্য।",
-      "whenToUse": "যখনই কোনো তথ্য কেবল দুটি অবস্থার (হ্যাঁ/না, অন/অফ, ভেরিফাইড/আনভেরিফাইড) একটি হতে পারে।",
-      "whenNotToUse": "যেখানে মান একাধিক বা বর্ণনামূলক (যেমন ব্যবহারকারীর বয়স, নাম, বা ঠিকানা)—সেখানে ইন্টিজার বা স্ট্রিং ব্যবহার করতে হয়।",
-      "commonMisconception": "অনেকে মনে করেন 'True' এবং True একই জিনিস। বাস্তবে True হলো লজিক্যাল সুইচ, আর 'True' হলো ৪ অক্ষরের সাধারণ শব্দ!"
+      "whyCallout": "টেক্সটের টাইপো এড়িয়ে সফটওয়্যারের হ্যাঁ/না অবস্থাকে একদম সুনির্দিষ্ট রাখাই বুলিয়ানের একমাত্র উদ্দেশ্য।",
+      "whenToUse": "যখন কোনো তথ্য কেবল দুটি অবস্থার (অন/অফ, একটিভ/নিষ্ক্রিয়, চালু/বন্ধ) একটি হতে পারে।",
+      "whenNotToUse": "যেখানে তথ্যের একাধিক মান সম্ভব (যেমন: নাম, বয়স, রোল নম্বর, বা তাপমাত্রা)—সেখানে String, Integer বা Float ব্যবহার করতে হয়।",
+      "commonMisconception": "অনেকে মনে করেন \"True\" এবং True একই। আসলে True হলো একটি লজিক্যাল সুইচ, আর \"True\" হলো সাধারণ টেক্সট।"
     },
     {
       "type": "visualization",
-      "title": "মেমোরিতে বুলিয়ান সুইচের কার্যপদ্ধতি",
-      "description": "ভেরিয়েবলে বুলিয়ান মান অ্যাসাইন করলে পাইথন মেমোরিতে কীভাবে স্টেট সুইচ ফ্লিপ করে:",
+      "title": "মেমোরিতে বুলিয়ান সুইচের অবস্থা",
+      "description": "ভেরিয়েবলে True বা False অ্যাসাইন করলে মেমোরিতে কীভাবে মান সংরক্ষিত হয়:",
       "visualizationType": "icon_grid",
       "data": {
         "items": [
           {
             "icon": "ToggleLeft",
-            "label": "১. ডিফল্ট লক স্টেট",
-            "description": "অ্যাকাউন্ট খোলার সময় প্রাথমিক ফ্ল্যাগ: is_verified = False (লকড অবস্থা)।"
+            "label": "১. সুইচ অফ (False)",
+            "description": "প্রাথমিক বা অফ অবস্থা: is_logged_in = False"
           },
           {
-            "icon": "CheckCircle2",
-            "label": "২. ভেরিফিকেশন সিগন্যাল",
-            "description": "ক্লায়েন্ট আইডি ও ওটিপি সাবমিট করার পর পাইথনে স্টেট পরিবর্তন: is_verified = True।"
-          },
-          {
-            "icon": "ShieldAlert",
-            "label": "৩. ফ্রড সিকিউরিটি ফ্ল্যাগ",
-            "description": "সন্দেহজনক লেনদেন চিহ্নিত হলে সিকিউরিটি সুইচ চালু: is_flagged = True।"
+            "icon": "ToggleRight",
+            "label": "২. সুইচ অন (True)",
+            "description": "লগইন করার পর অন অবস্থা: is_logged_in = True"
           },
           {
             "icon": "Terminal",
-            "label": "৪. কনসোল অডিট অ্যাম্প্লিফায়ার",
-            "description": "print() বা f-string এর মাধ্যমে সিস্টেমের বর্তমান অবস্থা নির্ভুলভাবে লগ বা ডিসপ্লে করা।"
+            "label": "৩. কনসোল ডিসপ্লে",
+            "description": "print() বা f-string দিয়ে বর্তমান অবস্থা সরাসরি পর্দায় প্রদর্শন"
           }
         ]
       },
-      "caption": "বুলিয়ান স্টেট পাইথন মেমোরিতে একটি স্পষ্ট বাইনারি বিট ফ্ল্যাগ হিসেবে কাজ করে",
-      "diagram": "is_verified = True\n       │\n       └─► মেমোরি বক্স: [ True ] (টাইপ: bool, কোনো কোটেশন ছাড়া)\n\nprint(f\"Access Granted: {is_verified}\")\n       │\n       └─► কনসোল আউটপুট: Access Granted: True"
+      "caption": "বুলিয়ান ভেরিয়েবল মেমোরিতে একটি স্পষ্ট অন/অফ সুইচ হিসেবে থাকে",
+      "diagram": "is_online = True\n    │\n    └─► মেমোরি বক্স: [ True ]  (টাইপ: bool, কোনো কোটেশন ছাড়া)\n\nprint(f\"Status: {is_online}\")\n    │\n    └─► আউটপুট: Status: True"
     },
     {
       "type": "code_example",
-      "title": "ইউজার এক্সেস ও সিকিউরিটি স্ক্রিপ্ট",
-      "explanation": "নিচের পাইথন কোডটিতে লক্ষ্য করো কীভাবে একটি অ্যাপ্লিকেশনে অ্যাকাউন্ট ও সিকিউরিটি স্ট্যাটাস ট্র্যাক করা হয়েছে।",
+      "title": "ব্যবহারকারীর স্ট্যাটাস স্ক্রিপ্ট",
+      "explanation": "নিচের কোডটিতে লক্ষ্য করো কীভাবে একটি সাধারণ সফটওয়্যারের অন/অফ অবস্থা ভেরিয়েবলে রাখা হয়েছে এবং প্রদর্শন করা হয়েছে।",
       "language": "python",
-      "code": "# ইউজার প্রোফাইল ও সিকিউরিটি ডেটা\naccount_id = 9021\nis_verified = True\nis_flagged = False\n\n# সিকিউরিটি রিপোর্ট তৈরি\nprint(f\"Account: {account_id}\")\nprint(f\"Verified: {is_verified}\")\nprint(f\"Fraud Alert: {is_flagged}\")",
-      "output": "Account: 9021\nVerified: True\nFraud Alert: False",
+      "code": "user_name = \"Tanvir\"\nis_online = True\nis_admin = False\n\nprint(f\"User: {user_name}\")\nprint(f\"Online: {is_online}\")\nprint(f\"Admin: {is_admin}\")",
+      "output": "User: Tanvir\nOnline: True\nAdmin: False",
       "annotations": [
         {
+          "lineNumber": 2,
+          "explanation": "is_online ভেরিয়েবলে True রাখা হয়েছে। লক্ষ্য করো কোনো কোটেশন নেই এবং T বড় হাতের।"
+        },
+        {
           "lineNumber": 3,
-          "explanation": "is_verified ভেরিয়েবলে True রাখা হয়েছে। লক্ষ্য করো কোনো কোটেশন দেওয়া হয়নি।"
+          "explanation": "is_admin ভেরিয়েবলে False রাখা হয়েছে, F বড় হাতের।"
         },
         {
-          "lineNumber": 4,
-          "explanation": "is_flagged ভেরিয়েবলে False রাখা হয়েছে, যার প্রথম অক্ষর F বড় হাতের।"
-        },
-        {
-          "lineNumber": 8,
-          "explanation": "f-string এর ভেতরে {is_verified} সরাসরি বুলিয়ান মান True প্রদর্শন করে।"
+          "lineNumber": 6,
+          "explanation": "f-string এর ভেতর {is_online} সরাসরি True মান প্রিন্ট করেছে।"
         }
       ],
-      "postExplanation": "True ও False ব্যবহার করায় কোনো টাইপোর সুযোগ নেই এবং কোডটি সিকিউরপে-এর অডিট সিস্টেমে নির্ভরযোগ্যভাবে পাস করে।"
+      "postExplanation": "এখানে True এবং False ব্যবহার করায় কোড একদম স্পষ্ট এবং কোনো টাইপোর সুযোগ নেই।"
     },
     {
       "type": "eee_example",
-      "title": "হার্ডওয়্যার ও IoT: সিকিউরিটি রিলে সুইচ",
-      "context": "একটি ইলেকট্রনিক সিকিউরিটি ভল্টের দরজার রিলে ও অ্যালার্মের অন/অফ অবস্থা পর্যবেক্ষণ:",
-      "hardware": "ESP32",
+      "title": "হার্ডওয়্যার কন্ট্রোল: ডিজিটাল অন/অফ",
+      "context": "একটি মাইক্রোকন্ট্রোলারে সংযুক্ত বাতির অন বা অফ অবস্থা নির্ধারণ:",
+      "hardware": "Raspberry Pi Pico",
       "domain": "embedded_control",
-      "code": "vault_locked = True\nsiren_active = False\n\nprint(f\"Vault Locked: {vault_locked}\")\nprint(f\"Siren Active: {siren_active}\")",
-      "output": "Vault Locked: True\nSiren Active: False",
-      "explanation": "মাইক্রোকন্ট্রোলারে ডিজিটাল পিন থেকে আসা হাই (1) বা লো (0) ভোল্টেজ পাইথন প্রোগ্রামে True ও False বুলিয়ান হিসেবে প্রসেস হয়।"
+      "code": "led_power = True\nsiren_on = False\n\nprint(f\"LED Power: {led_power}\")\nprint(f\"Siren: {siren_on}\")",
+      "output": "LED Power: True\nSiren: False",
+      "explanation": "ডিজিটাল ইলেকট্রনিক্সে বিদ্যুৎ চালু থাকলে High (1) এবং বন্ধ থাকলে Low (0), যা পাইথনে True ও False দিয়ে নির্দেশ করা হয়।"
     },
     {
       "type": "ai_example",
-      "title": "এআই সিস্টেম: ট্রানজ্যাকশন সেফটি ফিল্টার",
-      "context": "একটি এআই ফ্রড ডিটেকশন মডেল গ্রাহকের পেমেন্ট রিকোয়েস্ট বিশ্লেষণ করে সেফটি ফ্ল্যাগ নির্ধারণ করছে:",
+      "title": "এআই সিস্টেম: রেসপন্স স্ট্যাটাস",
+      "context": "একটি এআই চ্যাটবট কি উত্তর দেওয়া সম্পন্ন করেছে কি না তা নির্দেশ করা:",
       "aiDomain": "large_language_models",
-      "code": "transaction_approved = True\nrequires_manual_review = False\n\nprint(f\"Approved: {transaction_approved}\")\nprint(f\"Manual Review: {requires_manual_review}\")",
-      "output": "Approved: True\nManual Review: False",
-      "explanation": "এআই ক্লাসিফায়ার যেকোনো আউটপুট ডিসিশনের চূড়ান্ত গেটকিপার হিসেবে বুলিয়ান ফ্ল্যাগ রিটার্ন করে।"
+      "code": "is_thinking = False\nis_completed = True\n\nprint(f\"Thinking: {is_thinking}\")\nprint(f\"Completed: {is_completed}\")",
+      "output": "Thinking: False\nCompleted: True",
+      "explanation": "এআই সিস্টেমের বিভিন্ন কাজের পর্যায় ট্র্যাক করতে সাধারণ বুলিয়ান ফ্ল্যাগ ব্যবহার করা হয়।"
     },
     {
       "type": "practice",
-      "title": "অনুশীলনী ১: অ্যাকাউন্ট সিকিউরিটি ফ্ল্যাগ",
-      "prompt": "একটি ইউজার অ্যাকাউন্টের জন্য প্রাথমিক সিকিউরিটি স্ট্যাটাস স্ক্রিপ্ট তৈরি করো:\n\nধাপ ১: `account_number` ভেরিয়েবলে 5501 রাখো।\nধাপ ২: `is_active` ভেরিয়েবলে বুলিয়ান `True` রাখো (কোনো কোটেশন ছাড়া)।\nধাপ ৩: f-string দিয়ে প্রিন্ট করো: `Account 5501 Active: True`",
-      "starterCode": "# ধাপ ১: account_number তৈরি করো\n\n# ধাপ ২: is_active এ True রাখো\n\n# ধাপ ৩: f-string দিয়ে প্রিন্ট করো\n",
+      "title": "অনুশীলনী ১: সার্ভার স্ট্যাটাস ফ্ল্যাগ",
+      "prompt": "একটি সার্ভারের অবস্থা প্রদর্শন করার কোড লেখো:\n\nধাপ ১: `server_name` ভেরিয়েবলে `\"Alpha\"` রাখো।\nধাপ ২: `is_running` ভেরিয়েবলে বুলিয়ান `True` রাখো (কোটেশন ছাড়া)।\nধাপ ৩: f-string দিয়ে প্রিন্ট করো: `Server Alpha Running: True`",
+      "starterCode": "# ধাপ ১: server_name তৈরি করো\n\n# ধাপ ২: is_running এ True রাখো\n\n# ধাপ ৩: f-string দিয়ে প্রিন্ট করো\n",
       "hints": [
-        "`is_active = True` লিখবে, খেয়াল রাখবে T অবশ্যই Capital Letter হবে।",
-        "`print(f\"Account {account_number} Active: {is_active}\")` ব্যবহার করো।"
+        "`is_running = True` লিখবে, T অবশ্যই ক্যাপিটাল লেটার হবে।",
+        "`print(f\"Server {server_name} Running: {is_running}\")` ব্যবহার করো।"
       ],
-      "displayHint": "print(f\"Account {account_number} Active: {is_active}\")",
-      "expectedOutput": "Account 5501 Active: True\n",
+      "displayHint": "print(f\"Server {server_name} Running: {is_running}\")",
+      "expectedOutput": "Server Alpha Running: True\n",
       "validation": {
         "type": "smart_output_source",
         "ignoreWhitespace": true,
         "ignoreCase": true,
         "requiredVariables": [
-          "account_number",
-          "is_active"
+          "server_name",
+          "is_running"
         ],
         "feedbackMessages": {
           "onPass": "দারুণ! তুমি সফলভাবে বুলিয়ান ভেরিয়েবল ডিফাইন ও f-string দিয়ে আউটপুট দেখিয়েছ।",
-          "onMissingVariable": "account_number এবং is_active — দুটি ভেরিয়েবলই তৈরি করেছো কি?",
+          "onMissingVariable": "server_name এবং is_running — দুটি ভেরিয়েবলই তৈরি করেছো কি?",
           "onPatternFail": "আউটপুট ফরম্যাটটি আবার যাচাই করো।"
         }
       },
-      "solution": "account_number = 5501\nis_active = True\nprint(f\"Account {account_number} Active: {is_active}\")",
-      "solutionExplanation": "বুলিয়ান মান True দিয়ে ভেরিয়েবল ডিফাইন করে f-string দিয়ে সুনির্দিষ্ট আউটপুট দেখানো হয়েছে।"
+      "solution": "server_name = \"Alpha\"\nis_running = True\nprint(f\"Server {server_name} Running: {is_running}\")",
+      "solutionExplanation": "বুলিয়ান True দিয়ে ভেরিয়েবল তৈরি করে f-string এ বসানো হয়েছে।"
     },
     {
       "type": "practice",
-      "title": "অনুশীলনী ২: ফ্রড অ্যালার্ট ট্র্যাকার",
-      "prompt": "একটি ফ্রড অ্যালার্ট মনিটর তৈরি করো:\n\nধাপ ১: `user_id` ভেরিয়েবলে 9920 রাখো।\nধাপ ২: `is_blocked` ভেরিয়েবলে বুলিয়ান `False` রাখো।\nধাপ ৩: `has_warning` ভেরিয়েবলে বুলিয়ান `True` রাখো।\nধাপ ৪: print() বা f-string ব্যবহার করে দুটি লাইনে প্রিন্ট করো:\n`User 9920 Blocked: False`\n`User 9920 Warning: True`",
-      "starterCode": "# ধাপ ১: user_id, is_blocked এবং has_warning তৈরি করো\n\n# ধাপ ২: দুটি আউটপুট লাইন প্রিন্ট করো\n",
+      "title": "অনুশীলনী ২: নোটিফিকেশন সেটিংস",
+      "prompt": "একটি অ্যাপের নোটিফিকেশন সেটিংসের কোড তৈরি করো:\n\nধাপ ১: `user_name` ভেরিয়েবলে `\"Nabil\"` রাখো।\nধাপ ২: `email_alert` ভেরিয়েবলে `False` রাখো।\nধাপ ৩: `sms_alert` ভেরিয়েবলে `True` রাখো।\nধাপ ৪: f-string দিয়ে দুটি পৃথক লাইনে প্রিন্ট করো:\n`Nabil Email: False`\n`Nabil SMS: True`",
+      "starterCode": "# ধাপ ১: তিনটি ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: দুটি প্রিন্ট স্টেটমেন্ট লেখো\n",
       "hints": [
-        "False এর F এবং True এর T বড় হাতের হবে।",
-        "print(f\"User {user_id} Blocked: {is_blocked}\") এবং print(f\"User {user_id} Warning: {has_warning}\") লিখো।"
+        "False এর F এবং True এর T বড় হাতের হবে এবং কোনো কোটেশন বসবে না।",
+        "print(f\"{user_name} Email: {email_alert}\") এবং print(f\"{user_name} SMS: {sms_alert}\") লিখো।"
       ],
-      "displayHint": "print(f\"User {user_id} Blocked: {is_blocked}\")\nprint(f\"User {user_id} Warning: {has_warning}\")",
-      "expectedOutput": "User 9920 Blocked: False\nUser 9920 Warning: True\n",
+      "displayHint": "print(f\"{user_name} Email: {email_alert}\")\nprint(f\"{user_name} SMS: {sms_alert}\")",
+      "expectedOutput": "Nabil Email: False\nNabil SMS: True\n",
       "validation": {
         "type": "smart_output_source",
         "ignoreWhitespace": true,
         "ignoreCase": true,
         "requiredVariables": [
-          "user_id",
-          "is_blocked",
-          "has_warning"
+          "user_name",
+          "email_alert",
+          "sms_alert"
         ],
         "feedbackMessages": {
           "onPass": "চমৎকার! একাধিক বুলিয়ান ভেরিয়েবল দিয়ে বিভিন্ন স্টেট সুন্দরভাবে প্রিন্ট হয়েছে।",
-          "onMissingVariable": "user_id, is_blocked এবং has_warning — তিনটি ভেরিয়েবলই তৈরি করেছ তো?",
+          "onMissingVariable": "user_name, email_alert এবং sms_alert — তিনটি ভেরিয়েবলই তৈরি করেছ তো?",
           "onPatternFail": "দুটি লাইনে সঠিক ফরম্যাটে আউটপুট প্রিন্ট হয়েছে কি না যাচাই করো।"
         }
       },
-      "solution": "user_id = 9920\nis_blocked = False\nhas_warning = True\nprint(f\"User {user_id} Blocked: {is_blocked}\")\nprint(f\"User {user_id} Warning: {has_warning}\")",
-      "solutionExplanation": "একাধিক বুলিয়ান ভেরিয়েবল দিয়ে বিভিন্ন নিরাপত্তা স্তর ট্র্যাক করে পরিষ্কার মেসেজ প্রিন্ট করা হয়েছে।"
+      "solution": "user_name = \"Nabil\"\nemail_alert = False\nsms_alert = True\nprint(f\"{user_name} Email: {email_alert}\")\nprint(f\"{user_name} SMS: {sms_alert}\")",
+      "solutionExplanation": "দুটি পৃথক বুলিয়ান ভেরিয়েবল দিয়ে দুটি ভিন্ন অন/অফ স্টেট প্রদর্শন করা হয়েছে।"
     },
     {
       "type": "practice",
-      "title": "অনুশীলনী ৩: সিকিউরিটি স্টেট আপডেট",
-      "prompt": "একটি অ্যাকাউন্ট ভেরিফিকেশন ফ্লো তৈরি করো যেখানে স্টেট পরিবর্তন হবে:\n\nধাপ ১: `is_verified` ভেরিয়েবলে প্রথমে `False` রাখো।\nধাপ ২: ভেরিয়েবল রিঅ্যাসাইনমেন্টের মাধ্যমে `is_verified` এর মান পরিবর্তন করে `True` করো।\nধাপ ৩: f-string দিয়ে প্রিন্ট করো: `Final Verification: True`",
-      "starterCode": "# ধাপ ১: প্রাথমিক স্টেট False দিয়ে শুরু করো\n\n# ধাপ ২: স্টেট পরিবর্তন করে True করো\n\n# ধাপ ৩: সর্বশেষ স্টেট প্রিন্ট করো\n",
+      "title": "অনুশীলনী ৩: সুইচ অন করা (State Update)",
+      "prompt": "একটি সুইচের মান পরিবর্তনের কোড লেখো:\n\nধাপ ১: `light_on` ভেরিয়েবলে প্রথমে `False` রাখো।\nধাপ ২: ভেরিয়েবল রিঅ্যাসাইন করে `light_on` এর মান `True` করো।\nধাপ ৩: f-string দিয়ে প্রিন্ট করো: `Light Status: True`",
+      "starterCode": "# ধাপ ১: প্রথমে False দিয়ে শুরু করো\n\n# ধাপ ২: মান পরিবর্তন করে True করো\n\n# ধাপ ৩: প্রিন্ট করো\n",
       "hints": [
-        "প্রথমে লিখো: `is_verified = False`",
-        "পরের লাইনে লিখো: `is_verified = True`",
-        "সবশেষে লিখো: `print(f\"Final Verification: {is_verified}\")`"
+        "প্রথমে লিখো: `light_on = False`",
+        "পরের লাইনে লিখো: `light_on = True`",
+        "সবশেষে f-string দিয়ে প্রিন্ট করো।"
       ],
-      "displayHint": "is_verified = False\nis_verified = True\nprint(f\"Final Verification: {is_verified}\")",
-      "expectedOutput": "Final Verification: True\n",
+      "displayHint": "light_on = False\nlight_on = True\nprint(f\"Light Status: {light_on}\")",
+      "expectedOutput": "Light Status: True\n",
       "validation": {
         "type": "smart_output_source",
         "ignoreWhitespace": true,
         "ignoreCase": true,
         "requiredVariables": [
-          "is_verified"
+          "light_on"
         ],
         "feedbackMessages": {
           "onPass": "অসাধারণ! বুলিয়ান স্টেট রিঅ্যাসাইনমেন্ট বা মিউটেশন সফল হয়েছে।",
-          "onMissingVariable": "is_verified ভেরিয়েবলটি তৈরি করেছো কি?",
+          "onMissingVariable": "light_on ভেরিয়েবলটি তৈরি করেছো কি?",
           "onPatternFail": "ফাইনাল আউটপুট ঠিকমতো প্রিন্ট হয়েছে কি না যাচাই করো।"
         }
       },
-      "solution": "is_verified = False\nis_verified = True\nprint(f\"Final Verification: {is_verified}\")",
-      "solutionExplanation": "প্রোগ্রামে স্টেট পরিবর্তন বা মিউটেশনের সময় বুলিয়ান ফ্ল্যাগ কীভাবে আপডেট হয় তা সফলভাবে প্রদর্শন করা হয়েছে।"
+      "solution": "light_on = False\nlight_on = True\nprint(f\"Light Status: {light_on}\")",
+      "solutionExplanation": "ভেরিয়েবলের মান False থেকে True তে পরিবর্তনের মাধ্যমে সফটওয়্যার স্টেট আপডেট প্রদর্শন করা হয়েছে।"
     },
     {
       "type": "quiz",
@@ -267,7 +262,7 @@
         {
           "id": "q3",
           "questionType": "multiple_choice",
-          "question": "কোডে is_verified = true লিখলে পাইথন কোন এরর দেবে?",
+          "question": "কোডে is_ready = true লিখলে পাইথন কোন এরর দেবে?",
           "difficulty": "medium",
           "options": [
             "SyntaxError: invalid syntax",
@@ -276,14 +271,14 @@
             "কোনো এরর দেবে না, স্বাভাবিকভাবে চলবে"
           ],
           "correctOptionIndex": 1,
-          "explanation": "পাইথনে true নামে কোনো বিল্ট-ইন কি-ওয়ার্ড নেই। পাইথন মনে করে 'true' হয়তো কোনো ভেরিয়েবলের নাম যা আগে ডিফাইন করা হয়নি, ফলে NameError দেয়।"
+          "explanation": "পাইথনে true নামে কোনো বিল্ট-ইন কি-ওয়ার্ড নেই। পাইথন মনে করে 'true' হয়তো কোনো ভেরিয়েবলের নাম যা আগে তৈরি করা হয়নি, ফলে NameError দেয়।"
         }
       ]
     },
     {
       "type": "debug_challenge",
       "title": "বাগ ১: ছোট হাতের true এর ফাঁদ",
-      "scenario": "একটি সিকিউরিটি সিস্টেমে এক নতুন ডেভেলপার ইউজার লগইন ফ্ল্যাগ সেট করতে গিয়ে ছোট হাতের true লিখেছে। এর ফলে সার্ভার ক্র্যাশ করেছে। কোডটি ফিক্স করো:",
+      "scenario": "একজন শিক্ষার্থী ইউজার লগইন ফ্ল্যাগ সেট করতে গিয়ে ছোট হাতের true লিখেছে। এর ফলে প্রোগ্রাম ক্র্যাশ করেছে। কোডটি ফিক্স করো:",
       "buggyCode": "user_name = \"Shakib\"\nis_logged_in = true\nprint(f\"User {user_name} Login: {is_logged_in}\")",
       "errorMessage": "NameError: name 'true' is not defined. Did you mean: 'True'?",
       "bugLine": 2,
@@ -298,69 +293,79 @@
     {
       "type": "debug_challenge",
       "title": "বাগ ২: কোটেশনের ছদ্মবেশে স্ট্রিং",
-      "scenario": "একটি সিকিউরিটি অডিটে দেখা গেল ফ্রড অ্যালার্ট ফ্ল্যাগে কোটেশন ব্যবহার করার কারণে ডাউনস্ট্রিম সিস্টেম বিভ্রান্ত হচ্ছে। কোটেশন সরিয়ে খাঁটি বুলিয়ানে রূপান্তর করো:",
-      "buggyCode": "account_id = 4040\nis_fraud = \"False\"\nprint(f\"Fraud Status: {is_fraud}\")",
-      "errorMessage": "Type Warning: is_fraud assigned str instead of bool (quotes detected)",
+      "scenario": "একটি কোডে ভুল করে বুলিয়ান মানের চারপাশে কোটেশন দেওয়া হয়েছে, ফলে এটি সুইচের বদলে সাধারণ স্ট্রিং হয়ে গেছে। কোটেশন সরিয়ে খাঁটি বুলিয়ানে রূপান্তর করো:",
+      "buggyCode": "device_id = 404\nis_connected = \"False\"\nprint(f\"Device {device_id} Connected: {is_connected}\")",
+      "errorMessage": "Type Warning: is_connected assigned str instead of bool (quotes detected)",
       "bugLine": 2,
       "bugType": "logic",
       "hints": [
         "\"False\" এর দুই পাশের ডাবল কোটেশন লক্ষ্য করো।",
         "কোটেশন সরিয়ে সরাসরি False লেখো।"
       ],
-      "fixedCode": "account_id = 4040\nis_fraud = False\nprint(f\"Fraud Status: {is_fraud}\")",
+      "fixedCode": "device_id = 404\nis_connected = False\nprint(f\"Device {device_id} Connected: {is_connected}\")",
       "explanation": "কোটেশন তুলে দিয়ে সরাসরি False রাখায় ভেরিয়েবলটি যথাযথ বুলিয়ান টাইপ ধারণ করেছে।"
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ৩: Hidden State ও Stale Status",
-      "scenario": "একটি পেমেন্ট প্ল্যাটফর্মে Support Officer ড্যাশবোর্ডে [Unblock Account] বাটনে ক্লিক করায় এই Python Backend স্ক্রিপ্টটি ট্রিগার হয়েছে গ্রাহকের ফোনে কনফার্মেশন SMS পাঠানোর জন্য। কিন্তু ত্রুটিপূর্ণ কোডে স্টেট আনব্লক করার আগেই SMS মেসেজ তৈরি হয়ে গেছে! ফলে গ্রাহক আনলক হওয়া সত্ত্বেও তার ফোনে পুরোনো Stale State (True) চলে যাচ্ছে। Execution Flow রি-অর্ডার করে সঠিক Live State প্রিন্ট করো:",
-      "buggyCode": "user_id = 7711\nis_blocked = True\n\n# ভুল সময়ে Stale State দিয়ে মেসেজ তৈরি\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\n# Security Team পরে আনব্লক করেছে\nis_blocked = False\n\nprint(status_msg)",
-      "errorMessage": "Hidden State Bug: status_msg captured stale state (Blocked: True instead of live state False)",
+      "title": "বাগ ৩: মেসেজ তৈরির ক্রম ঠিক করা",
+      "scenario": "একটি অ্যাপে গেট খোলার স্টেট False থেকে True করা হয়েছে। কিন্তু মেসেজটি স্টেট আপডেট করার আগেই তৈরি করে ফেলা হয়েছে! এক্সিকিউশন অর্ডার ঠিক করে সঠিক লাইভ স্টেট প্রিন্ট করো:",
+      "buggyCode": "gate_name = \"Main Gate\"\nis_open = False\n\n# ভুল সময়ে মেসেজ তৈরি করা হয়েছে\nstatus_msg = f\"{gate_name} Open: {is_open}\"\n\n# পরে গেট খোলা হয়েছে\nis_open = True\n\nprint(status_msg)",
+      "errorMessage": "Logic Bug: status_msg captured old state (Open: False instead of True)",
       "bugLine": 5,
       "bugType": "logic",
       "hints": [
-        "Python উপর থেকে নিচে লাইন বাই লাইন Execution করে।",
-        "লাইন ৫ যখন চলেছে তখন is_blocked ভেরিয়েবলের মান ছিল True।",
-        "আগে State আপডেট (is_blocked = False) করো, তারপর status_msg তৈরি করো।"
+        "পাইথন উপর থেকে নিচে লাইন বাই লাইন রান করে।",
+        "লাইন ৫ যখন চলেছে তখন is_open ছিল False।",
+        "আগে is_open = True করো, তারপর status_msg তৈরি করো।"
       ],
-      "fixedCode": "user_id = 7711\nis_blocked = True\n\n# আগে Security State আপডেট করো\nis_blocked = False\n\n# এরপর সর্বশেষ Live State দিয়ে মেসেজ তৈরি করো\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\nprint(status_msg)",
-      "explanation": "is_blocked ভেরিয়েবলকে False এ আপডেট করার পর status_msg তৈরি করায় Console এ সর্বশেষ সক্রিয় Live State নির্ভুলভাবে প্রদর্শিত হয়েছে।"
+      "fixedCode": "gate_name = \"Main Gate\"\nis_open = False\n\n# আগে স্টেট আপডেট করো\nis_open = True\n\n# এরপর সর্বশেষ স্টেট দিয়ে মেসেজ তৈরি করো\nstatus_msg = f\"{gate_name} Open: {is_open}\"\n\nprint(status_msg)",
+      "explanation": "is_open ভেরিয়েবলকে True এ আপডেট করার পর status_msg তৈরি করায় কনসোলে সর্বশেষ সক্রিয় স্টেট নির্ভুলভাবে প্রদর্শিত হয়েছে।"
     },
     {
       "type": "reflection",
-      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: বুলিয়ান লজিক আর্কিটেকচার",
-      "instruction": "একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে নিচের ৩টি গভীর প্রশ্ন নিয়ে চিন্তা করো:",
+      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: বুলিয়ান লজিক",
+      "instruction": "একজন সফটওয়্যার ডেভেলপার হিসেবে নিচের ৩টি প্রশ্ন নিয়ে চিন্তা করো:",
       "criticalThinkingQuestions": [
         {
-          "question": "সফটওয়্যার সিস্টেমে হ্যাঁ/না বোঝাতে টেক্সট (\"yes\"/\"no\") বা সংখ্যা (1/0) ব্যবহারের চেয়ে বুলিয়ান (True/False) ব্যবহার কেন অনেক বেশি নিরাপদ?",
-          "expertThinking": "টেক্সট ব্যবহারে টাইপো হওয়ার বড় ঝুঁকি থাকে—যেমন 'Yes', 'yes', 'Y', 'true' ইত্যাদির অমিল ঘটলে সিস্টেম ভুল সিদ্ধান্ত নিতে পারে। আবার সংখ্যা (1 বা 0) দিয়ে অন্য কোনো গাণিতিক ভুলের আশঙ্কা থাকে। বুলিয়ান ডেটা টাইপ স্টেট স্পেসকে মাত্র দুটি সুনির্দিষ্ট মানে সীমাবদ্ধ করে, ফলে কোড শতভাগ অনুমানযোগ্য এবং ত্রুটিমুক্ত থাকে।",
-          "realWorldEngineering": "ফিনটেক ও ব্যাংকিং সিস্টেমে এসিআইডি (ACID) ট্রানজ্যাকশন এবং সিকিউরিটি ফ্ল্যাগগুলো বুলিয়ান টাইপ দিয়ে লক করা থাকে যাতে কোনো অস্পষ্ট ইনপুট গ্রাহকের ফান্ড স্থানান্তর করতে না পারে।",
-          "beyondProgramming": "বাস্তব জীবনেও কোনো চুক্তিতে শর্তাবলি অস্পষ্ট না রেখে পরিষ্কার 'হ্যাঁ' বা 'না' নির্ধারণ করা ভবিষ্যতের জটিলতা এড়াতে সাহায্য করে।"
+          "question": "সফটওয়্যারে হ্যাঁ/না বোঝাতে সাধারণ টেক্সট (\"yes\"/\"no\") ব্যবহারের চেয়ে বুলিয়ান (True/False) ব্যবহার কেন অনেক বেশি নির্ভরযোগ্য?",
+          "expertThinking": "টেক্সট ব্যবহারে টাইপো হওয়ার বড় ঝুঁকি থাকে—যেমন 'Yes', 'yes', 'y', 'true' ইত্যাদির অমিল ঘটলে সিস্টেম ভুল সিদ্ধান্ত নিতে পারে। বুলিয়ান ডেটা টাইপ স্টেটকে মাত্র দুটি সুনির্দিষ্ট মানে সীমাবদ্ধ করে, ফলে কোড শতভাগ অনুমানযোগ্য এবং ত্রুটিমুক্ত থাকে।",
+          "realWorldEngineering": "সফটওয়্যার সিস্টেমে যেকোনো অন/অফ সুইচিং বুলিয়ান টাইপ দিয়ে করা হয় যাতে কোনো অস্পষ্ট ইনপুট সিস্টেমকে বিভ্রান্ত করতে না পারে।",
+          "beyondProgramming": "বাস্তব জীবনেও কোনো তথ্যে অস্পষ্টতা না রেখে পরিষ্কার 'হ্যাঁ' বা 'না' থাকা সিদ্ধান্ত নিতে সাহায্য করে।"
         },
         {
-          "question": "প্রোগ্রামে কোনো ফ্ল্যাগের নাম রাখার সময় 'is_active', 'has_permission', 'can_edit' এভাবে রাখা কেন বেস্ট প্র্যাকটিস?",
-          "expertThinking": "ভেরিয়েবলের নাম দেখেই যেন তার টাইপ ও উদ্দেশ্য বোঝা যায়। 'status = True' লিখলে বোঝা যায় না স্ট্যাটাস কী বলছে। কিন্তু 'is_verified = True' পড়লেই যে কেউ তৎক্ষণাৎ বুঝতে পারে এটি একটি বুলিয়ান চেক যা হ্যাঁ/না নির্দেশ করছে। এটি কোডের সেলফ-ডকুমেন্টিং কোয়ালিটি বাড়ায়।",
-          "realWorldEngineering": "লার্জ স্কেল সফটওয়্যার টিমে ক্লিন কোড রিভিউ ও মেইনটেন্যান্সে বুলিয়ান ভেরিয়েবলের নামকরণে 'is_', 'has_', 'should_' প্রিফিক্স ব্যবহার বাধ্যতামূলক করা হয়।",
+          "question": "প্রোগ্রামে কোনো বুলিয়ান ভেরিয়েবলের নাম রাখার সময় 'is_active', 'is_open', 'has_access' এভাবে রাখা কেন ভালো অভ্যাস?",
+          "expertThinking": "ভেরিয়েবলের নাম দেখেই যেন তার টাইপ ও উদ্দেশ্য বোঝা যায়। 'status = True' লিখলে বোঝা যায় না স্ট্যাটাস কী বলছে। কিন্তু 'is_active = True' পড়লেই যে কেউ তৎক্ষণাৎ বুঝতে পারে এটি একটি বুলিয়ান চেক যা হ্যাঁ/না নির্দেশ করছে। এটি কোড সহজে পড়তে সাহায্য করে।",
+          "realWorldEngineering": "প্রফেশনাল সফটওয়্যার টিমে ক্লিন কোড বজায় রাখতে বুলিয়ান ভেরিয়েবলের নামকরণে 'is_' বা 'has_' প্রিফিক্স ব্যবহার করা হয়।",
           "beyondProgramming": "যেকোনো প্রশ্নের ভাষা যদি স্পষ্ট হয় (যেমন: 'তুমি কি এসেছো?'), তবে উত্তরও স্পষ্ট হয়।"
         },
         {
-          "question": "হিডেন স্টেট বা বাসি ডেটা (Stale State) সফটওয়্যার সিকিউরিটিতে কীভাবে বিপর্যয় ডেকে আনতে পারে?",
-          "expertThinking": "যদি কোনো ইউজার পাসওয়ার্ড পরিবর্তন বা লগআউট করার পরও সিকিউরিটি টোকেনের স্টেট মেমোরিতে সময়মতো আপডেট না হয়, তবে হ্যাকাররা পুরনো সেশন হাইজ্যাক করতে পারে। স্টেট লাইফসাইকেল যথাযথভাবে ম্যানেজ না করলে ডাটাবেজ এক কথা বলে আর অ্যাপ্লিকেশন স্ক্রিন অন্য কথা বলে।",
-          "realWorldEngineering": "পেমেন্ট গেটওয়েতে ব্যালেন্স কাটার পর যদি একাউন্ট ব্যালেন্স ফ্ল্যাগ দ্রুত আপডেট না হয়, তবে গ্রাহক একই টাকা দিয়ে দুবার কেনাকাটা (Double Spending Attack) করতে পারে।",
-          "beyondProgramming": "পুরোনো তথ্যের ওপর ভিত্তি করে সিদ্ধান্ত নেওয়া ট্রেন চলে যাওয়ার পর স্টেশনে পৌঁছানোর মতো।"
+          "question": "ভেরিয়েবলের মান পরিবর্তন করার সময় কোডের লাইনের ক্রম (Order of Execution) কেন গুরুত্বপূর্ণ?",
+          "expertThinking": "কম্পিউটার উপর থেকে নিচে এক লাইনের পর এক লাইন কোড এক্সিকিউট করে। যদি কোনো মেসেজ তৈরির আগে ভেরিয়েবলের নতুন মান আপডেট না করা হয়, তবে মেসেজে পুরোনো মানটিই থেকে যাবে। তাই সঠিক সময়ে স্টেট আপডেট করা অপরিহার্য।",
+          "realWorldEngineering": "সিস্টেমে কোনো ইভেন্ট ঘটার পর প্রথমে মেমোরির স্টেট আপডেট করতে হয়, তারপর সেই স্টেট দিয়ে ইউজারকে কনফার্মেশন মেসেজ পাঠাতে হয়।",
+          "beyondProgramming": "দরজা খোলার পর ঘরে ঢুকতে হয়; দরজা খোলার আগে ঢুকতে গেলে ধাক্কা খেতে হয়।"
         }
       ]
     },
     {
       "type": "mission_complete",
       "title": "অভিনন্দন! মিশন ১১ সফলভাবে সম্পন্ন!",
-      "summary": "তুমি সফলভাবে পাইথনের বুলিয়ান ডেটা টাইপ (True ও False) আয়ত্ত করেছ এবং সফটওয়্যার সিকিউরিটি ও এক্সেস স্টেট ম্যানেজমেন্টের ভিত্তি মজবুত করে তুলেছ!",
+      "summary": "তুমি সফলভাবে পাইথনের বুলিয়ান ডেটা টাইপ (True ও False) আয়ত্ত করেছ এবং সফটওয়্যারের অন/অফ স্টেট নির্ভরযোগ্যভাবে মনে রাখা শিখেছ!",
       "keyLearnings": [
-        "বুলিয়ান ডেটা টাইপের সুনির্দিষ্ট গঠন ও ব্যবহার (True এবং False)।",
-        "কোটেশন ও কেস-সেনসিটিভিটির সঠিক নিয়ম অনুধাবন।",
-        "ফিনটেক সিস্টেমে সিকিউরিটি ফ্ল্যাগ ও স্টেট পরিবর্তনের দক্ষতা।",
-        "রুল ২১ অনুযায়ী হিডেন স্টেট বাগ শনাক্ত ও সমাধান করার ক্ষমতা।"
-      ]
+        "বুলিয়ান ডেটা টাইপের দুটি মৌলিক মান: True এবং False।",
+        "কোটেশন ছাড়া এবং T ও F ক্যাপিটাল লেটারে লেখার নিয়ম।",
+        "ভেরিয়েবলে বুলিয়ান মান সংরক্ষণ ও f-string এ প্রদর্শন।",
+        "ভেরিয়েবল রিঅ্যাসাইনমেন্টের মাধ্যমে সফটওয়্যার স্টেট আপডেট করার নিয়ম।"
+      ],
+      "currentLimitation": {
+        "title": "বর্তমান সল্যুশনের টেকনিক্যাল সীমাবদ্ধতা",
+        "description": "কোডে আমরা সরাসরি is_active = True বা is_open = False হাতে লিখে অ্যাসাইন করেছি (Hardcoded Value)। কিন্তু বাস্তব সফটওয়্যারে কোনো মানুষ সারাক্ষণ বসে বসে প্রতি ইউজারের বা ট্রানজ্যাকশনের স্টেট হাতে টাইপ করে দেবে না; সফটওয়্যারকে স্বয়ংক্রিয়ভাবে বাস্তব ডেটা যাচাই করে True বা False নির্ধারণ করতে হবে।",
+        "technicalReason": "Hardcoded Static State without Dynamic Evaluation"
+      },
+      "nextMissionBridge": {
+        "title": "পরবর্তী মিশন: স্বয়ংক্রিয় সত্য-মিথ্যা মূল্যায়ন",
+        "description": "বাস্তব ডেটা স্বয়ংক্রিয়ভাবে তুলনা করে ডায়নামিকালি True বা False তৈরি করতে পাইথনে শিখব Comparison Operators (==, !=, <, >)।",
+        "targetMissionId": "012"
+      }
     }
   ]
 }
