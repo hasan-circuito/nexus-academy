@@ -316,19 +316,19 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ৩: ডিসকাউন্টের আগে পুরোনো স্টেটের ফাঁদ",
-      "scenario": "Bazaarly এর চেকআউটে ইউজার অতিরিক্ত ২০ টাকার আইটেম কার্টে যোগ করেছে। কিন্তু কোডে পুরোনো কার্ট টোটালের ওপর ফ্রি শিপিংয়ের তুলনা সম্পন্ন হওয়ার পর আইটেম যোগ করা হয়েছে! ফলে কনসোলে পুরোনো বাসি হিসাব (False) দেখাচ্ছে অথচ নতুন মোট মূল্যে ফ্রি শিপিং পাওয়ার কথা। স্টেট ফ্লো রি-অর্ডার করে কোডটি ঠিক করো:",
-      "buggyCode": "cart_total = 990\n\n# বাসি স্টেট নিয়ে ভুল সময়ে তুলনা করা হয়েছে\nis_free_shipping = cart_total >= 1000\n\n# কাস্টমার অতিরিক্ত একটি চকলেট যোগ করেছে\ncart_total = cart_total + 20\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
+      "title": "বাগ ৩: Checkout Pipeline ও Stale Cart State",
+      "scenario": "Bazaarly মোবাইল অ্যাপে কাস্টমার চেকআউট স্ক্রিনে থাকা অবস্থায় [Add to Cart] বাটনে ক্লিক করে অতিরিক্ত ২০ টাকার আইটেম যোগ করায় এই Backend Pricing Service ট্রিগার হয়েছে। কিন্তু ত্রুটিপূর্ণ কোডে কার্ট আপডেট হওয়ার আগেই Free Shipping এর Evaluation সম্পন্ন হয়ে গেছে! ফলে মোট মূল্য ১০১০ টাকা হলেও কাস্টমারের স্ক্রিনে Stale State (False) দেখাচ্ছে। Execution Flow রি-অর্ডার করে সঠিক Live Evaluation প্রিন্ট করো:",
+      "buggyCode": "cart_total = 990\n\n# ভুল সময়ে Stale State নিয়ে তুলনা করা হয়েছে\nis_free_shipping = cart_total >= 1000\n\n# কাস্টমার অতিরিক্ত একটি আইটেম যোগ করেছে\ncart_total = cart_total + 20\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
       "errorMessage": "Hidden State Bug: is_free_shipping evaluated on stale cart_total (990 instead of updated 1010)",
       "bugLine": 4,
       "bugType": "logic",
       "hints": [
-        "পাইথন উপর থেকে নিচে লাইন বাই লাইন এক্সিকিউট করে।",
+        "Python উপর থেকে নিচে লাইন বাই লাইন Execution করে।",
         "লাইন ৪ যখন রান হয়েছে তখন cart_total কত ছিল? ৯৯০ নাকি ১০১০?",
-        "আগে কার্টে আইটেম যোগ করো (cart_total = cart_total + 20), তারপর তুলনা করো।"
+        "আগে Cart এ আইটেম যোগ করো (cart_total = cart_total + 20), তারপর Comparison করো।"
       ],
-      "fixedCode": "cart_total = 990\n\n# আগে কার্টে সর্বশেষ আইটেম যোগ করো\ncart_total = cart_total + 20\n\n# এরপর আপডেট হওয়া কার্ট টোটাল দিয়ে তুলনা করো\nis_free_shipping = cart_total >= 1000\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
-      "explanation": "কার্টে নতুন আইটেমের মূল্য যোগ করার পর (১০১০) তুলনা করায় is_free_shipping যথাযথভাবে True হয়েছে।"
+      "fixedCode": "cart_total = 990\n\n# আগে Cart এ সর্বশেষ আইটেম যোগ করো\ncart_total = cart_total + 20\n\n# এরপর আপডেট হওয়া Live Cart Total দিয়ে তুলনা করো\nis_free_shipping = cart_total >= 1000\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
+      "explanation": "Cart এ নতুন আইটেমের মূল্য যোগ করার পর (১০১০) তুলনা করায় is_free_shipping যথাযথভাবে True হয়েছে।"
     },
     {
       "type": "reflection",

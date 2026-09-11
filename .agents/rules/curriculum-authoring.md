@@ -67,7 +67,27 @@ Applies To: All Nexus Academy mission authoring, editing, code generation, and p
 
 ---
 
-## 6. Mission Pipeline Commands
+### 6. Rule 24: Real-World Architecture Trace & English Technical Terminology Standards
+
+#### A. Mandatory English Technical Nouns & Keywords
+- **Principle:** All programming terms, data types, keywords, system components, error names, and technical nouns **MUST** remain in standard English across all missions (never invent archaic or awkward Bengali transliterations).
+- **Mandatory English Terms:**
+  - **Data Types & Keywords:** `Boolean`, `True`, `False`, `Variable`, `String`, `Integer`, `Float`, `print`, `input`, `f-string`, `int()`, `str()`, `if`, `else`, `elif`.
+  - **Architecture & System:** `Backend`, `Frontend`, `API`, `Database`, `Dashboard`, `Button`, `Server`, `SMS Gateway`, `Service`, `State`, `Live State`, `Stale State`, `Execution Flow`, `Memory`.
+  - **Errors & Diagnostics:** `SyntaxError`, `NameError`, `TypeError`, `ValueError`, `ZeroDivisionError`, `Bug`, `Runtime`, `Syntax`, `Console`.
+- **Language Composition:** Explanations, mentorship dialogue (Apurba Bhai), analogies, and emotional context must be in rich, natural conversational Bengali, while all technical nouns and keywords stand in crisp English.
+
+#### B. Real-World Architecture Trace in Debug Scenarios
+- **Principle:** Never present a debug challenge as an isolated 5-line script running in a vacuum. The learner must understand *how* and *why* this Python script is triggered in a live software product.
+- **Mandatory Scenario Structure:**
+  1. 📱 **User/Admin Action:** What triggered the process? (e.g. Support Officer clicks `[Unblock Account]` on `Dashboard`, or Customer taps `[Add to Cart]` in mobile app).
+  2. ⚙️ **Backend Service Execution:** How Python executes (e.g. `Backend API` triggers this Python script to update state and generate confirmation `SMS` or response).
+  3. 🐛 **The Defect:** Why the bug breaks reality (e.g. `status_msg` captures a `Stale State` before the update action occurs).
+  4. 🎯 **Learner Task:** What to fix (e.g. Re-order the `Execution Flow` so the `Live State` is formatted into the response).
+
+---
+
+## 7. Mission Pipeline Commands
 
 All mission creation must pass through the automated curriculum pipeline:
 

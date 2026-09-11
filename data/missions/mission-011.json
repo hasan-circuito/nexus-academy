@@ -312,19 +312,19 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ৩: হিডেন স্টেট ও বাসি স্ট্যাটাস",
-      "scenario": "SecurePay ক্লায়েন্টের অ্যাকাউন্ট আনলক মডিউলে একটি জটিল হিডেন স্টেট সমস্যা দেখা দিয়েছে। কোডে স্ট্যাটাস মেসেজ তৈরি করার পর অ্যাকাউন্ট আনব্লক করা হয়েছে! ফলে কনসোলে পুরোনো বাসি স্টেট (True) প্রদর্শিত হচ্ছে অথচ ইউজার আনলক হয়েছে। স্টেট ফ্লো রি-অর্ডার করে সঠিক লাইভ স্টেট প্রিন্ট করো:",
-      "buggyCode": "user_id = 7711\nis_blocked = True\n\n# ভুল সময়ে বাসি স্টেট দিয়ে মেসেজ তৈরি\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\n# সিকিউরিটি টিম পরে আনব্লক করেছে\nis_blocked = False\n\nprint(status_msg)",
+      "title": "বাগ ৩: Hidden State ও Stale Status",
+      "scenario": "SecurePay-এর Support Officer ড্যাশবোর্ডে [Unblock Account] বাটনে ক্লিক করায় এই Python Backend স্ক্রিপ্টটি ট্রিগার হয়েছে গ্রাহকের ফোনে কনফার্মেশন SMS পাঠানোর জন্য। কিন্তু ত্রুটিপূর্ণ কোডে স্টেট আনব্লক করার আগেই SMS মেসেজ তৈরি হয়ে গেছে! ফলে গ্রাহক আনলক হওয়া সত্ত্বেও তার ফোনে পুরোনো Stale State (True) চলে যাচ্ছে। Execution Flow রি-অর্ডার করে সঠিক Live State প্রিন্ট করো:",
+      "buggyCode": "user_id = 7711\nis_blocked = True\n\n# ভুল সময়ে Stale State দিয়ে মেসেজ তৈরি\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\n# Security Team পরে আনব্লক করেছে\nis_blocked = False\n\nprint(status_msg)",
       "errorMessage": "Hidden State Bug: status_msg captured stale state (Blocked: True instead of live state False)",
       "bugLine": 5,
       "bugType": "logic",
       "hints": [
-        "পাইথনে কোড উপর থেকে নিচে ধাপে ধাপে এক্সিকিউট হয়।",
-        "লাইন ৫ যখন চলেছে তখন is_blocked এর মান ছিল True।",
-        "আগে স্টেট আপডেট (is_blocked = False) করো, তারপর status_msg তৈরি করো।"
+        "Python উপর থেকে নিচে লাইন বাই লাইন Execution করে।",
+        "লাইন ৫ যখন চলেছে তখন is_blocked ভেরিয়েবলের মান ছিল True।",
+        "আগে State আপডেট (is_blocked = False) করো, তারপর status_msg তৈরি করো।"
       ],
-      "fixedCode": "user_id = 7711\nis_blocked = True\n\n# আগে সিকিউরিটি স্টেট আপডেট করো\nis_blocked = False\n\n# এরপর সর্বশেষ স্টেট দিয়ে মেসেজ তৈরি করো\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\nprint(status_msg)",
-      "explanation": "is_blocked কে False এ আপডেট করার পর status_msg তৈরি করায় কনসোলে সর্বশেষ সক্রিয় স্টেট নির্ভুলভাবে প্রদর্শিত হয়েছে।"
+      "fixedCode": "user_id = 7711\nis_blocked = True\n\n# আগে Security State আপডেট করো\nis_blocked = False\n\n# এরপর সর্বশেষ Live State দিয়ে মেসেজ তৈরি করো\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\nprint(status_msg)",
+      "explanation": "is_blocked ভেরিয়েবলকে False এ আপডেট করার পর status_msg তৈরি করায় Console এ সর্বশেষ সক্রিয় Live State নির্ভুলভাবে প্রদর্শিত হয়েছে।"
     },
     {
       "type": "reflection",
