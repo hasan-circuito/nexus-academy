@@ -156,6 +156,20 @@
       ],
       "displayHint": "print(f\"Account {account_number} Active: {is_active}\")",
       "expectedOutput": "Account 5501 Active: True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "account_number",
+          "is_active"
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি সফলভাবে বুলিয়ান ভেরিয়েবল ডিফাইন ও f-string দিয়ে আউটপুট দেখিয়েছ।",
+          "onMissingVariable": "account_number এবং is_active — দুটি ভেরিয়েবলই তৈরি করেছো কি?",
+          "onPatternFail": "আউটপুট ফরম্যাটটি আবার যাচাই করো।"
+        }
+      },
       "solution": "account_number = 5501\nis_active = True\nprint(f\"Account {account_number} Active: {is_active}\")",
       "solutionExplanation": "বুলিয়ান মান True দিয়ে ভেরিয়েবল ডিফাইন করে f-string দিয়ে সুনির্দিষ্ট আউটপুট দেখানো হয়েছে।"
     },
@@ -170,6 +184,21 @@
       ],
       "displayHint": "print(f\"User {user_id} Blocked: {is_blocked}\")\nprint(f\"User {user_id} Warning: {has_warning}\")",
       "expectedOutput": "User 9920 Blocked: False\nUser 9920 Warning: True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "user_id",
+          "is_blocked",
+          "has_warning"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! একাধিক বুলিয়ান ভেরিয়েবল দিয়ে বিভিন্ন স্টেট সুন্দরভাবে প্রিন্ট হয়েছে।",
+          "onMissingVariable": "user_id, is_blocked এবং has_warning — তিনটি ভেরিয়েবলই তৈরি করেছ তো?",
+          "onPatternFail": "দুটি লাইনে সঠিক ফরম্যাটে আউটপুট প্রিন্ট হয়েছে কি না যাচাই করো।"
+        }
+      },
       "solution": "user_id = 9920\nis_blocked = False\nhas_warning = True\nprint(f\"User {user_id} Blocked: {is_blocked}\")\nprint(f\"User {user_id} Warning: {has_warning}\")",
       "solutionExplanation": "একাধিক বুলিয়ান ভেরিয়েবল দিয়ে বিভিন্ন নিরাপত্তা স্তর ট্র্যাক করে পরিষ্কার মেসেজ প্রিন্ট করা হয়েছে।"
     },
@@ -185,6 +214,19 @@
       ],
       "displayHint": "is_verified = False\nis_verified = True\nprint(f\"Final Verification: {is_verified}\")",
       "expectedOutput": "Final Verification: True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "is_verified"
+        ],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! বুলিয়ান স্টেট রিঅ্যাসাইনমেন্ট বা মিউটেশন সফল হয়েছে।",
+          "onMissingVariable": "is_verified ভেরিয়েবলটি তৈরি করেছো কি?",
+          "onPatternFail": "ফাইনাল আউটপুট ঠিকমতো প্রিন্ট হয়েছে কি না যাচাই করো।"
+        }
+      },
       "solution": "is_verified = False\nis_verified = True\nprint(f\"Final Verification: {is_verified}\")",
       "solutionExplanation": "প্রোগ্রামে স্টেট পরিবর্তন বা মিউটেশনের সময় বুলিয়ান ফ্ল্যাগ কীভাবে আপডেট হয় তা সফলভাবে প্রদর্শন করা হয়েছে।"
     },
@@ -245,7 +287,7 @@
       "buggyCode": "user_name = \"Shakib\"\nis_logged_in = true\nprint(f\"User {user_name} Login: {is_logged_in}\")",
       "errorMessage": "NameError: name 'true' is not defined. Did you mean: 'True'?",
       "bugLine": 2,
-      "bugType": "logic",
+      "bugType": "runtime",
       "hints": [
         "পাইথন কেস-সেনসিটিভ ল্যাঙ্গুয়েজ।",
         "বুলিয়ান True এর প্রথম অক্ষর T বড় হাতের হতে হবে।"

@@ -156,6 +156,20 @@
       ],
       "displayHint": "is_free_delivery = order_total >= 1000\nprint(f\"Free Delivery: {is_free_delivery}\")",
       "expectedOutput": "Free Delivery: False\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "order_total",
+          "is_free_delivery"
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি সফলভাবে `>=` কম্প্যারিজন অপারেটর দিয়ে বুলিয়ান স্টেট নির্ধারণ করেছ।",
+          "onMissingVariable": "order_total এবং is_free_delivery ভেরিয়েবল দুটি সংজ্ঞায়িত করেছ কি?",
+          "onPatternFail": "আউটপুট ফরম্যাটটি আবার যাচাই করো।"
+        }
+      },
       "solution": "order_total = 850\nis_free_delivery = order_total >= 1000\nprint(f\"Free Delivery: {is_free_delivery}\")",
       "solutionExplanation": "order_total (850) এক হাজারের চেয়ে ছোট হওয়ায় order_total >= 1000 এর মান False এসেছে।"
     },
@@ -171,6 +185,21 @@
       ],
       "displayHint": "print(f\"In Stock: {is_in_stock}\")\nprint(f\"Bulk Eligible: {is_bulk_order}\")",
       "expectedOutput": "In Stock: True\nBulk Eligible: True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "stock_qty",
+          "is_in_stock",
+          "is_bulk_order"
+        ],
+        "feedbackMessages": {
+          "onPass": "চমৎকার! একাধিক কম্প্যারিজন অপারেটর (> এবং >=) সফলভাবে কাজ করেছে।",
+          "onMissingVariable": "stock_qty, is_in_stock এবং is_bulk_order ভেরিয়েবলগুলো তৈরি করেছ তো?",
+          "onPatternFail": "দুটি লাইনে সঠিক ফরম্যাটে ইন স্টক ও বাল্ক এলিজিবল মেসেজ প্রিন্ট হয়েছে কি না দেখো।"
+        }
+      },
       "solution": "stock_qty = 15\nis_in_stock = stock_qty > 0\nis_bulk_order = stock_qty >= 10\nprint(f\"In Stock: {is_in_stock}\")\nprint(f\"Bulk Eligible: {is_bulk_order}\")",
       "solutionExplanation": "দুটি পৃথক কম্প্যারিজন অপারেটর (> এবং >=) ব্যবহার করে একাধিক বিজনেস শর্ত স্বয়ংক্রিয়ভাবে নির্ণয় করা হয়েছে।"
     },
@@ -186,6 +215,22 @@
       ],
       "displayHint": "is_exact_match = entered_code == target_code\nis_different = entered_code != target_code\nprint(f\"Match: {is_exact_match}\")\nprint(f\"Mismatch: {is_different}\")",
       "expectedOutput": "Match: False\nMismatch: True\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "entered_code",
+          "target_code",
+          "is_exact_match",
+          "is_different"
+        ],
+        "feedbackMessages": {
+          "onPass": "অসাধারণ! টেক্সটের ক্ষেত্রে == এবং != দিয়ে সমতা ও অসমান যাচাই নিখুঁত হয়েছে।",
+          "onMissingVariable": "চারটি ভেরিয়েবল তৈরি করেছ তো?",
+          "onPatternFail": "Match এবং Mismatch লাইন দুটি সঠিকভাবে প্রিন্ট করেছ কি না যাচাই করো।"
+        }
+      },
       "solution": "entered_code = \"SAVE10\"\ntarget_code = \"SAVE20\"\nis_exact_match = entered_code == target_code\nis_different = entered_code != target_code\nprint(f\"Match: {is_exact_match}\")\nprint(f\"Mismatch: {is_different}\")",
       "solutionExplanation": "টেক্সট বা স্ট্রিংয়ের ক্ষেত্রেও == এবং != অপারেটর নিখুঁতভাবে প্রতিটি অক্ষর তুলনা করে বুলিয়ান ফলাফল প্রদান করে।"
     },
