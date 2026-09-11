@@ -1,6 +1,6 @@
 'use client';
 import type { VisualizationStep } from '@/types/mission.types';
-import { MonitorPlay, FileCode, Cpu, Binary, PlayCircle, GitBranch, Database, Layers, ArrowRight } from 'lucide-react';
+import { MonitorPlay, FileCode, Cpu, Binary, PlayCircle, GitBranch, Database, Layers, ArrowRight, ToggleLeft, CheckCircle2, ShieldAlert, Terminal, Scale } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   FileCode: <FileCode className="w-8 h-8 mb-2" />,
@@ -10,6 +10,11 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   GitBranch: <GitBranch className="w-8 h-8 mb-2" />,
   Database: <Database className="w-8 h-8 mb-2" />,
   Layers: <Layers className="w-8 h-8 mb-2" />,
+  ToggleLeft: <ToggleLeft className="w-8 h-8 mb-2 text-primary" />,
+  CheckCircle2: <CheckCircle2 className="w-8 h-8 mb-2 text-success" />,
+  ShieldAlert: <ShieldAlert className="w-8 h-8 mb-2 text-destructive" />,
+  Terminal: <Terminal className="w-8 h-8 mb-2 text-warning" />,
+  Scale: <Scale className="w-8 h-8 mb-2 text-primary" />,
 };
 
 const NODE_COLOR_CLASSES = [

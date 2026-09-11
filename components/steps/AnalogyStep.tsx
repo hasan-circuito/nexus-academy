@@ -4,7 +4,7 @@ import {
   ArrowRightLeft, Factory, TerminalSquare, Cpu, Database, Wifi,
   Code2, BookOpen, Box, Lightbulb, Globe, Layers, Zap, FlaskConical,
   Cog, Network, ShieldCheck, BrainCircuit, Binary, Monitor, FileText,
-  Image as ImageIcon, FileDigit
+  Image as ImageIcon, FileDigit, ToggleRight, Scale, GitCompare
 } from 'lucide-react';
 
 // Full icon registry — expand as needed
@@ -12,7 +12,7 @@ const ICON_REGISTRY: Record<string, React.ComponentType<{ className?: string }>>
   Factory, TerminalSquare, Cpu, Database, Wifi, Code2, BookOpen,
   Box, Lightbulb, Globe, Layers, Zap, FlaskConical, Cog, Network,
   ShieldCheck, BrainCircuit, Binary, Monitor, FileText, Image: ImageIcon,
-  FileDigit,
+  FileDigit, ToggleRight, Scale, GitCompare,
 };
 
 function FormattedAnalogyText({ text, isPython }: { text: string; isPython?: boolean }) {
