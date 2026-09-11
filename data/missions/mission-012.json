@@ -7,15 +7,15 @@
     "readingLevel": 2,
     "newConceptCount": 1,
     "practiceComplexity": 2,
-    "estimatedTotalMinutes": 20
+    "estimatedTotalMinutes": 25
   },
   "curiosity": {
-    "didYouKnow": "আধুনিক সফটওয়্যার সিস্টেমে Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans প্রতিদিন লক্ষ লক্ষ লাইনে ব্যবহৃত হয়।",
-    "realWorldApplication": "E-Commerce প্ল্যাটফর্মে লাইভ ডেটা প্রসেসিং ও অটোমেশনের জন্য এটি অপরিহার্য।",
-    "aiApplication": "এআই ও এলএলএম ডেটা পাইপলাইনে প্রম্পট ও টোকেন হ্যান্ডলিংয়ে এই ধারণা কাজে লাগে।",
-    "eeeApplication": "IoT ও মাইক্রোকন্ট্রোলার সেন্সর রিডিং মনিটর করতে এই আর্কিটেকচার প্রয়োগ করা হয়।",
-    "historicalFact": "পাইথনের আধুনিক সংস্করণে এই ফিচারটি ডেভেলপারদের কোডিং গতি বহুগুণ বাড়িয়ে দিয়েছে।",
-    "nextMissionPreview": "পরবর্তী মিশনে আমরা এই সক্ষমতার ওপর ভিত্তি করে আরও বাস্তবমুখী সমস্যা সমাধান করব।"
+    "didYouKnow": "কম্পিউটারের প্রসেসর (ALU) প্রতি সেকেন্ডে কোটি কোটি সংখ্যার তুলনা করে। প্রতিটি গাণিতিক তুলনা থেকে সরাসরি ০ বা ১ (False বা True) তৈরি হয়!",
+    "realWorldApplication": "Amazon বা দারাজের মতো প্ল্যাটফর্ম প্রতি মুহূর্তে স্টক (stock > 0), ডিসকাউন্ট থ্রেশহোল্ড (total >= 1000) ও কুপন কোড (code == 'SAVE50') মূল্যায়ন করতে কম্প্যারিজন অপারেটর ব্যবহার করে।",
+    "aiApplication": "এআই সুপারিশ ও র‍্যাংকিং ইঞ্জিনে প্রেডিকশন স্কোর যখন থ্রেশহোল্ডের চেয়ে বেশি হয় (score >= 0.85), তখন ইউজারকে সেরা সাজেশন দেখানো হয়।",
+    "eeeApplication": "ইলেকট্রনিক্সে অ্যানালগ-টু-ডিজিটাল কনভার্টারে ভোল্টেজ রেফারেন্স লেভেলের সাথে তুলনা (voltage > 3.3) করে অ্যালার্ম বা এলইডি ট্রিগার করা হয়।",
+    "historicalFact": "গণিতে সমান বোঝাতে '=' ব্যবহৃত হলেও প্রোগ্রামিংয়ে অ্যাসাইনমেন্টের জন্য '=' বরাদ্দ থাকায় তুলনায় '==' (দ্বৈত সমান) প্রতীক উদ্ভাবন করা হয়।",
+    "nextMissionPreview": "পরবর্তী মিশনে আমরা শিখব 'The Decision Tree' — কীভাবে এই বুলিয়ান তুলনার ফলাফলের ওপর ভিত্তি করে if দিয়ে কোডের দিক পরিবর্তন করা যায়!"
   },
   "steps": [
     {
@@ -23,210 +23,302 @@
       "missionNumber": "012",
       "title": "Comparison Operators",
       "banglaTitle": "মেমোরির তুলনা ও যাচাই",
-      "tagline": "Hardcoding boolean variables (is_eligible = True) is static. Software must dynamically compare numbers (cart_total >= 1000, stock_count > 0, voucher_code == \"DISCOUNT20\") to compute boolean outcomes on the fly.",
-      "description": "নেক্সাস এআই এজেন্সিতে স্বাগতম! আমাদের নতুন E-Commerce ক্লায়েন্টের জন্য এই চ্যালেঞ্জটি সম্পন্ন করতে হবে।",
+      "tagline": "স্ট্যাটিক মান নয়, স্বয়ংক্রিয়ভাবে সত্য-মিথ্যা যাচাই করার জাদু",
+      "description": "নেক্সাস এআই এজেন্সিতে স্বাগতম! আমাদের নতুন ই-কমার্স ক্লায়েন্ট 'Bazaarly' তাদের ফ্ল্যাশ সেল (Flash Sale) ও ডিসকাউন্ট ইঞ্জিনে একটি বড় সমস্যায় পড়েছে। আগের মিশনে আমরা শিখেছি বুলিয়ান ভেরিয়েবল (True ও False) দিয়ে স্টেট মনে রাখা যায়। কিন্তু কাস্টমার কখন ডিসকাউন্ট পাবে বা স্টকে প্রোডাক্ট আছে কি না, তা তো কেউ হাতে লিখে is_eligible = True করে দেবে না! সফটওয়্যারকে স্বয়ংক্রিয়ভাবে দুটি মান তুলনা করে তাৎক্ষণিকভাবে True বা False নির্ধারণ করতে হবে। আজকের মিশনে তুমি শিখবে পাইথনের কম্প্যারিজন অপারেটর—যা মেমোরির সংখ্যা ও টেক্সট তুলনা করে খাঁটি বুলিয়ান ফলাফল তৈরি করে।",
       "learningObjectives": [
-        "Hardcoding boolean variables (is_eligible = True) is static. Software must dynamically compare numbers (cart_total >= 1000, stock_count > 0, voucher_code == \"DISCOUNT20\") to compute boolean outcomes on the fly. এর পেছনের কারণ ও সীমাবদ্ধতা বোঝা",
-        "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans প্রয়োগ করে ক্লিন ও নির্ভরযোগ্য কোড লেখা",
-        "বাস্তব ক্লায়েন্ট আর্কিটেকচারে হিডেন স্টেট বাগ ডিবাগ করা"
+        "অ্যাসাইনমেন্ট (=) এবং সমতা যাচাই (==) এর মধ্যে পার্থক্য বোঝা",
+        "কম্প্যারিজন অপারেটর (==, !=, <, >, <=, >=) দিয়ে ডায়নামিক বুলিয়ান তৈরি করা",
+        "বুলিয়ান এক্সপ্রেশনের ফলাফল ভেরিয়েবলে সংরক্ষণ ও f-string এ প্রদর্শন করা",
+        "ই-কমার্স কার্ট ও ইনভেন্টরি যাচাইয়ের বাস্তব প্রজেক্ট সম্পন্ন করা"
       ],
-      "estimatedMinutes": 2
+      "estimatedMinutes": 3
     },
     {
       "type": "story",
-      "title": "নেক্সাস এআই অফিস: E-Commerce ক্লায়েন্টের জরুরি সমস্যা",
-      "setting": "নেক্সাস এআই সদর দপ্তর",
-      "content": "টিম লিড অপূর্ব ভাই তোমাকে ডেকে বললেন, 'আমাদের E-Commerce ক্লায়েন্ট একটি জটিল সংকটে পড়েছে। তাদের সিস্টেমে Hardcoding boolean variables (is_eligible = True) is static. Software must dynamically compare numbers (cart_total >= 1000, stock_count > 0, voucher_code == \"DISCOUNT20\") to compute boolean outcomes on the fly.। এই স্প্রিন্টে আমাদের টিমকে এই সমস্যার স্থায়ী সমাধান করতে হবে। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে তোমার দায়িত্ব কোডটি আধুনিক ও ত্রুটিমুক্ত করা।'",
-      "moral": "লজিক বোঝার আগে কোড লেখা শুরু করা ইঞ্জিনিয়ারদের প্রধান ভুলের একটি।"
+      "title": "নেক্সাস এআই অফিস: বাজারলির ফ্ল্যাশ সেল সংকট",
+      "setting": "নেক্সাস এআই এজেন্সির প্রোডাক্ট ওয়াররুম",
+      "content": "সকাল ১১টায় টিম লিড অপূর্ব ভাই প্রজেক্টরের স্ক্রিন অন করলেন।\n\n'আমাদের ই-কমার্স ক্লায়েন্ট Bazaarly আজ রাত ১২টায় তাদের মেগা ফ্ল্যাশ সেল চালু করছে। কিন্তু তাদের বিলিং স্ক্রিপ্ট মারাত্মকভাবে ত্রুটিযুক্ত! তাদের জুনিয়র কোডার লিখে রেখেছে:\ncart_total = 1200\nis_discount = True  # সবাইকে ঢালাওভাবে True দিয়ে রেখেছে!\n\nফলে যার কার্ট মাত্র ১০০ টাকার, সেও ডিসকাউন্ট পেয়ে যাচ্ছে! ক্লায়েন্টের লাখ লাখ টাকা লোকসান হওয়ার উপক্রম।'\n\nঅপূর্ব ভাই বললেন, 'বুলিয়ান মান এভাবে ফিক্সড বা হার্ডকোড করে বসালে সফটওয়্যার অন্ধ হয়ে যায়। প্রোগ্রামকে দুটি সংখ্যার মধ্যে তুলনা করতে দিতে হবে: cart_total >= 1000 হলে পাইথন নিজেই ডিসিশন নেবে যে এটি True না False। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে Bazaarly-এর এই ডায়নামিক তুলনা ইঞ্জিন আজ তোমাকেই বিল্ড করতে হবে!'",
+      "moral": "সফটওয়্যারে সিদ্ধান্ত কখনো আগে থেকে জোর করে চাপিয়ে দিতে নেই; বাস্তব ডেটা তুলনা করে সিস্টেমকে সিদ্ধান্ত নিতে দেওয়া উচিত।"
     },
     {
       "type": "analogy",
-      "title": "বাস্তব জীবনের উপমা",
+      "title": "ওজন মাপার দাঁড়িপাল্লা ও স্কেল",
       "realWorld": {
-        "label": "বাস্তব অভিজ্ঞতা",
-        "description": "বাস্তব জীবনে আমরা যেভাবে তথ্য পরিবর্তন বা ট্র্যাক করি",
-        "icon": "Lightbulb"
+        "label": "দাঁড়িপাল্লার দুই পাল্লা",
+        "icon": "Scale",
+        "description": "দাঁড়িপাল্লায় দুই পাশে বস্তু রাখলে দাঁড়িপাল্লা নিজে কোনো নতুন জিনিস তৈরি করে না; সে কেবল জানিয়ে দেয়: বাম পাশ কি ভারী (>), ডান পাশ কি সমান (==), নাকি হালকা (<)?"
       },
       "pythonConcept": {
-        "label": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans",
-        "description": "পাইথনে এর সরাসরি সমতুল্য কনসেপ্ট ও মেকানিজম",
-        "icon": "Code2"
+        "label": "কম্প্যারিজন এক্সপ্রেশন (==, !=, >, <)",
+        "icon": "GitCompare",
+        "description": "পাইথনেও `cart_total >= 1000` লিখলে পাইথন দুই পাশের মান দাঁড়িপাল্লায় তুলে সত্যতা যাচাই করে এবং সাথে সাথে ফলাফল হিসেবে `True` বা `False` উপহার দেয়।"
       },
-      "connection": "বাস্তব সিস্টেমের মতোই পাইথন প্রোগ্রামও ধাপে ধাপে স্টেট পরিবর্তন ও ডেটা ট্রান্সফার করে।",
-      "deeperInsight": "কম্পিউটার নিজে কিছু জানে না; সুনির্দিষ্ট নির্দেশনা ছাড়া সে কোনো পদক্ষেপ নিতে পারে না।"
+      "connection": "দাঁড়িপাল্লা যেমন হ্যাঁ/না ফলাফল প্রদর্শন করে, তেমনই পাইথনের কম্প্যারিজন অপারেটর দুটি ডেটা যাচাই করে বুলিয়ান মান তৈরি করে।",
+      "deeperInsight": "সবচেয়ে গুরুত্বপূর্ণ বিষয়: এখানে কোনো if বা শর্তের শাখা নেই; তুলনা সম্পন্ন হওয়ার সাথে সাথে পুরো এক্সপ্রেশনটি নিজেই একটি বুলিয়ান মানে রূপান্তরিত হয়ে যায়!"
     },
     {
       "type": "concept",
-      "title": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans এর মূল গঠন ও প্রয়োগ",
-      "content": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans পাইথনের একটি মৌলিক শক্তি।\n\nএটি ব্যবহারের নিয়ম:\n১. পরিষ্কারভাবে স্টেট ও ভেরিয়েবল সংজ্ঞায়িত করো।\n২. সঠিক আউটপুট তৈরি করতে পাইথনের নিয়ম মেনে চলো।",
+      "title": "কম্প্যারিজন অপারেটরের তালিকা ও ব্যবহার",
+      "content": "পাইথনে দুটি মান বা ভেরিয়েবলের তুলনা করার জন্য ৬টি প্রধান কম্প্যারিজন অপারেটর রয়েছে। যেকোনো তুলনার ফলাফল সর্বদা একটি বুলিয়ান (`True` বা `False`):\n\n| অপারেটর | নাম | উদাহরণ | ফলাফল |\n| :---: | :--- | :--- | :--- |\n| `==` | সমান কি না? (Equal) | `5 == 5` | `True` |\n| `!=` | অসমান কি না? (Not Equal) | `5 != 3` | `True` |\n| `>` | বড় কি না? (Greater than) | `10 > 20` | `False` |\n| `<` | ছোট কি না? (Less than) | `10 < 20` | `True` |\n| `>=` | বড় বা সমান? (Greater/Equal) | `15 >= 15` | `True` |\n| `<=` | ছোট বা সমান? (Less/Equal) | `8 <= 5` | `False` |\n\n**গুরুত্বপূর্ণ পার্থক্য: `=` বনাম `==`**\n• একক সমান (`=`): মেমোরিতে মান জমা রাখে (অ্যাসাইনমেন্ট)। যেমন: `cart = 500`\n• দ্বৈত সমান (`==`): দুই পাশ সমান কি না যাচাই করে (তুলনা)। যেমন: `cart == 500`\n\n**ভেরিয়েবলে তুলনার ফলাফল রাখা:**\n`cart_total = 1200`\n`has_free_delivery = cart_total >= 1000`\n`print(has_free_delivery)  # আউটপুট: True`\n\nপাইথন প্রথমে ডানপাশের তুলনা (`cart_total >= 1000`) মূল্যায়ন করে `True` বের করে, তারপর সেই `True` কে বামপাশের ভেরিয়েবলে জমা রাখে!",
       "keyPoints": [
-        "একক দায়িত্ব নীতি (Single Concept Law) মেনে কাজ করো।",
-        "টাইপ এবং সিনট্যাক্স সম্পর্কে সতর্ক থাকো।",
-        "কোড যেন অন্য ডেভেলপারদের কাছে সহজে পাঠযোগ্য হয়।"
+        "তুলনার ফলাফল সর্বদা একটি বুলিয়ান মান (True বা False)।",
+        "অ্যাসাইনমেন্ট (=) এবং সমতা তুলনা (==) সম্পূর্ণ ভিন্ন দুটি কাজ।",
+        "অসমান বোঝাতে বিস্ময়চিহ্ন ও সমান (!=) ব্যবহার করা হয়।",
+        "তুলনার ফলাফলকে সরাসরি ভেরিয়েবলে অ্যাসাইন করা যায় এবং f-string এ প্রিন্ট করা যায়।"
       ],
-      "whyCallout": "Hardcoding boolean variables (is_eligible = True) is static. Software must dynamically compare numbers (cart_total >= 1000, stock_count > 0, voucher_code == \"DISCOUNT20\") to compute boolean outcomes on the fly. দূর করাই এই কনসেপ্টের মূল কারণ।",
-      "whenToUse": "যখন E-Commerce এর মতো ডাইনামিক ডেটা নির্ভর সিস্টেম তৈরি করতে হয়।",
-      "whenNotToUse": "যেখানে সরলতর মেমোরি অ্যাসাইনমেন্ট দিয়েই সমাধান সম্ভব।",
-      "commonMisconception": "নতুনরা প্রায়শই ধারণা করে এটি জটিল, কিন্তু মূল নিয়মটি একদম সোজা।"
+      "whyCallout": "স্থির বা হার্ডকোডেড লজিকের বদলে রিয়েল-টাইম ডেটার ভিত্তিতে স্বয়ংক্রিয় সিদ্ধান্ত গ্রহণের ভিত্তি তৈরি করতেই কম্প্যারিজন অপারেটর ব্যবহার করা হয়।",
+      "whenToUse": "যখনই দুটি সংখ্যা, ভেরিয়েবল বা টেক্সটের মান যাচাই করে সত্য বা মিথ্যা জানার প্রয়োজন হয়।",
+      "whenNotToUse": "ভেরিয়েবলে নতুন মান জমা রাখার সময় (সেখানে শুধু একক '=' ব্যবহার করতে হয়)।",
+      "commonMisconception": "নতুনরা সবচেয়ে বেশি যে ভুলটি করে তা হলো তুলনার জায়গায় একক '=' লিখে ফেলা। মনে রাখবে: একক সমান অ্যাসাইন করে, দ্বৈত সমান তুলনা করে!"
     },
     {
       "type": "visualization",
-      "title": "স্টেট ও ডেটা ফ্লো ডায়াগ্রাম",
-      "description": "পাইথন কীভাবে ব্যাকগ্রাউন্ডে স্টেট এবং মান মূল্যায়ন করে:",
-      "visualizationType": "execution_flow",
-      "caption": "ইনপুট ➡️ প্রসেসিং ➡️ রূপান্তর ➡️ চূড়ান্ত আউটপুট",
+      "title": "কম্প্যারিজন এক্সপ্রেশন মূল্যায়নের ধাপ",
+      "description": "পাইথন কীভাবে একটি তুলনামূলক এক্সপ্রেশন মূল্যায়ন করে বুলিয়ান মানে রূপান্তর করে:",
+      "visualizationType": "icon_grid",
       "data": {
-        "steps": [
-          "১. প্রাথমিক স্টেট তৈরি",
-          "২. অপারেন্ড ও মান স্ক্যান",
-          "৩. মূল্যায়ন ও প্রসেসিং",
-          "৪. মেমোরি আপডেট ও কনসোল প্রদর্শন"
+        "items": [
+          {
+            "icon": "Binary",
+            "label": "১. ভেরিয়েবল থেকে মান পড়া",
+            "description": "মেমোরি থেকে ভেরিয়েবলের তাৎক্ষণিক মান বের করে আনা (যেমন: stock_count = 5)।"
+          },
+          {
+            "icon": "Scale",
+            "label": "২. রিলেশনাল তুলনা সম্পাদন",
+            "description": "অপারেটরের দুই পাশের মান তুলনা করা: 5 > 0 কি সত্য?"
+          },
+          {
+            "icon": "CheckCircle2",
+            "label": "৩. বুলিয়ান লিটারেল জেনারেশন",
+            "description": "তুলনা সত্য হলে পাইথন এক্সপ্রেশনের বদলে True তৈরি করে।"
+          },
+          {
+            "icon": "Terminal",
+            "label": "৪. ভেরিয়েবলে স্টোরেজ ও প্রদর্শন",
+            "description": "is_available ভেরিয়েবলে True জমা হয় এবং কনসোলে প্রদর্শিত হয়।"
+          }
         ]
-      }
+      },
+      "caption": "কম্প্যারিজন অপারেটরের ডাটাফ্লো: এক্সপ্রেশন ➡️ তুলনা ➡️ বুলিয়ান ফলাফল ➡️ মেমোরি অ্যাসাইনমেন্ট",
+      "diagram": "has_discount = (cart_total >= 1000)\n                 │             │\n                 │             └─► 1000 (থ্রেশহোল্ড)\n                 └───────────────► 1200 (কার্ট টোটাল)\n                         │\n                         ▼\n           তুলনা: 1200 >= 1000 ──► True!\n                         │\n                         ▼\n           has_discount = True"
     },
     {
       "type": "code_example",
-      "title": "প্রজেক্ট কোড ডেমো",
-      "explanation": "নিচের উদাহরণটিতে লক্ষ্য করো কীভাবে Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans প্রয়োগ করা হয়েছে:",
+      "title": "বাজারলি ফ্ল্যাশ সেল যাচাই স্ক্রিপ্ট",
+      "explanation": "নিচের উদাহরণে দেখো কীভাবে Bazaarly ক্লায়েন্টের কার্ট ও স্টক স্বয়ংক্রিয়ভাবে যাচাই করা হচ্ছে।",
       "language": "python",
-      "code": "# E-Commerce Demo\nstatus = \"System Ready\"\nprint(status)",
-      "output": "System Ready",
+      "code": "# Bazaarly শপিং কার্ট ও স্টক ডেটা\ncart_total = 1500\nstock_count = 8\nvoucher_code = \"FLASH20\"\n\n# কম্প্যারিজন অপারেটর দিয়ে বুলিয়ান স্টেট নির্ধারণ\nhas_free_shipping = cart_total >= 1000\nis_in_stock = stock_count > 0\nis_valid_voucher = voucher_code == \"FLASH20\"\n\nprint(f\"Free Shipping: {has_free_shipping}\")\nprint(f\"In Stock: {is_in_stock}\")\nprint(f\"Voucher Applied: {is_valid_voucher}\")",
+      "output": "Free Shipping: True\nIn Stock: True\nVoucher Applied: True",
       "annotations": [
         {
-          "lineNumber": 2,
-          "explanation": "ভেরিয়েবলে প্রাথমিক স্টেট সংরক্ষণ করা হচ্ছে।"
+          "lineNumber": 7,
+          "explanation": "cart_total >= 1000 তুলনা করে পাইথন True বের করে has_free_shipping এ রেখেছে।"
         },
         {
-          "lineNumber": 3,
-          "explanation": "print() এর মাধ্যমে মেমোরির তথ্য কনসোলে প্রদর্শিত হচ্ছে।"
+          "lineNumber": 8,
+          "explanation": "stock_count > 0 যাচাই করেছে স্টকে মাল আছে কি না।"
+        },
+        {
+          "lineNumber": 9,
+          "explanation": "voucher_code == \"FLASH20\" দিয়ে টেক্সট হুবহু মিলেছে কি না তা যাচাই করা হয়েছে।"
         }
       ],
-      "postExplanation": "কোডটি পরিষ্কার এবং কোনো অপ্রয়োজনীয় জটিলতা ছাড়া কাজ সম্পন্ন করে।"
+      "postExplanation": "কোনো if স্টেটমেন্ট ছাড়াই সরাসরি তুলনার ফলাফল ভেরিয়েবলে সংরক্ষণ করা যায়। এটি ক্লিন কোডের একটি বড় শক্তি!"
     },
     {
       "type": "eee_example",
-      "title": "হার্ডওয়্যার ও IoT পার্সপেক্টিভ",
-      "context": "একটি মাইক্রোকন্ট্রোলার থেকে সেন্সর রিডিং পর্যবেক্ষণ করার দৃশ্য:",
-      "hardware": "ESP32",
+      "title": "হার্ডওয়্যার ও IoT: ব্যাটারি ভোল্টেজ অ্যালার্ট",
+      "context": "একটি সোলার প্যানেল ব্যাটারি মনিটরে ভোল্টেজ ক্রিটিক্যাল লেভেলের নিচে নেমেছে কি না তা স্বয়ংক্রিয়ভাবে যাচাই করা হচ্ছে:",
+      "hardware": "Arduino Uno",
       "domain": "sensor_data",
-      "code": "sensor_reading = 24\nprint(\"Sensor Reading:\", sensor_reading)",
-      "output": "Sensor Reading: 24",
-      "explanation": "এমবেডেড ইঞ্জিনিয়ারিংয়েও মেমোরি ও ভেরিয়েবল ম্যানেজমেন্টের নিয়ম অপরিবর্তিত থাকে।"
+      "code": "battery_voltage = 11.2\nmin_threshold = 11.8\n\nis_low_battery = battery_voltage < min_threshold\nprint(f\"Battery: {battery_voltage}V\")\nprint(f\"Low Battery Warning: {is_low_battery}\")",
+      "output": "Battery: 11.2V\nLow Battery Warning: True",
+      "explanation": "সেন্সরের রিডিং থ্রেশহোল্ডের চেয়ে কম কি না তা সরাসরি < অপারেটর দিয়ে যাচাই করা হয়েছে।"
     },
     {
       "type": "ai_example",
-      "title": "AI ও মেশিন লার্নিং পার্সপেক্টিভ",
-      "context": "একটি এআই মডেলের প্রসেসিং মেট্রিক ট্র্যাক করার দৃশ্য:",
-      "aiDomain": "large_language_models",
-      "code": "active_tokens = 1024\nprint(\"Active tokens:\", active_tokens)",
-      "output": "Active tokens: 1024",
-      "explanation": "লার্জ ল্যাঙ্গুয়েজ মডেলেও স্টেট ম্যানেজমেন্ট একই গণিত অনুসরণ করে।"
+      "title": "এআই সিস্টেম: কনফিডেন্স স্কোর থ্রেশহোল্ড",
+      "context": "একটি কম্পিউটার ভিশন মডেল প্রোডাক্টের ছবি চেনার পর কনফিডেন্স স্কোর পাসিং থ্রেশহোল্ড অতিক্রম করেছে কি না:",
+      "aiDomain": "computer_vision",
+      "code": "confidence_score = 0.94\nrequired_score = 0.85\n\nis_confident = confidence_score >= required_score\nprint(f\"Confidence: {confidence_score}\")\nprint(f\"Detection Passed: {is_confident}\")",
+      "output": "Confidence: 0.94\nDetection Passed: True",
+      "explanation": "মেশিন লার্নিং ক্লাসিফিকেশনে প্রেডিকশন আউটপুট গ্রহণের যোগ্যতা যাচাই করতে কম্প্যারিজন অপারেটর ব্যবহার করা হয়।"
     },
     {
       "type": "practice",
-      "title": "হাতে-কলমে অনুশীলন: E-Commerce সলিউশন",
-      "prompt": "আমাদের E-Commerce ক্লায়েন্টের জন্য একটি প্রাথমিক স্ক্রিপ্ট তৈরি করো:\n\nধাপ ১: `client_name` ভেরিয়েবলে \"E-Commerce\" রাখো।\nধাপ ২: print() ব্যবহার করে `Client: E-Commerce` প্রিন্ট করো।",
-      "starterCode": "# ধাপ ১: ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: প্রিন্ট করো\n",
+      "title": "অনুশীলনী ১: ফ্রি ডেলিভারি যোগ্যতা যাচাই",
+      "prompt": "Bazaarly ক্লায়েন্টের জন্য কার্ট টোটাল চেক করো:\n\nধাপ ১: `order_total` ভেরিয়েবলে 850 রাখো।\nধাপ ২: `is_free_delivery` ভেরিয়েবলে `order_total >= 1000` তুলনার ফলাফল রাখো।\nধাপ ৩: f-string দিয়ে প্রিন্ট করো: `Free Delivery: False`",
+      "starterCode": "# ধাপ ১: order_total ডিফাইন করো\n\n# ধাপ ২: order_total >= 1000 তুলনা করে is_free_delivery তে রাখো\n\n# ধাপ ৩: f-string দিয়ে প্রিন্ট করো\n",
       "hints": [
-        "client_name = \"E-Commerce\" এভাবে ভেরিয়েবল ডিক্লেয়ার করো।",
-        "print(\"Client:\", client_name) ব্যবহার করতে পারো।"
+        "`is_free_delivery = order_total >= 1000` লিখবে।",
+        "`print(f\"Free Delivery: {is_free_delivery}\")` ব্যবহার করো।"
       ],
-      "displayHint": "print(\"Client:\", client_name)",
-      "expectedOutput": "Client: E-Commerce\n",
-      "validation": {
-        "type": "smart_output_source",
-        "ignoreWhitespace": true,
-        "ignoreCase": true,
-        "requiredVariables": [
-          "client_name"
-        ],
-        "feedbackMessages": {
-          "onPass": "দারুণ! তোমার সমাধান সফলভাবে এক্সিকিউট হয়েছে।",
-          "onMissingVariable": "client_name ভেরিয়েবলটি সংজ্ঞায়িত করেছো কি?",
-          "onPatternFail": "আউটপুট ফরম্যাটটি আবার যাচাই করো।"
-        }
-      },
-      "solution": "client_name = \"E-Commerce\"\nprint(\"Client:\", client_name)",
-      "solutionExplanation": "ভেরিয়েবল ডিক্লেয়ার করে সরাসরি print() এর সাহায্যে কাঙ্ক্ষিত আউটপুট প্রদর্শিত হয়েছে।"
+      "displayHint": "is_free_delivery = order_total >= 1000\nprint(f\"Free Delivery: {is_free_delivery}\")",
+      "expectedOutput": "Free Delivery: False\n",
+      "solution": "order_total = 850\nis_free_delivery = order_total >= 1000\nprint(f\"Free Delivery: {is_free_delivery}\")",
+      "solutionExplanation": "order_total (850) এক হাজারের চেয়ে ছোট হওয়ায় order_total >= 1000 এর মান False এসেছে।"
+    },
+    {
+      "type": "practice",
+      "title": "অনুশীলনী ২: ইনভেন্টরি স্টক ও লিমিট চেক",
+      "prompt": "একটি ইনভেন্টরি মনিটর তৈরি করো:\n\nধাপ ১: `stock_qty` ভেরিয়েবলে 15 রাখো।\nধাপ ২: `is_in_stock` ভেরিয়েবলে `stock_qty > 0` এর ফলাফল রাখো।\nধাপ ৩: `is_bulk_order` ভেরিয়েবলে `stock_qty >= 10` এর ফলাফল রাখো।\nধাপ ৪: দুটি পৃথক লাইনে প্রিন্ট করো:\n`In Stock: True`\n`Bulk Eligible: True`",
+      "starterCode": "# ধাপ ১: stock_qty তৈরি করো\n\n# ধাপ ২: is_in_stock এবং is_bulk_order এ তুলনার ফলাফল রাখো\n\n# ধাপ ৩: দুটি আউটপুট লাইন প্রিন্ট করো\n",
+      "hints": [
+        "`is_in_stock = stock_qty > 0`",
+        "`is_bulk_order = stock_qty >= 10`",
+        "f-string ব্যবহার করে দুটি লাইন প্রিন্ট করো।"
+      ],
+      "displayHint": "print(f\"In Stock: {is_in_stock}\")\nprint(f\"Bulk Eligible: {is_bulk_order}\")",
+      "expectedOutput": "In Stock: True\nBulk Eligible: True\n",
+      "solution": "stock_qty = 15\nis_in_stock = stock_qty > 0\nis_bulk_order = stock_qty >= 10\nprint(f\"In Stock: {is_in_stock}\")\nprint(f\"Bulk Eligible: {is_bulk_order}\")",
+      "solutionExplanation": "দুটি পৃথক কম্প্যারিজন অপারেটর (> এবং >=) ব্যবহার করে একাধিক বিজনেস শর্ত স্বয়ংক্রিয়ভাবে নির্ণয় করা হয়েছে।"
+    },
+    {
+      "type": "practice",
+      "title": "অনুশীলনী ৩: সিক্রেট ভাউচার কোড ভ্যালিডেশন",
+      "prompt": "Bazaarly এর ভাউচার কোড মিলানোর ইঞ্জিন তৈরি করো:\n\nধাপ ১: `entered_code` ভেরিয়েবলে \"SAVE10\" রাখো।\nধাপ ২: `target_code` ভেরিয়েবলে \"SAVE20\" রাখো।\nধাপ ৩: `is_exact_match` ভেরিয়েবলে `entered_code == target_code` রাখো।\nধাপ ৪: `is_different` ভেরিয়েবলে `entered_code != target_code` রাখো।\nধাপ ৫: দুটি লাইনে প্রিন্ট করো:\n`Match: False`\n`Mismatch: True`",
+      "starterCode": "# ধাপ ১: entered_code এবং target_code তৈরি করো\n\n# ধাপ ২: == এবং != দিয়ে তুলনা করো\n\n# ধাপ ৩: দুটি আউটপুট লাইন প্রিন্ট করো\n",
+      "hints": [
+        "`is_exact_match = entered_code == target_code`",
+        "`is_different = entered_code != target_code`",
+        "print(f\"Match: {is_exact_match}\") এবং print(f\"Mismatch: {is_different}\") লিখো।"
+      ],
+      "displayHint": "is_exact_match = entered_code == target_code\nis_different = entered_code != target_code\nprint(f\"Match: {is_exact_match}\")\nprint(f\"Mismatch: {is_different}\")",
+      "expectedOutput": "Match: False\nMismatch: True\n",
+      "solution": "entered_code = \"SAVE10\"\ntarget_code = \"SAVE20\"\nis_exact_match = entered_code == target_code\nis_different = entered_code != target_code\nprint(f\"Match: {is_exact_match}\")\nprint(f\"Mismatch: {is_different}\")",
+      "solutionExplanation": "টেক্সট বা স্ট্রিংয়ের ক্ষেত্রেও == এবং != অপারেটর নিখুঁতভাবে প্রতিটি অক্ষর তুলনা করে বুলিয়ান ফলাফল প্রদান করে।"
     },
     {
       "type": "quiz",
-      "title": "জ্ঞান যাচাই: Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans",
-      "instructions": "সঠিক উত্তরটি নির্বাচন করো। পাসিং স্কোর: ৭০%",
-      "passingScore": 70,
+      "title": "নলেজ ভেরিফিকেশন: কম্প্যারিজন অপারেটর",
+      "instructions": "কম্প্যারিজন অপারেটরের কার্যপদ্ধতি যাচাই করতে নিচের প্রশ্নগুলোর উত্তর দাও। পাসিং স্কোর: ১০০%",
+      "passingScore": 100,
       "questions": [
         {
           "id": "q1",
           "questionType": "multiple_choice",
-          "question": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans ব্যবহারের প্রধান উদ্দেশ্য কোনটি?",
+          "question": "পাইথনে দুটি মান সমান কি না তা যাচাই করার সঠিক অপারেটর কোনটি?",
           "difficulty": "easy",
           "options": [
-            "সফটওয়্যার স্টেটকে কার্যকরভাবে পরিচালনা ও প্রদর্শন করা",
-            "কম্পিউটারের প্রসেসর বন্ধ করে দেওয়া",
-            "প্রোগ্রাম ক্র্যাশ করানো",
-            "ইন্টারনেট সংযোগ বিচ্ছিন্ন করা"
+            "=",
+            "==",
+            "===",
+            "equals"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "এটি সফটওয়্যারের নির্ভরযোগ্যতা ও পাঠযোগ্যতা নিশ্চিত করে।"
+          "correctOptionIndex": 1,
+          "explanation": "পাইথনে সমতা তুলনা করতে ডাবল সমান (==) ব্যবহার করা হয়। একক সমান (=) ভেরিয়েবলে মান অ্যাসাইন করার জন্য নির্ধারিত।"
         },
         {
           "id": "q2",
           "questionType": "multiple_choice",
-          "question": "কোড এক্সিকিউশনের ক্ষেত্রে কোন নিয়মটি সত্য?",
+          "question": "x = 10 হলে, x != 10 এক্সপ্রেশনটির ফলাফল কী হবে?",
           "difficulty": "medium",
           "options": [
-            "কোড ওপর থেকে নিচে ক্রমানুসারে লাইন বাই লাইন এক্সিকিউট হয়",
-            "কোড নিচ থেকে ওপরের দিকে উল্টোভাবে এক্সিকিউট হয়",
-            "কোডের লাইনগুলো এলোমেলোভাবে রান হয়",
-            "কম্পিউটার কোনো নির্দেশনা ছাড়াই নিজে কোড লেখে"
+            "True",
+            "False",
+            "10",
+            "SyntaxError"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "পাইথন স্ক্রিপ্ট ক্রমানুসারে ওপরের লাইন থেকে নিচের লাইনে এক্সিকিউট হয়।"
+          "correctOptionIndex": 1,
+          "explanation": "!= অপারেটর চেক করে দুই পাশ অসমান কি না। যেহেতু x এর মান 10 এবং ডানপাশেও 10, তারা সমান; তাই 'অসমান' শর্তটি মিথ্যা (False)।"
+        },
+        {
+          "id": "q3",
+          "questionType": "multiple_choice",
+          "question": "is_pass = marks >= 40 কোডটির কার্যপদ্ধতি সম্পর্কে কোনটি সত্য?",
+          "difficulty": "medium",
+          "options": [
+            "এটি একটি সিনট্যাক্স এরর কারণ if লেখা হয়নি",
+            "পাইথন আগে marks >= 40 তুলনা সম্পন্ন করে একটি বুলিয়ান তৈরি করে, তারপর তা is_pass এ রাখে",
+            "marks এর মান পরিবর্তন হয়ে 40 হয়ে যাবে",
+            "is_pass ভেরিয়েবল সবসময় True হবে"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "পাইথনে কোনো if স্টেটমেন্ট ছাড়াই সরাসরি তুলনার বুলিয়ান মান (True বা False) ভেরিয়েবলে সংরক্ষণ করা যায়।"
         }
       ]
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ খোঁজো: হিডেন স্টেট ইস্যু (Rule 21)",
-      "scenario": "E-Commerce এর ক্যাশিয়ার সিস্টেমে একটি ভুল স্টেট ট্র্যাকিং দেখা দিয়েছে। প্রাথমিক স্টেটের ওপর নির্ভর করার ফলে ফলাফল ভুল আসছে। স্টেট ফ্লো ট্রেস করে কোডটি ফিক্স করো:",
-      "buggyCode": "client_id = 101\n# ভুল ক্রমে স্টেট আপডেট করা হয়েছে\noutput_msg = client_id\nclient_id = 202\nprint(\"ID:\", output_msg)",
-      "errorMessage": "Hidden State Bug: output_msg captured stale state (101 instead of 202)",
+      "title": "বাগ ১: তুলনার জায়গায় অ্যাসাইনমেন্টের ভুল",
+      "scenario": "Bazaarly এর একজন জুনিয়র ডেভেলপার কুপন কোড যাচাই করতে গিয়ে == এর জায়গায় ভুল করে একক = লিখেছে। এর ফলে SyntaxError হয়েছে। কোডটি ঠিক করো:",
+      "buggyCode": "coupon = \"DISCOUNT\"\n# ভুল করে তুলনার জায়গায় একক = ব্যবহার করা হয়েছে\nis_valid = (coupon = \"DISCOUNT\")\nprint(f\"Coupon Valid: {is_valid}\")",
+      "errorMessage": "SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?",
+      "bugLine": 3,
+      "bugType": "syntax",
+      "hints": [
+        "প্যারেন্থেসিস বা ব্র্যাকেটের ভেতরে একক = দিয়ে তুলনা করা যায় না।",
+        "তুলনা করতে ডাবল সমান (==) ব্যবহার করো।"
+      ],
+      "fixedCode": "coupon = \"DISCOUNT\"\n# ডাবল সমান দিয়ে তুলনা করো\nis_valid = coupon == \"DISCOUNT\"\nprint(f\"Coupon Valid: {is_valid}\")",
+      "explanation": "একক = মান জমা রাখে, আর ডাবল == তুলনা করে। ব্র্যাকেটের ভেতরের অ্যাসাইনমেন্ট সিনট্যাক্স সরিয়ে == দেওয়ায় কোডটি সফল হয়েছে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ ২: উল্টো অপারেটরের বিপর্যয়",
+      "scenario": "ক্লায়েন্ট Bazaarly এর নিয়ম ছিল কার্ট টোটাল ৫০০ টাকার বেশি বা সমান হলে ফ্রি শিপিং পাবে। কিন্তু ডেভেলপার >= এর জায়গায় <= দেওয়ায় উল্টো ৫০ টাকার কার্টে ফ্রি শিপিং যাচ্ছে আর ৬০০ টাকার কার্টে ফ্রি শিপিং বাতিল হচ্ছে! অপারেটর ঠিক করো:",
+      "buggyCode": "cart_amount = 750\n# উল্টো অপারেটর ব্যবহার করা হয়েছে\nhas_free_shipping = cart_amount <= 500\nprint(f\"Free Shipping: {has_free_shipping}\")",
+      "errorMessage": "Logic Bug: Expected cart_amount >= 500 for free shipping, but found <= 500 (evaluated to False for 750)",
       "bugLine": 3,
       "bugType": "logic",
       "hints": [
-        "পাইথনে কোড ওপর থেকে নিচে ক্রমানুসারে এক্সিকিউট হয়।",
-        "output_msg অ্যাসাইন করার সময় client_id এর মান কী ছিল লক্ষ্য করো।",
-        "স্টেট আপডেট করার পর ফাইনাল মেসেজ তৈরি করো।"
+        "অপারেটরের দিক লক্ষ্য করো। কার্ট ৫০০ এর বেশি বা সমান হতে হবে।",
+        "<= এর পরিবর্তে >= ব্যবহার করো।"
       ],
-      "fixedCode": "client_id = 101\n# স্টেট আগে আপডেট করো\nclient_id = 202\noutput_msg = client_id\nprint(\"ID:\", output_msg)",
-      "explanation": "স্টেট আপডেট করার পর আউটপুট ভেরিয়েবলে মান রাখায় সর্বশেষ সক্রিয় মান প্রিন্ট হয়েছে।"
+      "fixedCode": "cart_amount = 750\n# সঠিক অপারেটর ব্যবহার করো\nhas_free_shipping = cart_amount >= 500\nprint(f\"Free Shipping: {has_free_shipping}\")",
+      "explanation": "অপারেটর পরিবর্তন করে >= করায় ৭৫০ টাকা ৫০০ এর বেশি হওয়ায় সঠিকভাবে True প্রদর্শিত হয়েছে।"
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ ৩: ডিসকাউন্টের আগে পুরোনো স্টেটের ফাঁদ (Rule 21)",
+      "scenario": "Bazaarly এর চেকআউটে ইউজার অতিরিক্ত ২০ টাকার আইটেম কার্টে যোগ করেছে। কিন্তু কোডে পুরোনো কার্ট টোটালের ওপর ফ্রি শিপিংয়ের তুলনা সম্পন্ন হওয়ার পর আইটেম যোগ করা হয়েছে! ফলে কনসোলে পুরোনো বাসি হিসাব (False) দেখাচ্ছে অথচ নতুন মোট মূল্যে ফ্রি শিপিং পাওয়ার কথা। স্টেট ফ্লো রি-অর্ডার করে কোডটি ঠিক করো:",
+      "buggyCode": "cart_total = 990\n\n# বাসি স্টেট নিয়ে ভুল সময়ে তুলনা করা হয়েছে\nis_free_shipping = cart_total >= 1000\n\n# কাস্টমার অতিরিক্ত একটি চকলেট যোগ করেছে\ncart_total = cart_total + 20\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
+      "errorMessage": "Hidden State Bug: is_free_shipping evaluated on stale cart_total (990 instead of updated 1010)",
+      "bugLine": 4,
+      "bugType": "logic",
+      "hints": [
+        "পাইথন উপর থেকে নিচে লাইন বাই লাইন এক্সিকিউট করে।",
+        "লাইন ৪ যখন রান হয়েছে তখন cart_total কত ছিল? ৯৯০ নাকি ১০১০?",
+        "আগে কার্টে আইটেম যোগ করো (cart_total = cart_total + 20), তারপর তুলনা করো।"
+      ],
+      "fixedCode": "cart_total = 990\n\n# আগে কার্টে সর্বশেষ আইটেম যোগ করো\ncart_total = cart_total + 20\n\n# এরপর আপডেট হওয়া কার্ট টোটাল দিয়ে তুলনা করো\nis_free_shipping = cart_total >= 1000\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
+      "explanation": "কার্টে নতুন আইটেমের মূল্য যোগ করার পর (১০১০) তুলনা করায় is_free_shipping যথাযথভাবে True হয়েছে।"
     },
     {
       "type": "reflection",
-      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: ইঞ্জিনিয়ারিং মাইন্ডসেট",
-      "instruction": "একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে নিচের প্রশ্নটি গভীরভাবে ভেবে উত্তর দাও:",
-      "prompts": [
-        "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans বাস্তব সফটওয়্যারে কীভাবে কাজে লাগবে?",
-        "ভুল স্টেট সিকোয়েন্সের কারণে কী ধরনের সমস্যা হতে পারে?",
-        "লজিক ডিজাইন করার সময় কোন কোন বিষয়ের দিকে খেয়াল রাখা দরকার?"
-      ],
+      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: কম্প্যারিজন লজিক আর্কিটেকচার",
+      "instruction": "একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে নিচের ৩টি গভীর প্রশ্ন নিয়ে চিন্তা করো:",
       "criticalThinkingQuestions": [
         {
-          "question": "বাস্তব সফটওয়্যার সিস্টেমে ভুল স্টেট সিকোয়েন্সের কারণে কী কী মারাত্মক সমস্যা হতে পারে?",
-          "expertThinking": "ফিনটেক বা স্বাস্থ্যসেবায় ভুল সময়ে স্টেট মূল্যায়ন করলে ব্যালেন্স ওভারড্রাফট বা ভুল ডোজ প্রদর্শিত হতে পারে। তাই স্টেট লাইফসাইকেল নিয়ন্ত্রণ করা সফটওয়্যার আর্কিটেকচারের প্রধান শর্ত।",
-          "realWorldEngineering": "ব্যাংকিং সিস্টেমে লেনদেন সম্পন্ন হওয়ার আগে রসিদ জেনারেট করলে গুরুতর আর্থিক অডিট ফেইলিওর ঘটে।",
-          "beyondProgramming": "বাস্তব জীবনেও সিদ্ধান্ত নেওয়ার আগে সর্বশেষ তথ্য যাচাই করা বুদ্ধিমানের কাজ।"
+          "question": "সফটওয়্যার ইঞ্জিনিয়ারিংয়ে if স্টেটমেন্ট ছাড়াই 'is_eligible = total >= 1000' এভাবে বুলিয়ান এক্সপ্রেশন সরাসরি ভেরিয়েবলে রাখা কেন চমৎকার প্র্যাকটিস?",
+          "expertThinking": "অনেকেই অপ্রয়োজনীয়ভাবে 'if total >= 1000: is_eligible = True else: is_eligible = False' লিখে কোডকে ৪ লাইনের জটিল কাঠামোতে পরিণত করে। যেখানে তুলনার এক্সপ্রেশন নিজেই একটি বুলিয়ান প্রদান করে, সেখানে সরাসরি অ্যাসাইনমেন্ট কোডকে সংক্ষিপ্ত, দ্রুত এবং ব্র্যাঞ্চিং-মুক্ত রাখে। একে বুলিয়ান এক্সপ্রেশন সিম্প্লিফিকেশন বলা হয়।",
+          "realWorldEngineering": "হাই-পারফর্ম্যান্স ট্রেডিং ও ই-কমার্স প্ল্যাটফর্মে অতিরিক্ত if-else ব্রাঞ্চিং কমানো সিপিইউ ব্রাঞ্চ প্রেডিকশনের গতি বাড়ায় এবং কোডবেসের সাইক্লোমেটিক কমপ্লেক্সিটি (Cyclomatic Complexity) কম রাখে।",
+          "beyondProgramming": "সহজ প্রশ্নের সরাসরি উত্তর দেওয়া ভালো; অপ্রয়োজনীয় ঘুরিয়ে কথা বলা মানুষের মনেও বিভ্রান্তি তৈরি করে।"
+        },
+        {
+          "question": "ফ্লোটিং পয়েন্ট নাম্বার বা ভগ্নাংশ সংখ্যার ক্ষেত্রে হুবহু সমতা (==) তুলনা করা কেন বিপজ্জনক হতে পারে?",
+          "expertThinking": "কম্পিউটারের প্রসেসরে বাইনারি ফ্লোটিং পয়েন্ট হিসাবের কারণে 0.1 + 0.2 হুবহু 0.3 না হয়ে 0.30000000000000004 হতে পারে। ফলে (0.1 + 0.2) == 0.3 যাচাই করলে পাইথন False রিটার্ন করবে! তাই ফ্লোটিং পয়েন্টে সরাসরি == এড়িয়ে নির্দিষ্ট সহনশীলতা (যেমন: round() বা বিয়োগফল < 0.0001) দিয়ে তুলনা করতে হয়।",
+          "realWorldEngineering": "আর্থিক সফটওয়্যারে মুদ্রা হিসাবের ক্ষেত্রে ডলার বা টাকার ভগ্নাংশ এড়াতে সবসময় সেন্ট বা পয়সা (ইন্টিজার) হিসেবে ডেটা সংরক্ষণ ও তুলনা করা হয়।",
+          "beyondProgramming": "বাস্তবে চোখের দেখায় দুটি জিনিস এক মনে হলেও আণুবীক্ষণিক স্তরে নিখুঁত সমতা পাওয়া প্রায় অসম্ভব।"
+        },
+        {
+          "question": "অ্যাসাইনমেন্ট (=) এবং সমতা তুলনা (==) ভুলবশত গুলিয়ে ফেললে সফটওয়্যারে কী ধরনের বিপর্যয় হতে পারে?",
+          "expertThinking": "তুলনা করতে গিয়ে যদি কোনো ভেরিয়েবলে নতুন মান অ্যাসাইন হয়ে যায়, তবে ইউজার বা ডাটাবেজের আসল তথ্য মুহূর্তেই মুছে যাবে। যেমন: ইউজার রোল চেক করতে গিয়ে যদি 'role = Admin' লিখে ফেলা হয়, তবে সাধারণ ইউজার এডমিন প্রিভিলেজ পেয়ে যেতে পারে। পাইথন সিনট্যাক্স অনেক সময় এটি আটকালেও অন্যান্য ভাষায় এটি মারাত্মক সিকিউরিটি ভলনারেবিলিটি তৈরি করে।",
+          "realWorldEngineering": "কোড রিভিউ এবং লিন্টারের (Linter) সবচেয়ে বড় কাজগুলোর একটি হলো ডেভেলপাররা অসাবধানতাবশত শর্তের মাঝে অ্যাসাইনমেন্ট অপারেটর লিখে ফেলেছে কি না তা স্ক্যান করা।",
+          "beyondProgramming": "চাবি তালা খোলার জন্য তৈরি, তালার আকার বদলানোর জন্য নয়। ভুল চাবি ব্যবহার করলে তালার অভ্যন্তরীণ মেকানিজম নষ্ট হয়ে যায়।"
         }
       ]
     },
     {
       "type": "mission_complete",
-      "title": "অভিনন্দন! মিশন 012 সম্পন্ন!",
-      "summary": "তুমি সফলভাবে Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans আয়ত্ত করেছ এবং E-Commerce ক্লায়েন্টের সমাধান সম্পূর্ণ করেছ!",
+      "title": "অভিনন্দন! মিশন ১২ সফলভাবে সম্পন্ন!",
+      "summary": "তুমি সফলভাবে পাইথনের কম্প্যারিজন অপারেটর (==, !=, <, >, <=, >=) আয়ত্ত করেছ এবং Bazaarly ই-কমার্স ক্লায়েন্টের ডায়নামিক ভ্যালিডেশন ইঞ্জিন সফলভাবে বিল্ড করেছ!",
       "keyLearnings": [
-        "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans এর পরিষ্কার ধারণা লাভ।",
-        "হিডেন স্টেট বাগ শনাক্ত ও সমাধান করার দক্ষতা।",
-        "প্রফেশনাল বি২বি সফটওয়্যার ডেভেলপমেন্ট মাইন্ডসেট অর্জন।"
+        "কম্প্যারিজন অপারেটরের সঠিক প্রতীক ও প্রয়োগ (==, !=, <, >, <=, >=)।",
+        "অ্যাসাইনমেন্ট (=) ও তুলনার (==) সুনির্দিষ্ট পার্থক্য অনুধাবন।",
+        "কোনো if ছাড়াই সরাসরি তুলনামূলক এক্সপ্রেশনের মাধ্যমে বুলিয়ান তৈরি ও সংরক্ষণ।",
+        "ই-কমার্স সিস্টেমে লাইভ স্টেট ও ইনভেন্টরি মূল্যায়নের ইঞ্জিনিয়ারিং দক্ষতা।"
       ]
     }
   ]
