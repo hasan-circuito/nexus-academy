@@ -109,6 +109,17 @@
       "primaryConcept": "f-strings & Dynamic Text Formatting",
       "estimatedMinutes": 25,
       "difficulty": "beginner"
+    },
+    {
+      "id": "011",
+      "title": "Boolean Logic",
+      "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+      "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
+      "status": "published",
+      "prerequisite": "010",
+      "primaryConcept": "Boolean data type (True and False literals)",
+      "estimatedMinutes": 20,
+      "difficulty": "beginner"
     }
   ]
 }

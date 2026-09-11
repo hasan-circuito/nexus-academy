@@ -10,11 +10,18 @@
     "difficulty": "beginner",
     "knowledgeGraph": {
       "prerequisiteIds": [],
-      "enablesIds": ["002"],
+      "enablesIds": [
+        "002"
+      ],
       "relatedIds": [],
       "topicSlug": "variables_and_memory"
     },
-    "tags": ["python", "variables", "memory", "print"]
+    "tags": [
+      "python",
+      "variables",
+      "memory",
+      "print"
+    ]
   },
   {
     "id": "002",
@@ -26,12 +33,21 @@
     "estimatedMinutes": 20,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["001"],
-      "enablesIds": ["003"],
+      "prerequisiteIds": [
+        "001"
+      ],
+      "enablesIds": [
+        "003"
+      ],
       "relatedIds": [],
       "topicSlug": "using_variables"
     },
-    "tags": ["python", "print", "usage", "memory"]
+    "tags": [
+      "python",
+      "print",
+      "usage",
+      "memory"
+    ]
   },
   {
     "id": "003",
@@ -43,12 +59,22 @@
     "estimatedMinutes": 18,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["002"],
-      "enablesIds": ["004"],
+      "prerequisiteIds": [
+        "002"
+      ],
+      "enablesIds": [
+        "004"
+      ],
       "relatedIds": [],
       "topicSlug": "variable_reassignment"
     },
-    "tags": ["python", "variable", "reassignment", "update", "state"]
+    "tags": [
+      "python",
+      "variable",
+      "reassignment",
+      "update",
+      "state"
+    ]
   },
   {
     "id": "004",
@@ -60,12 +86,22 @@
     "estimatedMinutes": 15,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["003"],
-      "enablesIds": ["005"],
+      "prerequisiteIds": [
+        "003"
+      ],
+      "enablesIds": [
+        "005"
+      ],
       "relatedIds": [],
       "topicSlug": "data_types"
     },
-    "tags": ["python", "data_types", "string", "integer", "types"]
+    "tags": [
+      "python",
+      "data_types",
+      "string",
+      "integer",
+      "types"
+    ]
   },
   {
     "id": "005",
@@ -77,12 +113,22 @@
     "estimatedMinutes": 25,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["004"],
-      "enablesIds": ["006"],
+      "prerequisiteIds": [
+        "004"
+      ],
+      "enablesIds": [
+        "006"
+      ],
       "relatedIds": [],
       "topicSlug": "type_conversion"
     },
-    "tags": ["python", "type_conversion", "casting", "int", "str"]
+    "tags": [
+      "python",
+      "type_conversion",
+      "casting",
+      "int",
+      "str"
+    ]
   },
   {
     "id": "006",
@@ -94,12 +140,22 @@
     "estimatedMinutes": 25,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["005"],
-      "enablesIds": ["007"],
+      "prerequisiteIds": [
+        "005"
+      ],
+      "enablesIds": [
+        "007"
+      ],
       "relatedIds": [],
       "topicSlug": "assignment_pipeline"
     },
-    "tags": ["python", "arithmetic", "assignment", "operators", "pipeline"]
+    "tags": [
+      "python",
+      "arithmetic",
+      "assignment",
+      "operators",
+      "pipeline"
+    ]
   },
   {
     "id": "007",
@@ -111,12 +167,22 @@
     "estimatedMinutes": 20,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["006"],
-      "enablesIds": ["008"],
+      "prerequisiteIds": [
+        "006"
+      ],
+      "enablesIds": [
+        "008"
+      ],
       "relatedIds": [],
       "topicSlug": "floats_and_division"
     },
-    "tags": ["python", "float", "division", "precision", "zero_division"]
+    "tags": [
+      "python",
+      "float",
+      "division",
+      "precision",
+      "zero_division"
+    ]
   },
   {
     "id": "008",
@@ -128,12 +194,22 @@
     "estimatedMinutes": 20,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["007"],
-      "enablesIds": ["009"],
+      "prerequisiteIds": [
+        "007"
+      ],
+      "enablesIds": [
+        "009"
+      ],
       "relatedIds": [],
       "topicSlug": "user_input"
     },
-    "tags": ["python", "input", "strings", "concatenation", "interactive"]
+    "tags": [
+      "python",
+      "input",
+      "strings",
+      "concatenation",
+      "interactive"
+    ]
   },
   {
     "id": "009",
@@ -145,12 +221,22 @@
     "estimatedMinutes": 20,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["008"],
-      "enablesIds": ["010"],
+      "prerequisiteIds": [
+        "008"
+      ],
+      "enablesIds": [
+        "010"
+      ],
       "relatedIds": [],
       "topicSlug": "dynamic_math"
     },
-    "tags": ["python", "input", "conversion", "calculator", "math"]
+    "tags": [
+      "python",
+      "input",
+      "conversion",
+      "calculator",
+      "math"
+    ]
   },
   {
     "id": "010",
@@ -162,11 +248,45 @@
     "estimatedMinutes": 25,
     "difficulty": "beginner",
     "knowledgeGraph": {
-      "prerequisiteIds": ["009"],
-      "enablesIds": [],
+      "prerequisiteIds": [
+        "009"
+      ],
+      "enablesIds": [
+        "011"
+      ],
       "relatedIds": [],
       "topicSlug": "f_strings"
     },
-    "tags": ["python", "f_strings", "formatting", "strings", "clean_code"]
+    "tags": [
+      "python",
+      "f_strings",
+      "formatting",
+      "strings",
+      "clean_code"
+    ]
+  },
+  {
+    "id": "011",
+    "title": "Boolean Logic",
+    "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+    "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
+    "description": "Master Boolean data type (True and False literals) with practical engineering exercises",
+    "status": "locked",
+    "estimatedMinutes": 20,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": [
+        "010"
+      ],
+      "enablesIds": [],
+      "relatedIds": [],
+      "topicSlug": "boolean_data_type_true_and_false_literals"
+    },
+    "tags": [
+      "python",
+      "embedded_expressions",
+      "booleans",
+      "bool_literals"
+    ]
   }
 ]
