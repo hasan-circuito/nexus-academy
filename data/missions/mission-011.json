@@ -1,0 +1,233 @@
+{
+  "id": "011",
+  "title": "Boolean Logic",
+  "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+  "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 1,
+    "practiceComplexity": 2,
+    "estimatedTotalMinutes": 20
+  },
+  "curiosity": {
+    "didYouKnow": "আধুনিক সফটওয়্যার সিস্টেমে Boolean data type (True and False literals) প্রতিদিন লক্ষ লক্ষ লাইনে ব্যবহৃত হয়।",
+    "realWorldApplication": "FinTech প্ল্যাটফর্মে লাইভ ডেটা প্রসেসিং ও অটোমেশনের জন্য এটি অপরিহার্য।",
+    "aiApplication": "এআই ও এলএলএম ডেটা পাইপলাইনে প্রম্পট ও টোকেন হ্যান্ডলিংয়ে এই ধারণা কাজে লাগে।",
+    "eeeApplication": "IoT ও মাইক্রোকন্ট্রোলার সেন্সর রিডিং মনিটর করতে এই আর্কিটেকচার প্রয়োগ করা হয়।",
+    "historicalFact": "পাইথনের আধুনিক সংস্করণে এই ফিচারটি ডেভেলপারদের কোডিং গতি বহুগুণ বাড়িয়ে দিয়েছে।",
+    "nextMissionPreview": "পরবর্তী মিশনে আমরা এই সক্ষমতার ওপর ভিত্তি করে আরও বাস্তবমুখী সমস্যা সমাধান করব।"
+  },
+  "steps": [
+    {
+      "type": "intro",
+      "missionNumber": "011",
+      "title": "Boolean Logic",
+      "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+      "tagline": "Numbers and strings store descriptive info, but programs cannot track binary states or security switches (is_verified = True, is_blocked = False, maintenance_mode = False) without a dedicated boolean type.",
+      "description": "নেক্সাস এআই এজেন্সিতে স্বাগতম! আমাদের নতুন FinTech ক্লায়েন্টের জন্য এই চ্যালেঞ্জটি সম্পন্ন করতে হবে।",
+      "learningObjectives": [
+        "Numbers and strings store descriptive info, but programs cannot track binary states or security switches (is_verified = True, is_blocked = False, maintenance_mode = False) without a dedicated boolean type. এর পেছনের কারণ ও সীমাবদ্ধতা বোঝা",
+        "Boolean data type (True and False literals) প্রয়োগ করে ক্লিন ও নির্ভরযোগ্য কোড লেখা",
+        "বাস্তব ক্লায়েন্ট আর্কিটেকচারে হিডেন স্টেট বাগ ডিবাগ করা"
+      ],
+      "estimatedMinutes": 2
+    },
+    {
+      "type": "story",
+      "title": "নেক্সাস এআই অফিস: FinTech ক্লায়েন্টের জরুরি সমস্যা",
+      "setting": "নেক্সাস এআই সদর দপ্তর",
+      "content": "টিম লিড অপূর্ব ভাই তোমাকে ডেকে বললেন, 'আমাদের FinTech ক্লায়েন্ট একটি জটিল সংকটে পড়েছে। তাদের সিস্টেমে Numbers and strings store descriptive info, but programs cannot track binary states or security switches (is_verified = True, is_blocked = False, maintenance_mode = False) without a dedicated boolean type.। এই স্প্রিন্টে আমাদের টিমকে এই সমস্যার স্থায়ী সমাধান করতে হবে। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে তোমার দায়িত্ব কোডটি আধুনিক ও ত্রুটিমুক্ত করা।'",
+      "moral": "লজিক বোঝার আগে কোড লেখা শুরু করা ইঞ্জিনিয়ারদের প্রধান ভুলের একটি।"
+    },
+    {
+      "type": "analogy",
+      "title": "বাস্তব জীবনের উপমা",
+      "realWorld": {
+        "label": "বাস্তব অভিজ্ঞতা",
+        "description": "বাস্তব জীবনে আমরা যেভাবে তথ্য পরিবর্তন বা ট্র্যাক করি",
+        "icon": "Lightbulb"
+      },
+      "pythonConcept": {
+        "label": "Boolean data type (True and False literals)",
+        "description": "পাইথনে এর সরাসরি সমতুল্য কনসেপ্ট ও মেকানিজম",
+        "icon": "Code2"
+      },
+      "connection": "বাস্তব সিস্টেমের মতোই পাইথন প্রোগ্রামও ধাপে ধাপে স্টেট পরিবর্তন ও ডেটা ট্রান্সফার করে।",
+      "deeperInsight": "কম্পিউটার নিজে কিছু জানে না; সুনির্দিষ্ট নির্দেশনা ছাড়া সে কোনো পদক্ষেপ নিতে পারে না।"
+    },
+    {
+      "type": "concept",
+      "title": "Boolean data type (True and False literals) এর মূল গঠন ও প্রয়োগ",
+      "content": "Boolean data type (True and False literals) পাইথনের একটি মৌলিক শক্তি।\n\nএটি ব্যবহারের নিয়ম:\n১. পরিষ্কারভাবে স্টেট ও ভেরিয়েবল সংজ্ঞায়িত করো।\n২. সঠিক আউটপুট তৈরি করতে পাইথনের নিয়ম মেনে চলো।",
+      "keyPoints": [
+        "একক দায়িত্ব নীতি (Single Concept Law) মেনে কাজ করো।",
+        "টাইপ এবং সিনট্যাক্স সম্পর্কে সতর্ক থাকো।",
+        "কোড যেন অন্য ডেভেলপারদের কাছে সহজে পাঠযোগ্য হয়।"
+      ],
+      "whyCallout": "Numbers and strings store descriptive info, but programs cannot track binary states or security switches (is_verified = True, is_blocked = False, maintenance_mode = False) without a dedicated boolean type. দূর করাই এই কনসেপ্টের মূল কারণ।",
+      "whenToUse": "যখন FinTech এর মতো ডাইনামিক ডেটা নির্ভর সিস্টেম তৈরি করতে হয়।",
+      "whenNotToUse": "যেখানে সরলতর মেমোরি অ্যাসাইনমেন্ট দিয়েই সমাধান সম্ভব।",
+      "commonMisconception": "নতুনরা প্রায়শই ধারণা করে এটি জটিল, কিন্তু মূল নিয়মটি একদম সোজা।"
+    },
+    {
+      "type": "visualization",
+      "title": "স্টেট ও ডেটা ফ্লো ডায়াগ্রাম",
+      "description": "পাইথন কীভাবে ব্যাকগ্রাউন্ডে স্টেট এবং মান মূল্যায়ন করে:",
+      "visualizationType": "execution_flow",
+      "caption": "ইনপুট ➡️ প্রসেসিং ➡️ রূপান্তর ➡️ চূড়ান্ত আউটপুট",
+      "data": {
+        "steps": [
+          "১. প্রাথমিক স্টেট তৈরি",
+          "২. অপারেন্ড ও মান স্ক্যান",
+          "৩. মূল্যায়ন ও প্রসেসিং",
+          "৪. মেমোরি আপডেট ও কনসোল প্রদর্শন"
+        ]
+      }
+    },
+    {
+      "type": "code_example",
+      "title": "প্রজেক্ট কোড ডেমো",
+      "explanation": "নিচের উদাহরণটিতে লক্ষ্য করো কীভাবে Boolean data type (True and False literals) প্রয়োগ করা হয়েছে:",
+      "language": "python",
+      "code": "# FinTech Demo\nstatus = \"System Ready\"\nprint(status)",
+      "output": "System Ready",
+      "annotations": [
+        {
+          "lineNumber": 2,
+          "explanation": "ভেরিয়েবলে প্রাথমিক স্টেট সংরক্ষণ করা হচ্ছে।"
+        },
+        {
+          "lineNumber": 3,
+          "explanation": "print() এর মাধ্যমে মেমোরির তথ্য কনসোলে প্রদর্শিত হচ্ছে।"
+        }
+      ],
+      "postExplanation": "কোডটি পরিষ্কার এবং কোনো অপ্রয়োজনীয় জটিলতা ছাড়া কাজ সম্পন্ন করে।"
+    },
+    {
+      "type": "eee_example",
+      "title": "হার্ডওয়্যার ও IoT পার্সপেক্টিভ",
+      "context": "একটি মাইক্রোকন্ট্রোলার থেকে সেন্সর রিডিং পর্যবেক্ষণ করার দৃশ্য:",
+      "hardware": "ESP32",
+      "domain": "sensor_data",
+      "code": "sensor_reading = 24\nprint(\"Sensor Reading:\", sensor_reading)",
+      "output": "Sensor Reading: 24",
+      "explanation": "এমবেডেড ইঞ্জিনিয়ারিংয়েও মেমোরি ও ভেরিয়েবল ম্যানেজমেন্টের নিয়ম অপরিবর্তিত থাকে।"
+    },
+    {
+      "type": "ai_example",
+      "title": "AI ও মেশিন লার্নিং পার্সপেক্টিভ",
+      "context": "একটি এআই মডেলের প্রসেসিং মেট্রিক ট্র্যাক করার দৃশ্য:",
+      "aiDomain": "large_language_models",
+      "code": "active_tokens = 1024\nprint(\"Active tokens:\", active_tokens)",
+      "output": "Active tokens: 1024",
+      "explanation": "লার্জ ল্যাঙ্গুয়েজ মডেলেও স্টেট ম্যানেজমেন্ট একই গণিত অনুসরণ করে।"
+    },
+    {
+      "type": "practice",
+      "title": "হাতে-কলমে অনুশীলন: FinTech সলিউশন",
+      "prompt": "আমাদের FinTech ক্লায়েন্টের জন্য একটি প্রাথমিক স্ক্রিপ্ট তৈরি করো:\n\nধাপ ১: `client_name` ভেরিয়েবলে \"FinTech\" রাখো।\nধাপ ২: print() ব্যবহার করে `Client: FinTech` প্রিন্ট করো।",
+      "starterCode": "# ধাপ ১: ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: প্রিন্ট করো\n",
+      "hints": [
+        "client_name = \"FinTech\" এভাবে ভেরিয়েবল ডিক্লেয়ার করো।",
+        "print(\"Client:\", client_name) ব্যবহার করতে পারো।"
+      ],
+      "displayHint": "print(\"Client:\", client_name)",
+      "expectedOutput": "Client: FinTech\n",
+      "validation": {
+        "type": "smart_output_source",
+        "ignoreWhitespace": true,
+        "ignoreCase": true,
+        "requiredVariables": [
+          "client_name"
+        ],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তোমার সমাধান সফলভাবে এক্সিকিউট হয়েছে।",
+          "onMissingVariable": "client_name ভেরিয়েবলটি সংজ্ঞায়িত করেছো কি?",
+          "onPatternFail": "আউটপুট ফরম্যাটটি আবার যাচাই করো।"
+        }
+      },
+      "solution": "client_name = \"FinTech\"\nprint(\"Client:\", client_name)",
+      "solutionExplanation": "ভেরিয়েবল ডিক্লেয়ার করে সরাসরি print() এর সাহায্যে কাঙ্ক্ষিত আউটপুট প্রদর্শিত হয়েছে।"
+    },
+    {
+      "type": "quiz",
+      "title": "জ্ঞান যাচাই: Boolean data type (True and False literals)",
+      "instructions": "সঠিক উত্তরটি নির্বাচন করো। পাসিং স্কোর: ৭০%",
+      "passingScore": 70,
+      "questions": [
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "Boolean data type (True and False literals) ব্যবহারের প্রধান উদ্দেশ্য কোনটি?",
+          "difficulty": "easy",
+          "options": [
+            "সফটওয়্যার স্টেটকে কার্যকরভাবে পরিচালনা ও প্রদর্শন করা",
+            "কম্পিউটারের প্রসেসর বন্ধ করে দেওয়া",
+            "প্রোগ্রাম ক্র্যাশ করানো",
+            "ইন্টারনেট সংযোগ বিচ্ছিন্ন করা"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "এটি সফটওয়্যারের নির্ভরযোগ্যতা ও পাঠযোগ্যতা নিশ্চিত করে।"
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "কোড এক্সিকিউশনের ক্ষেত্রে কোন নিয়মটি সত্য?",
+          "difficulty": "medium",
+          "options": [
+            "কোড ওপর থেকে নিচে ক্রমানুসারে লাইন বাই লাইন এক্সিকিউট হয়",
+            "কোড নিচ থেকে ওপরের দিকে উল্টোভাবে এক্সিকিউট হয়",
+            "কোডের লাইনগুলো এলোমেলোভাবে রান হয়",
+            "কম্পিউটার কোনো নির্দেশনা ছাড়াই নিজে কোড লেখে"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "পাইথন স্ক্রিপ্ট ক্রমানুসারে ওপরের লাইন থেকে নিচের লাইনে এক্সিকিউট হয়।"
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "বাগ খোঁজো: হিডেন স্টেট ইস্যু (Rule 21)",
+      "scenario": "FinTech এর ক্যাশিয়ার সিস্টেমে একটি ভুল স্টেট ট্র্যাকিং দেখা দিয়েছে। প্রাথমিক স্টেটের ওপর নির্ভর করার ফলে ফলাফল ভুল আসছে। স্টেট ফ্লো ট্রেস করে কোডটি ফিক্স করো:",
+      "buggyCode": "client_id = 101\n# ভুল ক্রমে স্টেট আপডেট করা হয়েছে\noutput_msg = client_id\nclient_id = 202\nprint(\"ID:\", output_msg)",
+      "errorMessage": "Hidden State Bug: output_msg captured stale state (101 instead of 202)",
+      "bugLine": 3,
+      "bugType": "logic",
+      "hints": [
+        "পাইথনে কোড ওপর থেকে নিচে ক্রমানুসারে এক্সিকিউট হয়।",
+        "output_msg অ্যাসাইন করার সময় client_id এর মান কী ছিল লক্ষ্য করো।",
+        "স্টেট আপডেট করার পর ফাইনাল মেসেজ তৈরি করো।"
+      ],
+      "fixedCode": "client_id = 101\n# স্টেট আগে আপডেট করো\nclient_id = 202\noutput_msg = client_id\nprint(\"ID:\", output_msg)",
+      "explanation": "স্টেট আপডেট করার পর আউটপুট ভেরিয়েবলে মান রাখায় সর্বশেষ সক্রিয় মান প্রিন্ট হয়েছে।"
+    },
+    {
+      "type": "reflection",
+      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: ইঞ্জিনিয়ারিং মাইন্ডসেট",
+      "instruction": "একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে নিচের প্রশ্নটি গভীরভাবে ভেবে উত্তর দাও:",
+      "prompts": [
+        "Boolean data type (True and False literals) বাস্তব সফটওয়্যারে কীভাবে কাজে লাগবে?",
+        "ভুল স্টেট সিকোয়েন্সের কারণে কী ধরনের সমস্যা হতে পারে?",
+        "লজিক ডিজাইন করার সময় কোন কোন বিষয়ের দিকে খেয়াল রাখা দরকার?"
+      ],
+      "criticalThinkingQuestions": [
+        {
+          "question": "বাস্তব সফটওয়্যার সিস্টেমে ভুল স্টেট সিকোয়েন্সের কারণে কী কী মারাত্মক সমস্যা হতে পারে?",
+          "expertThinking": "ফিনটেক বা স্বাস্থ্যসেবায় ভুল সময়ে স্টেট মূল্যায়ন করলে ব্যালেন্স ওভারড্রাফট বা ভুল ডোজ প্রদর্শিত হতে পারে। তাই স্টেট লাইফসাইকেল নিয়ন্ত্রণ করা সফটওয়্যার আর্কিটেকচারের প্রধান শর্ত।",
+          "realWorldEngineering": "ব্যাংকিং সিস্টেমে লেনদেন সম্পন্ন হওয়ার আগে রসিদ জেনারেট করলে গুরুতর আর্থিক অডিট ফেইলিওর ঘটে।",
+          "beyondProgramming": "বাস্তব জীবনেও সিদ্ধান্ত নেওয়ার আগে সর্বশেষ তথ্য যাচাই করা বুদ্ধিমানের কাজ।"
+        }
+      ]
+    },
+    {
+      "type": "mission_complete",
+      "title": "অভিনন্দন! মিশন 011 সম্পন্ন!",
+      "summary": "তুমি সফলভাবে Boolean data type (True and False literals) আয়ত্ত করেছ এবং FinTech ক্লায়েন্টের সমাধান সম্পূর্ণ করেছ!",
+      "keyLearnings": [
+        "Boolean data type (True and False literals) এর পরিষ্কার ধারণা লাভ।",
+        "হিডেন স্টেট বাগ শনাক্ত ও সমাধান করার দক্ষতা।",
+        "প্রফেশনাল বি২বি সফটওয়্যার ডেভেলপমেন্ট মাইন্ডসেট অর্জন।"
+      ]
+    }
+  ]
+}
