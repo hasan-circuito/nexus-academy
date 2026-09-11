@@ -277,11 +277,25 @@ export interface ReflectionStep {
 }
 
 // Step 13 — mission_complete
+export interface MissionLimitation {
+  title: string;                    // e.g. "বর্তমান সল্যুশনের টেকনিক্যাল সীমাবদ্ধতা"
+  description: string;              // Technical explanation of the current tool's boundary
+  technicalReason: string;          // Concise technical term, e.g. "Lack of Dedicated Binary State (Boolean)"
+}
+
+export interface NextMissionBridge {
+  title: string;                    // e.g. "পরবর্তী মিশন: সমাধান"
+  description: string;              // How the next mission naturally solves this limitation
+  targetMissionId: string;          // e.g. "011"
+}
+
 export interface MissionCompleteStep {
   type: 'mission_complete';
   title: string;                    // Bangla — "অভিনন্দন!"
   summary: string;                  // Bangla — 2–3 sentence mission recap
-  keyLearnings: string[];           // Bangla — 3–5 bullet points
+  keyLearnings?: string[];          // Bangla — 3–5 bullet points
+  currentLimitation?: MissionLimitation;
+  nextMissionBridge?: NextMissionBridge;
   // CuriosityBlock is read from mission root (MissionData.curiosity), not duplicated here.
 }
 

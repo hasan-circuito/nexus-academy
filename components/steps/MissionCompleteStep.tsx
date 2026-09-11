@@ -1,6 +1,6 @@
 'use client';
 import type { MissionCompleteStep, MissionData } from '@/types/mission.types';
-import { Target, Trophy, Star, Copy, Bot, CheckCircle2, Unlock, Lock, AlertTriangle, ArrowRight } from 'lucide-react';
+import { Target, Trophy, Star, Copy, Bot, CheckCircle2, Unlock, Lock, AlertTriangle, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useProgress } from '@/hooks/useProgress';
@@ -109,6 +109,73 @@ Can you give me a brief summary of what I should review next based on this topic
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {/* Engineering Frontier: Current Limitation & Next Mission Bridge */}
+      {(step.currentLimitation || step.nextMissionBridge) && (
+        <div className="p-6 rounded-2xl bg-card border border-border space-y-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-border pb-3">
+            <h3 className="font-semibold text-foreground text-sm uppercase tracking-wider flex items-center gap-2 font-bangla-ui">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Engineering Frontier: বর্তমান সীমাবদ্ধতা ও পরবর্তী ধাপ
+            </h3>
+            <span className="text-xs text-muted-foreground font-mono">Architecture Bridge</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {step.currentLimitation && (
+              <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 space-y-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-500 shrink-0">
+                    <AlertCircle className="w-4 h-4" />
+                  </div>
+                  <h4 className="font-bold text-sm text-foreground font-bangla-ui">
+                    {step.currentLimitation.title}
+                  </h4>
+                </div>
+                <p className="text-xs text-muted-foreground font-bangla leading-relaxed">
+                  {step.currentLimitation.description}
+                </p>
+                {step.currentLimitation.technicalReason && (
+                  <div className="pt-1 flex flex-wrap items-center gap-1.5">
+                    <span className="text-[10px] uppercase font-semibold text-muted-foreground">Technical Reason:</span>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">
+                      {step.currentLimitation.technicalReason}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {step.nextMissionBridge && (
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 space-y-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <h4 className="font-bold text-sm text-foreground font-bangla-ui">
+                    {step.nextMissionBridge.title}
+                  </h4>
+                </div>
+                <p className="text-xs text-muted-foreground font-bangla leading-relaxed">
+                  {step.nextMissionBridge.description}
+                </p>
+                <div className="pt-1 flex items-center justify-between text-[11px]">
+                  <span className="font-mono text-primary font-semibold">
+                    Target: Mission {step.nextMissionBridge.targetMissionId}
+                  </span>
+                  <button
+                    onClick={() => router.push(`/mission/mission-${step.nextMissionBridge?.targetMissionId}/step/0`)}
+                    className="inline-flex items-center gap-1 text-primary hover:underline font-medium font-bangla"
+                  >
+                    <span>পরবর্তী মিশন দেখো</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
