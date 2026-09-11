@@ -55,7 +55,7 @@ export default function DashboardPage() {
               Dev Mode
             </span>
             <span className="text-foreground font-medium">
-              Developer Preview Mode Active: All missions 001–010 are unlocked for testing and review.
+              Developer Preview Mode Active: All missions are unlocked for testing and review.
             </span>
           </div>
           <Link href="/settings" className="text-xs font-semibold text-primary hover:underline shrink-0 ml-4">
