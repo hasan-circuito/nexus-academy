@@ -59,7 +59,7 @@
     {
       "type": "concept",
       "title": "বুলিয়ান ডেটা টাইপের নিয়ম ও ব্যবহার",
-      "content": "পাইথনে বুলিয়ান (Boolean বা `bool`) হলো এমন একটি মৌলিক ডেটা টাইপ যার মান কেবল দুটি হতে পারে: `True` অথবা `False`।\n\n**বুলিয়ান ব্যবহারের ৩টি সুবর্ণ নিয়ম:**\n১. **প্রথম অক্ষর বড় হাতের:** পাইথনে `True` এর 'T' এবং `False` এর 'F' অবশ্যই Capital Letter হতে হবে। ছোট হাতের `true` বা `false` লিখলে পাইথন NameError দিয়ে ক্র্যাশ করবে।\n২. **কখনো কোটেশন নয়:** `True` একটি বুলিয়ান মান, কিন্তু `\"True\"` হলো সাধারণ স্ট্রিং (str)। কোটেশন ব্যবহার করলে পাইথন এটিকে টেক্সট মনে করে।\n৩. **ভেরিয়েবলে সংরক্ষণ ও প্রিন্ট:** অন্য যেকোনো মানের মতো বুলিয়ান মানকেও ভেরিয়েবলে রাখা যায় এবং print() দিয়ে প্রদর্শন করা যায়:\n`is_verified = True`\n`print(is_verified)  # আউটপুট: True`\n\n**f-string এ বুলিয়ান:**\n`is_active = False`\n`print(f\"Account status: {is_active}\")`\nআউটপুট হবে: `Account status: False`।",
+      "content": "পাইথনে বুলিয়ান (Boolean বা `bool`) হলো এমন একটি মৌলিক ডেটা টাইপ যার মান কেবল দুটি হতে পারে: `True` অথবা `False`।\n\n**বুলিয়ান ব্যবহারের ৩টি strict  নিয়ম:**\n১. **প্রথম অক্ষর বড় হাতের:** পাইথনে `True` এর 'T' এবং `False` এর 'F' অবশ্যই Capital Letter হতে হবে। ছোট হাতের `true` বা `false` লিখলে পাইথন NameError দিয়ে ক্র্যাশ করবে।\n২. **কখনো কোটেশন নয়:** `True` একটি বুলিয়ান মান, কিন্তু `\"True\"` হলো সাধারণ স্ট্রিং (str)। কোটেশন ব্যবহার করলে পাইথন এটিকে টেক্সট মনে করে।\n৩. **ভেরিয়েবলে সংরক্ষণ ও প্রিন্ট:** অন্য যেকোনো মানের মতো বুলিয়ান মানকেও ভেরিয়েবলে রাখা যায় এবং print() দিয়ে প্রদর্শন করা যায়:\n`is_verified = True`\n`print(is_verified)  # আউটপুট: True`\n\n**f-string এ বুলিয়ান:**\n`is_active = False`\n`print(f\"Account status: {is_active}\")`\nআউটপুট হবে: `Account status: False`।",
       "keyPoints": [
         "বুলিয়ান কেবল দুটি মান গ্রহণ করে: True এবং False।",
         "True এবং False এর T ও F সর্বদা বড় হাতের (Case Sensitive)।",
@@ -312,7 +312,7 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ৩: হিডেন স্টেট ও বাসি স্ট্যাটাস (Rule 21)",
+      "title": "বাগ ৩: হিডেন স্টেট ও বাসি স্ট্যাটাস",
       "scenario": "SecurePay ক্লায়েন্টের অ্যাকাউন্ট আনলক মডিউলে একটি জটিল হিডেন স্টেট সমস্যা দেখা দিয়েছে। কোডে স্ট্যাটাস মেসেজ তৈরি করার পর অ্যাকাউন্ট আনব্লক করা হয়েছে! ফলে কনসোলে পুরোনো বাসি স্টেট (True) প্রদর্শিত হচ্ছে অথচ ইউজার আনলক হয়েছে। স্টেট ফ্লো রি-অর্ডার করে সঠিক লাইভ স্টেট প্রিন্ট করো:",
       "buggyCode": "user_id = 7711\nis_blocked = True\n\n# ভুল সময়ে বাসি স্টেট দিয়ে মেসেজ তৈরি\nstatus_msg = f\"User {user_id} Blocked: {is_blocked}\"\n\n# সিকিউরিটি টিম পরে আনব্লক করেছে\nis_blocked = False\n\nprint(status_msg)",
       "errorMessage": "Hidden State Bug: status_msg captured stale state (Blocked: True instead of live state False)",

@@ -316,7 +316,7 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ৩: ডিসকাউন্টের আগে পুরোনো স্টেটের ফাঁদ (Rule 21)",
+      "title": "বাগ ৩: ডিসকাউন্টের আগে পুরোনো স্টেটের ফাঁদ",
       "scenario": "Bazaarly এর চেকআউটে ইউজার অতিরিক্ত ২০ টাকার আইটেম কার্টে যোগ করেছে। কিন্তু কোডে পুরোনো কার্ট টোটালের ওপর ফ্রি শিপিংয়ের তুলনা সম্পন্ন হওয়ার পর আইটেম যোগ করা হয়েছে! ফলে কনসোলে পুরোনো বাসি হিসাব (False) দেখাচ্ছে অথচ নতুন মোট মূল্যে ফ্রি শিপিং পাওয়ার কথা। স্টেট ফ্লো রি-অর্ডার করে কোডটি ঠিক করো:",
       "buggyCode": "cart_total = 990\n\n# বাসি স্টেট নিয়ে ভুল সময়ে তুলনা করা হয়েছে\nis_free_shipping = cart_total >= 1000\n\n# কাস্টমার অতিরিক্ত একটি চকলেট যোগ করেছে\ncart_total = cart_total + 20\n\nprint(f\"Free Shipping: {is_free_shipping}\")",
       "errorMessage": "Hidden State Bug: is_free_shipping evaluated on stale cart_total (990 instead of updated 1010)",
