@@ -644,7 +644,7 @@
       "newCapability": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans",
       "newConceptCount": 1,
       "prerequisite": "011",
-      "status": "draft",
+      "status": "published",
       "learnerKnownScope": [
         "print",
         "variable_assignment",

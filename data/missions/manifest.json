@@ -120,6 +120,17 @@
       "primaryConcept": "Boolean data type (True and False literals)",
       "estimatedMinutes": 20,
       "difficulty": "beginner"
+    },
+    {
+      "id": "012",
+      "title": "Comparison Operators",
+      "banglaTitle": "মেমোরির তুলনা ও যাচাই",
+      "banglaSubtitle": "কম্প্যারিজন অপারেটর দিয়ে স্বয়ংক্রিয়ভাবে সত্য-মিথ্যা মূল্যায়ন",
+      "status": "published",
+      "prerequisite": "011",
+      "primaryConcept": "Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans",
+      "estimatedMinutes": 25,
+      "difficulty": "beginner"
     }
   ]
 }

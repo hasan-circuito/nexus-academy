@@ -278,7 +278,9 @@
       "prerequisiteIds": [
         "010"
       ],
-      "enablesIds": [],
+      "enablesIds": [
+        "012"
+      ],
       "relatedIds": [],
       "topicSlug": "boolean_data_type_true_and_false_literals"
     },
@@ -287,6 +289,30 @@
       "embedded_expressions",
       "booleans",
       "bool_literals"
+    ]
+  },
+  {
+    "id": "012",
+    "title": "Comparison Operators",
+    "banglaTitle": "মেমোরির তুলনা ও যাচাই",
+    "banglaSubtitle": "কম্প্যারিজন অপারেটর দিয়ে স্বয়ংক্রিয়ভাবে সত্য-মিথ্যা মূল্যায়ন",
+    "description": "Master Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans with practical engineering exercises",
+    "status": "locked",
+    "estimatedMinutes": 25,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": [
+        "011"
+      ],
+      "enablesIds": [],
+      "relatedIds": [],
+      "topicSlug": "comparison_operators_evaluating_expressions_to_booleans"
+    },
+    "tags": [
+      "python",
+      "equality_operator",
+      "inequality_operator",
+      "relational_operators"
     ]
   }
 ]
