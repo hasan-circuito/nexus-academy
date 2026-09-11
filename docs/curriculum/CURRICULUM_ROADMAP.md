@@ -38,34 +38,45 @@
 ---
 
 ## Phase 2: Builder (Missions 026–050)
-**Goal**: Transition from syntax mastery to tool creation.
+**Goal**: Transition from syntax mastery to tool creation and defensive system design.
 **Pedagogy**: Leaner stories, shift toward Mini-Projects, architecture diagrams replace basic analogies.
 
-- **026**: "The DRY Principle" — Why code repetition is dangerous.
-- **027**: "Functions (Def)" — Wrapping logic into reusable blocks.
-- **028**: "Function Parameters" — Passing data into isolated contexts.
-- **029**: "Function Returns" — Extracting computed results.
-- **030**: "Scope" — Local vs Global memory boundaries.
-- **031**: "Default & Keyword Args" — Flexible function interfaces.
-- **032**: "*args & **kwargs" — Handling unknown input sizes.
-- **033**: "Dictionaries (Key-Value)" — Structured data mapping.
-- **034**: "Dictionary Operations" — Managing structured records.
-- **035**: "Tuples" — Immutable data contracts.
-- **036**: "Sets" — Uniqueness and fast lookups.
-- **037**: "List Comprehensions" — Functional data transformation.
-- **038**: "Dict & Set Comprehensions" — Advanced map filtering.
-- **039**: "String Manipulation" — slicing, splitting, and joining text.
-- **040**: "File I/O (Read)" — Persisting data beyond RAM.
-- **041**: "File I/O (Write/Append)" — Modifying disk state.
-- **042**: "Context Managers (`with`)" — Safe resource handling.
-- **043**: "JSON Handling" — Storing structural data.
-- **044**: "CSV Processing" — Tabular data basics.
-- **045**: "The Fragile System" — Understanding crashes and exceptions.
-- **046**: "Try / Except" — Catching and recovering from errors.
-- **047**: "Else & Finally" — Guaranteed execution paths.
-- **048**: "Raising Exceptions" — Defensive programming (`raise`).
-- **049**: "Custom Exceptions" — Domain-specific error modeling.
-- **050**: "Phase 2 Capstone" — Building a persistent CLI Task Manager with JSON.
+### Module 2.1: Reusable Logic & Interfaces (Functions)
+- **026**: "The DRY Principle" — Why copy-pasting code leads to catastrophic bugs at scale.
+- **027**: "Function Definition (`def`)" — Packaging logic into named, reusable execution units.
+- **028**: "Function Parameters" — Passing dynamic data into isolated execution contexts.
+- **029**: "Return Values (`return`)" — Extracting computed outputs back to the caller.
+- **030**: "Scope & Memory Boundaries" — Local vs Global variables and the lifetime of memory.
+- **031**: "Default & Keyword Arguments" — Designing flexible, defensive function interfaces.
+
+### Module 2.2: Real-World Structured Data (Complex Collections)
+- **032**: "Dictionaries (Key-Value Mapping)" — Why parallel lists fail; modeling real-world entities (e.g. user profiles).
+- **033**: "Dictionary Operations & Nesting" — Accessing, updating, and traversing structured records (`get`, `.keys()`, `.values()`, `.items()`).
+- **034**: "Tuples" — Immutable data contracts: protecting data that must never change (coordinates, config, dimensions).
+- **035**: "Sets" — Uniqueness and instant lookups: deduplicating records and set operations (`union`, `intersection`).
+- **036**: "Advanced String Processing" — Text normalization for data pipelines (`split()`, `join()`, `strip()`, casing).
+
+### Module 2.3: Defensive Engineering & Resilience (Error Handling FIRST!)
+- **037**: "The Fragile System" — Why real-world programs crash; anatomy of Python Exceptions (`IndexError`, `KeyError`, `ValueError`).
+- **038**: "Graceful Recovery (`try / except`)" — Catching runtime failures without terminating the entire application.
+- **039**: "Targeted Defense (Specific Exceptions)" — Why bare `except:` is dangerous; handling exact fault lines.
+- **040**: "The Cleanup Contract (`else` & `finally`)" — Running code only on success (`else`) and guaranteed cleanup actions (`finally`).
+- **041**: "Defensive Assertions & Raising (`raise`)" — Enforcing business constraints and stopping invalid state propagation.
+
+### Module 2.4: Real-World Persistence & File Pipelines (Disks & Data Formats)
+- **042**: "Safe File Operations (`with` Context Manager)" — Opening, reading, and automatically closing OS file handles.
+- **043**: "Reading & Streaming Text Files" — Reading large logs and text records line-by-line without memory overflows.
+- **044**: "Writing & Appending Data" — Persisting state changes, audit logs, and generated outputs to disk.
+- **045**: "Structured JSON Storage (`json.loads`, `json.dumps`)" — Serializing Python Dictionaries to persistent JSON files.
+- **046**: "Tabular Data & CSV Processing" — Reading and writing spreadsheet rows with the standard `csv` module.
+
+### Module 2.5: Expressive Functional Polish & Architecture
+- **047**: "List Comprehensions" — Elegant, expressive transformations on filtered sequences (`[x for x in data if condition]`).
+- **048**: "Dictionary & Set Comprehensions" — Transforming records and indexing maps in a single line.
+- **049**: "Modular Code Organization (`import` basics)" — Splitting a project into separate utility modules (`utils.py`, `models.py`).
+
+### Module 2.6: Capstone Project
+- **050**: "Phase 2 Capstone" — Building a production-grade CLI Task & Audit Manager with JSON persistence and defensive `try/except` recovery.
 
 ---
 
