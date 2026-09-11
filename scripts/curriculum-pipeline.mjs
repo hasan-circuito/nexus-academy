@@ -108,7 +108,7 @@ export function runPreflight(missionId) {
   if (contract.banglaSubtitle) {
     console.log(`  • Subtitle          : ${contract.banglaSubtitle}`);
   }
-  console.log(`  • B2B Client Domain : ${contract.clientIndustry} (Rule 22 Narrative)`);
+  console.log(`  • Engineering Domain: ${contract.clientIndustry} (Rule 22 Context)`);
   console.log(`  • Pain-Point Trigger: ${contract.painPointTrigger}`);
   console.log(`  • Single Capability : ${contract.newCapability} (Invariant 1: newConceptCount = 1)`);
   console.log(`  • Prerequisite ID   : ${contract.prerequisite || 'None'}`);
@@ -183,20 +183,20 @@ export function runScaffold(missionId, { dryRun = false, force = false } = {}) {
         title: contract.title,
         banglaTitle: contract.banglaTitle,
         tagline: painPoint,
-        description: `নেক্সাস এআই এজেন্সিতে স্বাগতম! আমাদের নতুন ${client} ক্লায়েন্টের জন্য এই চ্যালেঞ্জটি সম্পন্ন করতে হবে।`,
+        description: `আগের মিশনে আমরা সিস্টেমের ভিত্তি তৈরি করেছি। কিন্তু বাস্তব সফটওয়্যারে যখন ${painPoint}, তখন নতুন সমাধানের প্রয়োজন হয়। এই মিশনে আমরা সফটওয়্যারকে আরও এক ধাপ সক্ষম করব ${capability} দিয়ে।`,
         learningObjectives: [
           `${painPoint} এর পেছনের কারণ ও সীমাবদ্ধতা বোঝা`,
           `${capability} প্রয়োগ করে ক্লিন ও নির্ভরযোগ্য কোড লেখা`,
-          `বাস্তব ক্লায়েন্ট আর্কিটেকচারে হিডেন স্টেট বাগ ডিবাগ করা`
+          `বাস্তব সিস্টেম আর্কিটেকচারে হিডেন স্টেট বাগ ডিবাগ করা`
         ],
         estimatedMinutes: 2
       },
       {
         type: 'story',
-        title: `নেক্সাস এআই অফিস: ${client} ক্লায়েন্টের জরুরি সমস্যা`,
-        setting: `নেক্সাস এআই সদর দপ্তর`,
-        content: `টিম লিড অপূর্ব ভাই তোমাকে ডেকে বললেন, 'আমাদের ${client} ক্লায়েন্ট একটি জটিল সংকটে পড়েছে। তাদের সিস্টেমে ${painPoint}। এই স্প্রিন্টে আমাদের টিমকে এই সমস্যার স্থায়ী সমাধান করতে হবে। একজন সফটওয়্যার ইঞ্জিনিয়ার হিসেবে তোমার দায়িত্ব কোডটি আধুনিক ও ত্রুটিমুক্ত করা।'`,
-        moral: `লজিক বোঝার আগে কোড লেখা শুরু করা ইঞ্জিনিয়ারদের প্রধান ভুলের একটি।`
+        title: `বাস্তব সফটওয়্যার সংকট: ${client} সিস্টেম`,
+        setting: `একটি বাস্তব ${client} সফটওয়্যার প্রজেক্ট...`,
+        content: `একটি সফটওয়্যারে কাজ করতে গিয়ে দেখা গেল ${painPoint}। কোডে পুরনো পদ্ধতিতে সমাধান করতে গিয়ে সিস্টেম জটিল ও ভঙ্গুর হয়ে পড়ছিল। ডেভেলপার উপলব্ধি করল: সফটওয়্যারকে আরও নির্ভরযোগ্য করতে হলে নতুন সক্ষমতা প্রয়োজন। আর সেখান থেকেই জন্ম নিল ${capability}।`,
+        moral: `লজিক বোঝার আগে কোড লেখা শুরু করা ইঞ্জিনিয়ারদের প্রধান ভুলের একটি। প্রয়োজন বুঝে সঠিক কনসেপ্ট প্রয়োগ করাই আসল ইঞ্জিনিয়ারিং।`
       },
       {
         type: 'analogy',

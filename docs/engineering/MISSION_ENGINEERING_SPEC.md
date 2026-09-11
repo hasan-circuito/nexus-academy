@@ -1464,19 +1464,20 @@ Professional developers rarely debug hardcoded syntax errors (e.g., `files = 0`)
 - **Implementation:** The bug should arise from a logical interaction (e.g., `duration = end_day - start_day` where both are 15, resulting in a hidden `0` that causes a ZeroDivisionError).
 - **Goal:** The learner must trace the logic and state flow to discover *why* the bug happened, rather than just reading the description to find the answer.
 
-## Rule 22 — The A+B Narrative Standard (B2B AI Agency)
-To combine Startup Simulation with diverse real-world scenarios, missions must use the "B2B AI Agency" narrative framework.
-- **The Learner:** A Junior Developer at "Nexus AI", a fast-growing AI solutions agency.
-- **The Setup:** Tasks are assigned by a Senior Developer, Tech Lead, or Project Manager.
-- **The Domain:** Every mission features a different client industry (e.g., E-commerce, Healthcare, FinTech, Logistics) to ensure diverse, real-world abstract problem solving.
-- **Tone:** Professional, fast-paced, but encouraging. No childish analogies (magic, dragons) unless used briefly as an in-office joke.
+## Rule 22 — Organic Need-Based Progression & Authentic Engineering Context
+To preserve the core pedagogical soul of Nexus Academy, every mission must be born out of necessity:
+- **The Core Law of Progression:** Every single mission $N$ must emerge directly from the explicit technical pain point, friction, or limitation left unresolved at the end of Mission $N-1$. "Need comes first. Concept comes second. Syntax comes last." A concept must NEVER appear because "it is next in the syllabus" or as a corporate agency assignment.
+- **The Learner:** An aspiring engineer building software systems from first principles. They experience the limitation personally in their code.
+- **Authentic Engineering Context (No Artificial Agency Roleplay):** Avoid fictional agency bureaucracy ("Team Lead Apurba Bhai called an emergency meeting", "Nexus AI Agency client ticket"). Instead, rotating real-world domains (E-Commerce, FinTech, HealthTech, IoT, Security, Logistics) provide *authentic technical systems and mental models* that the learner builds or debugs.
+- **The Unbroken Pedagogical Chain:** `intro` links to $N-1$'s limitation, `story` dramatizes the failure of the old approach, `analogy` anchors the mental model, and `nextMissionPreview` seeds the need for $N+1$.
+- **Tone:** Technical, encouraging, and deeply pedagogical. No fantasy tropes, and no corporate bureaucracy.
 
 ## Rule 23 — The Agile Content Pipeline (The 3-Step Standard & Steel Guardrails)
 To scale Nexus Academy to 120+ missions without bureaucratic paralysis while maintaining world-class pedagogical rigor, mission creation follows an Agile 3-Step Pipeline protected by Unbreakable Steel Guardrails.
 
 ### The 3-Step Agile Pipeline
-1. **Step 1: Brief & Client Selection (1 min)**:
-   - Identify the single concept, the B2B client industry (Rule 22), and the hidden state bug (Rule 21).
+1. **Step 1: Brief & Domain Selection (1 min)**:
+   - Identify the single concept, the authentic engineering domain (Rule 22), and the hidden state bug (Rule 21).
 2. **Step 2: Mission JSON Authoring (15-20 mins)**:
    - Author `data/missions/mission-XXX.json` using dynamic step counts (Rule 20) with deep pedagogical storytelling, hands-on practice, quiz, and reflection.
 3. **Step 3: Automated Quality Gate (Instant CI)**:

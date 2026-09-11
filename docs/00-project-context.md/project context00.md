@@ -446,7 +446,7 @@ Missions **001 through 009** have been successfully authored, verified with comp
 
 The immediate development objective is now to author **Mission 010 (String Formatting with f-strings)**, continuing the 5-Phase Curriculum Roadmap toward Junior Developer & AI Startup Operations capability.
 
-Mission development follows the dynamic step flexibility (Rule 20), the Hidden State Debug standard (Rule 21), and the B2B AI Agency narrative framework (Rule 22).
+Mission development follows the dynamic step flexibility (Rule 20), the Hidden State Debug standard (Rule 21), and the Organic Need-Based Progression framework (Rule 22).
 
 Future work continues to prioritize:
 

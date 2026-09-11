@@ -51,19 +51,22 @@ Applies To: All Nexus Academy mission authoring, editing, code generation, and p
 
 ---
 
-### 5. Rule 22: B2B AI Agency Narrative Framework
-- **Learner Persona:** Junior Software Engineer at **"Nexus AI"**, a high-velocity B2B artificial intelligence and software solutions agency.
-- **Task Framing:** Missions are assigned as professional agency tickets or client sprint deliverables by the Senior Developer / Tech Lead (e.g. "Apurba Bhai").
-- **Rotating Client Domains:** Every mission features a rotating real-world B2B client industry to build versatile domain problem-solving:
-  - HealthTech (Patient monitoring, vitals processing)
-  - FinTech (Account balances, ledger audits, currency conversions)
-  - Logistics (Fleet telemetry, parcel dispatch tracking)
-  - EdTech (Grade processing, attendance metrics)
-  - GovTech (Citizen identity verification, tax bracket pipelines)
-  - Smart Grid / GreenTech (Energy consumption telemetry, smart metering)
-  - AgriTech (Soil sensors, automated irrigation)
-  - E-Commerce / RetailTech (Invoicing engines, order dispatch, shopping carts)
-- **Tone:** Professional, encouraging, and engineering-centric. No fantasy tropes (dragons, magic spells).
+### 5. Rule 22: Organic Need-Based Progression & Authentic Engineering Context
+- **The Core Law of Progression:** Every single mission $N$ must be born directly out of the explicit technical pain point, friction, or limitation left unresolved at the end of Mission $N-1$.
+  - "Need comes first. Concept comes second. Syntax comes last."
+  - "Concepts introduced before pain become memorized. Concepts introduced after pain become understood."
+  - A concept must NEVER appear because "it is next in the syllabus" or as an arbitrary corporate assignment.
+- **Learner Persona:** The learner is an aspiring software engineer building real software systems from the inside out. They experience the limitation personally in their code.
+- **Authentic Engineering Context (No Fictional Agency Roleplay):**
+  - Strictly avoid artificial agency theater ("Team Lead Apurba Bhai called an emergency meeting", "Nexus AI Agency client ticket").
+  - Rotating engineering domains (E-Commerce, FinTech, HealthTech, IoT, Security, Logistics) serve as *concrete technical systems and mental models*, NOT fictional corporate client tickets.
+  - The story must illustrate the authentic failure or friction of doing things the "old way" ($N-1$) and why the new concept is urgently required.
+- **The Unbroken Pedagogical Chain:**
+  - `intro`: Directly connects to the friction, awkwardness, or limitation of Mission $N-1$.
+  - `story`: Dramatizes the authentic system failure or engineering breakdown when software lacks this capability.
+  - `analogy`: Provides a physical/real-world mental model.
+  - `nextMissionPreview`: Plants the seed of curiosity and pain that will birth Mission $N+1$.
+- **Tone:** Technical, encouraging, and deeply pedagogical. No fantasy tropes (dragons, magic spells), and no corporate bureaucracy.
 
 ---
 
