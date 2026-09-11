@@ -59,7 +59,7 @@ const industries = new Set();
 let scopeIncreases = true;
 let prevScopeCount = 0;
 
-graph.missions.slice(0, 10).forEach((m, idx) => {
+graph.missions.forEach((m, idx) => {
   const expectedId = String(idx + 1).padStart(3, '0');
   assertTest(m.id === expectedId, `Mission ${expectedId} present with matching ID`);
   assertTest(typeof m.title === 'string' && m.title.length > 0, `M${expectedId} has English title`);
@@ -95,6 +95,14 @@ assertTest(preflight001.stdout.includes('Foundational mission'), 'preflight 001 
 const preflight010 = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '010'], { encoding: 'utf-8' });
 assertTest(preflight010.status === 0, 'preflight 010 exits with code 0 (sequenced mission)');
 assertTest(preflight010.stdout.includes('Prerequisite M009 verified'), 'preflight 010 verifies prerequisite M009');
+
+const preflight011 = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '011'], { encoding: 'utf-8' });
+assertTest(preflight011.status === 0, 'preflight 011 exits with code 0 (sequenced mission)');
+assertTest(preflight011.stdout.includes('Prerequisite M010 verified'), 'preflight 011 verifies prerequisite M010');
+
+const preflight012 = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '012'], { encoding: 'utf-8' });
+assertTest(preflight012.status === 0, 'preflight 012 exits with code 0 (sequenced mission)');
+assertTest(preflight012.stdout.includes('Prerequisite M011 verified'), 'preflight 012 verifies prerequisite M011');
 
 const preflightInvalid = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '999'], { encoding: 'utf-8' });
 assertTest(preflightInvalid.status !== 0, 'preflight 999 exits non-zero for uncontracted mission');

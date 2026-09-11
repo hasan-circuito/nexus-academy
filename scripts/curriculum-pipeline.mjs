@@ -22,6 +22,7 @@ const MISSIONS_DIR = path.join(ROOT_DIR, 'data', 'missions');
 const MANIFEST_PATH = path.join(MISSIONS_DIR, 'manifest.json');
 const INDEX_PATH = path.join(MISSIONS_DIR, 'index.json');
 const VALIDATE_SCRIPT_PATH = path.join(ROOT_DIR, 'scripts', 'validate-missions.mjs');
+const CONTENT_SERVICE_PATH = path.join(ROOT_DIR, 'services', 'ContentService.ts');
 
 // Helper: Normalize mission ID to 3-digit zero-padded string
 function normalizeMissionId(rawId) {
@@ -539,8 +540,39 @@ export function runPackage(missionId) {
   writeJson(CURRICULUM_GRAPH_PATH, graph);
   console.log(`  ✓ Graph state updated to published.`);
 
+  // Step 5: Ensure registration in services/ContentService.ts
+  console.log(`Step 5: Ensuring registration in services/ContentService.ts...`);
+  if (fs.existsSync(CONTENT_SERVICE_PATH)) {
+    let csContent = fs.readFileSync(CONTENT_SERVICE_PATH, 'utf-8');
+    const importStmt = `import mission${missionId} from '@/data/missions/mission-${missionId}.json';`;
+    const mapEntry = `  '${missionId}': mission${missionId} as MissionData,`;
+
+    let changed = false;
+    if (!csContent.includes(`mission${missionId} from`)) {
+      const lastImportMatch = csContent.match(/import mission\d+ from [^;]+;\n/g);
+      if (lastImportMatch) {
+        const lastImport = lastImportMatch[lastImportMatch.length - 1];
+        csContent = csContent.replace(lastImport, `${lastImport}${importStmt}\n`);
+        changed = true;
+      }
+    }
+    if (!csContent.includes(`'${missionId}':`)) {
+      csContent = csContent.replace(
+        /(const missions: Record<string, MissionData> = \{[\s\S]*?)(\n\};)/,
+        `$1\n${mapEntry}$2`
+      );
+      changed = true;
+    }
+    if (changed) {
+      fs.writeFileSync(CONTENT_SERVICE_PATH, csContent, 'utf-8');
+      console.log(`  ✓ Registered M${missionId} in services/ContentService.ts.`);
+    } else {
+      console.log(`  ✓ M${missionId} already registered in services/ContentService.ts.`);
+    }
+  }
+
   // Step 6: Build Readiness Verification
-  console.log(`Step 5: Verifying TypeScript compilation & build readiness...`);
+  console.log(`Step 6: Verifying TypeScript compilation & build readiness...`);
   const tscRes = spawnSync('npx', ['tsc', '--noEmit'], {
     cwd: ROOT_DIR,
     stdio: 'inherit',
