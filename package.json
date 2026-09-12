@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test": "node scripts/validate-missions.mjs && node scripts/test-event-bus.mjs && node scripts/validate-dictionary.mjs && node scripts/test-error-diagnostics.mjs && node scripts/test-settings.mjs && node scripts/test-curriculum-pipeline.mjs",
     "test:missions": "node scripts/validate-missions.mjs",
     "test:events": "node scripts/test-event-bus.mjs",
