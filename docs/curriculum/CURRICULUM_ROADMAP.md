@@ -1,13 +1,15 @@
-# NEXUS Academy Full Curriculum Roadmap (120 Missions)
+# NEXUS Academy Curriculum Roadmap (Planning Document)
 
 **Target Outcome**: Professional Junior ML/AI Developer (Capable of AI Startup Operations)
 **Design Philosophy**: 5-Phase Architecture. Pedagogy evolves as capability increases. The 'WHY' remains constant.
+
+> This is an aspirational planning document, not the source of truth for currently published missions. Current mission data is defined by `data/missions/` and `data/curriculum/curriculum-graph.json`.
 
 ---
 
 ## Phase 1: Foundation (Missions 001–025)
 **Goal**: Build the engineering mindset from zero. Focus on basic Python constructs and control flow.
-**Pedagogy**: Full 13-step format (Deep Story, Analogy, 3x Practice, 3x Debug, Critical Thinking Lab).
+**Pedagogy**: Mission structure is flexible and must follow the Mission Engineering Specification. The former 13-step arrangement is a historical planning reference, not a mandatory invariant.
 
 - **001**: "Print & Execution" — How a program runs top-to-bottom.
 - **002**: "Variables (String)" — Memory and data labeling.

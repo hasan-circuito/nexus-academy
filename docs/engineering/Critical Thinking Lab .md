@@ -292,6 +292,13 @@ Never use fantasy.
 
 Always use realistic engineering situations.
 
+### Scope Horizon & Phase Constraints (Rule 24 Alignment)
+
+Engineering failure questions must remain strictly proportional to the learner's current conceptual horizon:
+
+- **Phase 1 Horizon:** Focus on concrete, local failures directly caused by the evaluated capability — such as readability collapse, formatting errors, type confusion, malformed receipts, or output mismatches.
+- **Prohibited Out-of-Scope Failures:** Prohibit forcing enterprise-tier disasters (e.g., Cross-Site Scripting [XSS], SQL injection, distributed banking race conditions, memory corruption) into beginner syntax lessons unless those architectural domains are part of the learner's mastered scope.
+
 ---
 
 ---

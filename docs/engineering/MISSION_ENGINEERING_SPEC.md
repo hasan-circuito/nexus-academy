@@ -24,6 +24,17 @@ It is the engineering constitution that governs mission generation.
 Every AI collaborator must follow this specification before creating,
 modifying, reviewing, or expanding any mission.
 
+## Authority Boundary
+
+This is the canonical authority for mission-authoring and curriculum-design decisions.
+
+- NADF governs AI behavior, approval, escalation, and collaboration decisions.
+- The Critical Thinking Lab rulebook governs its specialized reflection content.
+- `types/`, mission JSON, the curriculum graph, and executable validators govern runtime data shape and validation.
+- Platform engineering documents govern software implementation, not the learner's mission scope.
+
+If a document from another responsibility appears to redefine mission scope, progression, or the number of new concepts, this specification takes precedence for that mission-authoring question. This does not authorize changing the platform architecture or bypassing executable validation.
+
 ---
 
 ## Core Philosophy
@@ -1458,10 +1469,12 @@ A mission's internal step structure must adapt to its context.
 - If a concept requires deep analysis, it may be broken down into 3-4 sub-steps.
 Never force artificial padding just to reach a specific step count. Every step must serve the learner's cognitive journey.
 
-## Rule 21 — The Hidden State Debug Standard
-Professional developers rarely debug hardcoded syntax errors (e.g., `files = 0`). Real bugs emerge from dynamic system states.
+## Rule 21 — The Hidden State Debug Standard & Domain-Appropriate Debugging
+Professional developers rarely debug trivial, spoon-fed syntax errors (e.g., `files = 0`). Real bugs emerge from dynamic system states or domain-specific specification mismatches.
+- **Scope Restriction (State vs Non-State Missions):** State-lifecycle and mutation debugging (e.g., stale state, premature evaluation, reassignment order) applies ONLY when state mutation, reassignment, or temporal execution flow is part of the mission's declared capability.
+- **Non-State Missions:** For non-state missions (formatting, operators, basic I/O, pure syntax), debugging must target domain-appropriate bugs: syntax/delimiters, type mismatches, missing identifiers, or output/specification mismatches directly tied to the primary capability.
 - **Rule:** Debug challenges must avoid spoon-feeding the error in the description.
-- **Implementation:** The bug should arise from a logical interaction (e.g., `duration = end_day - start_day` where both are 15, resulting in a hidden `0` that causes a ZeroDivisionError).
+- **Implementation:** The bug should arise from a realistic logical interaction (e.g., `duration = end_day - start_day` where both are 15, resulting in a hidden `0` that causes a ZeroDivisionError, or an unformatted raw template string sent to client output).
 - **Goal:** The learner must trace the logic and state flow to discover *why* the bug happened, rather than just reading the description to find the answer.
 
 ## Rule 22 — Organic Need-Based Progression & Authentic Engineering Context
@@ -1477,7 +1490,7 @@ To scale Nexus Academy to 120+ missions without bureaucratic paralysis while mai
 
 ### The 3-Step Agile Pipeline
 1. **Step 1: Brief & Domain Selection (1 min)**:
-   - Identify the single concept, the authentic engineering domain (Rule 22), and the hidden state bug (Rule 21).
+   - Identify the single concept, the authentic engineering domain (Rule 22), and the domain-appropriate bug (Rule 21).
 2. **Step 2: Mission JSON Authoring (15-20 mins)**:
    - Author `data/missions/mission-XXX.json` using dynamic step counts (Rule 20) with deep pedagogical storytelling, hands-on practice, quiz, and reflection.
 3. **Step 3: Automated Quality Gate (Instant CI)**:
@@ -1488,3 +1501,16 @@ Speed must NEVER compromise learning integrity. The following rules are non-nego
 - **Invariant 1 — The Single Concept Law (Strictly 1)**: Every mission introduces exactly ONE new capability (`newConceptCount: 1`). Stuffing 2-3 new topics into a single mission is strictly prohibited.
 - **Invariant 2 — Zero Untaught Syntax Barrier**: A mission must NEVER use any syntax, keyword, or construct that has not been explicitly taught in previous missions (Missions 1 to $N-1$). For example, before control flow missions, `if/else`, loops, and `def` are strictly forbidden in student exercises.
 - **Invariant 3 — Scoring Constitution Preservation**: Every mission must include at least one Quiz step (with valid questions, options, and passing score) and at least one Debug challenge to maintain the non-negotiable 40% Quiz + 25% Debug Understanding Score engine.
+
+## Rule 24 — The Closed-World Invariant & Scope Boundary
+To protect learners from cognitive overload and preserve pedagogical sequencing, every mission must operate strictly within a closed conceptual boundary.
+
+- **A. Primary Capability:** Each mission defines exactly one primary evaluated capability (`newConceptCount: 1`). Every exercise, quiz question, and debug challenge must evaluate this specific capability.
+- **B. Closed Learner Boundary:** Mission $N$ may depend only on previously mastered concepts (Missions 1 to $N-1$) and the current mission's primary capability. Concepts not yet formally introduced are strictly unearned and forbidden from evaluation.
+- **C. Concept Dependency Test (3-Step Filter):**
+  When authoring any mission component, evaluate every concept against this filter:
+  1. *Is it required for the primary capability?*
+  2. *If required, is it already mastered or part of the primary capability?*
+  3. *If not required, is it merely real-world domain context (e.g., sensor, customer, invoice, hospital monitor, bank balance)?*
+  4. *If it introduces an unmastered internal CS/runtime architecture concept (parser internals, AST, bytecode, SQL injection, XSS, concurrency), REJECT/DEFER it.*
+- **D. Mission Mental Model:** One conceptual transformation evaluated. Mastered primitives may be reused. Syntactic ergonomics (e.g., f-strings auto-formatting integers) are permitted conveniences, but secondary independent concepts (e.g., inline arithmetic expressions inside curly braces) must be deferred.

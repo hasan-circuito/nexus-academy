@@ -10,6 +10,24 @@ NEXUS Academy is a personal AI-powered Python learning platform in Bangla. Its p
 
 ---
 
+## Documentation Authority Map
+
+The repository contains several documentation families with different responsibilities. No single document should be loaded as the authority for every task.
+
+| Question | Primary authority | Boundary |
+|---|---|---|
+| What is the current project state and frozen architecture? | `PROJECT_MEMORY.md` and the implemented code | This is a current-state summary, not a mission-authoring rulebook. |
+| How should a mission be designed? | `docs/engineering/MISSION_ENGINEERING_SPEC.md` | Governs mission pedagogy and authoring; it does not define platform runtime architecture. |
+| How should Critical Thinking content be designed? | `docs/engineering/Critical Thinking Lab .md` | Specialized mission-content guidance; NADF still governs AI behavior. |
+| How should an AI decide, communicate, or request approval? | `docs/engineering/Nexus AI Decision & Collaboration Framework (NADF).md` | Governs AI behavior, not the educational content itself. |
+| What data shape is valid? | `types/`, mission JSON, and `scripts/validate-missions.mjs` | Executable schema and validators outrank stale prose descriptions. |
+| How should platform code be changed? | The relevant engineering standard plus the current implementation and tests | Platform engineering documents are not default mission-authoring context. |
+| What is the planned curriculum direction? | `docs/curriculum/CURRICULUM_ROADMAP.md` | Aspirational planning document; published mission data and the curriculum graph define current content. |
+
+When documents disagree, first identify which responsibility owns the question. Do not resolve a mission-content question using a platform-only document, or a runtime-schema question using educational prose.
+
+---
+
 ## Architecture — Four Layers (Strict Dependency Rules)
 
 ```
@@ -175,9 +193,9 @@ Plan → Implement → Self-Review → Test → Validate → Document → **Wait
 ## Non-Negotiable Constraints
 
 1. Architecture is frozen. No changes without explicit approval.
-2. ARCHITECTURE.md is authoritative for engine names and boundaries.
-3. SCORING_SYSTEM.md is authoritative for all formulas.
-4. DATA_SCHEMA.md is authoritative for all data structures.
+2. The architecture described here must be checked against the current implementation; no separate `ARCHITECTURE.md` is currently present.
+3. Scoring behavior is authoritative in `UnderstandingEngine` and its tests; no separate `SCORING_SYSTEM.md` is currently present.
+4. Data structures are authoritative in `types/`, the mission JSON files, and the executable validators; no separate `DATA_SCHEMA.md` is currently present.
 5. Understanding Score computed in one place only: UnderstandingEngine.
 6. Only UnderstandingEngine may emit MISSION_COMPLETED.
 7. AchievementService must NOT subscribe to ACHIEVEMENT_UNLOCKED.

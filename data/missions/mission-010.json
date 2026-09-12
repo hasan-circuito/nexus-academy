@@ -28,7 +28,7 @@
       "learningObjectives": [
         "পুরাতন স্ট্রিং কনক্যাটেনেশন (+) এর সীমাবদ্ধতা ও ক্লান্তি বোঝা",
         "আধুনিক f-string এর গঠন ও কার্যপদ্ধতি শেখা",
-        "স্ট্রিংয়ের ভেতরে কার্লি ব্রেসেস {} দিয়ে ভেরিয়েবল ও সরাসরি গণিত বসানো",
+        "স্ট্রিংয়ের ভেতরে কার্লি ব্রেসেস {} দিয়ে ভেরিয়েবলের মান সুন্দরভাবে বসানো",
         "ক্লিন ও ডাইনামিক ইনভয়েস তৈরির বাস্তব প্রজেক্ট সম্পন্ন করা"
       ],
       "estimatedMinutes": 3
@@ -59,12 +59,12 @@
     {
       "type": "concept",
       "title": "f-string এর গঠন ও জাদু",
-      "content": "f-string হলো পাইথনের সবচেয়ে জনপ্রিয় স্ট্রিং ফরম্যাটিং পদ্ধতি।\n\nএটি ব্যবহারের নিয়ম মাত্র দুটি:\n১. স্ট্রিংয়ের কোটেশনের ঠিক আগে একটি ছোট হাতের `f` বা বড় হাতের `F` লিখতে হবে (যেমন: `f\"...\"`)।\n২. স্ট্রিংয়ের ভেতরে যেখানেই ভেরিয়েবল বা হিসাব বসাতে চাও, সেখানে কার্লি ব্রেসেস `{}` দিতে হবে।\n\nযেমন:\n`name = \"Rahim\"`\n`score = 95`\n`print(f\"{name} scored {score} in Python!\")`\n\nআউটপুট হবে:\n`Rahim scored 95 in Python!`\n\n**{} এর ভেতরে সরাসরি অঙ্ক:**\nতুমি চাইলে {} এর ভেতরে সরাসরি গণিতও করতে পারো:\n`price = 20`\n`qty = 3`\n`print(f\"Total: {price * qty} Taka\")`\n\nএটি মুহূর্তেই গুণ করে `Total: 60 Taka` প্রিন্ট করে দেবে!",
+      "content": "f-string হলো পাইথনের সবচেয়ে জনপ্রিয় স্ট্রিং ফরম্যাটিং পদ্ধতি।\n\nএটি ব্যবহারের নিয়ম মাত্র দুটি:\n১. স্ট্রিংয়ের কোটেশনের ঠিক আগে একটি ছোট হাতের `f` বা বড় হাতের `F` লিখতে হবে (যেমন: `f\"...\"`)।\n২. স্ট্রিংয়ের ভেতরে যেখানেই ভেরিয়েবল বা হিসাব বসাতে চাও, সেখানে কার্লি ব্রেসেস `{}` দিতে হবে।\n\nযেমন:\n`name = \"Rahim\"`\n`score = 95`\n`print(f\"{name} scored {score} in Python!\")`\n\nআউটপুট হবে:\n`Rahim scored 95 in Python!`",
       "keyPoints": [
         "কোটেশনের আগে 'f' লেখা বাধ্যতামূলক (না লিখলে পাইথন কার্লি ব্রেসকে সাধারণ টেক্সট মনে করবে)।",
-        "{} এর ভেতরের ভেরিয়েবলকে str() এ রূপান্তর করতে হয় না, পাইথন নিজে করে নেয়।",
-        "{} এর ভেতর যেকোনো বৈধ পাইথন এক্সপ্রেশন বা অঙ্ক (যেমন: {a + b}) সরাসরি বসানো যায়।",
-        "কোড অনেক ছোট, সুন্দর এবং সহজে পড়ার উপযোগী হয়।"
+        "{} এর ভেতরের ভেরিয়েবলকে str() এ রূপান্তর করতে হয় না, পাইথন নিজে করে নেয়।",
+        "{} এর ভেতরের ভেরিয়েবল যেকোনো টাইপের হতে পারে (str, int, float) — পাইথন নিজে স্বয়ংক্রিয়ভাবে str()-এ রূপান্তর করে নেয়।",
+        "কোড অনেক ছোট, সুন্দর এবং সহজে পড়ার উপযোগী হয়।"
       ],
       "whyCallout": "আধুনিক পাইথন সফটওয়্যার ডেভেলপমেন্টে ৯০% টেক্সট মেসেজ ও ইনভয়েস f-string দিয়ে তৈরি করা হয়।",
       "whenToUse": "যখনই কোনো টেক্সটের ভেতরে ভেরিয়েবলের মান বা হিসাব করা ফলাফল সুন্দরভাবে দেখাতে চাও।",
@@ -80,17 +80,17 @@
           {
             "icon": "Code2",
             "label": "১. 'f' ফ্ল্যাগ ডিটেকশন",
-            "description": "কোটেশনের শুরুতে f দেখে পাইথন সাধারণ স্ট্রিংয়ের বদলে ডাইনামিক স্ট্রিং পার্সার চালু করে।"
+            "description": "কোটেশনের শুরুতে f দেখে পাইথন জানে যে কার্লি ব্রেসগুলো ভেরিয়েবলের স্লট হিসেবে ব্যবহৃত হবে।"
           },
           {
             "icon": "Binary",
             "label": "২. কার্লি ব্রেস {} স্ক্যান",
-            "description": "টেক্সটের ভেতর কোথায় কোথায় {} আছে তা স্ক্যান করে এবং সেগুলোকে এক্সপ্রেশন হিসেবে চিহ্নিত করে।"
+            "description": "টেক্সটের ভেতর কোথায় কোথায় {} আছে তা খুঁজে বের করে এবং সেই স্থানে ভেরিয়েবলের মান বসানোর প্রস্তুতি নেয়।"
           },
           {
             "icon": "Cpu",
             "label": "৩. মান মূল্যায়ন (Evaluation)",
-            "description": "মেমোরি থেকে ভেরিয়েবলের মান বের করে বা {} এর ভেতর থাকা অঙ্ক ({price * qty}) সম্পন্ন করে।"
+            "description": "মেমোরি থেকে সেই ভেরিয়েবলের বর্তমান মান বের করে আনে।"
           },
           {
             "icon": "PlayCircle",
@@ -99,7 +99,7 @@
           }
         ]
       },
-      "caption": "f-string এর পার্সিং প্রক্রিয়া: কোড ➡️ {} স্ক্যান ➡️ ভেরিয়েবলের মান বসানো ➡️ ফাইনাল মেসেজ",
+      "caption": "f-string এর কাজের ধারা: কোড ➡️ {} স্লট খোঁজা ➡️ ভেরিয়েবলের মান বসানো ➡️ ফাইনাল মেসেজ",
       "diagram": "f\"Customer: {customer_name} | Due: ${total_due}\"\n    │              │                  │\n    │              │                  └─► total_due এর মান বসে গেল ($500)\n    │              └────────────────────► customer_name এর মান বসে গেল (Tanvir)\n    └───────────────────────────────────► পাইথনকে সিগন্যাল দিল: {} গুলোকে মূল্যায়ন করো!"
     },
     {
@@ -107,19 +107,19 @@
       "title": "স্বয়ংক্রিয় রসিদ জেনারেটর",
       "explanation": "লক্ষ্য করো কীভাবে মাত্র এক লাইনের f-string দিয়ে পুরো শপিং রসিদটি পরিষ্কারভাবে তৈরি করা হয়েছে।",
       "language": "python",
-      "code": "# কাস্টমার ও প্রোডাক্ট ডেটা\ncustomer = \"Tanvir Hasan\"\nproduct = \"Mechanical Keyboard\"\nprice = 3500\nquantity = 2\n\n# f-string দিয়ে ডায়নামিক ইনভয়েস তৈরি\ninvoice = f\"Receipt for {customer}: Bought {quantity} {product}(s). Grand Total = {price * quantity} BDT.\"\n\nprint(invoice)",
+      "code": "# কাস্টমার ও প্রোডাক্ট ডেটা\ncustomer = \"Tanvir Hasan\"\nproduct = \"Mechanical Keyboard\"\nprice = 3500\nquantity = 2\ntotal = price * quantity\n\n# f-string দিয়ে ডায়নামিক ইনভয়েস তৈরি\ninvoice = f\"Receipt for {customer}: Bought {quantity} {product}(s). Grand Total = {total} BDT.\"\n\nprint(invoice)",
       "output": "Receipt for Tanvir Hasan: Bought 2 Mechanical Keyboard(s). Grand Total = 7000 BDT.",
       "annotations": [
         {
-          "lineNumber": 8,
-          "explanation": "স্ট্রিংয়ের শুরুতে 'f' দেওয়া হয়েছে যাতে পাইথন ভেতরে থাকা {} চিহ্নগুলোকে ভেরিয়েবল হিসেবে চেনে।"
+          "lineNumber": 9,
+          "explanation": "স্ট্রিংয়ের শুরুতে 'f' দেওয়া হয়েছে যাতে পাইথন ভেতরে থাকা {} চিহ্নগুলোকে ভেরিয়েবল স্লট হিসেবে চেনে।"
         },
         {
-          "lineNumber": 8,
-          "explanation": "{price * quantity} এর ভেতরে পাইথন সরাসরি গুণ সম্পন্ন করে আসল ফলাফল (7000) বসিয়ে দিয়েছে।"
+          "lineNumber": 9,
+          "explanation": "{total} এর জায়গায় পাইথন মেমোরি থেকে total ভেরিয়েবলের মান (7000) এনে বসিয়ে দিয়েছে।"
         }
       ],
-      "postExplanation": "আগে এই এক লাইন লিখতে গিয়ে + ও str() দিয়ে ৪ বার কাটাকুটি করতে হতো। f-string কোডকে কত সংক্ষিপ্ত ও নিরাপদ করে তুলেছে দেখো!"
+      "postExplanation": "আগে এই এক লাইন লিখতে গিয়ে + ও str() দিয়ে ৪ বার কাটাকুটি করতে হতো। f-string কোডকে কত সংক্ষিপ্ত ও নিরাপদ করে তুলেছে দেখো!"
     },
     {
       "type": "eee_example",
@@ -154,16 +154,16 @@
     {
       "type": "practice",
       "title": "অনুশীলনী ২: রেস্তোরাঁর খাবারের বিল",
-      "prompt": "একটি রেস্তোরাঁর বিল ক্যালকুলেটর বানাও:\n\nধাপ ১: ভেরিয়েবল `item` = \"Burger\", `price` = 180, এবং `quantity` = 3 তৈরি করো।\nধাপ ২: f-string এর ভেতরে সরাসরি গুণ ({price * quantity} বা {quantity * price}) করে প্রিন্ট করো:\n`3 Burger(s) total bill is 540 Taka`",
-      "starterCode": "# ধাপ ১: item, price এবং quantity ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: f-string এর ভেতরে {quantity * price} গুণ করে বিল প্রিন্ট করো\n",
+      "prompt": "একটি রেস্তোরাঁর বিল ক্যালকুলেটর বানাও:\n\nধাপ ১: ভেরিয়েবল `item` = \"Burger\", `price` = 180, এবং `quantity` = 3 তৈরি করো।\nধাপ ২: মোট বিল হিসাব করে `total` ভেরিয়েবলে রাখো (total = price * quantity)।\nধাপ ৩: f-string ব্যবহার করে প্রিন্ট করো: `3 Burger(s) total bill is 540 Taka`",
+      "starterCode": "# ধাপ ১: item, price এবং quantity ভেরিয়েবল তৈরি করো\n\n# ধাপ ২: মোট বিল হিসাব করো\ntotal = price * quantity\n\n# ধাপ ৩: f-string ব্যবহার করে প্রিন্ট করো\n",
       "hints": [
-        "f-string এর ভেতরে কার্লি ব্রেসেসে সরাসরি অঙ্ক করা যায়: `{quantity * price}`",
-        "`print(f\"{quantity} {item}(s) total bill is {price * quantity} Taka\")` লিখে রান করো।"
+        "প্রথমে total = price * quantity দিয়ে মোট বিল হিসাব করো।",
+        "`print(f\"{quantity} {item}(s) total bill is {total} Taka\")` লিখে রান করো।"
       ],
-      "displayHint": "print(f\"{quantity} {item}(s) total bill is {price * quantity} Taka\")",
+      "displayHint": "print(f\"{quantity} {item}(s) total bill is {total} Taka\")",
       "expectedOutput": "3 Burger(s) total bill is 540 Taka\n",
-      "solution": "item = \"Burger\"\nprice = 180\nquantity = 3\nprint(f\"{quantity} {item}(s) total bill is {price * quantity} Taka\")",
-      "solutionExplanation": "f-string এর অন্যতম বড় সুবিধা হলো {} এর ভেতরে আলাদা ভেরিয়েবল না বানিয়ে সরাসরি গুণ করা যায়।"
+      "solution": "item = \"Burger\"\nprice = 180\nquantity = 3\ntotal = price * quantity\nprint(f\"{quantity} {item}(s) total bill is {total} Taka\")",
+      "solutionExplanation": "f-string এর ভেতরে {total} বসিয়ে আগে থেকে হিসাব করা মোট বিলটি সুন্দরভাবে মেসেজের মধ্যে দেখানো হয়েছে।"
     },
     {
       "type": "practice",
@@ -210,16 +210,16 @@
           "explanation": "f-string কোডকে ক্লিন ও রিডেবল করে এবং টাইপ কনভার্সন (str) স্বয়ংক্রিয়ভাবে হ্যান্ডেল করে।"
         },
         {
-          "question": "নিচের কোন f-string টি সম্পূর্ণ সঠিক ও বৈধ?",
+          "question": "নিচের কোন f-string টি সম্পূর্ণ সঠিক ও বৈধ উপায়ে ভেরিয়েবল ইন্টারপোলেশন করে?",
           "difficulty": "medium",
           "options": [
-            "f\"Total is {price * 2}\"",
-            "\"Total is {price * 2}\"f",
-            "format(\"Total is price * 2\")",
-            "f(Total is {price * 2})"
+            "f\"Total is {amount}\"",
+            "\"Total is {amount}\"f",
+            "format(\"Total is amount\")",
+            "f(Total is {amount})"
           ],
           "correctOptionIndex": 0,
-          "explanation": "কোটেশনের ঠিক বাইরে বামপাশে 'f' থাকতে হয় এবং ভেতরে কার্লি ব্রেস {} এর মধ্যে এক্সপ্রেশন থাকতে হয়।"
+          "explanation": "কোটেশনের ঠিক বাইরে বামপাশে 'f' থাকতে হয় এবং ভেতরে কার্লি ব্রেস {} এর মধ্যে ভেরিয়েবলের নাম থাকতে হয়।"
         }
       ]
     },
@@ -240,19 +240,18 @@
     },
     {
       "type": "debug_challenge",
-      "title": "বাগ ২: ভুল সময়ে হিসাবের ফাঁদ (Hidden State Bug)",
-      "scenario": "একটি ক্যাশ রেজিস্টার সফটওয়্যারে ডিসকাউন্ট কুপন যুক্ত করার কথা ছিল। কিন্তু কোডে রসিদের স্ট্রিংটি এমন এক জায়গায় তৈরি করা হয়েছে যখন ডিসকাউন্টের মান এখনও ০ ছিল! ফলে কাস্টমার কুপন কোড ব্যবহার করলেও রসিদে কোনো ডিসকাউন্ট দেখাচ্ছে না। স্টেট ফ্লো ট্রেস করে কোডটি ঠিক করো।",
-      "buggyCode": "subtotal = 2000\ndiscount = 0\n\n# ইনভয়েস মেসেজ আগে তৈরি করে ফেলা হয়েছে\ninvoice = f\"Payable: {subtotal - discount} BDT\"\n\n# পরে কুপন ডিসকাউন্ট আপডেট করা হয়েছে\ndiscount = 300\n\nprint(invoice)",
-      "errorMessage": "Hidden State Logic Bug: Invoice calculated with stale initial state (Discount 0 instead of 300)",
+      "title": "বাগ ২: ইনভয়েস মেসেজ অসম্পূর্ণ!",
+      "scenario": "একটি ডেলিভারি সার্ভিসের সিস্টেমে গ্রাহককে পাঠানো ট্র্যাকিং মেসেজে ডেলিভারি দিন সংখ্যা দেখাচ্ছে না — হুবহু {days_left} টেক্সট চলে যাচ্ছে। ডেভেলপার ভুলে গেছেন ঠিক কোথায় 'f' লিখতে হয়। কোডটি ফিক্স করো।",
+      "buggyCode": "customer = \"Fatima\"\norder_id = 5521\ndays_left = 3\n\ntracking = \"Order #{order_id} for {customer} arrives in {days_left} days.\"\nprint(tracking)",
+      "errorMessage": "Logical Bug: Variables not interpolated (literal curly braces printed instead of values)",
       "bugLine": 5,
       "bugType": "logical",
       "hints": [
-        "পাইথন কোড উপর থেকে নিচে ধারাবাহিকভাবে এক্সিকিউট হয়।",
-        "লাইন ৫ যখন চলেছে, তখন discount এর মান কত ছিল? ০ নাকি ৩০০?",
-        "ডিসকাউন্ট পুরোপুরি হিসাব করার পর ইনভয়েস স্ট্রিং তৈরি করো।"
+        "আউটপুটে কি {order_id}, {customer}, {days_left} হুবহু দেখাচ্ছে?",
+        "পাইথনকে বোঝাতে হবে এটি f-string। কোটেশনের শুরুতে 'f' বসাও।"
       ],
-      "fixedCode": "subtotal = 2000\ndiscount = 0\n\n# আগে কুপন ডিসকাউন্ট আপডেট করো\ndiscount = 300\n\n# এরপর সর্বশেষ স্টেট দিয়ে ইনভয়েস তৈরি করো\ninvoice = f\"Payable: {subtotal - discount} BDT\"\n\nprint(invoice)",
-      "explanation": "f-string রান হওয়ার মুহূর্তেই ভেরিয়েবলের তাৎক্ষণিক মান নিয়ে টেক্সট তৈরি করে। তাই সব হিসাব-নিকাশ সম্পন্ন হওয়ার পরেই f-string তৈরি করতে হয়।"
+      "fixedCode": "customer = \"Fatima\"\norder_id = 5521\ndays_left = 3\n\ntracking = f\"Order #{order_id} for {customer} arrives in {days_left} days.\"\nprint(tracking)",
+      "explanation": "কোটেশনের আগে 'f' যোগ করায় পাইথন {order_id}, {customer} ও {days_left} কে আসল ডেটা দিয়ে রিপ্লেস করেছে — এটাই f-string variable interpolation এর কাজ।"
     },
     {
       "type": "reflection",
@@ -266,16 +265,16 @@
           "beyondProgramming": "মানুষের স্বাভাবিক যোগাযোগের মতো—বাক্যের মাঝে স্বাভাবিকভাবে তথ্য বসানো টুকরো টুকরো শব্দ জোড়া লাগানোর চেয়ে সবসময়ই বেশি কার্যকর।"
         },
         {
-          "question": "f-string এর ভেতরে সরাসরি জটিল হিসাব (যেমন: {a + b * c / d}) লেখা কি ভালো অভ্যাস, নাকি আগে ভেরিয়েবলে হিসাব করে রাখা ভালো?",
-          "expertThinking": "ছোটখাটো সাধারণ গুণ বা যোগ (যেমন: {price * qty}) f-string এর ভেতর লেখা চমৎকার। কিন্তু জটিল লজিক ভেতরে লিখলে f-string এর Readability নষ্ট হয়ে যায় এবং কোড মেইনটেইন করা কঠিন হয়ে পড়ে। জটিল হিসাব আগে আলাদা ভেরিয়েবলে সম্পন্ন করে তারপর f-string এ বসানোই ক্লিন কোডের নিয়ম।",
-          "realWorldEngineering": "প্রফেশনাল সফটওয়্যারে সিঙ্গেল রেসপনসিবিলিটি প্রিন্সিপাল মানা হয়—হিসাব করার কাজ গণিতের, আর ডিসপ্লে করার কাজ স্ট্রিংয়ের। দুটিকে অতিরিক্ত মেশালে ডিবাগিং কঠিন হয়।",
-          "beyondProgramming": "রান্না করার কাজ রান্নাঘরে শেষ করে টেবিলে সাজিয়ে দেওয়া উচিত; ডাইনিং টেবিলে বসে সবজি কাটা বিশৃঙ্খলা তৈরি করে।"
+          "question": "f-string ব্যবহার করার সময় ভেরিয়েবলের নাম ভুল টাইপ করলে কী ঘটে? (যেমন: {customar} এর বদলে {customer} লেখার কথা ছিল)",
+          "expertThinking": "পাইথন {} এর ভেতরে ওই নামের কোনো ভেরিয়েবল না পেলে সাথে সাথে NameError দেয়। এটি আসলে ভালো — কারণ ভুলটি লুকিয়ে থাকে না, প্রোগ্রাম রান করেই ধরা পড়ে।",
+          "realWorldEngineering": "প্রফেশনাল কোডে ভেরিয়েবলের নামকরণ সুস্পষ্ট ও সামঞ্জস্যপূর্ণ রাখলে f-string এ টাইপো বাগ এড়ানো সহজ হয়।",
+          "beyondProgramming": "ঠিক যেমন কারো নাম ভুল বললে সে সাড়া দেয় না, পাইথনও ভুল ভেরিয়েবল নামে সাড়া দেয় না।"
         },
         {
-          "question": "যদি কোনো মেসেজে ইউজারের ইনপুট সরাসরি f-string দিয়ে ব্রাউজার বা ডাটাবেজে দেখানো হয়, তবে সেখানে কী ধরনের নিরাপত্তা ঝুঁকি হতে পারে?",
-          "expertThinking": "ইউজার যদি ইনপুট হিসেবে কোনো ক্ষতিকর স্ক্রিপ্ট বা কোড টাইপ করে, তবে তা সরাসরি কোনো সিকিউরিটি ফিল্টার ছাড়া এক্সিকিউট করলে Injection Attack বা Cross-Site Scripting (XSS) হতে পারে।",
-          "realWorldEngineering": "বাস্তব সফটওয়্যার সিস্টেমে ইউজারের যেকোনো ডায়নামিক ডেটাকে f-string এ বসানোর আগে স্যানিটাইজ (Sanitize) বা ভ্যালিডেট করতে হয়।",
-          "beyondProgramming": "ঘরের দরজায় অপরিচিত কাউকে ঢুকতে দেওয়ার আগে যেমন পরিচয় পরীক্ষা করা দরকার, সফটওয়্যারেও ইউজারের ডেটাকে বিশ্বাস করার আগে চেক করতে হয়।"
+          "question": "দুটো মেথডের মধ্যে কোনটি বেশি রিডেবল এবং কেন? (A) print(\"Hi \" + name + \"! Score: \" + str(score)) (B) print(f\"Hi {name}! Score: {score}\")",
+          "expertThinking": "(B) বেশি রিডেবল কারণ পুরো বাক্যটি স্বাভাবিক ইংরেজির মতো পড়া যায়। (A)-তে + এবং str() বারবার ব্যবহারে বাক্যের অর্থ বুঝতে মনোযোগ কমে যায় এবং ছোট ভুলে (যেমন str() ভুলে যাওয়া) TypeError হওয়ার ঝুঁকি থাকে।",
+          "realWorldEngineering": "কোড লেখার চেয়ে পড়ার কাজ বেশি হয়। f-string ব্যবহারে কোড রিভিউ এবং মেইনটেন্যান্স খরচ কমে।",
+          "beyondProgramming": "পরিষ্কার যোগাযোগ সবসময় টুকরো টুকরো তথ্য জোড়া লাগানোর চেয়ে কার্যকর।"
         }
       ]
     },
@@ -285,9 +284,9 @@
       "summary": "তুমি সফলভাবে পাইথন f-strings আয়ত্ত করেছ এবং ম্যানুয়াল Concatenation ছাড়াই ক্লিন ও ডায়নামিক আউটপুট এবং ইনভয়েস তৈরি করা শিখেছ!",
       "keyLearnings": [
         "f-string ব্যবহারের আধুনিক সিনট্যাক্স: f\"...{variable}...\"",
-        "নাম্বার বা এক্সপ্রেশন সরাসরি টেক্সটের মাঝে ফরম্যাট করার কৌশল (কোনো str() কল ছাড়া)",
+        "নাম্বার ভেরিয়েবল সরাসরি টেক্সটের মাঝে ফরম্যাট করার কৌশল (কোনো str() কল ছাড়া)",
         "বাস্তব ইনভয়েস ও রসিদ তৈরির মতো সমস্যা ক্লিন কোডে সমাধানের উপায়",
-        "f-string এর ভেতরে পরিমিত ক্যালকুলেশন ও কোডের Readability বজায় রাখার নিয়ম"
+        "f-string ব্যবহারের মাধ্যমে কোডের Readability ও পরিচ্ছন্নতা বজায় রাখার নিয়ম"
       ],
       "currentLimitation": {
         "title": "বর্তমান সল্যুশনের টেকনিক্যাল সীমাবদ্ধতা",

@@ -506,7 +506,7 @@
       "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
       "clientIndustry": "E-Commerce",
       "painPointTrigger": "Formatting multi-variable messages and receipts with manual str() wrapping and '+' concatenation is unreadable, fragile, and error-prone.",
-      "newCapability": "Modern f-strings (Formatted String Literals) with embedded expressions",
+      "newCapability": "Modern f-strings (Formatted String Literals) variable interpolation",
       "newConceptCount": 1,
       "prerequisite": "009",
       "status": "published",
@@ -533,8 +533,7 @@
         "input_function",
         "string_concatenation",
         "dynamic_numeric_input",
-        "f_strings",
-        "embedded_expressions"
+        "f_strings"
       ],
       "forbiddenSyntax": [
         "For",
@@ -600,7 +599,6 @@
         "string_concatenation",
         "dynamic_numeric_input",
         "f_strings",
-        "embedded_expressions",
         "booleans",
         "bool_literals"
       ],
@@ -669,7 +667,6 @@
         "string_concatenation",
         "dynamic_numeric_input",
         "f_strings",
-        "embedded_expressions",
         "booleans",
         "bool_literals",
         "comparison_operators",
