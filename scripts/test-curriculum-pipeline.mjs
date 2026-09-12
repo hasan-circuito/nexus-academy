@@ -20,7 +20,6 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 
 const CURRICULUM_GRAPH_PATH = path.join(ROOT_DIR, 'data', 'curriculum', 'curriculum-graph.json');
 const MISSIONS_DIR = path.join(ROOT_DIR, 'data', 'missions');
-const MANIFEST_PATH = path.join(MISSIONS_DIR, 'manifest.json');
 const PIPELINE_SCRIPT = path.join(ROOT_DIR, 'scripts', 'curriculum-pipeline.mjs');
 const VALIDATE_SCRIPT = path.join(ROOT_DIR, 'scripts', 'validate-missions.mjs');
 

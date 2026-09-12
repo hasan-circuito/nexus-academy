@@ -1,9 +1,7 @@
-﻿// scripts/test-error-diagnostics.mjs
+// scripts/test-error-diagnostics.mjs
 // NEXUS Academy — Contextual Error Diagnostic Engine Automated Test Suite
 
 import { createRequire } from 'node:module';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const jiti = require('jiti')(process.cwd());

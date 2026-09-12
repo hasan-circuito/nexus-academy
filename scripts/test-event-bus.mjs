@@ -82,9 +82,6 @@ eventTypes.forEach(type => {
 console.log('1️⃣ Triggering Phase 1: MISSION_COMPLETING for Mission 001...');
 
 mockEventBus.subscribe('MISSION_COMPLETING', (event) => {
-  const p = dataService.getProgress();
-  const mp = p.missions[event.payload.missionId];
-  
   const score = 100;
   const xpEarned = Math.round((score / 100) * 400);
 

@@ -4,7 +4,7 @@ const nextTsConfig = nextConfig.find((c) => c.name === "next/typescript");
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "node_modules/**", "scratch/**", "scripts/**", "out/**", "public/**"],
+    ignores: [".next/**", "out/**", "build/**", "scratch/**"],
   },
   ...nextConfig,
   {
