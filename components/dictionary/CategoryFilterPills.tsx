@@ -24,7 +24,7 @@ export const CategoryFilterPills: React.FC<CategoryFilterPillsProps> = ({
   bookmarkCount = 0,
 }) => {
   return (
-    <div className="flex items-center justify-center gap-2 overflow-x-auto py-2 no-scrollbar">
+    <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto py-2 px-4 no-scrollbar scroll-smooth w-full">
       {categories.map((cat) => {
         const isSelected = selectedCategory === cat.id;
         const isBookmark = cat.id === 'bookmarked';
@@ -34,7 +34,7 @@ export const CategoryFilterPills: React.FC<CategoryFilterPillsProps> = ({
             key={cat.id}
             type="button"
             onClick={() => onSelectCategory(cat.id)}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap cursor-pointer border ${
+            className={`flex items-center shrink-0 gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap cursor-pointer border ${
               isSelected
                 ? 'bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20 scale-105'
                 : 'bg-card/80 hover:bg-card text-muted-foreground hover:text-foreground border-border hover:border-primary/40'

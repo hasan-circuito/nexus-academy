@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Volume2, VolumeX, Flame, Star } from 'lucide-react';
+import { Volume2, VolumeX, Flame, Star, Menu } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
 import { useProgress } from '@/hooks/useProgress';
 import { cn } from '@/lib/utils';
@@ -35,10 +35,25 @@ export function TopNavbar() {
     updateSettings({ soundEnabled: !settings.soundEnabled });
   };
 
+  const handleToggleSidebar = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('nexus_toggle_sidebar'));
+    }
+  };
+
   return (
     <header className="sticky top-0 z-30 w-full h-14 bg-surface/80 backdrop-blur-md border-b border-border/80 px-4 sm:px-6 flex items-center justify-between transition-colors duration-300">
-      {/* Left: Page Title / Breadcrumb */}
-      <div className="flex items-center gap-3">
+      {/* Left: Mobile Hamburger + Page Title / Breadcrumb */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        <button
+          type="button"
+          onClick={handleToggleSidebar}
+          className="lg:hidden p-2 -ml-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-hover transition-colors"
+          aria-label="Toggle navigation menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold text-foreground tracking-tight">{title}</span>

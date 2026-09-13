@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Noto_Sans_Bengali, Hind_Siliguri, Geist } from '
 import './globals.css';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TopNavbar } from '@/components/layout/TopNavbar';
+import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { QuickConceptDrawer } from '@/components/dictionary/QuickConceptDrawer';
 import { cn } from "@/lib/utils";
 
@@ -127,10 +128,13 @@ export default function RootLayout({
             <TopNavbar />
 
             {/* Main content area */}
-            <main className="flex-1 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto pb-16 lg:pb-0">
               {children}
             </main>
           </div>
+
+          {/* Mobile Bottom Navigation Bar */}
+          <MobileBottomNav />
 
           {/* Global In-Situ Slide-over Concept Drawer */}
           <QuickConceptDrawer />

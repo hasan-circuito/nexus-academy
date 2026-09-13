@@ -28,7 +28,7 @@ export default function ProgressPage() {
   const practiceCompletion = numCompleted > 0 ? '100' : '--';
 
   return (
-    <div className="p-6 lg:p-10 max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
+    <div className="p-6 lg:p-10 max-w-6xl mx-auto space-y-8 pb-24 lg:pb-10 animate-in fade-in duration-700">
       <section className="space-y-2">
         <h1 className="text-3xl font-bold text-foreground">Your Journey</h1>
         <p className="text-muted-foreground">Track your learning progress and mastery.</p>

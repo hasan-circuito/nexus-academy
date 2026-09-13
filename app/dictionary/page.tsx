@@ -32,7 +32,7 @@ export default function DictionaryPage() {
   };
 
   return (
-    <div className="min-h-full p-4 sm:p-6 lg:p-10 max-w-6xl mx-auto space-y-8 animate-in fade-in duration-300">
+    <div className="min-h-full p-4 sm:p-6 lg:p-10 max-w-6xl mx-auto space-y-8 pb-20 lg:pb-10 animate-in fade-in duration-300">
       {/* Header with Search & Suggestions */}
       <DictionaryHeader
         searchQuery={searchQuery}

@@ -14,7 +14,7 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // ============================================================
 // Icon registry — maps icon string names to Lucide components.
@@ -35,19 +35,42 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  const [desktopCollapsed, setDesktopCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Focus Mode: collapse when inside a mission step
+  // Focus Mode: collapse desktop when inside a mission step
   const isMissionStep = /^\/mission\/\w+\/step\/\d+/.test(pathname);
-  const isEffectivelyCollapsed = collapsed || isMissionStep;
+  const isEffectivelyCollapsedDesktop = desktopCollapsed || isMissionStep;
+
+  // Listen to mobile toggle events from TopNavbar or other components
+  useEffect(() => {
+    const handleToggle = () => setMobileOpen((prev) => !prev);
+    const handleOpen = () => setMobileOpen(true);
+    const handleClose = () => setMobileOpen(false);
+
+    window.addEventListener('nexus_toggle_sidebar', handleToggle);
+    window.addEventListener('nexus_open_sidebar', handleOpen);
+    window.addEventListener('nexus_close_sidebar', handleClose);
+
+    return () => {
+      window.removeEventListener('nexus_toggle_sidebar', handleToggle);
+      window.removeEventListener('nexus_open_sidebar', handleOpen);
+      window.removeEventListener('nexus_close_sidebar', handleClose);
+    };
+  }, []);
+
+  // Close mobile drawer on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <>
-      {/* Mobile overlay */}
-      {!isEffectivelyCollapsed && (
+      {/* Mobile backdrop overlay */}
+      {mobileOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setCollapsed(true)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden animate-in fade-in duration-200"
+          onClick={() => setMobileOpen(false)}
         />
       )}
 
@@ -55,22 +78,42 @@ export function Sidebar() {
         className={cn(
           'flex flex-col h-screen bg-sidebar-bg border-r border-sidebar-border',
           'transition-all duration-300 ease-out z-50',
-          'fixed lg:relative',
-          isEffectivelyCollapsed
-            ? 'w-16 -translate-x-full lg:translate-x-0'
-            : 'w-[260px] translate-x-0',
+          // Position: fixed drawer on mobile, relative flow on desktop
+          'fixed top-0 bottom-0 left-0 lg:relative',
+          // Mobile open/close transition:
+          mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0',
+          // Width: 280px on mobile drawer, responsive width on desktop
+          isEffectivelyCollapsedDesktop
+            ? 'w-[280px] lg:w-16'
+            : 'w-[280px] lg:w-[260px]',
         )}
       >
-        {/* Logo area */}
-        <div className="flex items-center gap-3 px-4 h-14 border-b border-sidebar-border shrink-0">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10">
-            <Zap className="w-4 h-4 text-primary" />
-          </div>
-          {!isEffectivelyCollapsed && (
-            <span className="text-sm font-semibold text-foreground tracking-tight">
+        {/* Header / Logo area */}
+        <div className="flex items-center justify-between px-4 h-14 border-b border-sidebar-border shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10">
+              <Zap className="w-4 h-4 text-primary" />
+            </div>
+            {/* Show title on mobile OR when desktop is expanded */}
+            <span
+              className={cn(
+                'text-sm font-semibold text-foreground tracking-tight',
+                isEffectivelyCollapsedDesktop ? 'block lg:hidden' : 'block'
+              )}
+            >
               NEXUS Academy
             </span>
-          )}
+          </div>
+
+          {/* Mobile close button (X) */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="p-1.5 rounded-lg text-foreground-faint hover:text-foreground hover:bg-sidebar-hover lg:hidden transition-colors"
+            aria-label="Close navigation"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Navigation */}
@@ -85,6 +128,7 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setMobileOpen(false)}
                 className={cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium',
                   'transition-colors duration-200',
@@ -101,7 +145,14 @@ export function Sidebar() {
                     )}
                   />
                 )}
-                {!isEffectivelyCollapsed && <span>{item.label}</span>}
+                {/* Always show label on mobile drawer, hide only when desktop is collapsed */}
+                <span
+                  className={cn(
+                    isEffectivelyCollapsedDesktop ? 'inline lg:hidden' : 'inline'
+                  )}
+                >
+                  {item.label}
+                </span>
               </Link>
             );
           })}
@@ -110,28 +161,14 @@ export function Sidebar() {
         {/* Collapse toggle (desktop only) */}
         <div className="hidden lg:flex items-center justify-center p-3 border-t border-sidebar-border">
           <button
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={() => setDesktopCollapsed(!desktopCollapsed)}
             className="p-2 rounded-lg text-foreground-faint hover:text-foreground hover:bg-sidebar-hover transition-colors"
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            aria-label={desktopCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
-            {collapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
+            {desktopCollapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
           </button>
         </div>
       </aside>
-
-      {/* Mobile toggle button (visible when sidebar is collapsed/hidden) */}
-      <button
-        onClick={() => setCollapsed(false)}
-        className={cn(
-          'fixed top-3 left-3 z-30 p-2 rounded-lg',
-          'bg-surface-elevated text-foreground-muted hover:text-foreground',
-          'lg:hidden',
-          !isEffectivelyCollapsed && 'hidden',
-        )}
-        aria-label="Open navigation"
-      >
-        <Menu className="w-5 h-5" />
-      </button>
     </>
   );
 }
