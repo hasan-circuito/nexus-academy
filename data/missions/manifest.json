@@ -132,5 +132,16 @@
       "estimatedMinutes": 25,
       "difficulty": "beginner"
     }
+    ,{
+      "id": "013",
+      "title": "Nexus Progress Report",
+      "banglaTitle": "নেক্সাস প্রগ্রেস রিপোর্ট",
+      "banglaSubtitle": "আগের শেখা Python দিয়ে একটি সম্পূর্ণ ছোট সফটওয়্যার বানাও",
+      "status": "published",
+      "prerequisite": "012",
+      "primaryConcept": "Review & Integration (No New Concept)",
+      "estimatedMinutes": 35,
+      "difficulty": "beginner"
+    }
   ]
 }

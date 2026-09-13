@@ -703,5 +703,51 @@
         "Match"
       ]
     }
+    ,{
+      "id": "013",
+      "title": "Nexus Progress Report",
+      "banglaTitle": "নেক্সাস প্রগ্রেস রিপোর্ট",
+      "banglaSubtitle": "আগের শেখা Python দিয়ে একটি সম্পূর্ণ ছোট সফটওয়্যার বানাও",
+      "clientIndustry": "Education Technology",
+      "painPointTrigger": "Nexus can store and calculate learner progress, but the learner still needs one readable report that combines the existing data into a useful picture.",
+      "newCapability": "Review and integration of previously mastered capabilities",
+      "newConceptCount": 0,
+      "missionKind": "review",
+      "prerequisite": "012",
+      "status": "published",
+      "learnerKnownScope": [
+        "print",
+        "variable_assignment",
+        "string_literals",
+        "integer_literals",
+        "variable_referencing",
+        "storage_vs_usage",
+        "variable_reassignment",
+        "state_mutation",
+        "string_type",
+        "integer_type",
+        "int_casting",
+        "str_casting",
+        "addition_op",
+        "subtraction_op",
+        "multiplication_op",
+        "assignment_pipeline",
+        "division_op",
+        "float_type",
+        "zero_division_error",
+        "input_function",
+        "string_concatenation",
+        "dynamic_numeric_input",
+        "f_strings",
+        "booleans",
+        "bool_literals",
+        "comparison_operators",
+        "equality_operator",
+        "inequality_operator",
+        "relational_operators",
+        "review_integration"
+      ],
+      "forbiddenSyntax": ["For", "AsyncFor", "While", "FunctionDef", "AsyncFunctionDef", "ClassDef", "Return", "Yield", "YieldFrom", "If", "IfExp", "List", "Dict", "Set", "Tuple", "ListComp", "DictComp", "SetComp", "GeneratorExp", "Import", "ImportFrom", "Try", "With", "AsyncWith", "Lambda", "Match"]
+    }
   ]
 }

@@ -304,7 +304,9 @@
       "prerequisiteIds": [
         "011"
       ],
-      "enablesIds": [],
+        "enablesIds": [
+          "013"
+        ],
       "relatedIds": [],
       "topicSlug": "comparison_operators_evaluating_expressions_to_booleans"
     },
@@ -314,5 +316,22 @@
       "inequality_operator",
       "relational_operators"
     ]
+  }
+  ,{
+    "id": "013",
+    "title": "Nexus Progress Report",
+    "banglaTitle": "নেক্সাস প্রগ্রেস রিপোর্ট",
+    "banglaSubtitle": "আগের শেখা Python দিয়ে একটি সম্পূর্ণ ছোট সফটওয়্যার বানাও",
+    "description": "Integrate the first twelve Python capabilities by building a learner progress report",
+    "status": "locked",
+    "estimatedMinutes": 35,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["012"],
+      "enablesIds": [],
+      "relatedIds": [],
+      "topicSlug": "review_and_integration"
+    },
+    "tags": ["python", "review", "integration", "variables", "input", "arithmetic", "booleans", "comparisons"]
   }
 ]

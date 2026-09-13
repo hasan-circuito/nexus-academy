@@ -1,0 +1,201 @@
+{
+  "id": "013",
+  "title": "Nexus Progress Report",
+  "banglaTitle": "নেক্সাস প্রগ্রেস রিপোর্ট",
+  "banglaSubtitle": "আগের শেখা Python দিয়ে একটি সম্পূর্ণ ছোট সফটওয়্যার বানাও",
+  "cognitiveLoadEstimate": {
+    "readingLevel": 2,
+    "newConceptCount": 0,
+    "practiceComplexity": 2,
+    "estimatedTotalMinutes": 35
+  },
+  "curiosity": {
+    "didYouKnow": "একটি ছোট প্রোগ্রামও অনেকগুলো ছোট সিদ্ধান্তের সমন্বয়ে তৈরি হয়। Review mission-এর উদ্দেশ্য হলো সেই সিদ্ধান্তগুলো একসাথে ব্যবহার করা।",
+    "realWorldApplication": "Learning platform, fitness tracker এবং banking dashboard—সবাই raw data নিয়ে মানুষের বোঝার মতো report তৈরি করে।",
+    "aiApplication": "AI system-এ user input, numeric calculation, boolean status এবং readable output একসাথে ব্যবহার করে response তৈরি করা হয়।",
+    "eeeApplication": "একটি monitoring device sensor value, elapsed time এবং threshold comparison নিয়ে operator-এর জন্য status report তৈরি করতে পারে।",
+    "historicalFact": "প্রথম দিকের computer program-গুলোও input, calculation এবং printed report-এর মতো ছোট building block দিয়েই শুরু হয়েছিল।",
+    "nextMissionPreview": "এখন Nexus report বানাতে পারে, কিন্তু True বা False অনুযায়ী আলাদা কাজ করতে পারে না। পরের mission-এ program-কে decision নিতে শেখানো হবে।"
+  },
+  "steps": [
+    {
+      "type": "intro",
+      "missionNumber": "013",
+      "title": "একটি সম্পূর্ণ ছোট সফটওয়্যার বানানো",
+      "banglaTitle": "রিভিউ মিশন: নেক্সাস প্রগ্রেস রিপোর্ট",
+      "tagline": "নতুন কিছু শেখা নয়—আগের শেখাগুলো দিয়ে কিছু বানানো",
+      "description": "এটি একটি Review & Integration Mission। এখানে নতুন কোনো Python concept যোগ হবে না। তুমি input নেবে, text কে number-এ বদলাবে, হিসাব করবে, True বা False তৈরি করবে এবং f-string দিয়ে একটি readable progress report বানাবে।",
+      "learningObjectives": [
+        "আগের mission-গুলোর Python concept একসাথে ব্যবহার করা",
+        "একটি বড় problem-কে ছোট coding step-এ ভাঙা",
+        "input থেকে পাওয়া string-কে int-এ রূপান্তর করা",
+        "arithmetic, division, comparison এবং boolean result ব্যবহার করা",
+        "নতুন syntax ছাড়া একটি complete console program তৈরি করা"
+      ],
+      "estimatedMinutes": 35
+    },
+    {
+      "type": "story",
+      "title": "Nexus-এর প্রথম progress report",
+      "setting": "একটি learner-এর study session",
+      "content": "Nexus Academy এখন learner-কে Python শেখাচ্ছে। কিন্তু learner যখন জানতে চায়—আমি কতগুলো mission শেষ করেছি, আর কত সময় শিখেছি—তখন Nexus-এর কাছে আলাদা আলাদা raw data থাকলেও সুন্দর একটি report নেই। একজন engineer হিসেবে তোমার কাজ হলো সেই data-কে ব্যবহারযোগ্য information-এ বদলে দেওয়া।\n\nতুমি কোনো নতুন framework বানাবে না। কোনো decision tree বা loop-ও লাগবে না। আগের mission-গুলোতে শেখা ছোট ছোট building block দিয়েই একটি ছোট progress-report program তৈরি করবে।",
+      "moral": "Engineering skill শুধু নতুন syntax জানা নয়; জানা building block-গুলো দিয়ে একটি সম্পূর্ণ useful tool বানাতেও পারা।"
+    },
+    {
+      "type": "analogy",
+      "title": "ছোট building block দিয়ে report তৈরি",
+      "realWorld": {
+        "label": "রিপোর্ট ফর্ম",
+        "description": "একটি paper form-এ নাম, সংখ্যা, সময় এবং status আলাদা ঘরে লেখা হয়।",
+        "icon": "FileText"
+      },
+      "pythonConcept": {
+        "label": "Python variables",
+        "description": "Python-এ variable হলো সেই আলাদা ঘর, যেখানে input, হিসাবের ফল এবং True/False status রাখা যায়।",
+        "icon": "Boxes"
+      },
+      "connection": "তুমি প্রথমে data রাখবে, তারপর data থেকে নতুন ফল তৈরি করবে, শেষে f-string দিয়ে সব ঘরকে একটি readable report-এ সাজাবে।",
+      "deeperInsight": "আজকের mission-এ কোনো single new trick নেই। আসল challenge হলো কোন data আগে নিতে হবে, কোন হিসাব আলাদা variable-এ রাখতে হবে এবং কোন result report-এ দেখাতে হবে—এই flow ঠিক রাখা।"
+    },
+    {
+      "type": "concept",
+      "title": "আজকের Review Map",
+      "content": "একটি complete program-কে চারটি ছোট অংশে ভাবো। প্রথমে learner-এর কাছ থেকে data নাও। দ্বিতীয়ত numeric input-কে int-এ বদলাও। তৃতীয়ত arithmetic এবং comparison দিয়ে report-এর result তৈরি করো। চতুর্থত f-string দিয়ে final report দেখাও।\n\nএই mission-এ তুমি নতুন কোনো keyword, loop, function, list বা if/else শিখবে না। আগের জানা জিনিসের সঠিক ক্রম ব্যবহার করাই আজকের কাজ।",
+      "keyPoints": [
+        "input() সবসময় text বা string দেয়—সংখ্যা দরকার হলে int() ব্যবহার করো।",
+        "প্রতিটি গুরুত্বপূর্ণ হিসাব আগে একটি variable-এ রাখো।",
+        "comparison-এর result একটি boolean: True অথবা False।",
+        "f-string-এর curly braces-এর ভিতরে variable-এর নাম বসানো যায়।",
+        "True বা False print করা যাবে; decision নেওয়ার জন্য এখনো if/else দরকার নেই।"
+      ],
+      "whyCallout": "একজন beginner-এর জন্য বড় problem একবারে দেখা কঠিন। তাই আজ আমরা problem-টিকে data → calculation → status → report এই চারটি ছোট mental step-এ ভাঙছি।",
+      "whenToUse": "যখন আগের অনেকগুলো concept দিয়ে একটি ছোট complete program বানাতে হবে।",
+      "whenNotToUse": "নতুন Python syntax শেখানোর সময় এই review map-কে নতুন lesson হিসেবে ব্যবহার করবে না। এটি শুধু আগে শেখা জিনিসগুলো সাজিয়ে ব্যবহার করার map।",
+      "commonMisconception": "সব result-এর জন্য if/else দরকার হয় না। আজকের mission-এ comparison শুধু True বা False result তৈরি করবে এবং report-এ দেখাবে।"
+    },
+    {
+      "type": "visualization",
+      "title": "Program flow দেখে নাও",
+      "description": "Data কীভাবে report-এ রূপান্তরিত হবে তা ধাপে ধাপে দেখানো হয়েছে।",
+      "caption": "Input → Convert → Calculate → Compare → Format → Report",
+      "diagram": "learner_name = input(...)\ncompleted = int(input(...))\nstudy_minutes = int(input(...))\n          │\n          ▼\nremaining = target - completed\nstudy_hours = study_minutes / 60\ntarget_reached = completed >= target\n          │\n          ▼\nprint(f\"Learner: {learner_name}\")"
+    },
+    {
+      "type": "code_example",
+      "title": "একটি ছোট example",
+      "explanation": "নিচের example-এ report-এর পুরো idea দেখা যাচ্ছে। লক্ষ্য করো—প্রথমে data রাখা হয়েছে, তারপর হিসাবের result আলাদা variable-এ রাখা হয়েছে, শেষে f-string দিয়ে report তৈরি হয়েছে।",
+      "language": "python",
+      "code": "learner_name = \"Mina\"\ncompleted = 9\ntarget = 12\nstudy_minutes = 270\n\nremaining = target - completed\nstudy_hours = study_minutes / 60\ntarget_reached = completed >= target\nhas_activity = study_minutes > 0\n\nprint(f\"Learner: {learner_name}\")\nprint(f\"Completed Missions: {completed}\")\nprint(f\"Remaining Missions: {remaining}\")\nprint(f\"Study Hours: {study_hours}\")\nprint(f\"Target Reached: {target_reached}\")\nprint(f\"Has Study Activity: {has_activity}\")",
+      "output": "Learner: Mina\nCompleted Missions: 9\nRemaining Missions: 3\nStudy Hours: 4.5\nTarget Reached: False\nHas Study Activity: True",
+      "annotations": [
+        {"lineNumber": 1, "explanation": "Text input রাখার জন্য string variable ব্যবহার করা হয়েছে।"},
+        {"lineNumber": 5, "explanation": "Target থেকে completed mission বাদ দিয়ে remaining mission বের করা হয়েছে।"},
+        {"lineNumber": 6, "explanation": "Minutes কে 60 দিয়ে ভাগ করে decimal hour তৈরি করা হয়েছে।"},
+        {"lineNumber": 7, "explanation": "Comparison expression একটি boolean result তৈরি করেছে।"},
+        {"lineNumber": 11, "explanation": "f-string variable-এর বর্তমান value report-এর ভিতরে বসিয়েছে।"}
+      ],
+      "postExplanation": "তুমি এখনো কোনো decision branch লেখোনি। Program শুধু calculation এবং status report করছে—এটাই এই review mission-এর boundary।"
+    },
+    {
+      "type": "practice",
+      "title": "Main Build: Nexus Learner Progress Report",
+      "prompt": "একটি complete Nexus learner progress report তৈরি করো।\n\nProgram-টি চারটি input নেবে: learner-এর নাম, completed mission সংখ্যা, target mission সংখ্যা এবং total study minutes। তারপর remaining missions, study hours, target reached এবং study activity হিসাব করে একটি readable report print করবে।\n\nতোমার program-এ if/else, loop, function, list বা import ব্যবহার করবে না।",
+      "starterCode": "# Part 1: learner-এর data নাও\n\n# Part 2: numeric input-গুলো int-এ বদলাও\n\n# Part 3: report-এর হিসাবগুলো variable-এ রাখো\n\n# Part 4: f-string দিয়ে report print করো\n",
+      "hints": [
+        "Hint 1 — কাজ ভাঙো: পুরো report একবারে লিখবে না। আগে শুধু চারটি variable-এর নাম ঠিক করো: learner_name, completed, target, study_minutes।",
+        "Hint 2 — input মনে রাখো: learner-এর নাম text, তাই `learner_name = input(\"Learner name: \")` দিয়ে শুরু করতে পারো।",
+        "Hint 3 — সংখ্যা input-এর সমস্যা: input() দিয়ে পাওয়া সবকিছু string। completed, target এবং study_minutes-এর আগে `int(input(...))` ব্যবহার করলে এগুলো দিয়ে হিসাব করতে পারবে।",
+        "Hint 4 — প্রথম calculation: target থেকে completed বাদ দাও। `remaining = target - completed` লিখলে বাকি mission-এর সংখ্যা পাওয়া যাবে।",
+        "Hint 5 — decimal calculation: study minutes-কে hours-এ বদলাতে 60 দিয়ে ভাগ করো। `study_hours = study_minutes / 60`।",
+        "Hint 6 — comparison result: completed target-এর সমান বা বেশি হলে True হবে। `target_reached = completed >= target`। এখানে if/else লাগবে না।",
+        "Hint 7 — আরেকটি boolean: study_minutes শূন্যের চেয়ে বেশি কি না যাচাই করতে `has_activity = study_minutes > 0` লিখতে পারো।",
+        "Hint 8 — report শুরু: f-string-এর ভিতরে variable-এর নাম বসাও, যেমন `print(f\"Learner: {learner_name}\")`। নামটিকে আবার quotes-এর মধ্যে রাখবে না।",
+        "Hint 9 — report শেষ করা: completed, remaining, study_hours, target_reached এবং has_activity—প্রতিটির জন্য একটি করে f-string print line লিখো।",
+        "Hint 10 — self-check: তোমার code-এ কি `if`, `for`, `while`, `def`, list বা import ঢুকে গেছে? ঢুকে গেলে সরিয়ে দাও; এগুলো আজকের review boundary-এর বাইরে।"
+      ],
+      "displayHint": "Data → int conversion → calculations → boolean checks → f-string report",
+      "expectedOutput": "Learner: Hasan\nCompleted Missions: 9\nRemaining Missions: 3\nStudy Hours: 4.5\nTarget Reached: False\nHas Study Activity: True",
+      "validation": {
+        "type": "smart_output_source",
+        "requiredVariables": ["learner_name", "completed", "target", "study_minutes", "remaining", "study_hours", "target_reached", "has_activity"],
+        "requiredPatterns": ["input", "int", "-", "/", ">=", ">", "f\""],
+        "feedbackMessages": {
+          "onPass": "দারুণ! তুমি আগের শেখা concept-গুলো দিয়ে একটি complete Nexus report বানিয়েছ।",
+          "onOutputMismatch": "Output-এর প্রতিটি line এবং variable-এর value মিলিয়ে দেখো।",
+          "onPatternFail": "Data নেওয়া, conversion, calculation, comparison এবং f-string—এই পাঁচটি অংশ আছে কি না দেখো।",
+          "onHardcoded": "শুধু fixed output print না করে input থেকে value নিয়ে report তৈরি করো।",
+          "onMissingVariable": "Hint অনুযায়ী missing variable-টি আগে তৈরি করো।"
+        }
+      },
+      "solution": "learner_name = input(\"Learner name: \")\ncompleted = int(input(\"Completed missions: \"))\ntarget = int(input(\"Target missions: \"))\nstudy_minutes = int(input(\"Study minutes: \"))\n\nremaining = target - completed\nstudy_hours = study_minutes / 60\ntarget_reached = completed >= target\nhas_activity = study_minutes > 0\n\nprint(f\"Learner: {learner_name}\")\nprint(f\"Completed Missions: {completed}\")\nprint(f\"Remaining Missions: {remaining}\")\nprint(f\"Study Hours: {study_hours}\")\nprint(f\"Target Reached: {target_reached}\")\nprint(f\"Has Study Activity: {has_activity}\")",
+      "solutionExplanation": "প্রথমে input() দিয়ে data নেওয়া হয়েছে। Numeric input-এ int() ব্যবহার করা হয়েছে যাতে subtraction, division এবং comparison করা যায়। এরপর প্রতিটি calculation আলাদা variable-এ রাখা হয়েছে। শেষে f-string দিয়ে variable-এর value readable progress report হিসেবে দেখানো হয়েছে।"
+    },
+    {
+      "type": "quiz",
+      "title": "Review Checkpoint",
+      "instructions": "প্রতিটি প্রশ্নের উত্তর দিয়ে দেখাও যে তুমি শুধু code copy করোনি—program flow বুঝেছ। Passing score: 70%",
+      "passingScore": 70,
+      "questions": [
+        {"id":"q1","questionType":"multiple_choice","question":"input() থেকে পাওয়া completed value দিয়ে সরাসরি subtraction করতে সমস্যা হতে পারে কেন?","difficulty":"easy","options":["কারণ input() string return করে","কারণ input() শুধু True return করে","কারণ subtraction Python-এ নেই","কারণ variable রাখা যায় না"],"correctOptionIndex":0,"explanation":"input() user-এর লেখা text হিসেবে নেয়। সংখ্যার হিসাবের জন্য int() দিয়ে convert করতে হয়."},
+        {"id":"q2","questionType":"multiple_choice","question":"`target_reached = completed >= target` expression-এর result কী হতে পারে?","difficulty":"easy","options":["শুধু string","শুধু float","True অথবা False","একটি list"],"correctOptionIndex":2,"explanation":"Comparison expression একটি boolean result তৈরি করে."},
+        {"id":"q3","questionType":"multiple_choice","question":"`study_hours = study_minutes / 60` কেন আলাদা variable-এ রাখা হয়েছে?","difficulty":"medium","options":["যাতে হিসাবের result পরে report-এ ব্যবহার করা যায়","যাতে input() বন্ধ হয়ে যায়","যাতে if/else তৈরি হয়","যাতে সব value string হয়"],"correctOptionIndex":0,"explanation":"Intermediate result variable-এ রাখলে program-এর flow পড়া এবং পরে ব্যবহার করা সহজ হয়."},
+        {"id":"q4","questionType":"multiple_choice","question":"নিচের কোনটি f-string-এ learner-এর নামের value দেখাবে?","difficulty":"easy","options":["print(\"Learner: learner_name\")","print(f\"Learner: {learner_name}\")","print(input learner_name)","print(f(learner_name))"],"correctOptionIndex":1,"explanation":"f-string-এর curly braces-এর ভিতরে variable-এর নাম দিলে তার বর্তমান value বসে যায়."},
+        {"id":"q5","questionType":"multiple_choice","question":"এই review mission-এ if/else ব্যবহার না করে True বা False report-এ দেখানোর কারণ কী?","difficulty":"medium","options":["কারণ if/else এখনো শেখানো হয়নি এবং review mission নতুন concept যোগ করবে না","কারণ boolean কখনো print করা যায় না","কারণ f-string input নেয় না","কারণ comparison কাজ করে না"],"correctOptionIndex":0,"explanation":"Review mission-এর boundary হলো আগের শেখা concept। Decision branching পরের mission-এর বিষয়."
+        }
+      ]
+    },
+    {
+      "type": "debug_challenge",
+      "title": "Debug: Progress Report-এর ভুল হিসাব",
+      "scenario": "তোমার বন্ধু Nexus report বানিয়েছে। Program run হচ্ছে, কিন্তু remaining missions ভুল এবং learner-এর নামও raw text হিসেবে দেখা যাচ্ছে। Code দেখে দুটি specification mismatch খুঁজে ঠিক করো।",
+      "buggyCode": "learner_name = \"Hasan\"\ncompleted = 9\ntarget = 12\n\nremaining = target + completed\nprint(\"Learner: learner_name\")\nprint(f\"Remaining Missions: {remaining}\")",
+      "errorMessage": "Output Mismatch: remaining mission যোগ হয়ে গেছে এবং learner_name-এর value-এর বদলে literal text print হয়েছে।",
+      "bugLine": 5,
+      "bugType": "logic",
+      "hints": [
+        "Hint 1: Remaining মানে target থেকে completed বাদ দেওয়ার পর যা বাকি থাকে।",
+        "Hint 2: Quotes-এর ভিতরে `learner_name` লিখলে Python সেটিকে variable হিসেবে নয়, সাধারণ text হিসেবে দেখে।",
+        "Hint 3: `remaining = target - completed` এবং `print(f\"Learner: {learner_name}\")` ব্যবহার করো।"
+      ],
+      "fixedCode": "learner_name = \"Hasan\"\ncompleted = 9\ntarget = 12\n\nremaining = target - completed\nprint(f\"Learner: {learner_name}\")\nprint(f\"Remaining Missions: {remaining}\")",
+      "explanation": "Remaining mission হলো target থেকে ইতিমধ্যে completed mission বাদ দেওয়া। আর variable-এর value report-এ বসাতে f-string-এর curly braces ব্যবহার করতে হয়; quotes-এর ভিতরে variable-এর নাম লিখলে সেটি literal text হয়ে যায়।"
+    },
+    {
+      "type": "reflection",
+      "title": "Engineer Reflection",
+      "instruction": "এখন code-এর বাইরে তাকিয়ে ভাবো। এই mission-এ তুমি আগের শেখাগুলো কীভাবে একসাথে ব্যবহার করেছ?",
+      "prompts": [
+        "একটি বড় problem-কে input, calculation, status এবং report-এ ভাগ করলে coding কেন সহজ হয়?",
+        "তোমার report-এ কোনো value ভুল হলে প্রথমে কোন intermediate variable পরীক্ষা করবে এবং কেন?",
+        "আজকের program-এ True বা False report হচ্ছে, কিন্তু True হলে আলাদা কাজ হচ্ছে না—এমন decision নেওয়ার জন্য পরের কোন capability দরকার হবে?"
+      ],
+      "endScreen": {
+        "title": "তুমি integration-এর প্রথম ধাপ পার করেছ",
+        "message": "তুমি নতুন syntax মুখস্থ না করে আগের Python building block দিয়ে একটি useful report তৈরি করেছ।",
+        "conclusion": "একজন engineer-এর শক্তি শুধু নতুন tool জানায় নয়; পুরনো tool-গুলো সঠিকভাবে জুড়ে একটি working solution তৈরি করাতেও।"
+      }
+    },
+    {
+      "type": "mission_complete",
+      "title": "অভিনন্দন! Nexus Progress Report সম্পন্ন",
+      "summary": "তুমি Mission 001–012-এ শেখা variables, types, conversion, arithmetic, input, f-string, boolean এবং comparison একসাথে ব্যবহার করে একটি complete progress report বানিয়েছ। এই mission-এ নতুন কোনো Python concept যোগ হয়নি—তুমি নিজের existing knowledge দিয়ে একটি working tool তৈরি করেছ।",
+      "keyLearnings": [
+        "একটি বড় engineering problem-কে ছোট data flow-এ ভাঙা যায়।",
+        "input থেকে পাওয়া text-কে প্রয়োজন অনুযায়ী number-এ convert করতে হয়।",
+        "Intermediate calculation variable-এ রাখলে program পরিষ্কার ও debug করা সহজ হয়।",
+        "Comparison True বা False তৈরি করে, কিন্তু decision branching আলাদা capability।",
+        "আগের concept একসাথে ব্যবহার করে একটি complete ছোট software artifact তৈরি করা যায়।"
+      ],
+      "currentLimitation": {
+        "title": "Nexus এখনও result অনুযায়ী আলাদা action নিতে পারে না",
+        "description": "Report-এ Target Reached True বা False দেখা যাচ্ছে, কিন্তু program True হলে এক message এবং False হলে অন্য message দেখাতে পারে না।",
+        "technicalReason": "No Conditional Branching"
+      },
+      "nextMissionBridge": {
+        "title": "পরবর্তী মিশন: Software কীভাবে সিদ্ধান্ত নেয়?",
+        "description": "পরের mission-এ True বা False result ব্যবহার করে program-এর execution path বদলানো শেখানো হবে।",
+        "targetMissionId": "014"
+      }
+    }
+  ]
+}

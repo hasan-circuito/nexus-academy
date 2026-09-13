@@ -67,7 +67,8 @@ graph.missions.forEach((m, idx) => {
   industries.add(m.clientIndustry);
 
   assertTest(typeof m.painPointTrigger === 'string' && m.painPointTrigger.length > 0, `M${expectedId} has concrete painPointTrigger`);
-  assertTest(m.newConceptCount === 1, `M${expectedId} enforces Single Concept Law (newConceptCount === 1)`);
+  const isReview = m.missionKind === 'review';
+  assertTest(isReview ? (m.newConceptCount === 0 || m.newConceptCount === 1) : m.newConceptCount === 1, `M${expectedId} enforces Single Concept Law`);
   assertTest(typeof m.newCapability === 'string' && m.newCapability.length > 0, `M${expectedId} defines newCapability`);
 
   assertTest(Array.isArray(m.learnerKnownScope) && m.learnerKnownScope.length > 0, `M${expectedId} has learnerKnownScope`);
@@ -102,6 +103,10 @@ assertTest(preflight011.stdout.includes('Prerequisite M010 verified'), 'prefligh
 const preflight012 = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '012'], { encoding: 'utf-8' });
 assertTest(preflight012.status === 0, 'preflight 012 exits with code 0 (sequenced mission)');
 assertTest(preflight012.stdout.includes('Prerequisite M011 verified'), 'preflight 012 verifies prerequisite M011');
+
+const preflight013 = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '013'], { encoding: 'utf-8' });
+assertTest(preflight013.status === 0, 'preflight 013 exits with code 0 (sequenced mission)');
+assertTest(preflight013.stdout.includes('Prerequisite M012 verified'), 'preflight 013 verifies prerequisite M012');
 
 const preflightInvalid = spawnSync('node', [PIPELINE_SCRIPT, 'preflight', '999'], { encoding: 'utf-8' });
 assertTest(preflightInvalid.status !== 0, 'preflight 999 exits non-zero for uncontracted mission');

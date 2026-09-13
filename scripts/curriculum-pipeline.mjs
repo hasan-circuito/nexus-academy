@@ -110,7 +110,10 @@ export function runPreflight(missionId) {
   }
   console.log(`  • Engineering Domain: ${contract.clientIndustry} (Rule 22 Context)`);
   console.log(`  • Pain-Point Trigger: ${contract.painPointTrigger}`);
-  console.log(`  • Single Capability : ${contract.newCapability} (Invariant 1: newConceptCount = 1)`);
+  const contractConceptCount = Number.isInteger(contract.newConceptCount) ? contract.newConceptCount : 1;
+  const contractKind = contract.missionKind === 'review' ? 'Review / Integration' : 'New Concept';
+  console.log(`  • Mission Kind      : ${contractKind}`);
+  console.log(`  • Capability Scope  : ${contract.newCapability} (newConceptCount = ${contractConceptCount})`);
   console.log(`  • Prerequisite ID   : ${contract.prerequisite || 'None'}`);
   console.log('\n🧠 LEARNER KNOWN SCOPE (Up to this mission):');
   const scope = Array.isArray(contract.learnerKnownScope) ? contract.learnerKnownScope : [];
@@ -164,7 +167,7 @@ export function runScaffold(missionId, { dryRun = false, force = false } = {}) {
     banglaSubtitle: contract.banglaSubtitle || `${contract.title} এর ব্যবহার ও মূল নীতি`,
     cognitiveLoadEstimate: {
       readingLevel: 2,
-      newConceptCount: 1, // Single Concept Law
+      newConceptCount: Number.isInteger(contract.newConceptCount) ? contract.newConceptCount : 1,
       practiceComplexity: 2,
       estimatedTotalMinutes: 20
     },
