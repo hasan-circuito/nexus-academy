@@ -19,9 +19,9 @@
 | 7 | M007 | When Numbers Have Decimals (`/`, `float`, `ZeroDivisionError`) | Published | Passed |
 | 8 | M008 | The Listening Software (`input()`, string capture) | Published | Passed |
 | 9 | M009 | Dynamic Math (`int(input())`, `ValueError`, `TypeError`) | Published | Passed |
-| 10 | M010 | Modern String Formatting (`f-strings`, dynamic output) | Published | Passed |
-| 11 | M011 | Boolean Logic (`bool`, `True`/`False` literals) | Published | Passed |
-| 12 | M012 | Comparison Operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) | Published | Passed |
+| 10 | M010 | The Sentence Slot / বাক্যের শূন্যস্থান (`f-strings`, dynamic output) | Published | Passed |
+| 11 | M011 | The Software Switch / সফটওয়্যারের সুইচ (`bool`, `True`/`False` literals) | Published | Passed |
+| 12 | M012 | The Scales of Memory / মেমোরির দাঁড়িপাল্লা (`==`, `!=`, `<`, `>`, `<=`, `>=`) | Published | Passed |
 | 13 | M013 | The Decision Tree (`if` statements, branching logic) | Next Sprint | Ready for Design |
 
 ## Active Governance Standards

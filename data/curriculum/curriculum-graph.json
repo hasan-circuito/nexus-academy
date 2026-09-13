@@ -502,7 +502,7 @@
     {
       "id": "010",
       "title": "Modern String Formatting",
-      "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+      "banglaTitle": "বাক্যের শূন্যস্থান",
       "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
       "clientIndustry": "E-Commerce",
       "painPointTrigger": "Formatting multi-variable messages and receipts with manual str() wrapping and '+' concatenation is unreadable, fragile, and error-prone.",
@@ -567,7 +567,7 @@
     {
       "id": "011",
       "title": "Boolean Logic",
-      "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+      "banglaTitle": "সফটওয়্যারের সুইচ",
       "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
       "clientIndustry": "FinTech",
       "painPointTrigger": "Numbers and strings store descriptive info, but programs cannot track binary states or security switches (is_verified = True, is_blocked = False, maintenance_mode = False) without a dedicated boolean type.",
@@ -635,7 +635,7 @@
     {
       "id": "012",
       "title": "Comparison Operators",
-      "banglaTitle": "মেমোরির তুলনা ও যাচাই",
+      "banglaTitle": "মেমোরির দাঁড়িপাল্লা",
       "banglaSubtitle": "কম্প্যারিজন অপারেটর দিয়ে স্বয়ংক্রিয়ভাবে সত্য-মিথ্যা মূল্যায়ন",
       "clientIndustry": "E-Commerce",
       "painPointTrigger": "Hardcoding boolean variables (is_eligible = True) is static. Software must dynamically compare numbers (cart_total >= 1000, stock_count > 0, voucher_code == \"DISCOUNT20\") to compute boolean outcomes on the fly.",

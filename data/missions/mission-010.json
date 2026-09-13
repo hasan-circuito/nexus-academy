@@ -1,7 +1,7 @@
 {
   "id": "010",
   "title": "Modern String Formatting",
-  "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+  "banglaTitle": "বাক্যের শূন্যস্থান",
   "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
   "cognitiveLoadEstimate": {
     "readingLevel": 2,
@@ -22,7 +22,7 @@
       "type": "intro",
       "missionNumber": "010",
       "title": "Modern String Formatting",
-      "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+      "banglaTitle": "বাক্যের শূন্যস্থান",
       "tagline": "ম্যানুয়াল Concatenation থেকে ক্লিন কোডে উত্তরণ: f-strings",
       "description": "আগের মিশনে (Mission 009) আমরা ইউজারের ইনপুট নিয়ে ডাইনামিক হিসাব-নিকাশ করেছি। কিন্তু সেই ফলাফল যখন আমরা একটি সুন্দর মেসেজ বা ইনভয়েস হিসেবে দেখাতে যাই, তখন প্লাস (+) আর str() দিয়ে ম্যানুয়াল String Concatenation করতে গিয়ে কোডের Readability নষ্ট হয়ে যায়! সামান্য একটি str() ভুলে গেলেই TypeError দিয়ে প্রোগ্রাম ক্র্যাশ করে। এই মিশনে আমরা সফটওয়্যারকে পরিষ্কার ও প্রফেশনালভাবে আউটপুট দেখাতে শেখাবো আধুনিক পাইথনের শক্তিশালী ফিচার — f-string দিয়ে।",
       "learningObjectives": [

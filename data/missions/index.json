@@ -241,7 +241,7 @@
   {
     "id": "010",
     "title": "Modern String Formatting",
-    "banglaTitle": "স্মার্ট টেক্সট ও ইনভয়েস জেনারেটর",
+    "banglaTitle": "বাক্যের শূন্যস্থান",
     "banglaSubtitle": "f-string দিয়ে কীভাবে ক্লিন ও ডাইনামিক মেসেজ তৈরি করতে হয়?",
     "description": "Format modern dynamic text and clean messages using Python f-strings",
     "status": "locked",
@@ -268,7 +268,7 @@
   {
     "id": "011",
     "title": "Boolean Logic",
-    "banglaTitle": "সত্য-মিথ্যার জগৎ ও বুলিয়ান",
+    "banglaTitle": "সফটওয়্যারের সুইচ",
     "banglaSubtitle": "বুলিয়ান ডেটা টাইপ (True ও False) দিয়ে সফটওয়্যারের স্টেট ট্র্যাকিং",
     "description": "Master Boolean data type (True and False literals) with practical engineering exercises",
     "status": "locked",
@@ -294,7 +294,7 @@
   {
     "id": "012",
     "title": "Comparison Operators",
-    "banglaTitle": "মেমোরির তুলনা ও যাচাই",
+    "banglaTitle": "মেমোরির দাঁড়িপাল্লা",
     "banglaSubtitle": "কম্প্যারিজন অপারেটর দিয়ে স্বয়ংক্রিয়ভাবে সত্য-মিথ্যা মূল্যায়ন",
     "description": "Master Comparison operators (==, !=, <, >, <=, >=) evaluating expressions to booleans with practical engineering exercises",
     "status": "locked",
