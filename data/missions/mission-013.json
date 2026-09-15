@@ -202,13 +202,13 @@
         "আগের concept একসাথে ব্যবহার করে একটি complete ছোট software artifact তৈরি করা যায়।"
       ],
       "currentLimitation": {
-        "title": "Nexus এখনও result অনুযায়ী আলাদা action নিতে পারে না",
-        "description": "Report-এ Target Reached True বা False দেখা যাচ্ছে, কিন্তু program True হলে এক message এবং False হলে অন্য message দেখাতে পারে না।",
-        "technicalReason": "No Conditional Branching"
+        "title": "তোমার সফটওয়্যার ফলাফল দেখতে পাচ্ছে, কিন্তু কোনো সিদ্ধান্ত নিতে পারছে না!",
+        "description": "তুমি কি গভীরভাবে খেয়াল করেছ? তোমার কোড চমৎকারভাবে হিসাব করে স্ক্রিনে প্রিন্ট করল: 'Target Reached: False'। কিন্তু আফসোস! মিথ্যা দেখেও সে কোনো সতর্কবার্তা দিতে পারল না, আবার সত্য হলেও কোনো অভিনন্দন জানাল না। কম্পিউটার শুধু অন্ধের মতো ওপর থেকে নিচে এক লাইনের পর এক লাইন প্রিন্ট করে গেল—ফলাফলের ওপর ভিত্তি করে সিদ্ধান্ত নেওয়ার বা নিজের গতিপথ বদলানোর ক্ষমতা তার এখনও নেই।",
+        "technicalReason": "ডিসিশন কন্ট্রোল ফ্লো-এর অনুপস্থিতি (No Conditional Branching)"
       },
       "nextMissionBridge": {
-        "title": "পরবর্তী মিশন: Software কীভাবে সিদ্ধান্ত নেয়?",
-        "description": "পরের mission-এ True বা False result ব্যবহার করে program-এর execution path বদলানো শেখানো হবে।",
+        "title": "পরবর্তী মিশন: সফটওয়্যারকে সিদ্ধান্ত নেওয়ার চোখ ও মস্তিষ্ক দেওয়া (If / Else)",
+        "description": "পরের মিশনে আমরা প্রোগ্রামকে অন্ধ অবস্থা থেকে মুক্তি দেব! কোড নিজেই ফলাফল বিচার করবে—শর্ত True হলে এক পথ বেছে নেবে, আর False হলে সম্পূর্ণ ভিন্ন পথে দৌড়াবে। তুমি কি প্রস্তুত?",
         "targetMissionId": "014"
       }
     }

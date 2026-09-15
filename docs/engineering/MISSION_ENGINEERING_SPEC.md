@@ -1514,3 +1514,18 @@ To protect learners from cognitive overload and preserve pedagogical sequencing,
   3. *If not required, is it merely real-world domain context (e.g., sensor, customer, invoice, hospital monitor, bank balance)?*
   4. *If it introduces an unmastered internal CS/runtime architecture concept (parser internals, AST, bytecode, SQL injection, XSS, concurrency), REJECT/DEFER it.*
 - **D. Mission Mental Model:** One conceptual transformation evaluated. Mastered primitives may be reused. Syntactic ergonomics (e.g., f-strings auto-formatting integers) are permitted conveniences, but secondary independent concepts (e.g., inline arithmetic expressions inside curly braces) must be deferred.
+
+## Rule 25 — The Engineering Frontier & Psychological Curiosity Hook
+The final step of every mission (`mission_complete`) contains an **Engineering Frontier** (`currentLimitation` and `nextMissionBridge`). This is not a decorative footer—it is the primary psychological driver of the curriculum progression engine.
+
+- **A. The Entity Invariant (Learner's Code, Never the Platform):**
+  - Limitations must NEVER be attributed to the academy platform (e.g., `"Nexus এখনও আলাদা action নিতে পারে না"` is strictly forbidden). Nexus is the learning environment, not the student's software.
+  - The subject must ALWAYS be the learner's own script, program, or code (`"তোমার কোড"`, `"তোমার সফটওয়্যার"`).
+- **B. Empathetic Senior Mentor Voice:**
+  - Explanations must avoid cold academic jargon (`"Absence of conditional control flow"`).
+  - Use a warm, observant, senior engineering mentor persona speaking directly to the learner, highlighting the exact behavioral blindness of the script they just executed (e.g., *"তুমি কি খেয়াল করেছ? তোমার কোড 'Target Reached: False' প্রিন্ট করল, কিন্তু আফসোস! মিথ্যা দেখেও সে কোনো সতর্কবার্তা দিল না... কম্পিউটার অন্ধের মতো লাইন পড়ে গেছে"*).
+- **C. The Psychological Curiosity Gap (The Pain of Being Powerless):**
+  - Frame the limitation so the learner feels the direct engineering pain of helplessness in their current code.
+  - The transition to Mission $N+1$ must feel like an urgent, natural necessity to solve that awkwardness, rather than just "moving to the next syllabus chapter."
+- **D. The Next Mission as a Superpower Bridge:**
+  - The bridge (`nextMissionBridge`) must frame the next concept as unlocking a new sensory or cognitive capability (e.g., *"সফটওয়্যারকে সিদ্ধান্ত নেওয়ার চোখ ও মস্তিষ্ক দেওয়া (If / Else)"*), challenging the learner with forward momentum.

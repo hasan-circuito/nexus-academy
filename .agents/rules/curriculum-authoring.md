@@ -90,7 +90,38 @@ Applies To: All Nexus Academy mission authoring, editing, code generation, and p
 
 ---
 
-## 7. Mission Pipeline Commands
+### 7. Rule 25: The Engineering Frontier & Psychological Curiosity Hook
+
+The final step of every mission (`mission_complete`) contains an **Engineering Frontier** (`currentLimitation` and `nextMissionBridge`). This is not a passive footnote—it is the psychological engine that makes continuing to the next mission feel inevitable.
+
+#### A. The Entity Invariant: The Code is Limited, NOT the Platform
+- ❌ **STRICTLY FORBIDDEN:** Attributing limitations to the platform (e.g., `"Nexus এখনও result অনুযায়ী আলাদা action নিতে পারে না"`). Nexus is the learning academy platform—Nexus is not the entity lacking logic!
+- ✅ **MANDATORY:** The subject must ALWAYS be the learner's own script, program, or software (`"তোমার কোড"`, `"তোমার প্রোগ্রাম"`, `"তোমার সফটওয়্যার"`).
+
+#### B. The Empathetic Mentor Persona (Warm, Observant, First-Principles)
+- Never output dry, robotic textbook jargon (e.g., `"Technical limitation: Absence of conditional branching logic"`).
+- Speak directly to the learner like an observant, inspiring senior software architect sitting right beside them:
+  - *Hook opening:* `"তুমি কি গভীরভাবে খেয়াল করেছ? তোমার কোড চমৎকারভাবে হিসাব করে স্ক্রিনে প্রিন্ট করল..."`
+  - *The friction/awkwardness:* `"কিন্তু আফসোস! মিথ্যা দেখেও সে কোনো সতর্কবার্তা দিতে পারল না, আবার সত্য হলেও কোনো অভিনন্দন জানাল না..."`
+  - *The realization:* `"কম্পিউটার শুধু অন্ধের মতো ওপর থেকে নিচে এক লাইনের পর এক লাইন প্রিন্ট করে গেল—ফলাফল দেখে নিজের গতিপথ বদলানোর কোনো ক্ষমতা তার এখনও নেই।"`
+
+#### C. The Psychological Urge (The Pain of Being Powerless)
+- A learner must never move to the next mission because "it's the next chapter in the syllabus."
+- They must feel the **emotional friction of helplessness in their current software**:
+  - *"My program just evaluated a boolean status, but it is completely powerless to react to it!"*
+  - *"The software is blind. It can see the data, but it cannot make a choice."*
+- This psychological curiosity gap turns learning syntax into unlocking a much-needed superpower.
+
+#### D. The Next Mission as a Superpower Bridge (`nextMissionBridge`)
+- Frame the next mission as giving the program a new sensory organ or cognitive ability:
+  - ❌ *"পরবর্তী মিশন: If/Else স্টেটমেন্টের সিনট্যাক্স শেখা"*
+  - ✅ *"পরবর্তী মিশন: সফটওয়্যারকে সিদ্ধান্ত নেওয়ার চোখ ও মস্তিষ্ক দেওয়া (If / Else)"*
+- The description must challenge the learner with momentum:
+  - *"পরের মিশনে আমরা প্রোগ্রামকে অন্ধ অবস্থা থেকে মুক্তি দেব! কোড নিজেই ফলাফল বিচার করবে—শর্ত True হলে এক পথ বেছে নেবে, আর False হলে সম্পূর্ণ ভিন্ন পথে দৌড়াবে। তুমি কি প্রস্তুত?"*
+
+---
+
+## 8. Mission Pipeline Commands
 
 All mission creation must pass through the automated curriculum pipeline:
 
