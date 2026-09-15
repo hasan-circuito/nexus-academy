@@ -11,9 +11,9 @@ import { PracticeStepComponent } from './PracticeStep';
 import { QuizStepComponent } from './QuizStep';
 import { DebugChallengeStepComponent } from './DebugChallengeStep';
 import { ReflectionStepComponent } from './ReflectionStep';
+import { ArchitectGiftStepComponent } from './ArchitectGiftStep';
 import { MissionCompleteStepComponent } from './MissionCompleteStep';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const registry: Record<string, React.FC<{ step: any; missionData: any }>> = {
   intro: IntroStepComponent,
@@ -28,6 +28,7 @@ const registry: Record<string, React.FC<{ step: any; missionData: any }>> = {
   quiz: QuizStepComponent,
   debug_challenge: DebugChallengeStepComponent,
   reflection: ReflectionStepComponent,
+  architect_gift: ArchitectGiftStepComponent,
   mission_complete: MissionCompleteStepComponent,
 };
 

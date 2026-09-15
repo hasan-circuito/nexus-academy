@@ -55,6 +55,7 @@ export type StepType =
   | 'quiz'
   | 'debug_challenge'
   | 'reflection'
+  | 'architect_gift'
   | 'mission_complete';
 
 /**

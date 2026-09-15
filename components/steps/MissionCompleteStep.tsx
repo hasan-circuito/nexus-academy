@@ -1,5 +1,5 @@
 'use client';
-import type { MissionCompleteStep, MissionData, ReflectionStep } from '@/types/mission.types';
+import type { MissionCompleteStep, MissionData } from '@/types/mission.types';
 import {
   Target,
   Trophy,
@@ -13,11 +13,6 @@ import {
   ArrowRight,
   AlertCircle,
   Sparkles,
-  Gift,
-  Brain,
-  Cpu,
-  Lightbulb,
-  ChevronDown,
 } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,11 +26,6 @@ export function MissionCompleteStepComponent({ step, missionData }: { step: Miss
   const router = useRouter();
   const { progress, isClient } = useProgress();
   const [copied, setCopied] = useState(false);
-  const [openGiftIndex, setOpenGiftIndex] = useState<number | null>(0);
-
-  // Extract Critical Thinking / Reflection questions as Architect's Gift
-  const reflectionStep = missionData?.steps?.find((s) => s.type === 'reflection') as ReflectionStep | undefined;
-  const reflectionQuestions = reflectionStep?.criticalThinkingQuestions || [];
 
   const isComplete = isClient && progress.missions[missionData.id]?.status === 'complete';
   const incompleteSteps = isClient ? MissionProgressGate.getIncompleteSteps(missionData) : [];
@@ -116,126 +106,6 @@ Can you give me a brief summary of what I should review next based on this topic
                 </button>
               </div>
             ))}
-          </div>
-        </div>
-      )}
-
-      {/* 🎁 Architect's Gift: Reflection Insights & Solutions (Step 10 Answers) */}
-      {reflectionQuestions.length > 0 && (
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-primary/5 via-card to-primary/10 border border-primary/30 space-y-6 shadow-md relative overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-500">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/80 pb-5">
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-primary/20 text-primary flex items-center justify-center shrink-0 shadow-inner border border-primary/30">
-                <Gift className="w-6 h-6 animate-pulse" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30">
-                    🎁 Special Gift For You
-                  </span>
-                  <span className="text-xs text-muted-foreground font-mono">Step 10 Solutions</span>
-                </div>
-                <h3 className="font-bold text-xl text-foreground font-bangla-ui mt-0.5">
-                  চিফ আর্কিটেক্টের গিফট: স্টেপ ১০-এর গভীর প্রশ্ন ও অর্থপূর্ণ সমাধান
-                </h3>
-              </div>
-            </div>
-            <p className="text-xs text-muted-foreground font-bangla max-w-sm leading-relaxed">
-              স্টেপ ১০-এ তুমি যে প্রশ্নগুলো নিয়ে চিন্তা করেছিলে, সফটওয়্যার আর্কিটেক্টরা বাস্তব ইন্ডাস্ট্রিতে কীভাবে তার সমাধান করেন তা এক নজরে দেখে নাও:
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {reflectionQuestions.map((q, idx) => {
-              const isOpen = openGiftIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                    isOpen ? 'bg-card border-primary/40 shadow-lg' : 'bg-surface/60 border-border hover:border-primary/30'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenGiftIndex(isOpen ? null : idx)}
-                    className="w-full flex items-start justify-between gap-4 p-5 text-left focus:outline-none"
-                  >
-                    <div className="flex items-start gap-3 flex-1 min-w-0">
-                      <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 transition-colors ${
-                        isOpen ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
-                      }`}>
-                        {idx + 1}
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-[11px] font-bold text-primary uppercase tracking-wider block mb-0.5 font-mono">
-                          Architecture Question {idx + 1}
-                        </span>
-                        <h4 className="font-semibold text-base sm:text-lg text-foreground font-bangla leading-relaxed">
-                          {q.question}
-                        </h4>
-                      </div>
-                    </div>
-                    <ChevronDown
-                      className={`w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-300 mt-1 ${
-                        isOpen ? 'rotate-180 text-primary' : ''
-                      }`}
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div className="p-5 pt-0 border-t border-border/50 space-y-4 bg-card/40 animate-in fade-in duration-300">
-                      {/* Expert Thinking */}
-                      {q.expertThinking && (
-                        <div className="relative p-5 rounded-2xl bg-surface border border-border overflow-hidden group hover:border-primary/30 transition-colors">
-                          <div className="absolute top-0 left-0 w-1.5 h-full bg-primary rounded-l-2xl group-hover:w-2 transition-all" />
-                          <div className="flex items-center gap-2.5 mb-2 pl-3">
-                            <Brain className="w-5 h-5 text-primary" />
-                            <span className="font-bold text-primary text-xs uppercase tracking-wider font-mono">
-                              Expert Thinking & Meaningful Answer
-                            </span>
-                          </div>
-                          <div className="pl-3 font-bangla text-foreground-muted leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                            {q.expertThinking}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Real-world Engineering */}
-                      {q.realWorldEngineering && (
-                        <div className="relative p-5 rounded-2xl bg-surface border border-border overflow-hidden group hover:border-success/30 transition-colors">
-                          <div className="absolute top-0 left-0 w-1.5 h-full bg-success rounded-l-2xl group-hover:w-2 transition-all" />
-                          <div className="flex items-center gap-2.5 mb-2 pl-3">
-                            <Cpu className="w-5 h-5 text-success" />
-                            <span className="font-bold text-success text-xs uppercase tracking-wider font-mono">
-                              Real-World Engineering In Action
-                            </span>
-                          </div>
-                          <div className="pl-3 font-bangla text-foreground-muted leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                            {q.realWorldEngineering}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Beyond Programming */}
-                      {q.beyondProgramming && (
-                        <div className="relative p-5 rounded-2xl bg-surface border border-border overflow-hidden group hover:border-amber-500/30 transition-colors">
-                          <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500 rounded-l-2xl group-hover:w-2 transition-all" />
-                          <div className="flex items-center gap-2.5 mb-2 pl-3">
-                            <Lightbulb className="w-5 h-5 text-amber-500" />
-                            <span className="font-bold text-amber-500 text-xs uppercase tracking-wider font-mono">
-                              Beyond Programming & Life Principles
-                            </span>
-                          </div>
-                          <div className="pl-3 font-bangla text-foreground-muted leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                            {q.beyondProgramming}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
           </div>
         </div>
       )}

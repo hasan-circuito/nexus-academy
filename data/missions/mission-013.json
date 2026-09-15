@@ -88,11 +88,26 @@
       "code": "learner_name = \"Mina\"\ncompleted = 9\ntarget = 12\nstudy_minutes = 270\n\nremaining = target - completed\nstudy_hours = study_minutes / 60\ntarget_reached = completed >= target\nhas_activity = study_minutes > 0\n\nprint(f\"Learner: {learner_name}\")\nprint(f\"Completed Missions: {completed}\")\nprint(f\"Remaining Missions: {remaining}\")\nprint(f\"Study Hours: {study_hours}\")\nprint(f\"Target Reached: {target_reached}\")\nprint(f\"Has Study Activity: {has_activity}\")",
       "output": "Learner: Mina\nCompleted Missions: 9\nRemaining Missions: 3\nStudy Hours: 4.5\nTarget Reached: False\nHas Study Activity: True",
       "annotations": [
-        {"lineNumber": 1, "explanation": "Text input রাখার জন্য string variable ব্যবহার করা হয়েছে।"},
-        {"lineNumber": 5, "explanation": "Target থেকে completed mission বাদ দিয়ে remaining mission বের করা হয়েছে।"},
-        {"lineNumber": 6, "explanation": "Minutes কে 60 দিয়ে ভাগ করে decimal hour তৈরি করা হয়েছে।"},
-        {"lineNumber": 7, "explanation": "Comparison expression একটি boolean result তৈরি করেছে।"},
-        {"lineNumber": 11, "explanation": "f-string variable-এর বর্তমান value report-এর ভিতরে বসিয়েছে।"}
+        {
+          "lineNumber": 1,
+          "explanation": "Text input রাখার জন্য string variable ব্যবহার করা হয়েছে।"
+        },
+        {
+          "lineNumber": 5,
+          "explanation": "Target থেকে completed mission বাদ দিয়ে remaining mission বের করা হয়েছে।"
+        },
+        {
+          "lineNumber": 6,
+          "explanation": "Minutes কে 60 দিয়ে ভাগ করে decimal hour তৈরি করা হয়েছে।"
+        },
+        {
+          "lineNumber": 7,
+          "explanation": "Comparison expression একটি boolean result তৈরি করেছে।"
+        },
+        {
+          "lineNumber": 11,
+          "explanation": "f-string variable-এর বর্তমান value report-এর ভিতরে বসিয়েছে।"
+        }
       ],
       "postExplanation": "তুমি এখনো কোনো decision branch লেখোনি। Program শুধু calculation এবং status report করছে—এটাই এই review mission-এর boundary।"
     },
@@ -117,8 +132,25 @@
       "expectedOutput": "Learner: Hasan\nCompleted Missions: 9\nRemaining Missions: 3\nStudy Hours: 4.5\nTarget Reached: False\nHas Study Activity: True",
       "validation": {
         "type": "smart_output_source",
-        "requiredVariables": ["learner_name", "completed", "target", "study_minutes", "remaining", "study_hours", "target_reached", "has_activity"],
-        "requiredPatterns": ["input", "int", "-", "/", ">=", ">", "f\""],
+        "requiredVariables": [
+          "learner_name",
+          "completed",
+          "target",
+          "study_minutes",
+          "remaining",
+          "study_hours",
+          "target_reached",
+          "has_activity"
+        ],
+        "requiredPatterns": [
+          "input",
+          "int",
+          "-",
+          "/",
+          ">=",
+          ">",
+          "f\""
+        ],
         "feedbackMessages": {
           "onPass": "দারুণ! তুমি আগের শেখা concept-গুলো দিয়ে একটি complete Nexus report বানিয়েছ।",
           "onOutputMismatch": "Output-এর প্রতিটি line এবং variable-এর value মিলিয়ে দেখো।",
@@ -136,11 +168,75 @@
       "instructions": "প্রতিটি প্রশ্নের উত্তর দিয়ে দেখাও যে তুমি শুধু code copy করোনি—program flow বুঝেছ। Passing score: 70%",
       "passingScore": 70,
       "questions": [
-        {"id":"q1","questionType":"multiple_choice","question":"input() থেকে পাওয়া completed value দিয়ে সরাসরি subtraction করতে সমস্যা হতে পারে কেন?","difficulty":"easy","options":["কারণ input() string return করে","কারণ input() শুধু True return করে","কারণ subtraction Python-এ নেই","কারণ variable রাখা যায় না"],"correctOptionIndex":0,"explanation":"input() user-এর লেখা text হিসেবে নেয়। সংখ্যার হিসাবের জন্য int() দিয়ে convert করতে হয়."},
-        {"id":"q2","questionType":"multiple_choice","question":"`target_reached = completed >= target` expression-এর result কী হতে পারে?","difficulty":"easy","options":["শুধু string","শুধু float","True অথবা False","একটি list"],"correctOptionIndex":2,"explanation":"Comparison expression একটি boolean result তৈরি করে."},
-        {"id":"q3","questionType":"multiple_choice","question":"`study_hours = study_minutes / 60` কেন আলাদা variable-এ রাখা হয়েছে?","difficulty":"medium","options":["যাতে হিসাবের result পরে report-এ ব্যবহার করা যায়","যাতে input() বন্ধ হয়ে যায়","যাতে if/else তৈরি হয়","যাতে সব value string হয়"],"correctOptionIndex":0,"explanation":"Intermediate result variable-এ রাখলে program-এর flow পড়া এবং পরে ব্যবহার করা সহজ হয়."},
-        {"id":"q4","questionType":"multiple_choice","question":"নিচের কোনটি f-string-এ learner-এর নামের value দেখাবে?","difficulty":"easy","options":["print(\"Learner: learner_name\")","print(f\"Learner: {learner_name}\")","print(input learner_name)","print(f(learner_name))"],"correctOptionIndex":1,"explanation":"f-string-এর curly braces-এর ভিতরে variable-এর নাম দিলে তার বর্তমান value বসে যায়."},
-        {"id":"q5","questionType":"multiple_choice","question":"এই review mission-এ if/else ব্যবহার না করে True বা False report-এ দেখানোর কারণ কী?","difficulty":"medium","options":["কারণ if/else এখনো শেখানো হয়নি এবং review mission নতুন concept যোগ করবে না","কারণ boolean কখনো print করা যায় না","কারণ f-string input নেয় না","কারণ comparison কাজ করে না"],"correctOptionIndex":0,"explanation":"Review mission-এর boundary হলো আগের শেখা concept। Decision branching পরের mission-এর বিষয়."
+        {
+          "id": "q1",
+          "questionType": "multiple_choice",
+          "question": "input() থেকে পাওয়া completed value দিয়ে সরাসরি subtraction করতে সমস্যা হতে পারে কেন?",
+          "difficulty": "easy",
+          "options": [
+            "কারণ input() string return করে",
+            "কারণ input() শুধু True return করে",
+            "কারণ subtraction Python-এ নেই",
+            "কারণ variable রাখা যায় না"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "input() user-এর লেখা text হিসেবে নেয়। সংখ্যার হিসাবের জন্য int() দিয়ে convert করতে হয়."
+        },
+        {
+          "id": "q2",
+          "questionType": "multiple_choice",
+          "question": "`target_reached = completed >= target` expression-এর result কী হতে পারে?",
+          "difficulty": "easy",
+          "options": [
+            "শুধু string",
+            "শুধু float",
+            "True অথবা False",
+            "একটি list"
+          ],
+          "correctOptionIndex": 2,
+          "explanation": "Comparison expression একটি boolean result তৈরি করে."
+        },
+        {
+          "id": "q3",
+          "questionType": "multiple_choice",
+          "question": "`study_hours = study_minutes / 60` কেন আলাদা variable-এ রাখা হয়েছে?",
+          "difficulty": "medium",
+          "options": [
+            "যাতে হিসাবের result পরে report-এ ব্যবহার করা যায়",
+            "যাতে input() বন্ধ হয়ে যায়",
+            "যাতে if/else তৈরি হয়",
+            "যাতে সব value string হয়"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "Intermediate result variable-এ রাখলে program-এর flow পড়া এবং পরে ব্যবহার করা সহজ হয়."
+        },
+        {
+          "id": "q4",
+          "questionType": "multiple_choice",
+          "question": "নিচের কোনটি f-string-এ learner-এর নামের value দেখাবে?",
+          "difficulty": "easy",
+          "options": [
+            "print(\"Learner: learner_name\")",
+            "print(f\"Learner: {learner_name}\")",
+            "print(input learner_name)",
+            "print(f(learner_name))"
+          ],
+          "correctOptionIndex": 1,
+          "explanation": "f-string-এর curly braces-এর ভিতরে variable-এর নাম দিলে তার বর্তমান value বসে যায়."
+        },
+        {
+          "id": "q5",
+          "questionType": "multiple_choice",
+          "question": "এই review mission-এ if/else ব্যবহার না করে True বা False report-এ দেখানোর কারণ কী?",
+          "difficulty": "medium",
+          "options": [
+            "কারণ if/else এখনো শেখানো হয়নি এবং review mission নতুন concept যোগ করবে না",
+            "কারণ boolean কখনো print করা যায় না",
+            "কারণ f-string input নেয় না",
+            "কারণ comparison কাজ করে না"
+          ],
+          "correctOptionIndex": 0,
+          "explanation": "Review mission-এর boundary হলো আগের শেখা concept। Decision branching পরের mission-এর বিষয়."
         }
       ]
     },
@@ -163,8 +259,25 @@
     {
       "type": "reflection",
       "title": "ক্রিটিক্যাল থিংকিং ল্যাব: সিস্টেম ইন্টিগ্রেশন ও ইঞ্জিনিয়ারিং আর্কিটেকচার",
-      "instruction": "এখন code-এর বাইরে তাকিয়ে ভাবো। এই mission-এ তুমি আগের শেখাগুলো কীভাবে একসাথে ব্যবহার করেছ?",
+      "instruction": "এখন কোডের বাইরে তাকিয়ে ভাবো। এই মিশনে তুমি যা যা তৈরি করেছ, তার পেছনের স্থাপত্য দর্শন নিয়ে নিচের প্রশ্নগুলো চিন্তা করো।",
       "criticalThinkingQuestions": [
+        {
+          "question": "একটি বড় problem-কে input, calculation, status এবং report-এ ভাগ করলে coding কেন সহজ হয়?"
+        },
+        {
+          "question": "তোমার report-এ কোনো value ভুল হলে প্রথমে কোন intermediate variable পরীক্ষা করবে এবং কেন?"
+        },
+        {
+          "question": "আজকের program-এ True বা False report হচ্ছে, কিন্তু True হলে আলাদা কাজ হচ্ছে না—এমন decision নেওয়ার জন্য পরের কোন capability দরকার হবে?"
+        }
+      ]
+    },
+    {
+      "type": "architect_gift",
+      "title": "চিফ আর্কিটেক্টের সারপ্রাইজ গিফট",
+      "subtitle": "স্টেপ ১০-এর গভীর ভাবনার এক্সক্লুসিভ সমাধান",
+      "instruction": "স্টেপ ১০-এ তুমি যে প্রশ্নগুলো নিয়ে চিন্তা করেছিলে, সফটওয়্যার আর্কিটেক্টরা বাস্তব ইন্ডাস্ট্রিতে কীভাবে তার সমাধান করেন তা দেখতে উপহারের বাক্সটি খোলো।",
+      "solutions": [
         {
           "question": "একটি বড় problem-কে input, calculation, status এবং report-এ ভাগ করলে coding কেন সহজ হয়?",
           "expertThinking": "সফটওয়্যার ইঞ্জিনিয়ারিংয়ে একে বলা হয় 'Separation of Concerns' (কাজের সুনির্দিষ্ট বিভাজন) এবং 'Data Pipeline Architecture'।\n\nযখন একজন ডেভেলপার ইনপুট নেওয়া, গণিত করা এবং আউটপুট দেখানো—সব এক লাইনে গুলিয়ে ফেলে (যেমন: print(f'Result: {int(input()) * 2}')), তখন কোড দ্রুত অপাঠ্য এবং ভঙ্গুর হয়ে যায়। কিন্তু ইনপুটকে আলাদা রাখা, হিসাবকে আলাদা ভেরিয়েবলে প্রসেস করা, বুলিয়ান স্টেট মূল্যায়ন করা এবং সবশেষে ফরম্যাট করে দেখানো—এই ৪টি ভাগে ভাগ করলে প্রতিটি অংশের জন্য মনের ওপর কগনিটিভ লোড অনেক কমে যায়। একটি অংশ লেখার সময় অন্য অংশ নিয়ে ভাবতে হয় না।",
@@ -183,12 +296,7 @@
           "realWorldEngineering": "অটোনোমাস সেলফ-ড্রাইভিং কার বা মেডিকেল ভেন্টিলেটরে সেন্সর অবিরত বুলিয়ান স্টেট মূল্যায়ন করে (যেমন: obstacle_detected = True)। কিন্তু গাড়িটি নিজে থেকে ব্রেক চাপবে কি না, তা নির্ভর করে ডিসিশন ইঞ্জিনের if/else কন্ট্রোল ফ্লোর ওপর। স্টেট ট্র্যাকিং ও অ্যাকশন এক্সিকিউশনের এই পরিষ্কার সীমানাই আধুনিক সফটওয়্যারের মেরুদণ্ড।",
           "beyondProgramming": "সকালে ঘুম থেকে উঠে বৃষ্টি হচ্ছে কি না তা জানা হলো 'State' (is_raining = True)। কিন্তু সেই তথ্যের ভিত্তিতে ছাতা সাথে নিয়ে বের হওয়া হলো 'Action'। শুধু তথ্য জানা যথেষ্ট নয়, তথ্যের ওপর ভিত্তি করে সঠিক সিদ্ধান্ত নেওয়াই হলো বুদ্ধিমত্তা।"
         }
-      ],
-      "endScreen": {
-        "title": "তুমি integration-এর প্রথম ধাপ পার করেছ",
-        "message": "তুমি নতুন syntax মুখস্থ না করে আগের Python building block দিয়ে একটি useful report তৈরি করেছ।",
-        "conclusion": "একজন engineer-এর শক্তি শুধু নতুন tool জানায় নয়; পুরনো tool-গুলো সঠিকভাবে জুড়ে একটি working solution তৈরি করাতেও।"
-      }
+      ]
     },
     {
       "type": "mission_complete",

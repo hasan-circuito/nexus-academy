@@ -276,6 +276,22 @@ export interface ReflectionStep {
   // V2: AI Mentor reads reflection text and provides personalized feedback
 }
 
+export interface ArchitectGiftSolution {
+  question: string;
+  expertThinking: string;
+  realWorldEngineering: string;
+  beyondProgramming: string;
+}
+
+export interface ArchitectGiftStep {
+  type: 'architect_gift';
+  title: string;                    // Bangla — "চিফ আর্কিটেক্টের গিফট"
+  subtitle?: string;                // Bangla
+  instruction?: string;             // Bangla
+  solutions?: ArchitectGiftSolution[];
+  questions?: CriticalThinkingQuestion[];
+}
+
 // Step 13 — mission_complete
 export interface MissionLimitation {
   title: string;                    // e.g. "বর্তমান সল্যুশনের টেকনিক্যাল সীমাবদ্ধতা"
@@ -316,6 +332,7 @@ export type MissionStep =
   | QuizStep
   | DebugChallengeStep
   | ReflectionStep
+  | ArchitectGiftStep
   | MissionCompleteStep;
 
 // Type guard helpers
