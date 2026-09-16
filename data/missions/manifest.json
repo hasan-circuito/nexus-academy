@@ -143,5 +143,16 @@
       "estimatedMinutes": 35,
       "difficulty": "beginner"
     }
+    ,{
+      "id": "014",
+      "title": "When Software Takes One Path",
+      "banglaTitle": "সফটওয়্যার যখন একটি পথ বেছে নেয়",
+      "banglaSubtitle": "True হলে প্রোগ্রাম কীভাবে নির্দিষ্ট কাজ চালায়?",
+      "status": "published",
+      "prerequisite": "013",
+      "primaryConcept": "if statement: conditional execution for a true condition",
+      "estimatedMinutes": 30,
+      "difficulty": "beginner"
+    }
   ]
 }

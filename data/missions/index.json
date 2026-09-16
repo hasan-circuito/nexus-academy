@@ -328,10 +328,29 @@
     "difficulty": "beginner",
     "knowledgeGraph": {
       "prerequisiteIds": ["012"],
-      "enablesIds": [],
+        "enablesIds": [
+          "014"
+        ],
       "relatedIds": [],
       "topicSlug": "review_and_integration"
     },
     "tags": ["python", "review", "integration", "variables", "input", "arithmetic", "booleans", "comparisons"]
+  }
+  ,{
+    "id": "014",
+    "title": "When Software Takes One Path",
+    "banglaTitle": "সফটওয়্যার যখন একটি পথ বেছে নেয়",
+    "banglaSubtitle": "True হলে প্রোগ্রাম কীভাবে নির্দিষ্ট কাজ চালায়?",
+    "description": "Use an if statement to run a message only when a learner goal is reached",
+    "status": "locked",
+    "estimatedMinutes": 30,
+    "difficulty": "beginner",
+    "knowledgeGraph": {
+      "prerequisiteIds": ["013"],
+      "enablesIds": [],
+      "relatedIds": [],
+      "topicSlug": "if_statement_true_path"
+    },
+    "tags": ["python", "if_statement", "conditionals", "indentation", "control_flow"]
   }
 ]

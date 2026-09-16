@@ -749,5 +749,53 @@
       ],
       "forbiddenSyntax": ["For", "AsyncFor", "While", "FunctionDef", "AsyncFunctionDef", "ClassDef", "Return", "Yield", "YieldFrom", "If", "IfExp", "List", "Dict", "Set", "Tuple", "ListComp", "DictComp", "SetComp", "GeneratorExp", "Import", "ImportFrom", "Try", "With", "AsyncWith", "Lambda", "Match"]
     }
+    ,{
+      "id": "014",
+      "title": "When Software Takes One Path",
+      "banglaTitle": "সফটওয়্যার যখন একটি পথ বেছে নেয়",
+      "banglaSubtitle": "True হলে প্রোগ্রাম কীভাবে নির্দিষ্ট কাজ চালায়?",
+      "clientIndustry": "Education Technology",
+      "painPointTrigger": "The learner's program can evaluate whether a target was reached, but it cannot yet branch its execution flow to trigger specific actions when that result is True.",
+      "newCapability": "if statement for conditional execution when a boolean condition is True",
+      "newConceptCount": 1,
+      "prerequisite": "013",
+      "status": "published",
+      "learnerKnownScope": [
+        "print",
+        "variable_assignment",
+        "string_literals",
+        "integer_literals",
+        "variable_referencing",
+        "state_flow",
+        "variable_reassignment",
+        "state_mutation",
+        "string_type",
+        "integer_type",
+        "int_casting",
+        "str_casting",
+        "addition_op",
+        "subtraction_op",
+        "multiplication_op",
+        "assignment_pipeline",
+        "division_op",
+        "float_type",
+        "zero_division_error",
+        "input_function",
+        "string_concatenation",
+        "dynamic_numeric_input",
+        "f_strings",
+        "booleans",
+        "bool_literals",
+        "comparison_operators",
+        "equality_operator",
+        "inequality_operator",
+        "relational_operators",
+        "review_integration",
+        "if_statement",
+        "conditional_execution",
+        "indentation_blocks"
+      ],
+      "forbiddenSyntax": ["For", "AsyncFor", "While", "FunctionDef", "AsyncFunctionDef", "ClassDef", "Return", "Yield", "YieldFrom", "IfExp", "List", "Dict", "Set", "Tuple", "ListComp", "DictComp", "SetComp", "GeneratorExp", "Import", "ImportFrom", "Try", "With", "AsyncWith", "Lambda", "Match"]
+    }
   ]
 }
