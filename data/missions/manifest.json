@@ -146,8 +146,8 @@
     ,{
       "id": "014",
       "title": "When Software Takes One Path",
-      "banglaTitle": "সফটওয়্যার যখন একটি পথ বেছে নেয়",
-      "banglaSubtitle": "True হলে প্রোগ্রাম কীভাবে নির্দিষ্ট কাজ চালায়?",
+      "banglaTitle": "সফটওয়্যার যখন সিদ্ধান্ত নেয়",
+      "banglaSubtitle": "কন্ডিশন True হলে কোড কীভাবে নির্দিষ্ট কাজ চালায়?",
       "status": "published",
       "prerequisite": "013",
       "primaryConcept": "if statement: conditional execution for a true condition",

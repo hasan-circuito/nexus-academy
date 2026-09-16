@@ -1,8 +1,8 @@
 {
   "id": "014",
   "title": "When Software Takes One Path",
-  "banglaTitle": "সফটওয়্যার যখন একটি পথ বেছে নেয়",
-  "banglaSubtitle": "True হলে প্রোগ্রাম কীভাবে নির্দিষ্ট কাজ চালায়?",
+  "banglaTitle": "সফটওয়্যার যখন সিদ্ধান্ত নেয়",
+  "banglaSubtitle": "কন্ডিশন True হলে কোড কীভাবে নির্দিষ্ট কাজ চালায়?",
   "cognitiveLoadEstimate": {
     "readingLevel": 2,
     "newConceptCount": 1,
@@ -10,128 +10,129 @@
     "estimatedTotalMinutes": 30
   },
   "curiosity": {
-    "didYouKnow": "প্রতিটি conditional program একটি প্রশ্ন করে: condition কি True? উত্তর True হলে তবেই তার ভিতরের কাজ চলে।",
-    "realWorldApplication": "একটি learning app goal পূরণ হয়েছে কি না দেখে badge বা congratulation message দেখাতে পারে।",
-    "aiApplication": "AI workflow-তেও condition ব্যবহার করে নির্দিষ্ট result হলে review, alert, বা next step চালু করা হয়।",
-    "eeeApplication": "একটি sensor monitor voltage threshold পার হলে warning message দেখাতে পারে।",
-    "historicalFact": "Conditional branching হলো প্রোগ্রামিংয়ের মৌলিক control-flow idea; এটি program-কে একই code সবসময় চালানো থেকে বের করে আনে।",
-    "nextMissionPreview": "আজ True হলে একটি কাজ চালালে। কিন্তু condition False হলে alternative কাজ কীভাবে চালাতে হয়? পরের mission-এ `else` আসবে।"
+    "didYouKnow": "প্রতিটি কন্ডিশনাল প্রোগ্রাম একটি সাধারণ প্রশ্ন করে: শর্ত কি True? উত্তর যদি True হয়, কেবল তখনই তার ভেতরের কোড রান করে।",
+    "realWorldApplication": "Daraz বা Amazon-এর মতো অ্যাপে কার্টের মোট বিল ৫০০ টাকা ছাড়ালেই স্বয়ংক্রিয়ভাবে ফ্রি ডেলিভারির মেসেজ দেখানো হয়।",
+    "aiApplication": "AI চ্যাটবট বা ফিল্টারে ইনপুটের ভেতর কোনো ক্ষতিকর কনটেন্ট পেলে (flagged == True) তৎক্ষণাৎ রেসপন্স ব্লক করার জন্য 'if' ব্যবহার করা হয়।",
+    "eeeApplication": "একটি স্মার্ট এসি বা ফ্যান সেন্সরের তাপমাত্রা ৩০ ডিগ্রির বেশি হলে স্বয়ংক্রিয়ভাবে কম্প্রেসর অন করে।",
+    "historicalFact": "কম্পিউটার বিজ্ঞানে 'Conditional Branching' আবিষ্কারের পরই সফটওয়্যার অন্ধ ক্যালকুলেটর থেকে একটি বুদ্ধিমান ডিসিশন মেকিং মেশিনে পরিণত হয়।",
+    "nextMissionPreview": "আজ তোমার কোড শিখবে শর্ত True হলে কী করতে হয়। কিন্তু শর্ত False হলে বিকল্প কী কাজ করতে হবে? সেই ক্ষমতা আসবে পরের মিশনে 'else'-এর মাধ্যমে।"
   },
   "steps": [
     {
       "type": "intro",
       "missionNumber": "014",
-      "title": "একই program, ভিন্ন action",
+      "title": "একই কোড, ভিন্ন সিদ্ধান্ত",
       "banglaTitle": "সফটওয়্যার যখন সিদ্ধান্ত নেয়",
-      "tagline": "True হলে কাজ করো; False হলে এখন কিছুই করো না",
-      "description": "আগের মিশনে তুমি 'target_reached'-এর মতো True বা False ফলাফল তৈরি করেছিলে। কিন্তু রিপোর্ট কেবল সেই ফলাফল দেখাত। আজ তুমি তোমার প্রোগ্রামকে শেখাবে: শর্ত True হলে একটি নির্দিষ্ট বার্তা প্রিন্ট করো। এটাই 'if' স্টেটমেন্টের সাহায্যে সফটওয়্যারের সিদ্ধান্ত নেওয়ার প্রথম পদক্ষেপ।",
+      "tagline": "কন্ডিশন True হলে কাজ করো; False হলে কিছু করো না",
+      "description": "আগের মিশনে তুমি তুলনা করে 'True' বা 'False' রেজাল্ট বের করেছিলে। কিন্তু তোমার কোড কেবল সেই মানটাই স্ক্রিনে দেখিয়ে চুপ করে থাকত—কোনো অ্যাকশন নিতে পারত না।\n\nআজ তুমি সফটওয়্যারকে প্রথমবার সিদ্ধান্ত নেওয়া শেখাবে: কন্ডিশন True হলে নির্দিষ্ট একটি কাজ করো, আর False হলে সেই কাজ সম্পূর্ণ এড়িয়ে যাও। এটাই পাইথনে 'if' statement-এর ম্যাজিক!",
       "learningObjectives": [
-        "'if' statement দিয়ে True condition-এর জন্য কোড চালানো",
-        "কন্ডিশনের শেষে colon ':' ব্যবহার করা",
-        "if ব্লকের ভেতরের কোড ৪টি স্পেস দিয়ে indentation করে লেখা",
-        "আগের comparison result একটি condition হিসেবে reuse করা",
-        "False হলে কেন if ব্লকের কোড execute হয় না তা বোঝা"
+        "'if' statement ব্যবহার করে কন্ডিশন True হলে নির্দিষ্ট কোড চালানো",
+        "কন্ডিশন লাইনের শেষে colon ':' ব্যবহারের নিয়ম বোঝা",
+        "৪টি স্পেস দিয়ে indentation করে কোডের ব্যক্তিগত সীমানা তৈরি করা",
+        "পূর্বের comparison result ভেরিয়েবলকে condition হিসেবে ব্যবহার করা",
+        "শর্ত False হলে পাইথন কেন if ব্লকের কোড স্কিপ করে তা গভীরভাবে বোঝা"
       ],
       "estimatedMinutes": 30
     },
     {
       "type": "story",
-      "title": "রিপোর্টে সত্য-মিথ্যা আসছে, কিন্তু সফটওয়্যার কোনো প্রতিক্রিয়া দিচ্ছে না",
-      "setting": "EdTech লার্নার ড্যাশবোর্ড ও নোটিফিকেশন ইঞ্জিন",
-      "content": "আগের মিশনে তুমি যে প্রগ্রেস রিপোর্ট প্রোগ্রাম বানিয়েছিলে, তা নিখুঁতভাবে জানাতে পারছে `Target Reached: True`। কিন্তু লক্ষ্য পূরণ হওয়ার পরেও তোমার সফটওয়্যার কোনো বিশেষ অভিনন্দন জানাচ্ছে না! সব শিক্ষার্থীর জন্য সে একই গতানুগতিক লাইন প্রিন্ট করে চলেছে।\n\nতোমার প্রোগ্রাম ডেটা দেখতে পাচ্ছে, কিন্তু ডেটার ভিত্তিতে কোনো সিদ্ধান্ত বা প্রতিক্রিয়া নিতে পারছে না। তোমার সফটওয়্যারকে এখন একটি বুদ্ধিমান নিয়ম শেখাতে হবে: শর্ত True হলে সে অতিরিক্ত একটি সেলিব্রেশন বার্তা দেখাবে, আর False হলে আজ কিছুই করবে না। এই একটি সিদ্ধান্তই সফটওয়্যারের এক্সিকিউশন পাথ বদলে দেবে।",
-      "moral": "ডেটা জানা এবং ডেটার ওপর ভিত্তি করে সিদ্ধান্ত নেওয়া এক জিনিস নয়; কন্ডিশনাল স্টেটমেন্ট এই দুইয়ের মধ্যে বুদ্ধিমত্তার সংযোগ তৈরি করে।"
+      "title": "অর্ডারে সত্য-মিথ্যা আসছে, কিন্তু সফটওয়্যার কোনো অ্যাকশন নিচ্ছে না",
+      "setting": "E-Commerce Checkout & Delivery System",
+      "content": "Daraz বা Chaldal-এর মতো একটি ই-কমার্স অ্যাপের কথা ভাবো। সেখানে একটি সহজ অফার আছে: কোনো কাস্টমার যদি ৫০০ টাকার বা তার বেশি কেনাকাটা করে, তবে সে 'Free Delivery' পাবে।\n\nআগের মিশনের কোড দিয়ে তুমি সহজেই তুলনা করে দেখতে পারো: `free_delivery_eligible = cart_total >= 500`। কাস্টমার ৬০০ টাকার বাজার করায় রেজাল্ট আসলো `True`।\n\nকিন্তু সমস্যা হলো, স্ক্রিনে শুধু `True` শব্দটি দেখে কাস্টমার কিছুই বুঝতে পারছে না! কারণ তোমার সফটওয়্যার সত্য-মিথ্যা চিনতে পারলেও, সেই অনুযায়ী স্পেশাল কোনো মেসেজ বা অভিনন্দন ট্রিগার করতে পারছে না। সে এখনো অন্ধের মতো ওপর থেকে নিচে এক লাইনের পর এক লাইন প্রিন্ট করে যাচ্ছে।\n\nতোমার কোডকে এখন একটি নিয়ম শেখাতে হবে: কার্ট ৫০০ বা তার বেশি হলে কাস্টমারকে স্পেশাল মেসেজ দাও: 'Free delivery unlocked!'। আর শর্ত না মিললে এই মেসেজটি সম্পূর্ণ স্কিপ করো। এই একটি সিদ্ধান্তের মাধ্যমেই সফটওয়্যার তার এক্সিকিউশন পাথ বদলে ফেলবে।",
+      "moral": "শুধু ডেটা জানা আর ডেটার ওপর ভিত্তি করে অ্যাকশন নেওয়া এক জিনিস নয়; 'if' statement ডেটা দেখে কোডের গতিপথ পরিবর্তন করার প্রথম হাতিয়ার।"
     },
     {
       "type": "analogy",
-      "title": "গেটে green signal হলে",
+      "title": "স্বয়ংক্রিয় গেটে গ্রিন সিগন্যাল",
       "realWorld": {
-        "label": "স্বয়ংক্রিয় সিকিউরিটি গেট",
-        "description": "গেট সেন্সর যদি ভ্যালিড কার্ড পায়, তবেই গ্রিন সিগন্যাল দিয়ে গেটের লক খোলে। কার্ড ভ্যালিড না হলে গেট খোলার কাজ চালু হয় না।",
+        "label": "স্মার্ট সিকিউরিটি গেট",
+        "description": "মেট্রোরেল বা অফিসের গেটে কার্ড ছোঁয়ালে সেন্সর চেক করে কার্ডটি ভ্যালিড কি না। কার্ড ভ্যালিড হলে গ্রিন বাতি জ্বলে এবং গেট খুলে যায়। কার্ড ইনভ্যালিড হলে গেট খোলার কোনো কাজই চালু হয় না।",
         "icon": "DoorOpen"
       },
       "pythonConcept": {
         "label": "if statement",
-        "description": "Python-এ 'if' একটি শর্ত পরীক্ষা করে। কন্ডিশন True হলেই কেবল তার নিচের indented কোড ব্লক চালায়।",
+        "description": "পাইথনে 'if' ঠিক ওই গেটের সেন্সরের মতো। সে একটি শর্ত চেক করে। শর্ত True হলেই কেবল তার নিচের ভেতরের কোড রান করে।",
         "icon": "GitBranch"
       },
-      "connection": "'if target_reached:' হলো গেটের valid-card চেকের মতো। শর্ত True হলে ভেতরের বার্তা প্রিন্ট হবে, অন্যথায় স্কিপ হবে।",
-      "deeperInsight": "আজ কেবল একটি পথ শেখা হচ্ছে: True হলে কী হবে। False হলে বিকল্প কোনো পথ তৈরি করা এখনো বাকি আছে।"
+      "connection": "'if free_delivery_eligible:' হলো গেটে ভ্যালিড কার্ড পাওয়ার মতো। শর্ত True হলে ভেতরের অভিনন্দন মেসেজ প্রিন্ট হবে, অন্যথায় স্কিপ হয়ে যাবে।",
+      "deeperInsight": "আজকের মিশনে আমরা কেবল একটি পথ শিখছি: শর্ত True হলে কী হবে। শর্ত False হলে বিকল্প পথে কী করতে হবে, তা আমরা এখনো কোডকে শেখাইনি।"
     },
     {
       "type": "concept",
-      "title": "if statement-এর তিনটি অংশ",
-      "content": "একটি if statement-এ তিনটি জিনিস থাকে: 'if' কিওয়ার্ড, একটি True/False কন্ডিশন, এবং কন্ডিশনের শেষে কোলন (:) চিহ্ন। তার নিচে ৪টি স্পেস ইন্ডেন্ট করা লাইনগুলো হলো if ব্লক।\n\n'target_reached' যদি True হয়, তবেই পাইথন ইন্ডেন্টেড প্রিন্ট লাইন চালাবে। আর যদি False হয়, পাইথন পুরো ব্লক স্কিপ করে পরের লাইনে চলে যাবে।",
+      "title": "if statement-এর শরীর ও কাজের ধরন",
+      "content": "পাইথনে একটি 'if' statement তৈরি করতে মূলত তিনটি জিনিস লাগে:\n\n১. **`if` কিওয়ার্ড:** পাইথনকে সংকেত দেয় যে সামনে একটি শর্ত আসছে।\n২. **Condition (শর্ত):** একটি তুলনা বা ভেরিয়েবল যার মান হয় `True` নয়তো `False`।\n৩. **Colon (`:`):** কন্ডিশন লাইনের শেষে কোলন দেওয়া বাধ্যতামূলক। এটি পাইথনকে বলে—'শর্ত ঘোষণা শেষ, এবার নিচের ব্লকে তাকাও!'\n\nকোলন লাইনের ঠিক নিচে **৪টি স্পেস (Indentation)** দিয়ে যে লাইনগুলো লেখা হয়, পাইথন সেগুলোকে মনে করে ওই `if`-এর নিজস্ব এলাকা বা `if block`।",
       "keyPoints": [
-        "'if'-এর পরে একটি বুলিয়ান মান বা comparison condition থাকে।",
-        "কন্ডিশনের শেষে কোলন ':' থাকা বাধ্যতামূলক।",
-        "if ব্লকের কোডের শুরুতে ৪টি স্পেস ইন্ডেন্টেশন দিতে হয়।",
-        "শর্ত False হলে if ব্লকের কোড কখনো রান হয় না।",
-        "আজ কোনো 'else' ব্যবহার করা হবে না—শুধু একটিমাত্র পথ পরিচালিত হবে।"
+        "'if'-এর পরে সবসময় এমন কিছু থাকে যা True বা False রিটার্ন করে।",
+        "কন্ডিশন লাইনের শেষে কোলন ':' থাকা বাধ্যতামূলক, নয়তো SyntaxError হবে।",
+        "if ব্লকের ভেতরে থাকা প্রতিটি লাইনের শুরুতে সমান ৪টি স্পেস (Indentation) দিতে হয়।",
+        "কন্ডিশন False হলে পাইথন if ব্লকের ভেতরের কোড সম্পূর্ণ এড়িয়ে (skip করে) পরের লাইনে চলে যায়।",
+        "যে লাইনের শুরুতে কোনো ইন্ডেন্টেশন নেই, সেটি if ব্লকের বাইরের লাইন—তা শর্ত যাই হোক না কেন সবসময় রান হবে।"
       ],
-      "whyCallout": "আগের মিশনে প্রোগ্রাম True বা False তৈরি করত, কিন্তু কোড একই লাইনে চলত। if statement হলো ডেটা অনুযায়ী এক্সিকিউশন পাথ বদলানোর প্রথম হাতিয়ার।",
-      "whenToUse": "যখন কোনো শর্ত সত্য (True) হলে একটি বিশেষ কাজ চালাতে হয়।",
-      "whenNotToUse": "যখন সত্য ও মিথ্যা—দুই ক্ষেত্রেই আলাদা আলাদা কাজ করতে হবে; সেটি পরের মিশনের বিষয়।",
-      "commonMisconception": "ইন্ডেন্টেশন কেবল কোড দেখতে সুন্দর করার জন্য নয়। পাইথনে ইন্ডেন্টেশনই নির্ধারণ করে কোন লাইনটি if ব্লকের অধীন আর কোনটি বাইরে।"
+      "whyCallout": "আগের মিশনগুলোতে প্রতিটি লাইন একটার পর একটা অন্ধের মতো চলত। 'if' statement আসার কারণে কোড এখন রানটাইমে সিদ্ধান্ত নিয়ে নির্দিষ্ট লাইন চালাতে বা স্কিপ করতে পারে।",
+      "whenToUse": "যখন কোনো বিশেষ শর্ত পূরণ (True) হলেই কেবল একটি নির্দিষ্ট কাজ বা বার্তা ট্রিগার করতে হয়।",
+      "whenNotToUse": "যখন True এবং False—উভয় পরিস্থিতির জন্যই আলাদা আলাদা অ্যাকশন দরকার; সেটির জন্য পরের মিশনে 'else' আসবে।",
+      "commonMisconception": "ইন্ডেন্টেশন বা স্পেস কেবল কোড সুন্দর দেখানোর জন্য নয়। পাইথনে স্পেস দিয়েই নির্ধারিত হয় কোন লাইনটি if-এর অধীনে আর কোন লাইনটি সবার জন্য উন্মুক্ত।"
     },
     {
       "type": "visualization",
-      "title": "True হলে কোন লাইন চলবে?",
-      "description": "পাইথন প্রথমে কন্ডিশন মূল্যায়ন করে, তারপর কেবল True হলেই ইন্ডেন্টেড ব্লক এক্সিকিউট করে।",
-      "caption": "False হলে ব্লক স্কিপ; True হলে ব্লক এক্সিকিউট",
-      "diagram": "target_reached = completed >= target\n             │\n             ▼\n     target_reached কি True?\n       │                 │\n      হ্যাঁ               না\n       │                 │\n       ▼                 ▼\n  indented print      block skip\n  লাইন চালাও          next line-এ যাও"
+      "title": "কোড কীভাবে লাইন স্কিপ করে?",
+      "description": "পাইথন ইন্টারপ্রেটার কীভাবে কন্ডিশন যাচাই করে এবং সিদ্ধান্ত নেয় কোন লাইন চলবে আর কোন লাইন স্কিপ হবে তা লক্ষ করো।",
+      "caption": "True হলে ব্লকে প্রবেশ; False হলে সরাসরি ব্লক স্কিপ",
+      "diagram": "cart_total = 600\neligible = cart_total >= 500  (True)\n              │\n              ▼\n      eligible কি True?\n       │             │\n     [হ্যাঁ]         [না]\n       │             │\n       ▼             ▼\n   if ব্লকে ঢোকো     পুরো ব্লক স্কিপ করো\n   (অভিনন্দন প্রিন্ট)   (সরাসরি পরের লাইনে যাও)\n       │             │\n       └──────┬──────┘\n              ▼\n        শেষ লাইন প্রিন্ট\n       (সবার জন্য প্রযোজ্য)"
     },
     {
       "type": "code_example",
-      "title": "টার্গেট পূরণের সেলিব্রেশন রুল",
-      "explanation": "নিচের কোডে তুলনাটি আগে 'target_reached' ভেরিয়েবলে সংরক্ষণ করা হয়েছে। এরপর if স্টেটমেন্ট সেই বুলিয়ান মান যাচাই করে সেলিব্রেশন লাইনটি চালিয়েছে।",
+      "title": "Smart Home AC কন্ট্রোলার",
+      "explanation": "এই বাস্তব উদাহরণে একটি রুমের তাপমাত্রা মাপা হচ্ছে। তাপমাত্রা ৩০ ডিগ্রির বেশি হলে স্মার্ট এসি স্বয়ংক্রিয়ভাবে অন হবে।",
       "language": "python",
-      "code": "learner_name = \"Mina\"\ncompleted = 12\ntarget = 12\n\ntarget_reached = completed >= target\nprint(f\"Target Reached: {target_reached}\")\n\nif target_reached:\n    print(f\"Great work, {learner_name}! Target completed.\")\n\nprint(\"Progress report finished.\")",
-      "output": "Target Reached: True\nGreat work, Mina! Target completed.\nProgress report finished.",
+      "code": "room_temp = 34\ntemp_limit = 30\n\nis_hot = room_temp > temp_limit\nprint(f\"Room Temperature: {room_temp}°C\")\n\nif is_hot:\n    print(\"Alert: Temperature is high! Smart AC turned ON.\")\n\nprint(\"Climate monitoring active.\")",
+      "output": "Room Temperature: 34°C\nAlert: Temperature is high! Smart AC turned ON.\nClimate monitoring active.",
       "annotations": [
         {
+          "lineNumber": 4,
+          "explanation": "তুলনা করা হলো: ৩৪ > ৩০, যার ফলাফল মেমরিতে True জমা হলো।"
+        },
+        {
           "lineNumber": 5,
-          "explanation": "Comparison একটি True বা False বুলিয়ান মান তৈরি করেছে।"
+          "explanation": "এই প্রিন্ট লাইনটি কন্ডিশনের বাইরে, তাই তাপমাত্রা যাই হোক এটি স্ক্রিনে আসবে।"
+        },
+        {
+          "lineNumber": 7,
+          "explanation": "if-এর পর কন্ডিশন এবং লাইনের শেষে কোলন (:) দেওয়া হয়েছে।"
         },
         {
           "lineNumber": 8,
-          "explanation": "Condition-এর শেষে কোলন (:) দেওয়া হয়েছে।"
+          "explanation": "৪টি স্পেস দিয়ে লেখা এই লাইনটি if ব্লকের অধীন—is_hot এর মান True বলেই এটি রান হয়েছে।"
         },
         {
-          "lineNumber": 9,
-          "explanation": "চারটি স্পেস দিয়ে ইন্ডেন্ট করা লাইনটি if ব্লকের অংশ—কেবল True হলেই চলবে।"
-        },
-        {
-          "lineNumber": 11,
-          "explanation": "এই লাইনটি ইন্ডেন্ট করা নয়, তাই শর্ত নির্বিশেষে এটি সবসময় চলবে।"
+          "lineNumber": 10,
+          "explanation": "ইন্ডেন্ট ছাড়া সাধারণ লাইন—if শেষ হওয়ার পর পাইথন এটি সবসময় চালাবে।"
         }
       ],
-      "postExplanation": "'completed' যদি 10 হতো, তবে 'target_reached' হতো False। তখন সেলিব্রেশন লাইনটি স্কিপ হতো, কিন্তু শেষের রিপোর্ট লাইনটি যথারীতি চলত।"
+      "postExplanation": "যদি room_temp হতো ২৫, তাহলে is_hot হতো False। তখন পাইথন ৮ নম্বর লাইনটি সম্পূর্ণ স্কিপ করে সরাসরি ১০ নম্বর লাইনে চলে যেত!"
     },
     {
       "type": "practice",
-      "title": "মেইন বিল্ড: গোল অ্যাচিভমেন্ট নোটিফায়ার",
-      "prompt": "একটি এডুকেশন ড্যাশবোর্ডের জন্য Goal Achievement Notifier প্রোগ্রাম তৈরি করো। ইউজারের কাছ থেকে learner-এর নাম, completed mission এবং target mission ইনপুট নাও। তারপর 'target_reached' দিয়ে comparison তৈরি করো।\n\nসবসময় Target Reached স্ট্যাটাস প্রিন্ট করবে। কিন্তু 'target_reached' True হলে কেবল তখনই ইউজারের নামসহ একটি congratulations বার্তা প্রিন্ট করবে। শেষে সবসময় 'Report complete.' প্রিন্ট করবে।\n\nমনে রাখবে: আজ কোনো 'else' ব্যবহার করবে না—শুধু 'if' দিয়ে একটিমাত্র পথ নিয়ন্ত্রণ করবে।",
-      "starterCode": "# Part 1: ইনপুট নাও\n\n# Part 2: comparison result তৈরি করো\n\n# Part 3: সবসময় status print করো\n\n# Part 4: True হলে congratulations print করো\n\n# Part 5: সবসময় final line print করো\n",
+      "title": "মেইন বিল্ড: Free Delivery Gatekeeper",
+      "prompt": "একটি E-Commerce চেকআউট সিস্টেমের জন্য Free Delivery Notifier প্রোগ্রাম বানাও।\n\nইউজারের কাছ থেকে customer_name এবং cart_total ইনপুট নাও। তারপর চেক করো cart_total কি ৫০০ টাকার সমান বা বেশি (`>= 500`) কি না। এই রেজাল্টটি `free_delivery_eligible` ভেরিয়েবলে রাখো।\n\nপ্রথমে কাস্টমারের নাম এবং কার্ট টোটাল প্রিন্ট করো। তারপর `if` ব্যবহার করে যদি `free_delivery_eligible` True হয়, তবে কাস্টমারকে অভিনন্দন জানিয়ে প্রিন্ট করো: `Congratulations {customer_name}! Free delivery unlocked.`। সবশেষে সবসময় `Order processing complete.` প্রিন্ট করবে।\n\nমনে রাখবে: আজ কোনো `else` ব্যবহার করবে না—শুধু `if` দিয়ে একটিমাত্র শর্ত নিয়ন্ত্রণ করবে।",
+      "starterCode": "# Part 1: customer_name এবং cart_total ইনপুট নাও (cart_total অবশ্যই int হতে হবে)\n\n# Part 2: free_delivery_eligible তুলনা তৈরি করো (cart_total >= 500)\n\n# Part 3: Customer এবং Cart Total প্রিন্ট করো\n\n# Part 4: if ব্যবহার করে শর্ত True হলে congratulations মেসেজ প্রিন্ট করো (৪ স্পেস ইন্ডেন্টেশন)\n\n# Part 5: সবার শেষে Order processing complete. প্রিন্ট করো (ইন্ডেন্টেশন ছাড়া)\n",
       "hints": [
-        "Hint 1 — আগে তিনটি ভেরিয়েবল পরিকল্পনা করো: learner_name, completed, target। নামটি সাধারণ input, কিন্তু completed ও target হলো numeric input।",
-        "Hint 2 — সংখ্যা ইনপুটের জন্য এই প্যাটার্ন ব্যবহার করো: `completed = int(input(\"Completed missions: \"))`। target-এর জন্যও একইভাবে int() ব্যবহার করো।",
-        "Hint 3 — তুলনাটি আলাদা ভেরিয়েবলে রাখো: `target_reached = completed >= target`। এই লাইনে এখনো if নেই।",
-        "Hint 4 — স্ট্যাটাস লাইন সবসময় চলবে, তাই if-এর আগেই `print(f\"Target Reached: {target_reached}\")` লিখতে পারো।",
-        "Hint 5 — if লাইন শুরু হয় `if` দিয়ে এবং শেষ হয় কোলন দিয়ে: `if target_reached:`।",
-        "Hint 6 — if-এর পরের congratulation লাইনের শুরুতে ৪টি স্পেস দাও। স্পেস না দিলে পাইথন বুঝবে না লাইনটি if ব্লকের ভেতরে।",
-        "Hint 7 — সেলিব্রেশন লাইনে শিক্ষার্থীর নাম বসাতে `print(f\"Great work, {learner_name}!\")` ব্যবহার করো। এটি অবশ্যই indented হবে।",
-        "Hint 8 — `print(\"Report complete.\")` লাইনটি ইন্ডেন্টেশন ছাড়া লিখো, কারণ এটি শর্ত নির্বিশেষে সবসময় চলবে।",
-        "Hint 9 — সেলফ চেক: তোমার if লাইনের শেষে কি কোলন (:) আছে? অভিনন্দন লাইনে কি ৪টি স্পেস আছে? কোডে ভুল করে else ঢুকে যায়নি তো?"
+        "Hint 1 — আগে দুটি ইনপুট নাও: customer_name সাধারণ টেক্সট, কিন্তু cart_total টাকার অংক হওয়ায় `int(input(\"Cart total: \"))` দিয়ে ইনপুট নিতে হবে।",
+        "Hint 2 — তুলনাটি ভেরিয়েবলে সংরক্ষণ করো: `free_delivery_eligible = cart_total >= 500`।",
+        "Hint 3 — কাস্টমার ইনফো প্রিন্ট করতে f-string ব্যবহার করো: `print(f\"Customer: {customer_name}\")` এবং `print(f\"Cart Total: {cart_total}\")`।",
+        "Hint 4 — if স্টেটমেন্ট শুরু করো `if free_delivery_eligible:` লিখে। মনে রেখো, লাইনের শেষে কোলন (:) দেওয়া আবশ্যক।",
+        "Hint 5 — কোলনের পরের লাইনে ঠিক ৪টি স্পেস দিয়ে ইন্ডেন্ট করে লিখো: `print(f\"Congratulations {customer_name}! Free delivery unlocked.\")`।",
+        "Hint 6 — শেষ লাইনটি `print(\"Order processing complete.\")` কোনো স্পেস ছাড়া একদম লাইনের শুরুতে লিখবে, কারণ এটি কার্টের দাম যাই হোক সবসময় রান হবে।",
+        "Hint 7 — সেলফ চেক: তোমার if লাইনের শেষে কি কোলন আছে? অভিনন্দন লাইনের শুরুতে কি ৪টি স্পেস আছে? কোডে ভুল করে else ঢুকে যায়নি তো?"
       ],
       "displayHint": "input → int conversion → comparison → if condition → indented message",
-      "expectedOutput": "Target Reached: True\nGreat work, Hasan!\nReport complete.",
+      "expectedOutput": "Customer: Hasan\nCart Total: 650\nCongratulations Hasan! Free delivery unlocked.\nOrder processing complete.",
       "validation": {
         "type": "smart_output_source",
         "requiredVariables": [
-          "learner_name",
-          "completed",
-          "target",
-          "target_reached"
+          "customer_name",
+          "cart_total",
+          "free_delivery_eligible"
         ],
         "requiredPatterns": [
           "input",
@@ -144,123 +145,123 @@
           "else:"
         ],
         "feedbackMessages": {
-          "onPass": "দারুণ! তুমি condition True হলে program-এর জন্য একটি নতুন execution path তৈরি করেছ।",
-          "onOutputMismatch": "কোন line সবসময় চলবে আর কোন line শুধু True হলে চলবে—সেটি আবার দেখো।",
-          "onPatternFail": "input, int conversion, comparison, if এবং indented message—পাঁচটি অংশ আছে কি না দেখো।",
-          "onHardcoded": "Fixed output print না করে input এবং comparison দিয়ে program-টি dynamic রাখো।",
-          "onMissingVariable": "Required variable-টি আগে তৈরি করো, তারপর if condition-এ ব্যবহার করো।"
+          "onPass": "চমৎকার! তুমি শর্তের ভিত্তিতে কোডকে সফলভাবে সিদ্ধান্ত নিতে শিখিয়েছ।",
+          "onOutputMismatch": "কোন লাইনটি সবসময় চলবে আর কোন লাইনটি কেবল True হলে চলবে—ইন্ডেন্টেশন ঠিক আছে কি না আবার দেখো।",
+          "onPatternFail": "ইনপুট, int conversion, >= তুলনা, if কন্ডিশন এবং ইন্ডেন্টেড মেসেজ—সবগুলো অংশ ঠিকমতো লিখেছ কি না চেক করো।",
+          "onHardcoded": "সরাসরি ফিক্সড টেক্সট না লিখে ইনপুট এবং ভেরিয়েবল ব্যবহার করে কোডটি ডায়নামিক রাখো।",
+          "onMissingVariable": "customer_name, cart_total এবং free_delivery_eligible—ভেরিয়েবলগুলোর নাম সঠিকভাবে বানান করেছ কি না দেখো।"
         }
       },
-      "solution": "learner_name = input(\"Learner name: \")\ncompleted = int(input(\"Completed missions: \"))\ntarget = int(input(\"Target missions: \"))\n\ntarget_reached = completed >= target\nprint(f\"Target Reached: {target_reached}\")\n\nif target_reached:\n    print(f\"Great work, {learner_name}!\")\n\nprint(\"Report complete.\")",
-      "solutionExplanation": "ইনপুট সংখ্যাগুলোকে int() দিয়ে রূপান্তর করে completed >= target তুলনাটি 'target_reached' ভেরিয়েবলে রাখা হয়েছে। যদি মান True হয়, if ব্লকের ইন্ডেন্টেড লাইনটি অভিনন্দন জানায়। শেষের লাইনটি আন-ইন্ডেন্টেড হওয়ায় শর্ত যাই হোক তা সবসময় রান হয়।"
+      "solution": "customer_name = input(\"Customer name: \")\ncart_total = int(input(\"Cart total: \"))\n\nfree_delivery_eligible = cart_total >= 500\nprint(f\"Customer: {customer_name}\")\nprint(f\"Cart Total: {cart_total}\")\n\nif free_delivery_eligible:\n    print(f\"Congratulations {customer_name}! Free delivery unlocked.\")\n\nprint(\"Order processing complete.\")",
+      "solutionExplanation": "প্রথমে ইনপুট নিয়ে cart_total-কে int-এ রূপান্তর করা হয়েছে। এরপর cart_total >= 500 তুলনাটি 'free_delivery_eligible' ভেরিয়েবলে একটি True বা False মান তৈরি করেছে। if কন্ডিশন যদি দেখে মানটি True, তবেই ভেতরের ৪ স্পেস ইন্ডেন্ট করা অভিনন্দন লাইনটি রান হয়। শেষের লাইনটি আন-ইন্ডেন্টেড থাকায় তা শর্ত নির্বিশেষে সবসময় এক্সিকিউট হয়।"
     },
     {
       "type": "quiz",
       "title": "if Statement Checkpoint",
-      "instructions": "Syntax, condition এবং indentation—তিনটি বিষয় বুঝেছ কি না যাচাই করো। Passing score: 70%",
+      "instructions": "Syntax, condition এবং indentation—তিনটি মৌলিক বিষয় কতটা গভীরভাবে বুঝেছ তা যাচাই করো। Passing score: 70%",
       "passingScore": 70,
       "questions": [
         {
           "id": "q1",
           "questionType": "multiple_choice",
-          "question": "`if target_reached:` line-টির শেষে colon কেন আছে?",
+          "question": "`if free_delivery_eligible:` লাইনের শেষে কোলন (:) চিহ্নটির কাজ কী?",
           "difficulty": "easy",
           "options": [
-            "Python-কে if block শুরু হচ্ছে জানাতে",
-            "string বানাতে",
-            "number convert করতে",
-            "comparison বন্ধ করতে"
+            "পাইথনকে জানানো যে কন্ডিশন শেষ হয়েছে এবং একটি নতুন ব্লক শুরু হচ্ছে",
+            "ভেরিয়েবল ডিক্লেয়ার করা",
+            "কন্ডিশনটিকে string-এ রূপান্তর করা",
+            "প্রোগ্রাম বন্ধ করে দেওয়া"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Colon if statement-এর header শেষ করে এবং indented block শুরু হওয়ার signal দেয়."
+          "explanation": "কোলন (:) চিহ্নটি if হেডার শেষ করে এবং পাইথনকে সংকেত দেয় যে পরের লাইনে ইন্ডেন্টেড কোড ব্লক শুরু হচ্ছে।"
         },
         {
           "id": "q2",
           "questionType": "multiple_choice",
-          "question": "`target_reached` যদি False হয়, তাহলে if block-এর ভিতরের print line-এর কী হবে?",
+          "question": "যদি `free_delivery_eligible` এর মান False হয়, তাহলে if ব্লকের ভেতরের print লাইনের কী হবে?",
           "difficulty": "easy",
           "options": [
-            "লাইনটি skip হবে",
-            "লাইনটি দুইবার চলবে",
-            "লাইনটি True হয়ে যাবে",
-            "program সবসময় error দেবে"
+            "লাইনটি সম্পূর্ণ স্কিপ হবে এবং রান হবে না",
+            "লাইনটি দুইবার রান হবে",
+            "প্রোগ্রামটি ক্র্যাশ করে SyntaxError দেবে",
+            "লাইনটি স্বয়ংক্রিয়ভাবে True হয়ে যাবে"
           ],
           "correctOptionIndex": 0,
-          "explanation": "if block শুধু condition True হলে execute হয়."
+          "explanation": "if ব্লকের মূল নিয়মই হলো: কন্ডিশন True হলে রান হবে, আর False হলে পাইথন পুরো ব্লক এড়িয়ে সামনে চলে যাবে।"
         },
         {
           "id": "q3",
           "questionType": "multiple_choice",
-          "question": "নিচের কোন code-এ indentation সঠিক?",
+          "question": "নিচের কোন কোডটিতে ইন্ডেন্টেশন ও সিনট্যাক্স সঠিকভাবে লেখা হয়েছে?",
           "difficulty": "medium",
           "options": [
-            "if target_reached:\nprint(\"Great work\")",
-            "if target_reached:\n    print(\"Great work\")",
-            "if: target_reached\n    print(\"Great work\")",
-            "if target_reached\n    print(\"Great work\")"
+            "if eligible:\nprint(\"Unlocked\")",
+            "if eligible:\n    print(\"Unlocked\")",
+            "if: eligible\n    print(\"Unlocked\")",
+            "if eligible\n    print(\"Unlocked\")"
           ],
           "correctOptionIndex": 1,
-          "explanation": "if condition-এর পরে colon এবং block line-এর আগে indentation দরকার."
+          "explanation": "কন্ডিশনের পর কোলন (:) থাকতে হবে এবং তার পরের লাইনের শুরুতে ৪টি স্পেস (ইন্ডেন্টেশন) থাকতে হবে।"
         },
         {
           "id": "q4",
           "questionType": "multiple_choice",
-          "question": "কোন line condition True বা False—দুই ক্ষেত্রেই চলবে?",
+          "question": "একটি পাইথন ফাইলে if ব্লকের পর ইন্ডেন্টেশন ছাড়া (একদম শুরুতে) লেখা লাইনের ক্ষেত্রে কী ঘটবে?",
           "difficulty": "medium",
           "options": [
-            "if block-এর ভিতরের indented line",
-            "if-এর পরে indentation ছাড়া লেখা line",
-            "শুধু comparison line",
-            "কোনোটিই না"
+            "কন্ডিশন True হোক বা False হোক, লাইনটি সবসময় রান হবে",
+            "লাইনটি কেবল কন্ডিশন True হলে রান হবে",
+            "লাইনটি কখনো রান হবে না",
+            "লাইনটি শুধু এরর মেসেজ দেখাবে"
           ],
-          "correctOptionIndex": 1,
-          "explanation": "Indentation ছাড়া থাকা line if block-এর বাইরে, তাই program সেখানে পৌঁছালে সবসময় চলে."
+          "correctOptionIndex": 0,
+          "explanation": "ইন্ডেন্টেশন ছাড়া থাকা লাইন if ব্লকের বাইরে সাধারণ লাইন হিসেবে গণ্য হয়, তাই কন্ডিশনের মান যাই হোক তা সবসময় রান হয়।"
         },
         {
           "id": "q5",
           "questionType": "multiple_choice",
-          "question": "আজকের mission-এ কেন else ব্যবহার করা হয়নি?",
+          "question": "এই মিশনে কেন if-এর সাথে else শেখানো হয়নি?",
           "difficulty": "easy",
           "options": [
-            "কারণ else একটি আলাদা নতুন capability এবং পরের mission-এর বিষয়",
-            "কারণ else Python-এ নেই",
-            "কারণ if-এর সঙ্গে print ব্যবহার করা যায় না",
-            "কারণ boolean value দরকার নেই"
+            "যাতে একবারে একটিমাত্র কনসেপ্ট (True হলে কাজ করা) নিখুঁতভাবে আয়ত্ত করা যায়",
+            "কারণ পাইথনে else বলে কিছু নেই",
+            "কারণ if-এর সাথে অন্য কোনো কি-ওয়ার্ড ব্যবহার করা যায় না",
+            "কারণ boolean মানেই শুধু True, False কোনো মান নয়"
           ],
           "correctOptionIndex": 0,
-          "explanation": "এক mission-এ একটিমাত্র core concept রাখা হয়েছে: True হলে if block চালানো."
+          "explanation": "নেক্সাসের সিঙ্গেল কনসেপ্ট ল অনুযায়ী, একটি মিশনে কেবল একটি সক্ষমতা তৈরি করা হয়। False হলে বিকল্প পথ নেওয়ার বিষয় পরবর্তী মিশনে আসবে।"
         }
       ]
     },
     {
       "type": "debug_challenge",
-      "title": "ডিবাগ ল্যাব: সেলিব্রেশন কেন সবসময় দেখা যাচ্ছে?",
-      "scenario": "📱 ইউজার অ্যাকশন: একজন শিক্ষার্থী (Rafi) লার্নার ড্যাশবোর্ডে লগইন করে তার সাপ্তাহিক স্ট্যাটাস চেক করছে। সে এখনও টার্গেট পূরণ করতে পারেনি (completed: 7, target: 12)।\n⚙️ ব্যাকএন্ড সার্ভিস এক্সিকিউশন: নোটিফিকেশন ইঞ্জিন Rafi-এর ডেটা নিয়ে এই পাইথন স্ক্রিপ্টটি চালায় যাতে টার্গেট পূরণ হলে সেলিব্রেশন বার্তা পাঠানো যায়।\n🐛 ডিফেক্ট: 'target_reached' সঠিকভাবে 'False' হওয়া সত্ত্বেও ড্যাশবোর্ড Rafi-কে 'Great work, Rafi!' অভিনন্দন বার্তা দেখাচ্ছে! সেলিব্রেশন লাইনটি কোনো কন্ডিশনের ভেতরে না থাকায় তা সবসময় প্রিন্ট হয়ে যাচ্ছে।\n🎯 তোমার কাজ: অভিনন্দন বার্তাটি 'if target_reached:' কন্ডিশন ব্লকের ভেতরে নিয়ে সঠিকভাবে ৪টি স্পেস দিয়ে ইন্ডেন্ট করো, যাতে কেবল টার্গেট পূরণ ('True') হলেই Rafi এই বার্তা দেখতে পায়।",
-      "buggyCode": "learner_name = \"Rafi\"\ncompleted = 7\ntarget = 12\n\ntarget_reached = completed >= target\nprint(f\"Target Reached: {target_reached}\")\nprint(f\"Great work, {learner_name}!\")\nprint(\"Report complete.\")",
-      "errorMessage": "Logic Error: 'Great work, Rafi!' লাইনটি condition-এর বাইরে থাকায় target_reached False হলেও অভিনন্দন প্রিন্ট হচ্ছে।",
+      "title": "ডিবাগ ল্যাব: কার্ট ৪০০ টাকা হলেও ফ্রি ডেলিভারি কেন?",
+      "scenario": "📱 ইউজার অ্যাকশন: একজন কাস্টমার (Tanvir) ফুড ডেলিভারি অ্যাপে ৪২০ টাকার খাবার অর্ডার করেছে। ফ্রি ডেলিভারির নিয়ম হলো বিল ৫০০ টাকা বা তার বেশি হতে হবে (threshold = 500)।\n⚙️ ব্যাকএন্ড সার্ভিস: চেকআউটের সময় পেমেন্ট প্রসেসিং ব্যাকএন্ড স্ক্রিপ্টটি রান করে এবং ডেলিভারি চার্জ নির্ধারণ করে।\n🐛 ডিফেক্ট: Tanvir-এর কার্ট ৪২০ টাকা হওয়ায় 'free_delivery_eligible' সঠিকভাবে 'False' হলো। কিন্তু স্ক্রিনে দেখাচ্ছে: 'Congratulations Tanvir! Free delivery applied.'! অ্যাপ কাস্টমারকে ভুল ফ্রি ডেলিভারি দিয়ে কোম্পানির বড় আর্থিক ক্ষতি করে ফেলছে!\n🎯 তোমার কাজ: কোডটি ভালো করে দেখো। অভিনন্দন লাইনটি কন্ডিশন ব্লকের ভেতরে না থাকায় এটি সবসময় রান হচ্ছে। এটিকে 'if free_delivery_eligible:' ব্লকের ভেতরে নিয়ে ৪টি স্পেস দিয়ে ইন্ডেন্ট করো।",
+      "buggyCode": "customer_name = \"Tanvir\"\ncart_total = 420\nthreshold = 500\n\nfree_delivery_eligible = cart_total >= threshold\nprint(f\"Cart Total: {cart_total}\")\nprint(f\"Congratulations {customer_name}! Free delivery applied.\")\nprint(\"Order processing complete.\")",
+      "errorMessage": "Logic Error: অভিনন্দন লাইনটি কন্ডিশন ব্লকের বাইরে সাধারণ লাইন হিসেবে থাকায় cart_total < 500 হওয়া সত্ত্বেও তা ভুলভাবে প্রিন্ট হচ্ছে।",
       "bugLine": 7,
       "bugType": "logic",
       "hints": [
-        "Hint 1: লক্ষ্য করো, Rafi-এর completed হলো 7 এবং target হলো 12, যার ফলে target_reached এর মান False।",
-        "Hint 2: অভিনন্দন বার্তাটি শর্ত ছাড়া সাধারণ লাইনের মতো লেখা হয়েছে, তাই এটি condition না দেখেই প্রতিবার চলছে।",
-        "Hint 3: অভিনন্দন লাইনের আগে 'if target_reached:' যোগ করো এবং print লাইনটির শুরুতে ৪টি স্পেস দিয়ে ইন্ডেন্ট করো।"
+        "Hint 1: খেয়াল করে দেখো, Tanvir-এর কার্ট ৪২০ টাকা এবং থ্রেশহোল্ড ৫০০ টাকা। অর্থাৎ free_delivery_eligible এর মান হলো False।",
+        "Hint 2: অভিনন্দন লাইনটি কিন্তু কোনো if ব্লকের অধীনে নেই—এটি সাধারণ লাইনের মতো লেখা হয়েছে, তাই পাইথন কন্ডিশন চেক না করেই তা প্রিন্ট করে দিচ্ছে!",
+        "Hint 3: অভিনন্দন লাইনের আগে 'if free_delivery_eligible:' যোগ করো এবং print লাইনের শুরুতে ৪টি স্পেস দিয়ে ইন্ডেন্ট করে দাও।"
       ],
-      "fixedCode": "learner_name = \"Rafi\"\ncompleted = 7\ntarget = 12\n\ntarget_reached = completed >= target\nprint(f\"Target Reached: {target_reached}\")\n\nif target_reached:\n    print(f\"Great work, {learner_name}!\")\n\nprint(\"Report complete.\")",
-      "explanation": "অভিনন্দন লাইনটি সাধারণ লাইনের মতো লেখা থাকলে তা সবসময় এক্সিকিউট হয়। এটিকে 'if target_reached:' ব্লকের ভেতরে নিয়ে ৪টি স্পেস দিয়ে ইন্ডেন্ট করলে পাইথন কেবল তখনই লাইনটি চালাবে যখন target_reached এর মান True হবে।"
+      "fixedCode": "customer_name = \"Tanvir\"\ncart_total = 420\nthreshold = 500\n\nfree_delivery_eligible = cart_total >= threshold\nprint(f\"Cart Total: {cart_total}\")\n\nif free_delivery_eligible:\n    print(f\"Congratulations {customer_name}! Free delivery applied.\")\n\nprint(\"Order processing complete.\")",
+      "explanation": "অভিনন্দন লাইনটি আন-ইন্ডেন্টেড অবস্থায় থাকায় পাইথন সেটিকে কন্ডিশনের বাইরে মনে করছিল এবং সবসময় চালাচ্ছিল। এটিকে 'if free_delivery_eligible:'-এর অধীনে ৪টি স্পেস দিয়ে ইন্ডেন্ট করার পর পাইথন কেবল তখনই লাইনটি চালাবে যখন কন্ডিশন True হবে।"
     },
     {
       "type": "reflection",
-      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: ডেটা থেকে ডিসিশন ব্রাঞ্চিং",
-      "instruction": "কোডের বাইরে তাকিয়ে ভাবো। এই মিশনে তুমি যা যা তৈরি করেছ, তার পেছনের স্থাপত্য ও ইঞ্জিনিয়ারিং দর্শন নিয়ে নিচের প্রশ্নগুলো চিন্তা করো।",
+      "title": "ক্রিটিক্যাল থিংকিং ল্যাব: সিদ্ধান্ত ও সফটওয়্যার আর্কিটেকচার",
+      "instruction": "কোডের বাইরে তাকিয়ে ভাবো। এই মিশনে তুমি যা যা তৈরি করেছ, তার পেছনের সফটওয়্যার আর্কিটেকচার নিয়ে নিচের প্রশ্নগুলো গভীরভাবে চিন্তা করো।",
       "criticalThinkingQuestions": [
         {
-          "question": "আগের মিশনে প্রোগ্রাম শুধু True বা False প্রিন্ট করত; আজ if যোগ করার পর সফটওয়্যারের এক্সিকিউশন মডেলে কী মৌলিক পরিবর্তন এল?"
+          "question": "আগে আমাদের প্রোগ্রাম শুধু ওপর থেকে নিচে লাইন বাই লাইন অন্ধভাবে চলত। 'if' স্টেটমেন্ট আসার পর সফটওয়্যারের এক্সিকিউশন মডেলে কী পরিবর্তন এল?"
         },
         {
-          "question": "Python-এ indentation কি কেবল দেখতে সুন্দর করার জন্য, নাকি এটি কোডের লজিক্যাল বাউন্ডারি নির্ধারণ করে? ভুল indentation সফটওয়্যারে কী ঝুঁকি তৈরি করতে পারে?"
+          "question": "Python-এ ইন্ডেন্টেশন বা ৪টি স্পেস কি শুধুই কোড দেখতে সুন্দর করার জন্য, নাকি এটি কোডের লজিক্যাল সীমানা নির্ধারণ করে? ভুল ইন্ডেন্টেশন হলে কী ধরনের মারাত্মক সমস্যা হতে পারে?"
         },
         {
-          "question": "আজকের প্রোগ্রাম শর্ত True হলে সেলিব্রেট করে, কিন্তু False হলে সম্পূর্ণ বোবা হয়ে থাকে। কোনো ফিডব্যাক না দেওয়া কি সফটওয়্যার ডিজাইনের দিক থেকে কোনো ঝুঁকি তৈরি করে?"
+          "question": "আজকের প্রোগ্রামে কার্ট ৫০০ টাকার কম হলে কাস্টমারকে কিছুই জানানো হচ্ছে না—কোড একদম চুপ করে থাকে। কোনো ফিডব্যাক না দেওয়া কি ভালো সফটওয়্যার ডিজাইনের লক্ষণ?"
         }
       ]
     },
@@ -268,47 +269,47 @@
       "type": "architect_gift",
       "title": "চিফ আর্কিটেক্টের সারপ্রাইজ গিফট",
       "subtitle": "স্টেপ ১০-এর গভীর ভাবনার এক্সক্লুসিভ সমাধান",
-      "instruction": "স্টেপ ১০-এ তুমি যে প্রশ্নগুলো নিয়ে চিন্তা করেছিলে, সফটওয়্যার আর্কিটেক্টরা বাস্তব ইন্ডাস্ট্রিতে কীভাবে তার সমাধান করেন তা দেখতে উপহারের বাক্সটি খোলো।",
+      "instruction": "স্টেপ ১০-এ তুমি যে প্রশ্নগুলো নিয়ে চিন্তা করেছিলে, শীর্ষ সফটওয়্যার আর্কিটেক্টরা বাস্তব ইন্ডাস্ট্রিতে কীভাবে তার সমাধান করেন তা দেখতে উপহারের বাক্সটি খোলো।",
       "solutions": [
         {
-          "question": "আগের মিশনে প্রোগ্রাম শুধু True বা False প্রিন্ট করত; আজ if যোগ করার পর সফটওয়্যারের এক্সিকিউশন মডেলে কী মৌলিক পরিবর্তন এল?",
-          "expertThinking": "আগের মিশনগুলোতে আমাদের কোড ছিল সম্পূর্ণ 'Linear Execution Model' বা একমাত্রিক সরলরৈখিক প্রবাহ। অর্থাৎ, ফাইলের ১ নম্বর লাইন থেকে শেষ লাইন পর্যন্ত প্রতিটি লাইন চোখ বন্ধ করে ওপর থেকে নিচে এক্সিকিউট হতো—মাঝের কোনো লাইন বাদ দেওয়ার সুযোগ ছিল না। কিন্তু `if` স্টেটমেন্ট যুক্ত হওয়ার সাথে সাথে সফটওয়্যার পেয়েছে 'Control Flow Branching' (নিয়ন্ত্রণ প্রবাহের বিভাজন)।\n\nএখন কোড আর অন্ধের মতো সব লাইন চালায় না। রানটাইমে মেমোরির বুলিয়ান স্টেট (`target_reached`) মূল্যায়ন করে সফটওয়্যার সিদ্ধান্ত নেয় নির্দিষ্ট একটি কোড ব্লক এক্সিকিউট হবে নাকি সম্পূর্ণ স্কিপ (Skip) হবে। ডেটা মূল্যায়ন করে নিজের এক্সিকিউশন পাথ পরিবর্তন করতে পারাই যেকোনো অটোমেশন ও সফটওয়্যার বুদ্ধিমত্তার প্রথম ভিত্তি।",
-          "realWorldEngineering": "বাস্তব অ্যাপ্লিকেশন যেমন উবার (Uber) বা নেটফ্লিক্স (Netflix)-এ রিকোয়েস্ট আসার পর কোড লিনিয়ার থাকে না। যেমন: `if user_authenticated:` হলে তবেই পেমেন্ট ও ভিডিও স্ট্রিমিং সার্ভিস চালু হয়; অন্যথায় অ্যাক্সেস ব্লক হয়। ব্যাকএন্ড আর্কিটেকচারে প্রতি সেকেন্ডে কোটি কোটি `if` গেটকিপার ব্রাঞ্চিং সিদ্ধান্ত নিয়ে সার্ভার সিকিউরিটি ও সার্ভিস রাউটিং নিশ্চিত করে।",
-          "beyondProgramming": "বাস্তব জীবনে তুমি যখন রাস্তায় হাঁটো, ট্রাফিক লাইট লাল দেখলে থেমে যাও, সবুজ দেখলে হাঁটো। ট্রাফিক লাইটের আলো শুধু চোখে দেখা এক জিনিস (State), কিন্তু সেই অনুযায়ী হাঁটা শুরু করা বা থেমে যাওয়া হলো একশন (Branching Action)। তথ্যের ভিত্তিতে নিজের গতিপথ পরিবর্তন করাই জীবনের সচেতনতা।"
+          "question": "আগে আমাদের প্রোগ্রাম শুধু ওপর থেকে নিচে লাইন বাই লাইন অন্ধভাবে চলত। 'if' স্টেটমেন্ট আসার পর সফটওয়্যারের এক্সিকিউশন মডেলে কী পরিবর্তন এল?",
+          "expertThinking": "আগের মিশনগুলোতে আমাদের কোড ছিল সম্পূর্ণ 'Line-by-line Execution' বা একমাত্রিক সোজা রাস্তা। অর্থাৎ, ১ নম্বর লাইন থেকে শেষ লাইন পর্যন্ত পাইথন প্রতিটি লাইন চালাতে বাধ্য ছিল—মাঝের কোনো লাইন বাদ দেওয়ার ক্ষমতা তার ছিল না। একে বলা হয় Linear Execution。\n\nকিন্তু 'if' স্টেটমেন্ট যুক্ত হওয়ার সাথে সাথে সফটওয়্যার পেয়েছে 'Control Flow Branching' বা সিদ্ধান্তের মোড় ঘোরানোর ক্ষমতা। এখন কোড রান করার সময় মেমরির বুলিয়ান স্টেট (যেমন: `free_delivery_eligible`) পরীক্ষা করে সিদ্ধান্ত নেয়: সে কি ব্লকের ভেতরের কাজ করবে, নাকি পুরো ব্লকটি স্কিপ করে সামনে চলে যাবে। এই সিদ্ধান্ত নেওয়ার ক্ষমতাই সাধারণ স্ক্রিপ্টকে একটি বুদ্ধিমান সফটওয়্যারে রূপ দেয়।",
+          "realWorldEngineering": "উবার (Uber) বা নেটফ্লিক্স (Netflix)-এর মতো বড় প্ল্যাটফর্মে প্রতি সেকেন্ডে কোটি কোটি রিকোয়েস্ট আসে। সেখানে কোড লিনিয়ারভাবে চলে না। যেমন: `if user_logged_in:` সত্য হলে তবেই ভিডিও স্ট্রিমিং চালু হয়; অন্যথায় অ্যাক্সেস সম্পূর্ণ আটকে দেওয়া হয়। ব্যাকএন্ড আর্কিটেকচারে এই ধরণের গেটকিপার কন্ডিশন পুরো সিস্টেমের সিকিউরিটি ও সার্ভিস রাউটিং নিশ্চিত করে।",
+          "beyondProgramming": "বাস্তব জীবনে তুমি যখন রাস্তায় হাঁটো, ট্রাফিক লাইট লাল দেখলে থেমে যাও, সবুজ দেখলে হাঁটো। ট্রাফিক লাইট শুধু চোখে দেখা হলো ডেটা (State), কিন্তু সেই ডেটার ওপর ভিত্তি করে হাঁটা বা থামা হলো সিদ্ধান্ত (Action)। তথ্যের ভিত্তিতে নিজের আচরণ বদলানোই বুদ্ধিমত্তার পরিচয়।"
         },
         {
-          "question": "Python-এ indentation কি কেবল দেখতে সুন্দর করার জন্য, নাকি এটি কোডের লজিক্যাল বাউন্ডারি নির্ধারণ করে? ভুল indentation সফটওয়্যারে কী ঝুঁকি তৈরি করতে পারে?",
-          "expertThinking": "সি (C), সি++ (C++) বা জাভাস্ক্রিপ্ট (JavaScript)-এর মতো ভাষায় কোড ব্লক বোঝাতে কার্লি ব্রেসেস `{ }` ব্যবহার করা হয়, সেখানে ইন্ডেন্টেশন ঐচ্ছিক। কিন্তু পাইথনে 'Indentation is Syntax'—ইন্ডেন্টেশন কোনো কসমেটিক বা সাজসজ্জার বিষয় নয়, এটি পাইথন কম্পাইলার ও ইন্টারপ্রেটারের কাছে কোডের 'Scope' ও 'Block Boundary' নির্ধারণ করে।\n\n`if` হেডার লাইনের নিচে ৪টি স্পেস দিয়ে ইন্ডেন্ট করা প্রতিটি লাইন পাইথনকে স্পষ্টভাবে জানিয়ে দেয় যে এরা কন্ডিশনাল ব্লকের অধীন। ভুলবশত কোনো লাইন আন-ইন্ডেন্টেড (Unindented) থাকলে তা ব্লকের বাইরে চলে যায় এবং কন্ডিশন মিথ্যা হলেও নির্বিঘ্নে এক্সিকিউট হয়ে মারাত্মক লজিক্যাল বিপর্যয় তৈরি করতে পারে।",
-          "realWorldEngineering": "২০১৮ সালে ওপেন-সোর্স কমিউনিটিতে একটি বিখ্যাত সিকিউরিটি বাগ ধরা পড়েছিল যেখানে একটি অথেন্টিকেশন বাইপাস ঘটেছিল কেবল মাত্র ভুল ইন্ডেন্টেশনের কারণে। কন্ডিশনের বাইরের লাইন ভেতরে ঢুকে যাওয়া বা ভেতরের লাইন বাইরে থাকার কারণে সিস্টেম ইউজারকে ভেরিফাই না করেই সিক্রেট ডেটা রিলিজ করে দিয়েছিল। এইজন্য এন্টারপ্রাইজ সফটওয়্যার ডেভেলপমেন্টে `Black` বা `Flake8`-এর মতো কঠোর Linter ব্যবহার করে ইন্ডেন্টেশন স্বয়ংক্রিয়ভাবে অডিট করা হয়।",
-          "beyondProgramming": "একটি চিঠিতে প্যারাগ্রাফ বা অনুচ্ছেদ ভাগ করা যেমন লেখার ভাব স্পষ্ট করে, তেমনি কোনো চুক্তিনামায় উপধারা (Sub-clause) মূল ধারার অধীনে না রাখলে আইনের চোখে তার অর্থ পুরোপুরি বদলে যেতে পারে। ইন্ডেন্টেশন হলো সুনির্দিষ্ট কর্তৃত্বের পরিধি নির্ধারণের বিজ্ঞান।"
+          "question": "Python-এ ইন্ডেন্টেশন বা ৪টি স্পেস কি শুধুই কোড দেখতে সুন্দর করার জন্য, নাকি এটি কোডের লজিক্যাল সীমানা নির্ধারণ করে? ভুল ইন্ডেন্টেশন হলে কী ধরনের মারাত্মক সমস্যা হতে পারে?",
+          "expertThinking": "C, C++ বা JavaScript-এ কোড ব্লক বোঝাতে ব্র্যাকেট `{ }` ব্যবহার করা হয়, সেখানে স্পেসের কোনো বাধ্যবাধকতা নেই। কিন্তু পাইথনে 'Indentation is Syntax'—ইন্ডেন্টেশন কোনো সাজসজ্জা নয়, এটি পাইথনের কাছে কোডের মালিকানা ও সীমানা (Scope) নির্ধারণ করে।\n\n'if' হেডার লাইনের নিচে ৪টি স্পেস দিয়ে লেখা প্রতিটি লাইন পাইথনকে স্পষ্টভাবে জানিয়ে দেয় যে এরা এই কন্ডিশনের নিজস্ব অধীন। ভুলবশত কোনো লাইন আন-ইন্ডেন্টেড (Unindented) থাকলে তা কন্ডিশনের বাইরে চলে যায় এবং শর্ত মিথ্যা হলেও অসাবধানতাবশত রান হয়ে বড় ধরনের লজিক্যাল বিপর্যয় বা আর্থিক ক্ষতি ডেকে আনতে পারে।",
+          "realWorldEngineering": "২০১৮ সালে ওপেন-সোর্স কমিউনিটিতে একটি বিখ্যাত সিকিউরিটি বাগ ধরা পড়েছিল কেবল মাত্র একটি ভুল ইন্ডেন্টেশনের কারণে! কন্ডিশনের বাইরের একটি লাইন অসাবধানতাবশত ভুল জায়গায় থাকার কারণে সিস্টেম ইউজারকে ভেরিফাই না করেই সিক্রেট ডেটা দিয়ে দিচ্ছিল। এইজন্য আধুনিক সফটওয়্যার কোম্পানিতে লিন্টার (Linter) টুল ব্যবহার করে স্বয়ংক্রিয়ভাবে ইন্ডেন্টেশন নিখুঁত রাখা হয়।",
+          "beyondProgramming": "একটি আইনি চুক্তিনামায় কোনো উপধারা (Sub-clause) যদি মূল ধারার নিচে সঠিকভাবে চিহ্নিত না থাকে, তবে আইনের চোখে পুরো চুক্তির অর্থ বদলে যেতে পারে। ইন্ডেন্টেশন হলো কে কার অধীনে কাজ করবে—সেই ক্ষমতার সীমানা পরিষ্কার করার বিজ্ঞান।"
         },
         {
-          "question": "আজকের প্রোগ্রাম শর্ত True হলে সেলিব্রেট করে, কিন্তু False হলে সম্পূর্ণ বোবা হয়ে থাকে। কোনো ফিডব্যাক না দেওয়া কি সফটওয়্যার ডিজাইনের দিক থেকে কোনো ঝুঁকি তৈরি করে?",
-          "expertThinking": "সফটওয়্যার আর্কিটেকচারে একে বলা হয় 'Half-State Coverage' বা অপূর্ণাঙ্গ অবস্থা হ্যান্ডলিং। যখন একটি সিস্টেম কেবল সফলতার পথ (Success Path বা Happy Path) চেনে কিন্তু ব্যর্থতা বা ইনকমপ্লিট অবস্থার ক্ষেত্রে নীরব থাকে, তখন ইউজার বিভ্রান্তিতে পড়ে যায়। একে বলা হয় 'Silent Blindspot'।\n\nইউজার স্ক্রিনের দিকে তাকিয়ে ভাবতে থাকে: সফটওয়্যার কি হ্যাং করেছে? আমার ইনপুট কি পৌঁছায়নি? নাকি কোনো ইরোর হয়েছে? সফটওয়্যারে সবসময় 'Explicit State Feedback' থাকা বাধ্যতামূলক—টার্গেট পূরণ না হলে লার্নারকে জানানো উচিত কত পয়েন্ট বাকি আছে বা কীভাবে উন্নতি করা যায়। এই নীরবতার কারণেই আমাদের অতিসত্বর `else` ব্রাঞ্চিং প্রয়োজন।",
-          "realWorldEngineering": "ব্যাংকিং এটিএম বা বিকাশ অ্যাপে যদি ব্যালেন্স অপর্যাপ্ত হওয়ার পর স্ক্রিন সম্পূর্ণ সাদা হয়ে নীরব থাকে, তবে গ্রাহক আতঙ্কিত হয়ে বারবার বোতাম চাপতে থাকবে। প্রোডাকশন গ্রেড সিস্টেমে `True` অবস্থার চেয়ে `False` বা ব্যতিক্রমী অবস্থার হ্যান্ডলিং অনেক বেশি গুরুত্ব দিয়ে ডিজাইন করা হয়, যাকে বলে Defending against Silent Failures।",
-          "beyondProgramming": "কাউকে কোনো প্রশ্ন করার পর সে যদি হ্যাঁ-ও না বলে আবার না-ও না বলে সম্পূর্ণ চুপ করে দাঁড়িয়ে থাকে, তবে সবচেয়ে বেশি মানসিক অস্বস্তি তৈরি হয়। ইতিবাচক উত্তরের চেয়ে অনিশ্চিত নীরবতা সবসময় বেশি বিপজ্জনক। স্পষ্ট উত্তর ও দিকনির্দেশনাই সুস্থ যোগাযোগের পরিচয়।"
+          "question": "আজকের প্রোগ্রামে কার্ট ৫০০ টাকার কম হলে কাস্টমারকে কিছুই জানানো হচ্ছে না—কোড একদম চুপ করে থাকে। কোনো ফিডব্যাক না দেওয়া কি ভালো সফটওয়্যার ডিজাইনের লক্ষণ?",
+          "expertThinking": "সফটওয়্যার আর্কিটেকচারে একে বলা হয় 'Silent Failure Trap' বা অপূর্ণাঙ্গ ফিডব্যাক সমস্যা। যখন একটি সিস্টেম কেবল সফলতার পথ (Success Path) চেনে কিন্তু ব্যর্থতা বা ইনকমপ্লিট অবস্থার ক্ষেত্রে নীরব থাকে, তখন ইউজার মারাত্মক বিভ্রান্তিতে পড়ে যায়।\n\nকাস্টমার কার্টে ৪২০ টাকা দেখে ভাববে: 'অ্যাপ কি হ্যাং করল? আমার কুপন কি কাজ করেনি? নাকি আমি ফ্রি ডেলিভারি পাব না?' সফটওয়্যারে সবসময় স্পষ্ট ফিডব্যাক থাকা জরুরি—শর্ত না মিললে কাস্টমারকে জানানো উচিত: 'আর ৮০ টাকার কেনাকাটা করলে আপনি ফ্রি ডেলিভারি পাবেন!'। এই নীরবতার সমস্যার কারণেই আমাদের পরবর্তী মিশনে 'else' শেখা বাধ্যতামূলক হয়ে দাঁড়িয়েছে।",
+          "realWorldEngineering": "একটি এটিএম বুথ বা বিকাশ অ্যাপে ব্যালেন্স অপর্যাপ্ত হলে যদি স্ক্রিন কোনো শব্দ বা মেসেজ না দিয়ে সম্পূর্ণ চুপ করে থাকে, তবে গ্রাহক আতঙ্কিত হয়ে বারবার বাটন চাপতে থাকবে। প্রোডাকশন সিস্টেমে তাই True অবস্থার চেয়ে False বা ব্যতিক্রমী অবস্থার হ্যান্ডলিং অনেক বেশি যত্ন নিয়ে ডিজাইন করতে হয়।",
+          "beyondProgramming": "কাউকে কোনো প্রশ্ন করার পর সে যদি হ্যাঁ বা না কোনো উত্তরই না দিয়ে কেবল চুপ করে তাকিয়ে থাকে, তবে তা চরম অস্বস্তি তৈরি করে। অনিশ্চিত নীরবতার চেয়ে পরিষ্কার বিকল্প উত্তর সবসময় মানুষের আস্থা বৃদ্ধি করে।"
         }
       ]
     },
     {
       "type": "mission_complete",
-      "title": "অভিনন্দন! তোমার সফটওয়্যার এখন সিদ্ধান্ত নিয়ে পথ বেছে নিতে পারে",
-      "summary": "তুমি `if` স্টেটমেন্ট ব্যবহার করে তোমার প্রোগ্রামকে প্রথমবার কন্ডিশন অনুযায়ী নির্দিষ্ট কাজ চালানোর ক্ষমতা দিয়েছ। কম্প্যারিজন থেকে পাওয়া বুলিয়ান রেজাল্ট এখন আর শুধু স্ক্রিনে প্রিন্ট হয়ে বসে থাকে না—তা সফটওয়্যারের এক্সিকিউশন পাথকে সক্রিয়ভাবে নিয়ন্ত্রণ করে।",
+      "title": "অভিনন্দন! তোমার সফটওয়্যার এখন সিদ্ধান্ত নিতে পারে",
+      "summary": "তুমি 'if' statement ব্যবহার করে তোমার প্রোগ্রামকে প্রথমবার কন্ডিশন অনুযায়ী নির্দিষ্ট কাজ চালানোর ক্ষমতা দিয়েছ। কম্প্যারিজন থেকে পাওয়া বুলিয়ান মান এখন আর শুধু স্ক্রিনে প্রিন্ট হয়ে বসে থাকে না—তা সফটওয়্যারের এক্সিকিউশন পাথকে সক্রিয়ভাবে নিয়ন্ত্রণ করে।",
       "keyLearnings": [
-        "`if` স্টেটমেন্ট শর্ত True হলে নির্দিষ্ট কোড ব্লক এক্সিকিউট করে।",
+        "'if' statement শর্ত True হলে নির্দিষ্ট কোড ব্লক এক্সিকিউট করে।",
         "কোলনের (:) পর ৪টি স্পেসের ইন্ডেন্টেশন পাইথনে ব্লকের সীমানা নির্ধারণ করে।",
         "কম্প্যারিজন রেজাল্টকে ভেরিয়েবলে রেখে তা 'if'-এর কন্ডিশন হিসেবে ক্লিনভাবে ব্যবহার করা যায়।",
         "ইন্ডেন্টেশনের বাইরের সাধারণ লাইন শর্ত যাই হোক না কেন সবসময় এক্সিকিউট হয়।",
-        "আজ শুধু সত্যের (True) পথ উন্মুক্ত হয়েছে; মিথ্যার (False) ক্ষেত্রে প্রোগ্রাম এখনো নির্বাক।"
+        "আজ শুধু সত্যের (True) পথ উন্মুক্ত হয়েছে; মিথ্যার (False) ক্ষেত্রে প্রোগ্রাম এখনো বোবা।"
       ],
       "currentLimitation": {
-        "title": "তোমার প্রোগ্রাম সত্য চিনতে পারছে, কিন্তু মিথ্যায় সম্পূর্ণ বোবা!",
-        "description": "তুমি কি গভীরভাবে খেয়াল করেছ? তোমার কোড চমৎকারভাবে বিচার করল: টার্গেট পূরণ হলে সেলিব্রেশন বার্তা দিল। কিন্তু যখনই 'target_reached' মিথ্যা (False) হলো, তোমার সফটওয়্যার যেন সম্পূর্ণ বোবা হয়ে গেল! শিক্ষার্থীকে সান্ত্বনা দেওয়া, কতটা বাকি আছে তা জানানো, বা নতুন লক্ষ্য নির্ধারণ করার মতো কোনো বিকল্প পথ তোমার কোড জানে না। সে কেবল সত্যের পথ চেনে, মিথ্যার মুখোমুখি হলে সে সম্পূর্ণ বিভ্রান্ত ও নীরব।",
-        "technicalReason": "বিকল্প ব্রাঞ্চের অনুপস্থিতি (No Alternative Execution Branch / Missing Else)"
+        "title": "তোমার কোড True হলে কাজ করছে, কিন্তু False হলে একদম বোবা!",
+        "description": "তুমি কি গভীরভাবে খেয়াল করেছ? কাস্টমার ৫০০ টাকার বেশি কিনলে কোড খুব সুন্দর ফ্রি ডেলিভারির মেসেজ দিল। কিন্তু যখনই কার্ট ৪২০ টাকা (False) হলো, তোমার সফটওয়্যার যেন সম্পূর্ণ বোবা হয়ে গেল! কাস্টমারকে 'আর ৮০ টাকার শপিং করলে ফ্রি ডেলিভারি পাবেন' এমন কোনো বিকল্প মেসেজ দেওয়ার ক্ষমতা তোমার কোডের এখনও নেই। সে কেবল একমুখী সত্যের পথ চেনে, কিন্তু False হলে কী করতে হবে তা তার জানা নেই।",
+        "technicalReason": "বিকল্প ব্রাঞ্চের অনুপস্থিতি (No Alternative Path / Missing Else Branch)"
       },
       "nextMissionBridge": {
-        "title": "পরবর্তী মিশন: সফটওয়্যারকে বিকল্প পথ ও পূর্ণাঙ্গ বিচারবুদ্ধি দেওয়া (If / Else)",
-        "description": "পরের মিশনে আমরা প্রোগ্রামকে এই একপেশে বোবা অবস্থা থেকে মুক্তি দেব! কোড এবার সত্য ও মিথ্যা—উভয় পরিস্থিতির মুখোমুখি হবে। শর্ত True হলে এক পথ বেছে নেবে, আর False হলে সাথে সাথে বিকল্প 'else' পথে দৌড়ে ইউজারকে সঠিক গাইডেন্স দেবে। সফটওয়্যারকে সম্পূর্ণ দ্বি-মুখী সিদ্ধান্তের ক্ষমতা দিতে তুমি কি প্রস্তুত?",
+        "title": "পরবর্তী মিশন: কোডকে বিকল্প পথ শেখানো (If / Else)",
+        "description": "পরের মিশনে আমরা প্রোগ্রামকে এই একপেশে বোবা অবস্থা থেকে মুক্তি দেব! কোড এবার সত্য ও মিথ্যা—উভয় পরিস্থিতির মুখোমুখি হবে। শর্ত True হলে এক কাজ করবে, আর False হলে সাথে সাথে বিকল্প 'else' পথে দৌড়ে কাস্টমারকে সঠিক গাইডেন্স দেবে। সফটওয়্যারকে সম্পূর্ণ দ্বি-মুখী সিদ্ধান্তের ক্ষমতা দিতে প্রস্তুত হও!",
         "targetMissionId": "015"
       }
     }
