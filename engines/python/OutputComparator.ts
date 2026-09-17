@@ -56,13 +56,86 @@ export class OutputComparator {
 
     const actualNormalized = OutputComparator.normalize(actual);
     const expectedNormalized = OutputComparator.normalize(targetExpected);
-    const outputMatched = actualNormalized === expectedNormalized;
+    const outputMatched = 
+      actualNormalized === expectedNormalized ||
+      OutputComparator.isFuzzyMatch(actual, targetExpected, dynamicContext?.userInputs || []);
 
     return {
       actualNormalized,
       expectedNormalized,
       outputMatched,
     };
+  }
+
+  /**
+   * Helper to clean a single line for fuzzy comparison:
+   * - Converts to lowercase
+   * - Replaces underscores with spaces (e.g. cart_total -> cart total)
+   * - Replaces punctuation like !.,;: with space
+   * - Collapses internal whitespace
+   */
+  public static cleanFuzzyLine(line: string): string {
+    return line
+      .toLowerCase()
+      .replace(/_/g, ' ')
+      .replace(/[!.,;:]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  /**
+   * Performs beginner-friendly, fuzzy output matching:
+   * 1. Exact string match
+   * 2. Case-insensitive string match
+   * 3. Input prompt echo normalization
+   * 4. Line-by-line fuzzy match (ignoring minor punctuation, casing, and underscores)
+   */
+  public static isFuzzyMatch(
+    actual: string,
+    expected: string,
+    inputs: string[] = []
+  ): boolean {
+    const normActual = OutputComparator.normalize(actual);
+    const normExpected = OutputComparator.normalize(expected);
+
+    if (normActual === normExpected) return true;
+    if (normActual.toLowerCase() === normExpected.toLowerCase()) return true;
+
+    // Normalize prompt lines that reflect interactive input prompts
+    const normWithPrompts = (text: string) => {
+      let lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      for (const inp of inputs) {
+        if (!inp) continue;
+        const cleanInp = inp.trim().toLowerCase();
+        lines = lines.map(l => {
+          const cleanL = l.replace(/_/g, ' ').toLowerCase();
+          if (
+            cleanL === cleanInp || 
+            cleanL.endsWith(': ' + cleanInp) || 
+            cleanL.endsWith(' ' + cleanInp) || 
+            cleanL.endsWith(':' + cleanInp)
+          ) {
+            return `>>INPUT: ${cleanInp}`;
+          }
+          return l;
+        });
+      }
+      return lines;
+    };
+
+    const actualLines = normWithPrompts(normActual);
+    const expectedLines = normWithPrompts(normExpected);
+
+    if (actualLines.length === expectedLines.length && actualLines.length > 0) {
+      const allMatch = actualLines.every((actLine, idx) => {
+        const expLine = expectedLines[idx];
+        if (actLine === expLine) return true;
+        return OutputComparator.cleanFuzzyLine(actLine) === OutputComparator.cleanFuzzyLine(expLine);
+      });
+      if (allMatch) return true;
+    }
+
+    return false;
   }
 
   /**

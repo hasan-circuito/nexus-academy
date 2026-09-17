@@ -1,7 +1,7 @@
 'use client';
 import type { PracticeStep, MissionData } from '@/types/mission.types';
 import { useState } from 'react';
-import { HelpCircle, Check, Play, RotateCcw } from 'lucide-react';
+import { HelpCircle, Check, Play, RotateCcw, Lightbulb, Copy } from 'lucide-react';
 import { PythonEditor } from '@/components/editor/PythonEditor';
 import { ExecutionOutput } from '@/components/shared/ExecutionOutput';
 import { usePythonEngine } from '@/hooks/usePythonEngine';
@@ -20,6 +20,8 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
   const [isDone, setIsDone] = useState(false);
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
   const [collectedInputs, setCollectedInputs] = useState<string[]>([]);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [showSolutionCard, setShowSolutionCard] = useState(false);
 
   const { runCode, isRunning, lastResult, error: engineError } = usePythonEngine();
   // Using step.title as the unique identifier so multiple practice steps in a mission don't share code
@@ -47,10 +49,14 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
       // run reference solution with those exact inputs to compute the true programmatic expected output.
       if (step.solution && inputs && inputs.length > 0) {
         try {
-          const solutionRes = await PythonEngine.getInstance().runCode(step.solution, { inputs });
-          if (solutionRes.success && solutionRes.stdout) {
-            comparisonTarget = solutionRes.stdout;
-            config.expectedOutput = solutionRes.stdout;
+          // Guard: only execute reference solution if inputs match or exceed input() calls in solution
+          const solutionInputCount = (step.solution.match(/input\s*\(/g) || []).length;
+          if (inputs.length >= solutionInputCount) {
+            const solutionRes = await PythonEngine.getInstance().runCode(step.solution, { inputs });
+            if (solutionRes.success && solutionRes.stdout && !solutionRes.isAwaitingInput) {
+              comparisonTarget = solutionRes.stdout;
+              config.expectedOutput = solutionRes.stdout;
+            }
           }
         } catch (e) {
           // Keep static comparisonTarget on error
@@ -67,6 +73,7 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
 
       if (evalResult.passed) {
         setIsDone(true);
+        setFailedAttempts(0);
         // Persist practice evidence
         saveStepEvidence(missionData.id, 'practice', {
           passed: true,
@@ -90,9 +97,12 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             timestamp: new Date().toISOString()
           }
         });
+      } else {
+        setFailedAttempts(prev => prev + 1);
       }
     } else {
       setEvaluation(null);
+      setFailedAttempts(prev => prev + 1);
     }
   };
 
@@ -177,6 +187,58 @@ export function PracticeStepComponent({ step, missionData }: { step: PracticeSte
             onInputSubmit={handleInputSubmit}
             code={code}
           />
+
+          {/* Escape Hatch: Show Solution after 2 failed attempts */}
+          {failedAttempts >= 2 && !isDone && (
+            <div className="p-4 sm:p-5 bg-amber-500/10 border-2 border-amber-500/30 rounded-2xl space-y-3 font-bangla animate-in fade-in duration-300">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 text-amber-400 font-semibold text-sm sm:text-base">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
+                    <Lightbulb className="w-4 h-4 text-amber-400" />
+                  </div>
+                  <div>
+                    <span className="block font-bold">আটকে গেছ? কোনো সমস্যা নেই!</span>
+                    <span className="text-xs text-muted-foreground font-normal">ছোটখাটো ফরম্যাট বা স্পেলিংয়ের কারণে আউটপুট না মিললে সমাধানটি দেখে নাও।</span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowSolutionCard(!showSolutionCard)}
+                  className="px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl text-xs sm:text-sm font-semibold transition-all hover:scale-102 shrink-0 cursor-pointer"
+                >
+                  {showSolutionCard ? 'সমাধান লুকান' : '💡 সমাধান কোড ও ব্যাখ্যা দেখুন'}
+                </button>
+              </div>
+
+              {showSolutionCard && (
+                <div className="mt-3 pt-3 border-t border-amber-500/20 space-y-3 animate-in slide-in-from-top-2 duration-300">
+                  <p className="text-xs text-muted-foreground">
+                    রেফারেন্স সমাধানটি দেখে বুঝে নাও এবং নিজের কোডে পরিবর্তন এনে আবার রান করো:
+                  </p>
+                  <div className="rounded-xl overflow-hidden border border-border font-mono text-sm bg-[#0d1117] shadow-inner">
+                    <div className="bg-[#161b22] px-4 py-2 text-xs text-muted-foreground border-b border-border/50 flex items-center justify-between">
+                      <span className="font-semibold text-slate-300">REFERENCE SOLUTION</span>
+                      <button
+                        type="button"
+                        onClick={() => updateCode(step.solution)}
+                        className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary-hover font-sans font-semibold cursor-pointer transition-colors"
+                      >
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>এডিটরে কপি করো (Copy to Editor)</span>
+                      </button>
+                    </div>
+                    <pre className="p-4 text-emerald-300 whitespace-pre-wrap overflow-x-auto text-xs sm:text-sm"><code>{step.solution}</code></pre>
+                  </div>
+                  {step.solutionExplanation && (
+                    <div className="p-3 bg-surface rounded-xl border border-border text-xs text-muted-foreground">
+                      <span className="font-semibold text-foreground block mb-1">ব্যাখ্যা:</span>
+                      {step.solutionExplanation}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
 
           {step.hints.length > 0 && hintIndex > 0 && (
             <div className="space-y-2 mt-4">
