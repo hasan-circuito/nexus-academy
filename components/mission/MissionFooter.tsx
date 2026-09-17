@@ -6,6 +6,7 @@ import type { MissionData } from '@/types/mission.types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useCallback, useState } from 'react';
 import { MissionProgressGate, type IncompleteStepInfo } from '@/services/MissionProgressGate';
+import { saveActiveStep } from '@/hooks/useProgress';
 
 interface Props {
   missionData: MissionData;
@@ -24,12 +25,20 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
   const [incompleteSteps, setIncompleteSteps] = useState<IncompleteStepInfo[]>([]);
   const [showGateModal, setShowGateModal] = useState(false);
 
+  useEffect(() => {
+    saveActiveStep(missionData.id, currentIndex);
+  }, [missionData.id, currentIndex]);
+
   const handlePrev = useCallback(() => {
-    if (hasPrev) router.push(`/mission/${missionId}/step/${currentIndex - 1}`);
-  }, [hasPrev, router, missionId, currentIndex]);
+    if (hasPrev) {
+      saveActiveStep(missionData.id, currentIndex - 1);
+      router.push(`/mission/${missionId}/step/${currentIndex - 1}`);
+    }
+  }, [hasPrev, router, missionId, currentIndex, missionData.id]);
 
   const handleNext = useCallback(async () => {
     if (hasNext) {
+      saveActiveStep(missionData.id, currentIndex + 1);
       router.push(`/mission/${missionId}/step/${currentIndex + 1}`);
     } else {
       // Last step: check completion gate before completing
@@ -128,6 +137,7 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
                   </div>
                   <button
                     onClick={() => {
+                      saveActiveStep(missionData.id, step.index);
                       setShowGateModal(false);
                       router.push(`/mission/${missionId}/step/${step.index}`);
                     }}

@@ -1,6 +1,7 @@
 import type { DataService } from './DataService';
 import { 
   createDefaultProgress, 
+  createDefaultMissionProgress,
   createDefaultLearningMemory,
   type LearnerProgress, 
   type LearningMemory, 
@@ -75,6 +76,77 @@ export class LocalStorageDataService implements DataService {
 
   saveProgress(progress: LearnerProgress): void {
     this.set('nexus_progress', progress);
+  }
+
+  getActiveStep(missionId: string): number {
+    const cleanId = missionId.replace(/^mission-/, '');
+    const progress = this.getProgress();
+    const mp = progress.missions[cleanId] || progress.missions[missionId];
+    if (!mp) return 0;
+    if (typeof mp.currentStepIndex === 'number' && !isNaN(mp.currentStepIndex) && mp.currentStepIndex >= 0) {
+      return Math.floor(mp.currentStepIndex);
+    }
+    // Completed missions without explicit currentStepIndex review from step 0
+    if (mp.status === 'complete') {
+      return 0;
+    }
+    let maxStep = 0;
+    if (mp.steps) {
+      for (const key of Object.keys(mp.steps)) {
+        if (key.startsWith('step_')) {
+          const idx = parseInt(key.replace('step_', ''), 10);
+          if (!isNaN(idx) && idx > maxStep) {
+            maxStep = idx;
+          }
+        } else if (/^\d+$/.test(key)) {
+          const idx = parseInt(key, 10);
+          if (!isNaN(idx) && idx > maxStep) {
+            maxStep = idx;
+          }
+        }
+      }
+    }
+    return maxStep;
+  }
+
+  saveActiveStep(missionId: string, stepIndex: number): void {
+    if (typeof window === 'undefined') return;
+    if (typeof stepIndex !== 'number' || isNaN(stepIndex) || stepIndex < 0) return;
+
+    const intStepIndex = Math.floor(stepIndex);
+    const cleanId = missionId.replace(/^mission-/, '');
+    const progress = this.getProgress();
+
+    if (!progress.missions[cleanId]) {
+      if (progress.missions[missionId]) {
+        progress.missions[cleanId] = progress.missions[missionId];
+        delete progress.missions[missionId];
+      } else {
+        progress.missions[cleanId] = createDefaultMissionProgress(cleanId);
+      }
+    }
+
+    const mp = progress.missions[cleanId];
+    // Only transition unlocked missions (or foundational mission 001) to in_progress.
+    // Locked missions must stay locked (e.g. when previewing or in dev mode).
+    const isFoundational = cleanId === '001';
+    const shouldSetInProgress = mp.status === 'unlocked' || (isFoundational && mp.status === 'locked');
+
+    if (mp.currentStepIndex === intStepIndex && !shouldSetInProgress) {
+      return;
+    }
+
+    mp.currentStepIndex = intStepIndex;
+
+    if (shouldSetInProgress) {
+      mp.status = 'in_progress';
+      if (!mp.startedAt) {
+        mp.startedAt = new Date().toISOString();
+      }
+    }
+
+    progress.lastActiveAt = new Date().toISOString();
+    this.saveProgress(progress);
   }
 
   getMemory(): LearningMemory {

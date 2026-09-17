@@ -11,18 +11,34 @@ export function saveStepEvidence(
   evidence: Record<string, unknown>
 ): void {
   if (typeof window === 'undefined') return;
+  const cleanId = missionId.replace(/^mission-/, '');
   const progress = storage.getProgress();
-  if (!progress.missions[missionId]) {
-    progress.missions[missionId] = createDefaultMissionProgress(missionId);
+  if (!progress.missions[cleanId]) {
+    progress.missions[cleanId] = createDefaultMissionProgress(cleanId);
   }
-  progress.missions[missionId].steps[stepType] = {
+  progress.missions[cleanId].steps[stepType] = {
     completed: true,
     completedAt: new Date().toISOString(),
     timeSpentMs: 0,
     hintsUsed: 0,
     ...evidence
   };
+  const stepMatch = stepType.match(/^step_(\d+)$/);
+  if (stepMatch) {
+    const idx = parseInt(stepMatch[1], 10);
+    if (!isNaN(idx) && (progress.missions[cleanId].currentStepIndex ?? 0) < idx) {
+      progress.missions[cleanId].currentStepIndex = idx;
+    }
+  }
   storage.saveProgress(progress);
+}
+
+export function saveActiveStep(missionId: string, stepIndex: number): void {
+  storage.saveActiveStep(missionId, stepIndex);
+}
+
+export function getActiveStep(missionId: string): number {
+  return storage.getActiveStep(missionId);
 }
 
 export function useProgress() {

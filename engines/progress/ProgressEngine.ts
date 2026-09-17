@@ -47,6 +47,7 @@ export class ProgressEngine {
     mp.completedAt = timestamp;
     mp.understandingScore = understandingScore;
     mp.xpEarned = xpEarned;
+    mp.currentStepIndex = 0;
 
     // Streak logic
     const today = new Date().toISOString().split('T')[0];
@@ -98,6 +99,7 @@ export class ProgressEngine {
         status: 'in_progress',
         understandingScore: 0,
         xpEarned: 0,
+        currentStepIndex: 0,
         steps: {},
         quizAttempts: [],
         debugAttempts: [],

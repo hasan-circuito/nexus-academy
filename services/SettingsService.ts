@@ -292,11 +292,27 @@ export class SettingsService {
         if (mData && typeof mData === 'object' && !Array.isArray(mData)) {
           const m = mData as any;
           const validStatuses = ['locked', 'unlocked', 'in_progress', 'complete'];
+          let currentStep = 0;
+          if (typeof m.currentStepIndex === 'number' && !isNaN(m.currentStepIndex) && m.currentStepIndex >= 0) {
+            currentStep = Math.floor(m.currentStepIndex);
+          } else if (m.status !== 'complete' && m.steps && typeof m.steps === 'object' && !Array.isArray(m.steps)) {
+            for (const key of Object.keys(m.steps)) {
+              if (key.startsWith('step_')) {
+                const idx = parseInt(key.replace('step_', ''), 10);
+                if (!isNaN(idx) && idx > currentStep) currentStep = idx;
+              } else if (/^\d+$/.test(key)) {
+                const idx = parseInt(key, 10);
+                if (!isNaN(idx) && idx > currentStep) currentStep = idx;
+              }
+            }
+          }
+
           sanitizedProgress.missions[mId] = {
             status: validStatuses.includes(m.status) ? m.status : 'locked',
             understandingScore: typeof m.understandingScore === 'number' ? m.understandingScore : 0,
             xpEarned: typeof m.xpEarned === 'number' ? m.xpEarned : 0,
             completedAt: m.completedAt,
+            currentStepIndex: currentStep,
             steps: (m.steps && typeof m.steps === 'object' && !Array.isArray(m.steps)) ? m.steps : {},
             quizAttempts: Array.isArray(m.quizAttempts) ? m.quizAttempts : [],
             debugAttempts: Array.isArray(m.debugAttempts) ? m.debugAttempts : [],

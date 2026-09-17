@@ -66,6 +66,7 @@ export interface MissionProgress {
   completedAt?: ISODateTime;          // When Step 13 was completed
   understandingScore: number;         // 0–100 — computed by UnderstandingEngine ONLY
   xpEarned: number;
+  currentStepIndex?: number;          // 0-indexed active / last visited step index for this mission
 
   // Per-step progress — keyed by stepIndex as string ("0" through "12")
   steps: Record<string, StepProgress>;
@@ -231,6 +232,7 @@ export function createDefaultMissionProgress(missionId: string): MissionProgress
     status: 'locked',
     understandingScore: 0,
     xpEarned: 0,
+    currentStepIndex: 0,
     steps: {},
     quizAttempts: [],
     debugAttempts: [],

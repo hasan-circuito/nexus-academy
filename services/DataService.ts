@@ -26,6 +26,8 @@ export interface DataService {
   // --------------------------------------------------------
   getProgress(): LearnerProgress | null;
   saveProgress(progress: LearnerProgress): void;
+  getActiveStep?(missionId: string): number;
+  saveActiveStep?(missionId: string, stepIndex: number): void;
 
   // --------------------------------------------------------
   // Learning Memory — separate key, independently compactable

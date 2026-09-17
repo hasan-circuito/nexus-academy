@@ -56,6 +56,7 @@ export async function getMissionData(missionId: string): Promise<MissionData> {
     throw new Error(`[ContentService] Failed to load mission ${missionId}`);
   }
   
+
   // Handle case where json is imported as module with default export
   if (data && (data as any).default) {
     console.log('[ContentService] unwrapping .default');
@@ -63,4 +64,13 @@ export async function getMissionData(missionId: string): Promise<MissionData> {
   }
   
   return data as unknown as MissionData;
+}
+
+export function getMissionStepCount(missionId: string): number {
+  const id = missionId.replace(/^mission-/, '');
+  const m = missions[id];
+  if (m && Array.isArray(m.steps)) {
+    return m.steps.length;
+  }
+  return 13;
 }

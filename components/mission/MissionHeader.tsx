@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getMissionData } from '@/services/ContentService';
+import { saveActiveStep } from '@/hooks/useProgress';
 
 export function MissionHeader() {
   const pathname = usePathname();
@@ -14,6 +15,14 @@ export function MissionHeader() {
   // Extract step index from URL
   const match = pathname.match(/step\/(\d+)/);
   const stepIndex = match ? parseInt(match[1], 10) : 0;
+
+  // Persist active step whenever the learner navigates to a step
+  useEffect(() => {
+    const missionId = params?.missionId as string;
+    if (missionId && match && !isNaN(stepIndex)) {
+      saveActiveStep(missionId, stepIndex);
+    }
+  }, [params?.missionId, stepIndex, Boolean(match)]);
 
   // Load actual step count from mission data
   useEffect(() => {
@@ -48,6 +57,12 @@ export function MissionHeader() {
         <div className="flex-1 flex justify-end items-center gap-2">
           <Link
             href="/dashboard"
+            onClick={() => {
+              const missionId = params?.missionId as string;
+              if (missionId && match && !isNaN(stepIndex)) {
+                saveActiveStep(missionId, stepIndex);
+              }
+            }}
             className="p-2 rounded-full hover:bg-surface-hover text-muted-foreground transition-colors"
             aria-label="Save and Exit Mission"
           >

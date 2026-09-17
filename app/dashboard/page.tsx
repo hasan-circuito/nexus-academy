@@ -1,14 +1,18 @@
 'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Play, Lock, BookOpen, Star, Target, Flame, Trophy, Activity, ArrowRight, BookMarked, Code2 } from 'lucide-react';
 import manifest from '@/data/missions/manifest.json';
 import mission001 from '@/data/missions/mission-001.json';
 import { useProgress } from '@/hooks/useProgress';
 import { useSettings } from '@/hooks/useSettings';
+import { storage } from '@/services/LocalStorageDataService';
+import { getMissionStepCount } from '@/services/ContentService';
 
 // Metadata removed for client component
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { progress, xpState, isClient } = useProgress();
   const { settings } = useSettings();
 
@@ -23,6 +27,14 @@ export default function DashboardPage() {
               : !isFirstMission))
       : !isFirstMission;
     const isCompleted = isClient ? persistedMission?.status === 'complete' : false;
+    const totalSteps = getMissionStepCount(entry.id);
+    const rawSavedStep = isClient
+      ? storage.getActiveStep(entry.id)
+      : (typeof persistedMission?.currentStepIndex === 'number' && !isNaN(persistedMission.currentStepIndex) && persistedMission.currentStepIndex >= 0 ? persistedMission.currentStepIndex : 0);
+    const savedStep = Math.min(Math.max(0, rawSavedStep), Math.max(0, totalSteps - 1));
+    const isInProgress = isClient
+      ? (persistedMission?.status === 'in_progress' || (savedStep > 0 && !isCompleted))
+      : false;
     
     return {
       id: entry.id,
@@ -33,6 +45,9 @@ export default function DashboardPage() {
       description: entry.banglaSubtitle || entry.primaryConcept || '',
       isLocked,
       isCompleted,
+      isInProgress,
+      savedStep,
+      totalSteps,
       estimatedMinutes: entry.estimatedMinutes || 20,
       // Include steps data if this is mission 001 (for the continue learning card)
       ...(entry.id === '001' ? { steps: mission001.steps, cognitiveLoadEstimate: mission001.cognitiveLoadEstimate } : {})
@@ -74,9 +89,28 @@ export default function DashboardPage() {
           <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
             
             {(() => {
-              const activeMission = missions.find(m => !m.isLocked && !m.isCompleted) || missions[0];
+              const inProgressMission = missions.find(m => !m.isLocked && !m.isCompleted && m.isInProgress);
+              const activeMission = inProgressMission || missions.find(m => !m.isLocked && !m.isCompleted) || missions[0];
               const displayId = `Mission ${activeMission.id}`;
-              const url = `/mission/mission-${activeMission.id}/step/0`;
+              const targetStep = activeMission.savedStep ?? 0;
+              const url = activeMission.isCompleted
+                ? `/mission/mission-${activeMission.id}/step/0`
+                : `/mission/mission-${activeMission.id}/step/${targetStep}`;
+              const totalSteps = activeMission.totalSteps || ('steps' in activeMission && activeMission.steps?.length ? activeMission.steps.length : getMissionStepCount(activeMission.id));
+              const progressPercent = activeMission.isCompleted
+                ? 100
+                : (totalSteps > 0 ? Math.min(100, Math.round((targetStep / totalSteps) * 100)) : 0);
+              const stepCount = activeMission.isCompleted
+                ? totalSteps
+                : targetStep;
+
+              let actionLabel = 'Start Learning';
+              if (activeMission.isCompleted) {
+                actionLabel = 'Review Mission';
+              } else if (activeMission.isInProgress || targetStep > 0) {
+                actionLabel = `Resume Step ${targetStep + 1}`;
+              }
+
               return (
                 <>
                   <div className="space-y-2 flex-1">
@@ -96,14 +130,14 @@ export default function DashboardPage() {
                         <span className="text-xs text-muted-foreground mb-1">Progress</span>
                         <div className="flex items-center gap-2">
                           <div className="w-32 h-2 rounded-full bg-surface-elevated overflow-hidden">
-                            <div className="h-full bg-primary rounded-full" style={{ width: activeMission.isCompleted ? '100%' : '0%' }} />
+                            <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
                           </div>
-                          <span className="text-xs font-medium text-foreground">{activeMission.isCompleted ? '100%' : '0%'}</span>
+                          <span className="text-xs font-medium text-foreground">{progressPercent}%</span>
                         </div>
                       </div>
                       <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground mb-1">Steps</span>
-                        <span className="text-sm font-medium text-foreground">{activeMission.isCompleted ? ('steps' in activeMission ? activeMission.steps.length : 10) : 0} / {'steps' in activeMission ? activeMission.steps.length : 10}</span>
+                        <span className="text-sm font-medium text-foreground">{stepCount} / {totalSteps}</span>
                       </div>
                       <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground mb-1">Time</span>
@@ -115,7 +149,7 @@ export default function DashboardPage() {
                     href={url}
                     className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary-hover h-11 rounded-md px-8 shrink-0"
                   >
-                    {activeMission.isCompleted ? 'Review Mission' : 'Start Learning'} <ArrowRight className="ml-2 w-4 h-4" />
+                    {actionLabel} <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </>
               );
@@ -164,44 +198,71 @@ export default function DashboardPage() {
             <BookOpen className="w-5 h-5 text-primary" /> Path to Mastery
           </h2>
           <div className="space-y-3">
-            {missions.map((mission) => (
-              <div 
-                key={mission.id} 
-                className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${
-                  mission.isLocked 
-                    ? "bg-surface/50 border-border/50 opacity-60" 
-                    : "bg-card border-border hover:border-primary/50 cursor-pointer"
-                }`}
-              >
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full shrink-0 ${
-                  mission.isLocked ? "bg-surface-elevated text-foreground-faint" : "bg-primary/10 text-primary"
-                }`}>
-                  {mission.isLocked ? <Lock className="w-5 h-5" /> : <Code2 className="w-5 h-5" />}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-semibold text-foreground truncate">{mission.title}</h4>
-                    <span className="text-xs text-muted-foreground hidden sm:inline">({mission.englishTitle})</span>
+            {missions.map((mission) => {
+              const missionTargetStep = mission.savedStep ?? 0;
+              const missionUrl = mission.isLocked
+                ? `/mission/mission-${mission.id}/step/0`
+                : (mission.isCompleted
+                    ? `/mission/mission-${mission.id}/step/0`
+                    : `/mission/mission-${mission.id}/step/${missionTargetStep}`);
+
+              let buttonLabel = 'Start';
+              if (mission.isCompleted) {
+                buttonLabel = 'Review';
+              } else if (mission.isInProgress || missionTargetStep > 0) {
+                buttonLabel = `Resume Step ${missionTargetStep + 1}`;
+              }
+
+              return (
+                <div 
+                  key={mission.id} 
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => router.push(missionUrl)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      router.push(missionUrl);
+                    }
+                  }}
+                  className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${
+                    mission.isLocked 
+                      ? "bg-surface/50 border-border/50 opacity-60" 
+                      : "bg-card border-border hover:border-primary/50 cursor-pointer"
+                  }`}
+                >
+                  <div className={`flex items-center justify-center w-12 h-12 rounded-full shrink-0 ${
+                    mission.isLocked ? "bg-surface-elevated text-foreground-faint" : "bg-primary/10 text-primary"
+                  }`}>
+                    {mission.isLocked ? <Lock className="w-5 h-5" /> : <Code2 className="w-5 h-5" />}
                   </div>
-                  <p className="text-sm text-muted-foreground truncate">{mission.description}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-semibold text-foreground truncate">{mission.title}</h4>
+                      <span className="text-xs text-muted-foreground hidden sm:inline">({mission.englishTitle})</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground truncate">{mission.description}</p>
+                  </div>
+                  {mission.isLocked ? (
+                    <Link 
+                      href={missionUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs font-medium text-muted-foreground hover:text-primary px-3 py-1.5 rounded-md bg-surface-elevated hover:bg-surface transition-colors"
+                    >
+                      Locked (Preview)
+                    </Link>
+                  ) : (
+                    <Link 
+                      href={missionUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+                    >
+                      {buttonLabel}
+                    </Link>
+                  )}
                 </div>
-                {mission.isLocked ? (
-                  <Link 
-                    href={`/mission/mission-${mission.id}/step/0`}
-                    className="text-xs font-medium text-muted-foreground hover:text-primary px-3 py-1.5 rounded-md bg-surface-elevated hover:bg-surface transition-colors"
-                  >
-                    Locked (Preview)
-                  </Link>
-                ) : (
-                  <Link 
-                    href={`/mission/mission-${mission.id}/step/0`}
-                    className="text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors"
-                  >
-                    {mission.isCompleted ? 'Review' : 'Start'}
-                  </Link>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
