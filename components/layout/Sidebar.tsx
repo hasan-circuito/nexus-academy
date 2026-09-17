@@ -13,8 +13,10 @@ import {
   Zap,
   Menu,
   X,
+  Play,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useProgress } from '@/hooks/useProgress';
 
 // ============================================================
 // Icon registry — maps icon string names to Lucide components.
@@ -37,6 +39,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const [desktopCollapsed, setDesktopCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { lastActiveMission, isClient } = useProgress();
 
   // Focus Mode: collapse desktop when inside a mission step
   const isMissionStep = /^\/mission\/\w+\/step\/\d+/.test(pathname);
@@ -118,6 +121,23 @@ export function Sidebar() {
 
         {/* Navigation */}
         <nav className="flex-1 flex flex-col gap-1 p-3 overflow-y-auto">
+          {isClient && lastActiveMission && (
+            <Link
+              href={lastActiveMission.url}
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30 mb-2 shadow-sm"
+              title={`Resume Mission ${lastActiveMission.missionId}: Step ${lastActiveMission.stepIndex + 1}`}
+            >
+              <Play className="w-[18px] h-[18px] shrink-0 fill-primary text-primary" />
+              <div className={cn(isEffectivelyCollapsedDesktop ? 'inline lg:hidden' : 'inline', 'flex flex-col min-w-0')}>
+                <span className="truncate">Resume Mission {lastActiveMission.missionId}</span>
+                <span className="text-[10px] font-normal text-muted-foreground truncate">
+                  Step {lastActiveMission.stepIndex + 1} of {lastActiveMission.totalSteps}
+                </span>
+              </div>
+            </Link>
+          )}
+
           {NAV_ITEMS.map((item) => {
             const Icon = ICON_MAP[item.icon];
             const isActive =

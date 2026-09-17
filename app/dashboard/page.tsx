@@ -89,7 +89,10 @@ export default function DashboardPage() {
           <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
             
             {(() => {
-              const inProgressMission = missions.find(m => !m.isLocked && !m.isCompleted && m.isInProgress);
+              const lastMission = (isClient && progress.lastActiveMissionId)
+                ? missions.find(m => m.id === progress.lastActiveMissionId && !m.isCompleted)
+                : null;
+              const inProgressMission = lastMission || missions.find(m => !m.isLocked && !m.isCompleted && m.isInProgress);
               const activeMission = inProgressMission || missions.find(m => !m.isLocked && !m.isCompleted) || missions[0];
               const displayId = `Mission ${activeMission.id}`;
               const targetStep = activeMission.savedStep ?? 0;

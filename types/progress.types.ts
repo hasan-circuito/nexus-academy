@@ -21,6 +21,8 @@ export interface LearnerProgress {
   _schemaVersion: 1;                  // Increment on breaking schema changes
   createdAt: ISODateTime;
   lastActiveAt: ISODateTime;
+  lastActiveMissionId?: string;       // e.g. "014" or "001"
+  lastActiveStepIndex?: number;       // e.g. 11 (0-indexed)
 
   // Gamification
   xp: number;                         // Total XP earned (never decrements)

@@ -145,6 +145,8 @@ export class LocalStorageDataService implements DataService {
       }
     }
 
+    progress.lastActiveMissionId = cleanId;
+    progress.lastActiveStepIndex = intStepIndex;
     progress.lastActiveAt = new Date().toISOString();
     this.saveProgress(progress);
   }

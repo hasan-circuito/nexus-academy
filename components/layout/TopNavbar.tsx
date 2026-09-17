@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Volume2, VolumeX, Flame, Star, Menu } from 'lucide-react';
+import { Volume2, VolumeX, Flame, Star, Menu, Play } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
 import { useProgress } from '@/hooks/useProgress';
 import { cn } from '@/lib/utils';
@@ -9,7 +10,7 @@ import { cn } from '@/lib/utils';
 export function TopNavbar() {
   const pathname = usePathname();
   const { settings, updateSettings, isClient } = useSettings();
-  const { progress } = useProgress();
+  const { progress, lastActiveMission } = useProgress();
 
   // Hide in mission pages to preserve focus mode (MissionHeader is used there instead)
   const isMission = pathname.startsWith('/mission');
@@ -65,6 +66,22 @@ export function TopNavbar() {
           </div>
         </div>
       </div>
+
+      {/* Center/Right: Quick Resume Active Mission */}
+      {isClient && lastActiveMission && (
+        <Link
+          href={lastActiveMission.url}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/15 hover:bg-primary/25 text-primary border border-primary/30 text-xs font-semibold transition-all hover:scale-102 shadow-sm"
+          title={`Resume Mission ${lastActiveMission.missionId}: Step ${lastActiveMission.stepIndex + 1}`}
+        >
+          <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+          <span className="hidden sm:inline">Resume Mission {lastActiveMission.missionId}</span>
+          <span className="sm:hidden">M{lastActiveMission.missionId}</span>
+          <span className="px-1.5 py-0.5 rounded bg-primary/25 text-[10px] font-mono">
+            Step {lastActiveMission.stepIndex + 1}
+          </span>
+        </Link>
+      )}
 
       {/* Right: Quick Controls */}
       <div className="flex items-center gap-2.5">

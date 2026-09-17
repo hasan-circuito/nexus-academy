@@ -139,6 +139,8 @@ class StepPersistenceService {
       }
     }
 
+    progress.lastActiveMissionId = cleanId;
+    progress.lastActiveStepIndex = intStepIndex;
     progress.lastActiveAt = new Date().toISOString();
     this.saveProgress(progress);
   }
@@ -412,6 +414,30 @@ check('app/dashboard/page.tsx renders Resume Step label', () => {
   const code = fs.readFileSync('app/dashboard/page.tsx', 'utf8');
   assert.strictEqual(code.includes('Resume Step'), true, 'Dashboard must render Resume Step');
   assert.strictEqual(code.includes('savedStep'), true, 'Dashboard must check savedStep');
+});
+
+check('app/settings/page.tsx renders return to step banner', () => {
+  const code = fs.readFileSync('app/settings/page.tsx', 'utf8');
+  assert.strictEqual(code.includes('lastActiveMission'), true, 'Settings must check lastActiveMission');
+  assert.strictEqual(code.includes('Return to Step'), true, 'Settings must render Return to Step button');
+});
+
+check('components/layout/TopNavbar.tsx renders Resume Mission button', () => {
+  const code = fs.readFileSync('components/layout/TopNavbar.tsx', 'utf8');
+  assert.strictEqual(code.includes('lastActiveMission'), true, 'TopNavbar must check lastActiveMission');
+  assert.strictEqual(code.includes('Resume Mission'), true, 'TopNavbar must render Resume Mission');
+});
+
+check('components/layout/MobileBottomNav.tsx renders mobile resume floating bar', () => {
+  const code = fs.readFileSync('components/layout/MobileBottomNav.tsx', 'utf8');
+  assert.strictEqual(code.includes('lastActiveMission'), true, 'Mobile nav must check lastActiveMission');
+  assert.strictEqual(code.includes('fixed bottom-16'), true, 'Mobile nav must render floating bar');
+});
+
+check('components/layout/Sidebar.tsx renders resume mission navigation item', () => {
+  const code = fs.readFileSync('components/layout/Sidebar.tsx', 'utf8');
+  assert.strictEqual(code.includes('lastActiveMission'), true, 'Sidebar must check lastActiveMission');
+  assert.strictEqual(code.includes('Resume Mission'), true, 'Sidebar must render Resume Mission item');
 });
 
 console.log(`\n======================================================`);

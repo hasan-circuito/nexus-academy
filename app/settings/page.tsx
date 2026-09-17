@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import Link from 'next/link';
 import {
   Moon,
   Sun,
@@ -27,8 +28,10 @@ import {
   Coffee,
   Compass,
   Cpu,
+  Play,
 } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
+import { useProgress } from '@/hooks/useProgress';
 import {
   type ThemeMode,
   type AppFontSize,
@@ -54,6 +57,7 @@ export default function SettingsPage() {
     resetAllProgress,
     isClient,
   } = useSettings();
+  const { lastActiveMission } = useProgress();
 
   // Toast feedback state
   const [toast, setToast] = useState<ToastState>({
@@ -236,6 +240,35 @@ export default function SettingsPage() {
           Manage your application preferences, code editor, and learning environment.
         </p>
       </section>
+
+      {/* Active Mission Session Resume Banner */}
+      {isClient && lastActiveMission && (
+        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-primary/25 flex items-center justify-center text-primary shadow-sm shrink-0">
+              <Play className="w-5 h-5 fill-current" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">Active Learning Session</span>
+                <span className="text-xs text-muted-foreground">• Step {lastActiveMission.stepIndex + 1} of {lastActiveMission.totalSteps}</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-foreground">
+                Mission {lastActiveMission.missionId}: {lastActiveMission.banglaTitle}
+              </h3>
+              <p className="text-xs text-muted-foreground font-mono">
+                {lastActiveMission.title}
+              </p>
+            </div>
+          </div>
+          <Link
+            href={lastActiveMission.url}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-sm rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-102 shrink-0"
+          >
+            <span>← Return to Step {lastActiveMission.stepIndex + 1}</span>
+          </Link>
+        </div>
+      )}
 
       <div className="space-y-6">
         {/* 1. Theme Settings — Aesthetic & Eye-Friendly Themes */}
