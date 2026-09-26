@@ -18,6 +18,8 @@
 > **English Hook:** An interactive, browser-native Python & CS learning laboratory in Bangla — built on WebAssembly Pyodide, AST syntax enforcement, and deep cognitive mental models. No rote memorization, no server execution cost.
 >
 > **বাংলা রূপরেখা:** বাংলায় ইন্টারঅ্যাক্টিভ পাইথন ও কম্পিউটার সায়েন্স ল্যাবরেটরি — *"গভীরভাবে বোঝো, মুখস্থ নয়" — ব্রাউজার-নেটিভ Pyodide WASM ও AST সিনট্যাক্স কনফাইনমেন্ট সমৃদ্ধ।*
+>
+> 💡 **Project Status Note:** *"NEXUS Academy" serves as our open-source development codename and repository working title. A distinct, collision-free permanent brand identity and dedicated custom domain are being prepared for public launch.*
 
 ---
 
