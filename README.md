@@ -475,7 +475,7 @@ npm run mission:scaffold 015
 
 - **Software Engine (AGPLv3)**: The underlying platform codebase—including the Next.js runtime, Monaco editor integration, Pyodide Web Worker execution harness, 23-event EventBus architecture, Spaced Repetition engine, and AST syntax enforcement tooling—is licensed under the **GNU Affero General Public License v3.0 (AGPLv3)**. Under AGPLv3, any individual or organization that modifies or hosts this engine over a network **must** make the complete source code of their modified version publicly available under the same AGPLv3 terms. Closed-source forks, proprietary cloud deployments, and uncredited commercial re-hosting are strictly prohibited by law.
 - **Original Authored Curriculum & Creative Works (All Rights Reserved)**: All original educational narratives, fictional B2B AI Agency client scenarios, mental model analogies, Bengali explanations, pedagogical progression curves, and lesson content contained in `data/missions/` and `data/curriculum/` are the proprietary intellectual property of **Hasan Mahmud Fahim** (Copyright © 2026).
-- **Brand & Trademarks**: The name **NEXUS Academy**, associated logos, badges, and certification marks are trademarks of the author. You may not use these trademarks to endorse or promote derivative products without express prior written permission.
+- **Project Identity & Working Codename**: *NEXUS Academy* serves as the open-source development codename and repository identifier. The platform's original UI designs, curriculum architecture, and pedagogical works are authored and owned by **Hasan Mahmud Fahim**. (A distinct, non-conflicting permanent brand identity and dedicated custom domain are being prepared for public launch).
 - **Fair Use for Learners & Educators**: Non-commercial self-study, academic classroom instruction, and educational sharing with full attribution are always encouraged. Commercial resale, course bundling, or white-labeling of the curriculum for paid bootcamps without licensing is strictly prohibited.
 
 ---
@@ -491,7 +491,7 @@ To propose a new mission or improve existing pedagogical analogies:
 3. Open a Pull Request with a clear rationale of the cognitive improvements.
 
 ### License
-This project's software engine is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-or-later)** — see the [LICENSE](LICENSE) file for details. All authored curriculum content, narratives, and brand assets are protected under Copyright © 2026 Hasan Mahmud Fahim. All rights reserved.
+This project's software engine is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-or-later)** — see the [LICENSE](LICENSE) file for details. All authored curriculum content, narratives, and educational assets are protected under Copyright © 2026 Hasan Mahmud Fahim. All rights reserved.
 
 ---
 
