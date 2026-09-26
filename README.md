@@ -32,7 +32,9 @@
 
 ---
 
-## 🖥️ Live Platform Preview
+## 🖥️ Interactive Laboratory Interface Blueprint
+
+> 🌐 **Experience the Live Web Application:** [nexus-academy-xqcn.vercel.app](https://nexus-academy-xqcn.vercel.app)
 
 ```
 +----------------------------------------------------------------------------------------------------+
@@ -74,6 +76,13 @@ NEXUS Academy was founded by **Hasan Mahmud Fahim** ([@hasan-circuito](https://g
 - Every concept step is audited against the **Single Concept Law**: an absolute beginner must experience **zero cognitive leaps** between steps.
 - The curriculum implements **Domain-Appropriate Debugging (Rule 21)** and **The Closed-World Invariant (Rule 24)**: learners are never forced to debug syntax they have not yet mastered.
 - Real-world grounding through the **B2B AI Agency Framework (Rule 22)**: learners take on the role of a junior engineer at *Nexus AI*, building software for real rotating industry clients across FinTech, HealthTech, Logistics, AgriTech, GovTech, Smart Grid, and E-Commerce.
+
+### 🌏 The Language Strategy: Bangla-First → Global Bilingual Engine
+As a Bangladeshi founder, Hasan recognized that learning to program involves a **double cognitive penalty**: beginners are forced to grasp abstract computational logic *while simultaneously deciphering a foreign language (English)*. 
+
+To eliminate this barrier, NEXUS Academy is architected with a **Bangla-First → Global Bilingual** roadmap:
+1. **Phase 1: Native Grounding in Bengali (Current Baseline):** Core computational mental models, analogies, and debugging challenges are engineered in high-fidelity, culturally grounded Bengali. This removes linguistic friction and builds deep, intuitive conceptual understanding.
+2. **Phase 2: Bilingual Dual-Track i18n Engine (Upcoming Horizon):** The platform's content architecture is built on an extensible i18n schema (`bn` ↔ `en`). Learners will be able to seamlessly toggle between Bengali and English across every mission step. This ensures that while foundational intuition is built in their native tongue, learners transition naturally into global professional English fluency, industry-standard documentation, and international open-source collaboration.
 
 ---
 
