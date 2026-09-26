@@ -5,6 +5,7 @@
 
 [![Live Vercel Deployment](https://img.shields.io/badge/Live%20Platform-nexus--academy.vercel.app-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
 [![Automated Assertions](https://img.shields.io/badge/Test%20Suite-1%2C640%2B%20Passing%20(100%25)-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/hasan-circuito/nexus-academy)
+[![Commits](https://img.shields.io/badge/Commits-151%2B%20Active-blue?style=for-the-badge&logo=git&logoColor=white)](https://github.com/hasan-circuito/nexus-academy)
 [![Next.js](https://img.shields.io/badge/Next.js%2016-Turbopack-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React%2019-Strict%20Mode-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript%205-Strict%20Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -20,7 +21,7 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [📋 14 Published Missions](#-current-curriculum-milestone-status-14-published-missions) • [🗺️ 120-Mission Roadmap Table](#️-120-mission-curriculum-roadmap-5-phases) • [🏗️ Architecture Deep Dive](#️-system-architecture--engineering) • [🧪 Testing Records](#-testing--quality-assurance-1640-assertions)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#-what-makes-nexus-academy-different) • [🏗️ Architecture Tree](#️-in-browser-system-architecture) • [📋 14 Published Missions](#-current-curriculum-milestone-status-14-published-missions) • [🗺️ 120-Mission Roadmap](#️-120-mission-curriculum-roadmap-5-phases) • [🧪 Testing Records](#-testing--quality-assurance-1640-assertions)
 
 </div>
 
@@ -32,7 +33,75 @@
 
 ---
 
-## 🖥️ Interactive Laboratory Interface Blueprint
+## 🚨 The Problem: The South Asian Computer Science Divide
+
+Across Bangladesh and South Asia, over **250 million native Bengali speakers** face a systemic bottleneck when entering modern software engineering and AI:
+
+1. **The Rote YouTube Epidemic:** The dominant entry point consists of 10-hour passive video playlists where instructors dictate `print("Hello World")` and variables. Learners mechanically transcribe syntax without understanding memory allocation, pointer mechanics, state mutations, or hardware execution models.
+2. **The Double Cognitive Penalty:** High-tier computer science documentation and interactive platforms are overwhelmingly English-first. Beginners are forced to decipher an unfamiliar natural language while simultaneously wrestling with abstract computational logic.
+3. **The "Tutorial Hell" Abandonment Trap:** When a learner encounters their first unexpected runtime exception, they freeze and abandon learning because they were taught *what* code to type, never *how* the runtime actually reasons.
+
+---
+
+## ⚡ What Makes NEXUS Academy Different
+
+| Dimension | Traditional Platforms (freeCodeCamp, Codecademy, Coursera) | NEXUS Academy |
+| :--- | :--- | :--- |
+| **1. Linguistic Grounding** | English-first or automated subtitles; alien metaphors for non-Western learners | **Native Bengali First Principles**; culturally resonant mental models and analogies with a built-in bilingual (`bn` ↔ `en`) dual-track roadmap |
+| **2. Compute Infrastructure & Cost** | Costly server-side execution sandboxes; strict rate limits, queue latency, privacy risks | **100% Client-Side WebAssembly (Pyodide)**; dedicated Web Worker execution with 0ms latency, $0 server compute bills, and full offline capability |
+| **3. Cognitive Guardrails** | Unearned syntax leaks (starter code introduces loops or functions before taught); high learner dropouts | **AST-Enforced Closed-World Invariant (Rule 24)**; automated Python 3.12 AST visitors reject any unearned syntax at compile time |
+| **4. Pedagogical Depth** | Passive copy-pasting, superficial syntax drills, shallow quiz questions | **13-Step First-Principles Anatomy**; Story → Physical Analogy → Memory Box Diagram → Hardware EEE Link → AI Link → 3-Tier Fault Hunting |
+| **5. Practical Context** | Abstract toy problems (`foo(x) + bar(y)`, calculating area of rectangle) | **B2B AI Agency Framework (Rule 22)**; junior engineer at *Nexus AI* solving rotating client challenges (FinTech, HealthTech, Smart Grid, AgriTech) |
+
+---
+
+## 🚀 Current Project Status & Traction
+
+- [x] **151+ Commits**: Active, sustained open-source development with strict git discipline and semantic versioning.
+- [x] **14 Published Missions (M001–M014)**: Authored, schema-validated, and verified through automated end-to-end Python AST compilation.
+- [x] **1,189 Foundational Assertions & 1,640+ Total Automated Tests (100% Pass)**: 7 specialized test suites covering missions, domain events, AST walkers, error diagnostics, settings safety, and step persistence.
+- [x] **Active Sprint on Mission 015**: Branching logic & conditional decision-making (`if-else`) currently in active development.
+- [x] **Zero Cognitive Leaks**: Automated preflight and AST CI pipeline halting deployment if unearned syntax is introduced.
+- [x] **Live Production Platform**: Instant zero-friction access at [nexus-academy-xqcn.vercel.app](https://nexus-academy-xqcn.vercel.app) (zero signup walls, instant WASM execution).
+
+---
+
+## 🏗️ In-Browser System Architecture
+
+```
+Browser (100% Client-Side Runtime • Zero Server Compute Bills • Offline-Capable)
+│
+├── ⚡ Presentation Layer (Next.js 16 + React 19 + TypeScript 5)
+│   ├── Monaco Code Editor (VS Code engine in-browser)
+│   ├── Interactive Terminal & Stream Output
+│   └── In-Situ Concept Drawer & Spaced Repetition Flashcards
+│
+├── 🐍 Execution Engine (Web Worker Thread)
+│   ├── Pyodide WASM (CPython 3.12 compiled to WebAssembly)
+│   ├── Off-Main-Thread Worker Isolation (Buttery 60 FPS UI)
+│   └── Virtual Stdin/Stdout Buffering & Interactive Input Emulation
+│
+├── 🔒 Cognitive & Pedagogical Integrity (Python AST Walker)
+│   ├── Closed-World Invariant (Rule 24) AST Visitor
+│   ├── Forbidden Syntax Trap Detection (Exit Code 2 on untaught constructs)
+│   └── Single Concept Law & Prerequisite Contract Verification
+│
+├── 🧠 Domain Logic & Event Bus (Decoupled 23-Event Architecture)
+│   ├── Two-Phase Mission Completion Flow (Initiated ➔ Sealed)
+│   ├── UnderstandingEngine (Dynamic Scoring: Quiz 40% + Debug 25% + Practice 20% + Reflection 10% + Hints 5%)
+│   ├── XPEngine & Level Progression
+│   ├── KnowledgeGraphService (DAG Prerequisite Traversal)
+│   └── SpacedRepetitionService (SuperMemo SM-2 Interval Calculation)
+│
+└── 💾 Storage & State Safety (Local First)
+    ├── Safe LocalStorage with JSON Schema Migration
+    ├── Idempotent Step Navigation & Variable-Length Mission State
+    └── Zero Learner Telemetry / Zero Private Data Exposure
+```
+
+---
+
+## 🖥️ Interactive Laboratory Blueprint
 
 > 🌐 **Experience the Live Web Application:** [nexus-academy-xqcn.vercel.app](https://nexus-academy-xqcn.vercel.app)
 
@@ -62,45 +131,20 @@
 
 ---
 
-## 🎯 The "Learner #0" Origin Story
+## 🎯 Pedagogical Philosophy: Built by "Learner #0"
 
-### Escaping "Tutorial Hell" in South Asia
-In Bangladesh and across South Asia, over 250 million native Bengali speakers face a critical barrier to high-tier software engineering. The dominant learning materials fall into two extremes:
-1. **Shallow Rote YouTube Playlists:** Instructors dictate `print("Hello World")`, declare variables, and ask students to blindly copy syntax without revealing memory pointer mechanics, state mutations, or hardware allocation models.
-2. **Dense English Documentation:** High-caliber computer science texts remain linguistically intimidating, causing early cognitive overload and abandonment.
-
-When software bugs occur, learners freeze because they were taught **what** to type, never **why** the computer interprets it that way.
-
-### Built by Learner #0 (Dogfooder #1)
 NEXUS Academy was founded by **Hasan Mahmud Fahim** ([@hasan-circuito](https://github.com/hasan-circuito)), an Electrical & Electronic Engineering (EEE) student. Refusing to settle for superficial syntax drills, Hasan engineered NEXUS Academy by adopting the persona of **Learner #0**:
-- Every concept step is audited against the **Single Concept Law**: an absolute beginner must experience **zero cognitive leaps** between steps.
-- The curriculum implements **Domain-Appropriate Debugging (Rule 21)** and **The Closed-World Invariant (Rule 24)**: learners are never forced to debug syntax they have not yet mastered.
-- Real-world grounding through the **B2B AI Agency Framework (Rule 22)**: learners take on the role of a junior engineer at *Nexus AI*, building software for real rotating industry clients across FinTech, HealthTech, Logistics, AgriTech, GovTech, Smart Grid, and E-Commerce.
 
-### 🌏 The Language Strategy: Bangla-First → Global Bilingual Engine
-As a Bangladeshi founder, Hasan recognized that learning to program involves a **double cognitive penalty**: beginners are forced to grasp abstract computational logic *while simultaneously deciphering a foreign language (English)*. 
-
-To eliminate this barrier, NEXUS Academy is architected with a **Bangla-First → Global Bilingual** roadmap:
-1. **Phase 1: Native Grounding in Bengali (Current Baseline):** Core computational mental models, analogies, and debugging challenges are engineered in high-fidelity, culturally grounded Bengali. This removes linguistic friction and builds deep, intuitive conceptual understanding.
-2. **Phase 2: Bilingual Dual-Track i18n Engine (Upcoming Horizon):** The platform's content architecture is built on an extensible i18n schema (`bn` ↔ `en`). Learners will be able to seamlessly toggle between Bengali and English across every mission step. This ensures that while foundational intuition is built in their native tongue, learners transition naturally into global professional English fluency, industry-standard documentation, and international open-source collaboration.
+- **The Single Concept Law:** An absolute beginner must experience **zero cognitive leaps** between steps. Every mission isolates exactly one new mental model.
+- **Closed-World Invariant (Rule 24):** Learners are never confronted with syntax they have not yet earned. Starter code, practice tasks, and debug challenges are strictly bounded by prior mastery.
+- **B2B AI Agency Framework (Rule 22):** Learners step into the shoes of a junior software engineer at *Nexus AI*, building real software across rotating industry verticals: FinTech, HealthTech, Logistics, AgriTech, GovTech, Smart Grid, and E-Commerce.
+- **Bangla-First → Global Bilingual Strategy:**
+  - *Phase 1 (Current):* Native grounding in culturally resonant Bengali analogies eliminates linguistic friction and cements first-principles intuition.
+  - *Phase 2 (Upcoming Horizon):* Extensible bilingual dual-track schema (`bn` ↔ `en`), enabling seamless language toggling across every mission step to prepare learners for global open-source and professional English ecosystems.
 
 ---
 
 ## ⚡ Core Engineering Pillars
-
-```
-+-----------------------------------------------------------------------------------+
-|                           NEXUS ACADEMY CORE CAPABILITIES                         |
-+------------------------------------+----------------------------------------------+
-| 🌐 100% Browser-Native Pyodide     | 0ms execution latency, 0 server compute bills|
-| 🔒 AST Syntax Confinement (Rule 24)| Real Python 3.12 AST blocks unearned syntax  |
-| 🧠 4-Tier Cognitive Scaffolding    | Story -> Analogy -> Concept -> EEE / AI Demo |
-| ⚡ Decoupled 23-Event EventBus     | 4-layer dependency model with max depth <= 3 |
-| 🪟 In-Situ Concept Drawer & Sandbox| Contextual lookup without loss of step state |
-| 🩺 Contextual Error Diagnostics    | Localized Bengali root-cause analysis & fixes|
-| 📈 Spaced Repetition Engine (SM-2) | Personalized retention tracking in local state|
-+------------------------------------+----------------------------------------------+
-```
 
 ### 1. WebAssembly (Pyodide) in a Dedicated Web Worker
 - **Zero Server Overhead:** All user code compiles and executes directly inside the browser using Pyodide (WASM) compiled from CPython 3.12.
@@ -153,66 +197,8 @@ flowchart TD
     class Step1,Step2,Step3,Step4,Step5,Step6,Step7,Step8,Step9,Step10,Step11,Step12,Step13 step;
 ```
 
----
-
-## 🏗️ System Architecture & Engineering
-
-NEXUS Academy follows a strict **Four-Layer Architecture** where dependencies point strictly inward. Engines never call each other directly—they coordinate purely through an asynchronous **EventBus**.
-
-### Layered Dependency Model
-
-```mermaid
-graph TD
-    subgraph UI ["Layer 1: UI Layer (React 19 / Next.js 16)"]
-        Dashboard["Dashboard View"]
-        MissionRunner["Mission Step Runners"]
-        DictionaryDrawer["In-Situ Concept Drawer"]
-        Monaco["Monaco Editor Sandbox"]
-    end
-
-    subgraph API ["Layer 2: Engine API Layer"]
-        Hooks["Client Hooks (useMission, useEngineEvents)"]
-        Actions["Server & Client Handlers"]
-    end
-
-    subgraph Engines ["Layer 3: Domain Engine Layer (Pure Business Logic)"]
-        ProgressEngine["ProgressEngine"]
-        UnderstandingEngine["UnderstandingEngine"]
-        XPEngine["XPEngine"]
-        KnowledgeGraph["KnowledgeGraphService"]
-        SpacedRepetition["SpacedRepetitionService (SM-2)"]
-        PythonEngine["PythonEngine (Pyodide Worker)"]
-    end
-
-    subgraph Bus ["Event Hub"]
-        EventBus["Decoupled EventBus (23 Domain Events)"]
-    end
-
-    subgraph Storage ["Layer 4: Storage Layer"]
-        LocalStorageService["Safe LocalStorage & Migration Service"]
-    end
-
-    UI --> API
-    API --> Engines
-    Engines --> Bus
-    Bus --> Engines
-    Engines --> Storage
-
-    classDef uiLayer fill:#1e1e2e,stroke:#cba6f7,color:#cdd6f4;
-    classDef apiLayer fill:#181825,stroke:#89b4fa,color:#cdd6f4;
-    classDef engineLayer fill:#11111b,stroke:#a6e3a1,color:#cdd6f4;
-    classDef busLayer fill:#313244,stroke:#f9e2af,color:#cdd6f4;
-    classDef storageLayer fill:#1e1e2e,stroke:#f38ba8,color:#cdd6f4;
-
-    class Dashboard,MissionRunner,DictionaryDrawer,Monaco uiLayer;
-    class Hooks,Actions apiLayer;
-    class ProgressEngine,UnderstandingEngine,XPEngine,KnowledgeGraph,SpacedRepetition,PythonEngine engineLayer;
-    class EventBus busLayer;
-    class LocalStorageService storageLayer;
-```
-
-### Two-Phase Mission Completion Flow
-To avoid race conditions and maintain clean scoring provenance, mission completion is split into two phases:
+### 4. Decoupled 23-Event EventBus & Two-Phase Completion Flow
+To avoid race conditions and maintain clean scoring provenance, engines never call each other directly—they coordinate purely through an asynchronous **EventBus**:
 
 ```mermaid
 sequenceDiagram
@@ -280,7 +266,7 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 
 <br/>
 
-<details open>
+<details>
 <summary><b>🔍 Click to view Phase-by-Phase Detailed Milestone Tables</b></summary>
 
 #### Phase 1: Foundation (Missions 001–025)
@@ -347,9 +333,7 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 
 ## 🧪 Testing & Quality Assurance (1,640+ Assertions)
 
-Code correctness is not an afterthought at NEXUS Academy—it is an automated gate. The platform executes **7 specialized validation suites** validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
-
-Highlight: **1,189 test assertions passing** as our foundational benchmark, and now **1,640+ automated test assertions passing 100%** across the entire platform.
+Code correctness is an automated gate at NEXUS Academy. The repository features **1,189 foundational assertions** and now **1,640+ automated test assertions passing 100%** across 7 specialized validation suites validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
 
 ```bash
 $ npm test
@@ -411,7 +395,7 @@ $ npm test
 NEXUS Academy is actively applying to the **[Claude for Open Source Software](https://claude.com/contact-sales/claude-for-oss)** initiative.
 
 ### How Claude Accelerates This Project
-1. **Automated Pedagogical Audit:** We utilize Claude as an architectural critic to review educational scaffolding, verify cognitive step transitions, and detect hidden cognitive leaps before curriculum missions are packaged.
+1. **Automated Pedagogical Auditing:** We utilize Claude as an architectural critic to review educational scaffolding, verify cognitive step transitions, and detect hidden cognitive leaps before curriculum missions are packaged.
 2. **AST Constraint Generation:** Claude assists in mapping newly introduced programming concepts to strict Python AST node visitor rules, ensuring zero untaught syntax leaks into starter templates or debugging exercises.
 3. **High-Fidelity Bengali Pedagogical Engineering:** Translating complex computational concepts into culturally resonant Bengali analogies requires nuanced linguistic intelligence. Claude’s superior reasoning enables us to craft analogies that retain strict technical accuracy without falling back on awkward phonetic transliterations.
 4. **B2B AI Agency Domain Modeling:** Engineering believable business domain problems (Rule 22) across FinTech, HealthTech, Smart Grid, and AgriTech requires diverse domain knowledge that Claude synthesizes seamlessly.
