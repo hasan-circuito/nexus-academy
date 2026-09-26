@@ -21,15 +21,15 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#-what-makes-nexus-academy-different) • [🏗️ Architecture Tree](#️-in-browser-system-architecture) • [📋 14 Published Missions](#-current-curriculum-milestone-status-14-published-missions) • [🗺️ 120-Mission Roadmap](#️-120-mission-curriculum-roadmap-5-phases) • [🧪 Testing Records](#-testing--quality-assurance-1640-assertions)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records)
 
 </div>
 
 <br/>
 
 > [!IMPORTANT]
-> **To the Anthropic / Claude for Open Source Review Team**:  
-> Most programming education platforms in the developing world treat software engineering as passive syntax transcription: learners endure 10-hour YouTube playlists, memorizing keywords without building computational mental models. **NEXUS Academy** is an open-source, client-side educational runtime engineered to dismantle that paradigm for 250+ million Bengali speakers. Powered by WebAssembly (Pyodide), an event-driven decoupled architecture, and static AST syntax confinement, it turns learning into an active laboratory running entirely inside the student's browser with **zero backend infrastructure cost and zero learner data exposure**.
+> **To the Anthropic / Claude for Open Source Review Team (Ecosystem Impact Track)**:  
+> **NEXUS Academy** is an open-source, 100% client-side Python & Computer Science learning laboratory engineered specifically for **250+ million native Bengali speakers**. Powered by WebAssembly (CPython 3.12 in Pyodide), compile-time AST syntax confinement (Rule 24), and an asynchronous 23-event architecture, it delivers a zero-latency learning runtime directly in the browser—with **$0 server compute overhead and zero learner data exposure**. We are applying to the Claude for Open Source initiative to leverage Claude's deep reasoning for continuous pedagogical auditing, AST rule generation, and culturally grounded computational modeling across our 120-mission roadmap.
 
 ---
 
@@ -42,6 +42,8 @@ Across Bangladesh and South Asia, over **250 million native Bengali speakers** f
 3. **The "Tutorial Hell" Abandonment Trap:** When a learner encounters their first unexpected runtime exception, they freeze and abandon learning because they were taught *what* code to type, never *how* the runtime actually reasons.
 
 ---
+
+<a id="what-makes-this-different"></a>
 
 ## ⚡ What Makes NEXUS Academy Different
 
@@ -65,6 +67,8 @@ Across Bangladesh and South Asia, over **250 million native Bengali speakers** f
 - [x] **Live Production Platform**: Instant zero-friction access at [nexus-academy-xqcn.vercel.app](https://nexus-academy-xqcn.vercel.app) (zero signup walls, instant WASM execution).
 
 ---
+
+<a id="architecture-tree"></a>
 
 ## 🏗️ In-Browser System Architecture
 
@@ -133,14 +137,12 @@ Browser (100% Client-Side Runtime • Zero Server Compute Bills • Offline-Capa
 
 ## 🎯 Pedagogical Philosophy: Built by "Learner #0"
 
-NEXUS Academy was founded by **Hasan Mahmud Fahim** ([@hasan-circuito](https://github.com/hasan-circuito)), an Electrical & Electronic Engineering (EEE) student. Refusing to settle for superficial syntax drills, Hasan engineered NEXUS Academy by adopting the persona of **Learner #0**:
+NEXUS Academy was founded by **Hasan Mahmud Fahim** ([@hasan-circuito](https://github.com/hasan-circuito)), an Electrical & Electronic Engineering (EEE) student. Refusing to settle for passive syntax drills, Hasan engineered NEXUS Academy by adopting the persona of **Learner #0**—stress-testing every lesson against two foundational pedagogical pillars:
 
-- **The Single Concept Law:** An absolute beginner must experience **zero cognitive leaps** between steps. Every mission isolates exactly one new mental model.
-- **Closed-World Invariant (Rule 24):** Learners are never confronted with syntax they have not yet earned. Starter code, practice tasks, and debug challenges are strictly bounded by prior mastery.
-- **B2B AI Agency Framework (Rule 22):** Learners step into the shoes of a junior software engineer at *Nexus AI*, building real software across rotating industry verticals: FinTech, HealthTech, Logistics, AgriTech, GovTech, Smart Grid, and E-Commerce.
-- **Bangla-First → Global Bilingual Strategy:**
-  - *Phase 1 (Current):* Native grounding in culturally resonant Bengali analogies eliminates linguistic friction and cements first-principles intuition.
-  - *Phase 2 (Upcoming Horizon):* Extensible bilingual dual-track schema (`bn` ↔ `en`), enabling seamless language toggling across every mission step to prepare learners for global open-source and professional English ecosystems.
+1. **Dual Domain Anchoring (Hardware EEE ➔ Modern AI):** Rather than treating code as disconnected syntax, every mission connects abstract software constructs downward to physical hardware (voltage gates, memory registers, clock cycles) and upward to modern AI paradigms (tensors, token embeddings, transformer attention weights).
+2. **Bangla-First ➔ Global Bilingual Bridge:**
+   - *Phase 1 (Current Foundation):* Deep native grounding in culturally resonant Bengali analogies removes linguistic friction, enabling learners to build authentic computational mental models.
+   - *Phase 2 (Upcoming Horizon):* Extensible bilingual dual-track schema (`bn` ↔ `en`), empowering learners to seamlessly toggle between Bengali conceptual intuition and international open-source English terminology.
 
 ---
 
@@ -227,6 +229,8 @@ sequenceDiagram
 
 ---
 
+<a id="published-missions"></a>
+
 ## 📊 Current Curriculum Milestone Status (14 Published Missions)
 
 All 14 published missions are authored, schema-validated, and verified through automated end-to-end Python AST compilation.
@@ -249,6 +253,8 @@ All 14 published missions are authored, schema-validated, and verified through a
 | **M014** | When Software Takes One Path | সফটওয়্যার যখন সিদ্ধান্ত নেয় | E-Commerce (Cart Routing) | Conditional execution using the `if` statement | `✓ Passed` |
 
 ---
+
+<a id="curriculum-roadmap"></a>
 
 ## 🗺️ 120-Mission Curriculum Roadmap (5 Phases)
 
@@ -331,6 +337,8 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 
 ---
 
+<a id="testing-records"></a>
+
 ## 🧪 Testing & Quality Assurance (1,640+ Assertions)
 
 Code correctness is an automated gate at NEXUS Academy. The repository features **1,189 foundational assertions** and now **1,640+ automated test assertions passing 100%** across 7 specialized validation suites validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
@@ -390,9 +398,11 @@ $ npm test
 
 ---
 
+<a id="claude-for-oss"></a>
+
 ## 🤝 Alignment with Anthropic: Claude for Open Source
 
-NEXUS Academy is actively applying to the **[Claude for Open Source Software](https://claude.com/contact-sales/claude-for-oss)** initiative.
+NEXUS Academy is actively applying to the **[Claude for Open Source Software](https://claude.com/contact-sales/claude-for-oss)** initiative under the **Ecosystem Impact Track**.
 
 ### How Claude Accelerates This Project
 1. **Automated Pedagogical Auditing:** We utilize Claude as an architectural critic to review educational scaffolding, verify cognitive step transitions, and detect hidden cognitive leaps before curriculum missions are packaged.
@@ -447,17 +457,11 @@ npm run mission:scaffold 015
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Core Technologies
 
-| Domain | Technology | Purpose |
-|:---|:---|:---|
-| **Framework** | Next.js 16 (Turbopack) | Modern React Server Components & App Router |
-| **Frontend Engine** | React 19 + TypeScript 5 | Strict component typing and declarative state |
-| **Code Execution** | Pyodide (WASM) Web Worker | 100% client-side CPython 3.12 sandbox |
-| **Code Editor** | Monaco Editor (`@monaco-editor/react`) | VS Code-caliber in-browser editing experience |
-| **Styling** | Tailwind CSS v4 + shadcn/ui | Minimalist, dark-mode first terminal aesthetic |
-| **Icons** | Lucide React | Crisp, accessible iconography |
-| **Validation** | Python AST (`ast.parse`) | Static syntax analysis and constraint checking |
+- **Frontend & Runtime:** [Next.js 16](https://nextjs.org/) (Turbopack) • [React 19](https://reactjs.org/) • [TypeScript 5](https://www.typescriptlang.org/) • [Tailwind CSS v4](https://tailwindcss.com/) • [shadcn/ui](https://ui.shadcn.com/)
+- **Client Execution & Analysis:** [Pyodide WASM](https://pyodide.org/) (CPython 3.12 Web Worker) • [Monaco Editor](https://microsoft.github.io/monaco-editor/) • Python 3.12 AST (`ast.parse`)
+- **State & Architecture:** Decoupled 23-Event EventBus • SuperMemo SM-2 Spaced Repetition Engine • Schema-Migrated Safe LocalStorage
 
 ---
 
