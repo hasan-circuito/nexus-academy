@@ -34,10 +34,6 @@
 
 ## 🖥️ Live Platform Preview
 
-<div align="center">
-  <img src="docs/assets/banner_mockup.png" alt="NEXUS Academy Interactive Learning Laboratory" width="900" style="border-radius: 8px; border: 1px solid #334155;"/>
-</div>
-
 ```
 +----------------------------------------------------------------------------------------------------+
 | 🌌 NEXUS Academy [M001: Variables & Memory]      [Python 3.12 Pyodide Worker: ACTIVE (0ms Latency)]|
@@ -406,7 +402,7 @@ $ npm test
 NEXUS Academy is actively applying to the **[Claude for Open Source Software](https://claude.com/contact-sales/claude-for-oss)** initiative.
 
 ### How Claude Accelerates This Project
-1. **Automated Pedagogical Audit:** We utilize Claude 3.5 Sonnet / Claude 3.7 Sonnet as an architectural critic to review educational scaffolding, verify cognitive step transitions, and detect hidden cognitive leaps before curriculum missions are packaged.
+1. **Automated Pedagogical Audit:** We utilize Claude as an architectural critic to review educational scaffolding, verify cognitive step transitions, and detect hidden cognitive leaps before curriculum missions are packaged.
 2. **AST Constraint Generation:** Claude assists in mapping newly introduced programming concepts to strict Python AST node visitor rules, ensuring zero untaught syntax leaks into starter templates or debugging exercises.
 3. **High-Fidelity Bengali Pedagogical Engineering:** Translating complex computational concepts into culturally resonant Bengali analogies requires nuanced linguistic intelligence. Claude’s superior reasoning enables us to craft analogies that retain strict technical accuracy without falling back on awkward phonetic transliterations.
 4. **B2B AI Agency Domain Modeling:** Engineering believable business domain problems (Rule 22) across FinTech, HealthTech, Smart Grid, and AgriTech requires diverse domain knowledge that Claude synthesizes seamlessly.
