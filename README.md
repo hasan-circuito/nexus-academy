@@ -11,7 +11,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript%205-Strict%20Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Pyodide](https://img.shields.io/badge/Engine-Pyodide%20WASM%20Worker-F7B93E?style=for-the-badge&logo=python&logoColor=white)](https://pyodide.org/)
 [![Zero Server Compute](https://img.shields.io/badge/Backend-Zero%20Server%20Compute-blueviolet?style=for-the-badge&logo=serverless&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](LICENSE)
 
 <br/>
 
@@ -21,7 +21,7 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [🛡️ License & IP](#license-and-ip)
 
 </div>
 
@@ -465,6 +465,21 @@ npm run mission:scaffold 015
 
 ---
 
+<a id="license-and-ip"></a>
+
+## 🛡️ Intellectual Property, Curriculum Protection & Fair Use
+
+> [!IMPORTANT]
+> **Open-Core Engine & Authorship Protection**:  
+> **NEXUS Academy** embraces an open-core, transparent architecture while strictly protecting the original creative work, brand identity, and pedagogical curriculum authored by **Hasan Mahmud Fahim**.
+
+- **Software Engine (AGPLv3)**: The underlying platform codebase—including the Next.js runtime, Monaco editor integration, Pyodide Web Worker execution harness, 23-event EventBus architecture, Spaced Repetition engine, and AST syntax enforcement tooling—is licensed under the **GNU Affero General Public License v3.0 (AGPLv3)**. Under AGPLv3, any individual or organization that modifies or hosts this engine over a network **must** make the complete source code of their modified version publicly available under the same AGPLv3 terms. Closed-source forks, proprietary cloud deployments, and uncredited commercial re-hosting are strictly prohibited by law.
+- **Original Authored Curriculum & Creative Works (All Rights Reserved)**: All original educational narratives, fictional B2B AI Agency client scenarios, mental model analogies, Bengali explanations, pedagogical progression curves, and lesson content contained in `data/missions/` and `data/curriculum/` are the proprietary intellectual property of **Hasan Mahmud Fahim** (Copyright © 2026).
+- **Brand & Trademarks**: The name **NEXUS Academy**, associated logos, badges, and certification marks are trademarks of the author. You may not use these trademarks to endorse or promote derivative products without express prior written permission.
+- **Fair Use for Learners & Educators**: Non-commercial self-study, academic classroom instruction, and educational sharing with full attribution are always encouraged. Commercial resale, course bundling, or white-labeling of the curriculum for paid bootcamps without licensing is strictly prohibited.
+
+---
+
 ## 📄 License & Contributing
 
 ### Contributing
@@ -476,7 +491,7 @@ To propose a new mission or improve existing pedagogical analogies:
 3. Open a Pull Request with a clear rationale of the cognitive improvements.
 
 ### License
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project's software engine is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-or-later)** — see the [LICENSE](LICENSE) file for details. All authored curriculum content, narratives, and brand assets are protected under Copyright © 2026 Hasan Mahmud Fahim. All rights reserved.
 
 ---
 
