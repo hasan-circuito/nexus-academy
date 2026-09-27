@@ -1337,7 +1337,7 @@ Every reused concept should have an explicit role:
 Foundation, reinforcement, integration, or transfer.
 
 If an old concept repeatedly requires full re-teaching, the curriculum should investigate whether genuine mastery was achieved earlier.
-This preserves both progression and maintenance discipline. 13-mission-authoring-playbook(1).mdMD
+This preserves both progression and maintenance discipline.
 ## Rule 13 — A Mission May Preview, But Must Not Depend on, Future Knowledge
 A mission may occasionally mention or expose the existence of a future concept when doing so creates useful curiosity.
 However:

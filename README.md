@@ -24,7 +24,7 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [📚 Engineering Playbook](docs/engineering/) • [🛡️ License & IP](#license-and-ip)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [📚 Engineering Specs](docs/engineering/) • [🛡️ License & IP](#license-and-ip)
 
 </div>
 
@@ -107,7 +107,7 @@ Browser (100% Client-Side Runtime • Zero Server Compute Bills • Offline-Capa
 ```
 
 > [!NOTE]
-> **14-Section Engineering Playbook**: For detailed engineering workflows, architecture standards, coding conventions, testing matrices, and curriculum authoring rules, see our [Engineering Playbook](docs/engineering/) (`docs/engineering/01-introduction.md` through `docs/engineering/14-curriculum dependency book.md`). For full architectural contracts, see [`ARCHITECTURE.md`](ARCHITECTURE.md).
+> **Engineering Specifications**: For detailed curriculum authoring specifications, pedagogical laws, and laboratory mechanics, see [`docs/engineering/MISSION_ENGINEERING_SPEC.md`](docs/engineering/MISSION_ENGINEERING_SPEC.md). For full architectural contracts, see [`ARCHITECTURE.md`](ARCHITECTURE.md). Historical exploratory playbooks and draft documents have been preserved in [`docs/archive/legacy-playbooks/`](docs/archive/legacy-playbooks/).
 
 ---
 

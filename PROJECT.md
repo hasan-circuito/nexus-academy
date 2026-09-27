@@ -1,5 +1,5 @@
 > [!NOTE]
-> **Internal Engineering & Curriculum Planning Document**: This document outlines operational milestone tracking, curriculum governance standards, and active sprint assignments for internal development. For high-level project vision and the Claude for Open Source review, see [`README.md`](README.md) and [`ARCHITECTURE.md`](ARCHITECTURE.md). For detailed authoring specifications, see the [Engineering Playbook](docs/engineering/).
+> **Internal Engineering & Curriculum Planning Document**: This document outlines operational milestone tracking, curriculum governance standards, and active sprint assignments for internal development. For high-level project vision and the Claude for Open Source review, see [`README.md`](README.md) and [`ARCHITECTURE.md`](ARCHITECTURE.md). For detailed authoring specifications, see [`docs/engineering/MISSION_ENGINEERING_SPEC.md`](docs/engineering/MISSION_ENGINEERING_SPEC.md).
 
 # Project: Nexus Academy — Engineering & Curriculum Roadmap
 
@@ -39,7 +39,7 @@
 ## Documentation Authority Map
 No single document is the authority for every task. When documents disagree, consult the canonical authority for the domain:
 - **Project State & Architectural Reference**: [`ARCHITECTURE.md`](ARCHITECTURE.md), `PROJECT_MEMORY.md`, and current code implementation.
-- **Mission Design & Pedagogy**: `docs/engineering/MISSION_ENGINEERING_SPEC.md` and `docs/engineering/13-mission-authoring-playbook.md`.
+- **Mission Design & Pedagogy**: [`docs/engineering/MISSION_ENGINEERING_SPEC.md`](docs/engineering/MISSION_ENGINEERING_SPEC.md).
 - **Critical Thinking Content**: `docs/engineering/Critical Thinking Lab .md`.
 - **AI Decision & Escalation Behavior**: `docs/engineering/Nexus AI Decision & Collaboration Framework (NADF).md`.
 - **Data Shapes & Schema**: `types/`, mission JSON files, and `scripts/validate-missions.mjs`.
