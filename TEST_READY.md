@@ -1,12 +1,27 @@
 # TEST_READY — NEXUS Academy Automated Test & CI Harness
 
 ## Test Suite Overview
-- **Runner**: Node.js automated test runner at `scripts/validate-missions.mjs` & `scripts/test-event-bus.mjs`
-- **Standard Command**: `npm test`
-- **Missions Validation**: `npm run test:missions` (or `node scripts/validate-missions.mjs`)
-- **EventBus & Engine Validation**: `npm run test:events` (or `node scripts/test-event-bus.mjs`)
-- **Continuous Integration**: GitHub Actions CI workflow at `.github/workflows/ci.yml`
-- **TypeScript Compiler Check**: `npm run build` / `npx tsc --noEmit`
+- **Standard Command**: `npm test` (executes all 7 specialized test suites)
+- **Continuous Integration**: GitHub Actions CI workflow at `.github/workflows/ci.yml` (Node.js 20 + Python 3.12)
+- **TypeScript Compiler Check**: `npx tsc --noEmit` (Strict TypeScript 5, 0 errors)
+- **Next.js Production Build**: `npm run build` (Next.js 16 App Router)
+
+### The 7 Specialized Validation Suites:
+1. **Mission Schema & Pedagogy Validator** (`scripts/validate-missions.mjs` / `npm run test:missions`)
+   - 745 assertions validating 14 published missions (M001–M014)
+   - Real native Python 3.12 AST compilation (`ast.parse`) on all code snippets
+2. **Decoupled EventBus & Domain Lifecycle** (`scripts/test-event-bus.mjs` / `npm run test:events`)
+   - 6 event flow phases validating 23 domain events, two-phase mission completion, and scoring fan-out
+3. **Dictionary & Mental Model Problem-Solving Hub** (`scripts/validate-dictionary.mjs` / `npm run test:dictionary`)
+   - 628 assertions validating 20 computer science entries, dual-language search, and symptom keywords
+4. **Contextual Error Diagnostics Engine** (`scripts/test-error-diagnostics.mjs` / `npm run test:diagnostics`)
+   - 44 assertions validating 15 learner micro-error patterns, Bengali explanations, and exact fixes
+5. **Settings, Dev Mode & State Safety** (`scripts/test-settings.mjs` / `npm run test:settings`)
+   - 22 tests validating theme toggling, Monaco sync, localStorage backup, export, import, and reset
+6. **Curriculum Pipeline & AST Forbidden Syntax Walker** (`scripts/test-curriculum-pipeline.mjs` / `npm run test:pipeline`)
+   - 170 tests validating preflight contracts, prerequisite DAG, CLI flags, Rule 24 AST walker, and scaffolding
+7. **Step Persistence & Resume Safety** (`scripts/test-step-persistence.mjs` / `npm run test:persistence`)
+   - 25 tests validating idempotent step navigation, variable-length mission progress, and zero state loss
 
 ---
 
@@ -35,12 +50,13 @@
 
 ### Tier 4: Prerequisite Dependency Graph Integrity
 - **Manifest Prerequisite Linkage**: Validates that all prerequisites declared in `manifest.json` resolve to existing, valid missions.
+- **Closed-World Scope Boundaries (Rule 24)**: AST visitors reject unearned language constructs not yet introduced in the learner's completed mission graph.
 
 ---
 
 ## Running the Automated Test Suite
 
-### Full Test Suite (Missions + EventBus)
+### Full Test Suite (All 7 Suites — 1,640 Assertions)
 ```bash
 npm test
 ```
@@ -52,8 +68,9 @@ npm run test:missions
 
 ### Validate a Single Mission (During Authoring)
 ```bash
-node scripts/validate-missions.mjs --mission 001
-node scripts/validate-missions.mjs --mission 010
+node scripts/validate-missions.mjs 014
+# or with flag:
+node scripts/validate-missions.mjs --mission 014
 ```
 
 ### Validate EventBus & Domain Engine Decoupling
@@ -61,10 +78,27 @@ node scripts/validate-missions.mjs --mission 010
 npm run test:events
 ```
 
+### Preflight Contract Verification
+```bash
+npm run mission:preflight 014
+```
+
+### Scaffold a New Mission Skeleton
+```bash
+npm run mission:scaffold 015
+```
+
 ---
 
 ## Current Verification Results
 
-- **Published Missions (001–009)**: **423/423 assertions PASSED (100%)**
-- **Domain Event Loop**: **5/5 event flow phases PASSED (100%)**
-- **Next.js Production Build**: **9/9 static & dynamic routes compiled with 0 errors**
+- **Total Automated Assertions**: **1,640/1,640 assertions PASSED (100%)**
+  - **14 Published Missions (001–014)**: **745/745 assertions PASSED (100%)**
+  - **Domain Event Loop**: **6/6 event flow phases PASSED (100%)**
+  - **Dictionary Concept Index**: **628/628 assertions PASSED (100%)**
+  - **Contextual Error Diagnostics**: **44/44 assertions PASSED (100%)**
+  - **Settings, Dev Mode & State Safety**: **22/22 tests PASSED (100%)**
+  - **Curriculum Pipeline & AST Walker**: **170/170 tests PASSED (100%)**
+  - **Step Persistence & Resume**: **25/25 tests PASSED (100%)**
+- **TypeScript Strict Compilation**: **0 errors (`npx tsc --noEmit`)**
+- **Next.js Production Build**: **Static and dynamic routes compiled with 0 errors**

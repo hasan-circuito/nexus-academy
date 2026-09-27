@@ -67,7 +67,7 @@ nexus-academy/
 │   ├── shared/             # WhyCallout, CodeBlock, ErrorBoundary, etc.
 │   └── ui/                 # shadcn/ui primitives
 ├── engines/                # Engine Layer (NO UI imports)
-│   ├── events/             # EventBus + event types (21 events)
+│   ├── events/             # EventBus + event types (23 events)
 │   ├── xp/                 # XPEngine
 │   ├── understanding/      # UnderstandingEngine
 │   ├── analytics/          # AnalyticsEngine

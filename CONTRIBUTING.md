@@ -12,6 +12,17 @@ All contributors and maintainers are expected to adhere to our [Code of Conduct]
 
 ---
 
+## Who Can Contribute?
+
+We welcome contributors across multiple disciplines. You do not need to be a seasoned software engineer to make a lasting impact:
+
+- 💻 **Software Engineers & Web Developers:** Help optimize our Pyodide WebAssembly execution harness, expand Monaco Editor capabilities, enhance our 23-event EventBus architecture, or add new automated AST syntax verification passes.
+- 🎓 **Computer Science Educators & Curriculum Designers:** Propose new mission sequences, craft insightful critical thinking prompts, refine progressive hint ladders, and design domain-appropriate debugging scenarios (Rule 21).
+- 🇧🇩 **Bengali Linguists & Technical Translators:** Help translate and contextualize complex computational concepts into clear, natural, and elegant Bengali. Refine analogies to ensure maximum cultural resonance without relying on awkward phonetic transliterations.
+- 🎨 **UI/UX Designers & Accessibility Advocates:** Improve responsive layouts, refine accessibility (screen readers, keyboard navigation), optimize typography for Bengali script rendering, and design immersive concept visualization graphics.
+
+---
+
 ## Pedagogical Invariants & Design Principles
 
 Before proposing or editing curriculum content, please review our core architectural rules:

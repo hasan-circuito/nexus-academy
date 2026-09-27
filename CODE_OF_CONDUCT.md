@@ -6,6 +6,8 @@ We as members, contributors, and leaders pledge to make participation in the **N
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
+---
+
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment for our community include:
@@ -22,18 +24,45 @@ Examples of unacceptable behavior include:
 * Publishing others' private information, such as a physical or email address, without their explicit permission
 * Other conduct which could reasonably be considered inappropriate in a professional setting
 
-## Enforcement Responsibilities
-
-Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+---
 
 ## Scope
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces.
+This Code of Conduct applies within all community spaces (GitHub repositories, issue trackers, pull requests, discussions, community chat), and also applies when an individual is officially representing the community in public spaces.
 
-## Reporting & Contact
+---
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leadership at `hasan.circuito@gmail.com` or via GitHub issues/discussions. All complaints will be reviewed and investigated promptly and fairly.
+## Reporting & Confidentiality
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers at `hasan.circuito@gmail.com`.
+
+### Reporter Confidentiality
+All reports will be treated with strict confidentiality. Community leaders will maintain the reporter's anonymity throughout the review and investigation process unless explicitly authorized otherwise by the reporter. Retaliatory behavior of any kind against anyone reporting an incident or assisting in an investigation is strictly prohibited and will result in immediate, permanent expulsion from all community spaces.
+
+---
+
+## Enforcement Guidelines & Graduated Enforcement Ladder
+
+Community leaders will follow this Graduated Enforcement Ladder in determining the consequences of any action they deem in violation of this Code of Conduct:
+
+### 1. Correction
+* **Community Impact:** Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
+* **Consequence:** A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+
+### 2. Warning
+* **Community Impact:** A violation through a single incident or series of actions demonstrating disregard for community standards.
+* **Consequence:** A formal warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. Violating these terms may lead to a temporary or permanent ban.
+
+### 3. Temporary Ban
+* **Community Impact:** A serious violation of community standards, including sustained inappropriate behavior or harassment of an individual.
+* **Consequence:** A temporary ban from any sort of interaction or public communication with the community for a specified period of time (e.g., 30 days). No public or private interaction with the people involved is allowed during this period.
+
+### 4. Permanent Ban
+* **Community Impact:** Demonstrating a persistent pattern of violation of community standards, sustained harassment, doxxing, hate speech, or aggression toward any individual or group.
+* **Consequence:** A permanent ban from any sort of public interaction within the project community, including repository access, issue participation, and organizational channels.
+
+---
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, with procedural enhancements for reporter confidentiality and graduated enforcement.

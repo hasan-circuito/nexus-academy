@@ -2,7 +2,7 @@
 // NEXUS Academy — Domain Event Type Definitions
 // Source of truth: ARCHITECTURE.md Section 4
 //
-// All 20 domain event types. Every engine communicates exclusively via these events.
+// All 23 domain event types. Every engine communicates exclusively via these events.
 // Engines never call each other directly — only through the EventBus.
 //
 // RULE: Maximum event chain depth = 3 levels.

@@ -1,3 +1,6 @@
+> [!NOTE]
+> **Internal Engineering & Curriculum Planning Document**: This document outlines operational milestone tracking, curriculum governance standards, and active sprint assignments for internal development. For high-level project vision and the Claude for Open Source review, see [`README.md`](README.md) and [`ARCHITECTURE.md`](ARCHITECTURE.md). For detailed authoring specifications, see the [Engineering Playbook](docs/engineering/).
+
 # Project: Nexus Academy — Engineering & Curriculum Roadmap
 
 ## Architecture
@@ -22,7 +25,9 @@
 | 10 | M010 | The Sentence Slot / বাক্যের শূন্যস্থান (`f-strings`, dynamic output) | Published | Passed |
 | 11 | M011 | The Software Switch / সফটওয়্যারের সুইচ (`bool`, `True`/`False` literals) | Published | Passed |
 | 12 | M012 | The Scales of Memory / মেমোরির দাঁড়িপাল্লা (`==`, `!=`, `<`, `>`, `<=`, `>=`) | Published | Passed |
-| 13 | M013 | The Decision Tree (`if` statements, branching logic) | Next Sprint | Ready for Design |
+| 13 | M013 | Nexus Progress Report / নেক্সাস প্রগ্রেস রিপোর্ট (Review & Integration Capstone) | Published | Passed |
+| 14 | M014 | When Software Takes One Path / সফটওয়্যার যখন সিদ্ধান্ত নেয় (`if` statements) | Published | Passed |
+| 15 | M015 | Alternative Paths / বিকল্প পথ (`if-else` branching) | Next Sprint | In Progress |
 
 ## Active Governance Standards
 - **Rule 19 (5-Phase Architecture)**: Foundation (001–025) → Builder (026–050) → Engineer (051–075) → Data & ML (076–100) → Professional (101–150+).
@@ -33,9 +38,9 @@
 
 ## Documentation Authority Map
 No single document is the authority for every task. When documents disagree, consult the canonical authority for the domain:
-- **Project State & Frozen Architecture**: `PROJECT_MEMORY.md` and current code implementation.
-- **Mission Design & Pedagogy**: `docs/engineering/MISSION_ENGINEERING_SPEC.md`.
+- **Project State & Architectural Reference**: [`ARCHITECTURE.md`](ARCHITECTURE.md), `PROJECT_MEMORY.md`, and current code implementation.
+- **Mission Design & Pedagogy**: `docs/engineering/MISSION_ENGINEERING_SPEC.md` and `docs/engineering/13-mission-authoring-playbook.md`.
 - **Critical Thinking Content**: `docs/engineering/Critical Thinking Lab .md`.
 - **AI Decision & Escalation Behavior**: `docs/engineering/Nexus AI Decision & Collaboration Framework (NADF).md`.
 - **Data Shapes & Schema**: `types/`, mission JSON files, and `scripts/validate-missions.mjs`.
-- **Planned Curriculum Direction**: `docs/curriculum/CURRICULUM_ROADMAP.md` (aspirational planning reference).
+- **Curriculum Roadmap**: [`ROADMAP.md`](ROADMAP.md) and `docs/curriculum/CURRICULUM_ROADMAP.md`.

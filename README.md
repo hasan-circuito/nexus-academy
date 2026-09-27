@@ -12,6 +12,7 @@
 [![Pyodide](https://img.shields.io/badge/Engine-Pyodide%20WASM%20Worker-F7B93E?style=for-the-badge&logo=python&logoColor=white)](https://pyodide.org/)
 [![Zero Server Compute](https://img.shields.io/badge/Backend-Zero%20Server%20Compute-blueviolet?style=for-the-badge&logo=serverless&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](LICENSE)
+[![CI](https://github.com/hasan-circuito/nexus-academy/actions/workflows/ci.yml/badge.svg)](https://github.com/hasan-circuito/nexus-academy/actions/workflows/ci.yml)
 
 <br/>
 
@@ -23,7 +24,7 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [🛡️ License & IP](#license-and-ip)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [📚 Engineering Playbook](docs/engineering/) • [🛡️ License & IP](#license-and-ip)
 
 </div>
 
@@ -31,13 +32,13 @@
 
 > [!IMPORTANT]
 > **To the Anthropic / Claude for Open Source Review Team (Ecosystem Impact Track)**:  
-> **NEXUS Academy** is an open-source, 100% client-side Python & Computer Science learning laboratory engineered specifically for **250+ million native Bengali speakers**. Powered by WebAssembly (CPython 3.12 in Pyodide), compile-time AST syntax confinement (Rule 24), and an asynchronous 23-event architecture, it delivers a zero-latency learning runtime directly in the browser—with **$0 server compute overhead and zero learner data exposure**. We are applying to the Claude for Open Source initiative to leverage Claude's deep reasoning for continuous pedagogical auditing, AST rule generation, and culturally grounded computational modeling across our 120-mission roadmap.
+> **NEXUS Academy** is an open-source, 100% client-side Python & Computer Science learning laboratory engineered specifically for **250+ million native Bengali speakers** (*SIL Ethnologue*, 2024, 27th edition; 5th most spoken native language globally). Powered by WebAssembly (CPython 3.12 in Pyodide), compile-time AST syntax confinement (Rule 24), and an asynchronous 23-event architecture, it delivers a zero-latency learning runtime directly in the browser—with **$0 server compute overhead and zero learner data exposure**. We are applying to the Claude for Open Source initiative to leverage Claude's deep reasoning for continuous pedagogical auditing, AST rule generation, and culturally grounded computational modeling across our 120-mission roadmap.
 
 ---
 
 ## 🚨 The Problem: The South Asian Computer Science Divide
 
-Across Bangladesh and South Asia, over **250 million native Bengali speakers** face a systemic bottleneck when entering modern software engineering and AI:
+Across Bangladesh and South Asia, over **250 million native Bengali speakers** (*SIL Ethnologue*, 2024, 27th edition) face a systemic bottleneck when entering modern software engineering and AI:
 
 1. **The Rote YouTube Epidemic:** The dominant entry point consists of 10-hour passive video playlists where instructors dictate `print("Hello World")` and variables. Learners mechanically transcribe syntax without understanding memory allocation, pointer mechanics, state mutations, or hardware execution models.
 2. **The Double Cognitive Penalty:** High-tier computer science documentation and interactive platforms are overwhelmingly English-first. Beginners are forced to decipher an unfamiliar natural language while simultaneously wrestling with abstract computational logic.
@@ -63,7 +64,7 @@ Across Bangladesh and South Asia, over **250 million native Bengali speakers** f
 
 - [x] **151+ Commits**: Active, sustained open-source development with strict git discipline and semantic versioning.
 - [x] **14 Published Missions (M001–M014)**: Authored, schema-validated, and verified through automated end-to-end Python AST compilation.
-- [x] **1,189 Foundational Assertions & 1,640+ Total Automated Tests (100% Pass)**: 7 specialized test suites covering missions, domain events, AST walkers, error diagnostics, settings safety, and step persistence.
+- [x] **1,640+ Total Automated Assertions (100% Pass)**: 1,189 foundational assertions + 451 engine, error diagnostics, settings safety, and curriculum pipeline assertions across 7 specialized validation suites.
 - [x] **Active Sprint on Mission 015**: Branching logic & conditional decision-making (`if-else`) currently in active development.
 - [x] **Zero Cognitive Leaks**: Automated preflight and AST CI pipeline halting deployment if unearned syntax is introduced.
 - [x] **Live Production Platform**: Instant zero-friction access at [nexus-academy-xqcn.vercel.app](https://nexus-academy-xqcn.vercel.app) (zero signup walls, instant WASM execution).
@@ -104,6 +105,9 @@ Browser (100% Client-Side Runtime • Zero Server Compute Bills • Offline-Capa
     ├── Idempotent Step Navigation & Variable-Length Mission State
     └── Zero Learner Telemetry / Zero Private Data Exposure
 ```
+
+> [!NOTE]
+> **14-Section Engineering Playbook**: For detailed engineering workflows, architecture standards, coding conventions, testing matrices, and curriculum authoring rules, see our [Engineering Playbook](docs/engineering/) (`docs/engineering/01-introduction.md` through `docs/engineering/14-curriculum dependency book.md`). For full architectural contracts, see [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ---
 
@@ -343,7 +347,7 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 
 ## 🧪 Testing & Quality Assurance (1,640+ Assertions)
 
-Code correctness is an automated gate at NEXUS Academy. The repository features **1,189 foundational assertions** and now **1,640+ automated test assertions passing 100%** across 7 specialized validation suites validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
+Code correctness is an automated gate at NEXUS Academy. The repository features **1,640+ automated test assertions passing 100%** (1,189 foundational mission and schema assertions + 451 engine, error diagnostics, settings safety, and curriculum pipeline assertions) across 7 specialized validation suites validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
 
 ```bash
 $ npm test
@@ -437,7 +441,7 @@ npm install
 ```
 
 ### 3. Run the Automated Test Suite
-Ensure all **1,189+ foundational assertions** and current **1,640+ automated assertions** pass:
+Ensure all **1,640+ automated assertions** (1,189 foundational + 451 engine/settings/pipeline) pass:
 ```bash
 npm test
 ```
