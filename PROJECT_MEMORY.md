@@ -193,7 +193,7 @@ Plan → Implement → Self-Review → Test → Validate → Document → **Wait
 ## Non-Negotiable Constraints
 
 1. Architecture is frozen. No changes without explicit approval.
-2. The architecture described here must be checked against the current implementation; no separate `ARCHITECTURE.md` is currently present.
+2. The architecture described here is formally specified in `ARCHITECTURE.md` (Sections 1–12) and must be checked against the current implementation.
 3. Scoring behavior is authoritative in `UnderstandingEngine` and its tests; no separate `SCORING_SYSTEM.md` is currently present.
 4. Data structures are authoritative in `types/`, the mission JSON files, and the executable validators; no separate `DATA_SCHEMA.md` is currently present.
 5. Understanding Score computed in one place only: UnderstandingEngine.

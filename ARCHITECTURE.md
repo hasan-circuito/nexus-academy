@@ -357,6 +357,15 @@ Each standard mission follows an intentional progression curve moving from concr
 ### 9.2 Rule 20: Dynamic Step Flexibility
 While the 13-step sequence represents the standard foundation, Rule 20 permits missions to adapt step counts between **10 and 25 steps** based on cognitive load requirements. Capstone integration missions expand practice and debug steps while compressing introductory analogies.
 
+### 9.3 Storage Corruption & Session Recovery Standard
+*Source of Truth: `services/StorageService.ts:67` and [Section 5.3](#section-5--storage-architecture-dataservice--safe-persistence)*
+
+When learner progress, mission step state, or session markers loaded from `localStorage` fail JSON schema validation or exhibit byte-level corruption:
+1. **Zero Data Loss:** `storageBackupAndClear(key)` copies the corrupted string to a timestamped backup key (`${key}_backup_${Date.now()}`) before any state modification occurs.
+2. **Safe Fallback:** The active key is cleared and re-initialized with standard default state (`createDefaultProgress()`).
+3. **Session Preservation:** Active mission step pointers fall back to the highest completed valid step (`step_X`) or step 0, preventing runtime white screens.
+4. **Forensics:** Corrupt backup keys are preserved in client storage and can be inspected or exported via the Settings panel for developer diagnosis.
+
 ---
 
 <a id="section-10--4-layer-dependency-rules--architectural-invariants"></a>

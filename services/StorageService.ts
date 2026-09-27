@@ -64,7 +64,7 @@ export function storageRemove(key: StorageKey): void {
 /**
  * Back up a corrupt value before resetting it.
  * Creates a timestamped backup key — never silently discards data.
- * See ARCHITECTURE.md Section 9: localStorage corruption recovery.
+ * See ARCHITECTURE.md Section 5.3 & Section 9.3: localStorage corruption recovery.
  */
 export function storageBackupAndClear(key: StorageKey): void {
   if (typeof window === 'undefined') return;
