@@ -46,9 +46,10 @@ Learner progress is persisted via the browser's `localStorage` API under safe in
 
 ## 4. Supply Chain & Dependency Hygiene
 
-- **Automated CI Security Scans:** Every commit and pull request triggers our GitHub Actions CI pipeline, enforcing strict type checks (`tsc --noEmit`), automated pedagogical AST verification, and unit test suites.
-- **Pinned Dependencies:** All core dependencies are locked via `package-lock.json` with exact versions.
-- **Minimal External Footprint:** Runtime dependencies are strictly limited to battle-tested foundational libraries (Next.js, React, Tailwind CSS, Monaco Editor, Pyodide).
+- **Automated CI Security Scans:** Every commit and pull request triggers our GitHub Actions CI pipeline, enforcing strict type checks (`tsc --noEmit`), automated pedagogical AST verification (Rule 24), and unit test suites (1,640+ assertions passing 100%).
+- **Pinned Dependencies:** All core dependencies are locked via `package-lock.json` with exact versions to prevent unintended upstream drift.
+- **Minimal External Footprint:** Runtime dependencies are strictly limited to foundational libraries (Next.js, React, Tailwind CSS, Monaco Editor, Pyodide).
+- **Realistic Upstream Boundaries:** While automated dependency auditing (`npm audit`) and pinned lockfiles guard against known vulnerabilities, open-source supply chains remain a shared ecosystem responsibility. Upstream patches are evaluated and integrated as released.
 
 ---
 
@@ -56,21 +57,37 @@ Learner progress is persisted via the browser's `localStorage` API under safe in
 
 | Version | Supported | Security Maintenance |
 | :--- | :--- | :--- |
-| `0.4.x` | :white_check_mark: | Active release — security patches applied immediately. |
+| `0.4.x` | :white_check_mark: | Active development release — prioritized security triage and patch releases. |
 | `0.3.x` | :white_check_mark: | Maintenance fixes for published missions. |
-| `< 0.3.0` | :x: | Deprecated. Please update to the latest release. |
+| `< 0.3.0` | :x: | Deprecated / unmaintained. Please update to the latest release. |
 
 ---
 
-## 6. Reporting a Vulnerability & Responsible Disclosure
+## 6. Vulnerability Disclosure & Reporting Policy
 
-We take the security of NEXUS Academy and our learners seriously. If you discover a security vulnerability or potential threat in this repository or live platform, please report it responsibly:
+We take the integrity of NEXUS Academy and learner safety seriously. As an open-source educational project maintained by an independent creator, we operate under a **Coordinated Vulnerability Disclosure (CVD)** framework aligned with RFC 9116:
 
-- **Email:** Report findings directly to `hasan.circuito@gmail.com`.
-- **Details to Include:**
-  - Description of the vulnerability or flaw.
-  - Clear steps to reproduce or proof-of-concept code.
-  - Potential impact assessment.
-  - Your name or handle for acknowledgment (optional).
-- **Response SLA:** We will acknowledge receipt of your report within **48 hours** and provide an estimated timeline for remediation.
-- **Public Disclosure:** We kindly request that you refrain from disclosing the issue publicly until we have investigated and deployed a fix.
+### 6.1 How to Report
+If you discover a security vulnerability or potential threat in this repository or the live deployment, please report it confidentially:
+
+- **Email:** Report findings directly to `hasan.circuito@gmail.com`
+- **Subject Line:** `[SECURITY] NEXUS Academy — <Brief Vulnerability Summary>`
+
+### 6.2 Information to Include
+To help us triage and verify your report quickly, please include:
+1. A clear description of the vulnerability and attack vector.
+2. Step-by-step reproduction instructions or a minimal proof-of-concept (PoC).
+3. Realistic impact assessment (e.g. client XSS, denial of service, memory leak).
+4. Suggested remediation or patch if available.
+5. Your name, GitHub handle, or preference for public acknowledgment.
+
+### 6.3 Response Expectations & Triage
+- **Acknowledgment:** We aim to acknowledge receipt of confidential vulnerability reports on a **best-effort basis within 48 to 72 hours**.
+- **Triage & Remediation:** Because NEXUS Academy is an open-source project operated without dedicated commercial support or enterprise SLAs, remediation timelines are prioritized based on severity (CVSS score). We strive to investigate confirmed vulnerabilities and deploy fixes or workarounds promptly.
+- **Upstream Dependencies:** Vulnerabilities originating within upstream foundational libraries (e.g., Next.js core, Pyodide WASM, Monaco Editor) are triaged in coordination with upstream maintainers.
+
+### 6.4 Coordinated Disclosure Guidelines
+We follow standard responsible disclosure practices:
+- Please allow reasonable time for investigation and remediation before publicly disclosing details.
+- Do **not** open public GitHub issues or public discussions for unpatched security vulnerabilities.
+- Do not attempt destructive actions against production hosting infrastructure or attempt to access or modify other individuals' local browser storage.
