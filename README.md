@@ -181,6 +181,7 @@ NEXUS Academy is engineered on a fundamentally different paradigm: **Cognitive N
 3. **Systems & Production Rigor:** Software does not live in a vacuum. The curriculum scales directly into systems engineering—concurrency, memory management, containerization, and microservice APIs.
 4. **Agentic & Frontier AI:** The culmination of the curriculum prepares learners to design, evaluate, and orchestrate autonomous production LLM agents and multi-agent systems.
 5. **Continuous Need-Based Curriculum Expansion:** The 120-mission sequence represents our foundational core spine, not a static ceiling. Powered by our automated Curriculum Pipeline Engine (`scripts/curriculum-pipeline.mjs`) and central DAG Knowledge Graph (`curriculum-graph.json`), new missions, elective industry tracks, and frontier AI modules will expand dynamically as learner needs and technological frontiers evolve.
+6. **Dynamic Pedagogical Elasticity (Rule 20):** While the need-based first-principles ethos is immutable, the instructional strategy and problem density are dynamically adaptive. Difficult or foundational concepts flexibly scale—expanding from 3 practice tasks to 6–7+ progressive challenges, or evolving debug mechanics from simple syntax traps to complex multi-file state mutations—to guarantee complete mastery without cognitive cliffs.
 
 ### 🏛️ Dual Domain Anchoring & The Global Bilingual Bridge
 - **Hardware EEE ➔ Modern AI:** Every mission connects abstract software constructs downward to physical hardware (voltage gates, memory registers, clock cycles) and upward to modern AI paradigms (tensors, token embeddings, transformer attention weights).
@@ -242,6 +243,13 @@ flowchart TD
     class S1,S2,S3,S4 stage;
     class Step1,Step2,Step3,Step4,Step5,Step6,Step7,Step8,Step9,Step10,Step11,Step12,Step13 step;
 ```
+
+> [!NOTE]
+> **Dynamic Pedagogical Elasticity & Adaptive Problem Structures (Rule 20):**  
+> While the 13-step anatomy defines our baseline blueprint, our platform adheres to **Cognitive Need-First, Not Template-First**. Instructional strategies, problem mechanics, and exercise density dynamically adapt based on each concept's cognitive load:
+> - **Flexible Practice Density (Scaling 3 ➔ 6–7+ Tasks):** When encountering foundational or high-friction concepts (e.g. multi-branch conditionals, nested iteration, mutable references, vector slicing), practice steps dynamically expand from 3 up to 6–7 or more scaffolded micro-challenges to ensure seamless mastery without cognitive cliffs.
+> - **Evolving Debug Challenge Architectures:** Fault-hunting mechanics dynamically evolve across tiers—from single-line syntax traps in Tier 1, to hidden stale-state mutations in Tier 2, multi-class contract violations in Tier 3, and non-deterministic model divergence in Tiers 4 & 5.
+> - **The Immutable Anchor:** Problem structures, step counts, and pedagogical delivery will continuously evolve based on learner diagnostic data, but the core invariant remains absolute: **Every lesson is motivated by real need, anchored in physical mental models, and verified through hands-on failure recovery.**
 
 ### 4. Decoupled 23-Event EventBus & Two-Phase Completion Flow
 To avoid race conditions and maintain clean scoring provenance, engines never call each other directly—they coordinate purely through an asynchronous **EventBus**:
