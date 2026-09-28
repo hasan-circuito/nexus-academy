@@ -180,6 +180,7 @@ NEXUS Academy is engineered on a fundamentally different paradigm: **Cognitive N
 2. **Seamless Transition into Machine Learning:** Because ML is applied linear algebra and numerical vectorization in Python, mastering first-principles Python transforms ML from an intimidating "black box" into a series of intuitive computational transformations.
 3. **Systems & Production Rigor:** Software does not live in a vacuum. The curriculum scales directly into systems engineering—concurrency, memory management, containerization, and microservice APIs.
 4. **Agentic & Frontier AI:** The culmination of the curriculum prepares learners to design, evaluate, and orchestrate autonomous production LLM agents and multi-agent systems.
+5. **Continuous Need-Based Curriculum Expansion:** The 120-mission sequence represents our foundational core spine, not a static ceiling. Powered by our automated Curriculum Pipeline Engine (`scripts/curriculum-pipeline.mjs`) and central DAG Knowledge Graph (`curriculum-graph.json`), new missions, elective industry tracks, and frontier AI modules will expand dynamically as learner needs and technological frontiers evolve.
 
 ### 🏛️ Dual Domain Anchoring & The Global Bilingual Bridge
 - **Hardware EEE ➔ Modern AI:** Every mission connects abstract software constructs downward to physical hardware (voltage gates, memory registers, clock cycles) and upward to modern AI paradigms (tensors, token embeddings, transformer attention weights).
@@ -302,6 +303,10 @@ All 14 published missions are authored, schema-validated, and verified through a
 ## 🗺️ 120-Mission Curriculum Roadmap (5 Phases)
 
 The complete pedagogical master plan guides Bengali learners from absolute zero to production-grade AI and Machine Learning engineering.
+
+> [!TIP]
+> **A Living, Extensible Curriculum (Dynamic Need-Based Expansion Beyond 120 Missions):**  
+> The 120 missions outlined below represent our foundational core spine from zero to production AI. However, NEXUS Academy is engineered with an extensible, graph-driven curriculum architecture (`data/curriculum/curriculum-graph.json`) and automated validation pipeline (`scripts/curriculum-pipeline.mjs`). As student diagnostic data reveals new learning hurdles, and as technological frontiers emerge (e.g., Vision-Language Models, Local Quantized Inference, Edge AI, Distributed Multi-Agent Systems), **need-based elective tracks, domain-specific modules, and advanced capstone missions will continuously expand beyond the 120-mission baseline.**
 
 ### 5-Phase Master Blueprint Table
 
