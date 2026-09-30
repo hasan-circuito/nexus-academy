@@ -3,27 +3,16 @@
 # 🌌 NEXUS ACADEMY
 ### *The Browser-Native Python & Computer Science Laboratory in Bangla*
 
-<a href="https://github.com/hasan-circuito/nexus-academy">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=2800&pause=1000&color=10B981&center=true&vCenter=true&width=700&lines=%3E+CPython+3.12+WebAssembly+Runtime%3A+ACTIVE+(0ms+latency);%3E+Rule+24+AST+Syntax+Confinement%3A+ENFORCED;%3E+250M%2B+Native+Bengali+Speakers%3A+ZERO+COGNITIVE+BARRIERS;%3E+1%2C640%2B+Automated+Test+Assertions%3A+100%25+PASS" alt="NEXUS Academy Dynamic Status" />
-</a>
-
-<br/>
-
-[![Live Platform](https://img.shields.io/badge/Live%20Platform-nexus--academy.vercel.app-10b981?style=flat-square&logo=vercel&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
-[![Automated Tests](https://img.shields.io/badge/Test%20Suite-1%2C640%2B%20Passing%20(100%25)-06b6d4?style=flat-square&logo=checkmarx&logoColor=white)](https://github.com/hasan-circuito/nexus-academy)
-[![WASM Engine](https://img.shields.io/badge/Engine-Pyodide%20CPython%203.12-38bdf8?style=flat-square&logo=python&logoColor=white)](https://pyodide.org/)
-[![Architecture](https://img.shields.io/badge/Architecture-23%20Domain%20Events-818cf8?style=flat-square)](ARCHITECTURE.md)
-[![Syntax Invariant](https://img.shields.io/badge/AST%20Invariant-Rule%2024%20Enforced-f59e0b?style=flat-square)](docs/engineering/MISSION_ENGINEERING_SPEC.md)
-[![Backend](https://img.shields.io/badge/Server%20Cost-%240%20Zero%20Compute-10b981?style=flat-square&logo=serverless&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-64748b?style=flat-square)](LICENSE)
-[![CI Workflow](https://img.shields.io/github/actions/workflow/status/hasan-circuito/nexus-academy/ci.yml?branch=main&label=CI&style=flat-square&logo=githubactions&logoColor=white)](https://github.com/hasan-circuito/nexus-academy/actions/workflows/ci.yml)
-
-<br/><br/>
-
-<!-- Hero Terminal Simulation -->
-<a href="https://nexus-academy-xqcn.vercel.app">
-  <img src="assets/hero-terminal.svg" alt="NEXUS Academy In-Browser Pyodide WASM Terminal & Monaco Laboratory" width="100%" />
-</a>
+[![Live Vercel Deployment](https://img.shields.io/badge/Live%20Platform-nexus--academy.vercel.app-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
+[![Automated Assertions](https://img.shields.io/badge/Test%20Suite-1%2C640%2B%20Passing%20(100%25)-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/hasan-circuito/nexus-academy)
+[![Commits](https://img.shields.io/badge/Commits-151%2B%20Active-blue?style=for-the-badge&logo=git&logoColor=white)](https://github.com/hasan-circuito/nexus-academy)
+[![Next.js](https://img.shields.io/badge/Next.js%2016-Turbopack-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React%2019-Strict%20Mode-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript%205-Strict%20Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Pyodide](https://img.shields.io/badge/Engine-Pyodide%20WASM%20Worker-F7B93E?style=for-the-badge&logo=python&logoColor=white)](https://pyodide.org/)
+[![Zero Server Compute](https://img.shields.io/badge/Backend-Zero%20Server%20Compute-blueviolet?style=for-the-badge&logo=serverless&logoColor=white)](https://nexus-academy-xqcn.vercel.app)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](LICENSE)
+[![CI](https://github.com/hasan-circuito/nexus-academy/actions/workflows/ci.yml/badge.svg)](https://github.com/hasan-circuito/nexus-academy/actions/workflows/ci.yml)
 
 <br/>
 
@@ -35,7 +24,7 @@
 
 ---
 
-[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏛️ Bento Architecture](#bento-architecture) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [📚 Engineering Specs](docs/engineering/) • [🛡️ License & IP](#license-and-ip)
+[🌐 Explore Live Platform](https://nexus-academy-xqcn.vercel.app) • [⚡ What Makes This Different](#what-makes-this-different) • [🏗️ Architecture Tree](#architecture-tree) • [📋 14 Published Missions](#published-missions) • [🗺️ 120-Mission Roadmap](#curriculum-roadmap) • [🧪 Testing Records](#testing-records) • [📚 Engineering Specs](docs/engineering/) • [🛡️ License & IP](#license-and-ip)
 
 </div>
 
@@ -68,16 +57,6 @@ Across Bangladesh and South Asia, over **250 million native Bengali speakers** (
 | **3. Cognitive Guardrails** | Unearned syntax leaks (starter code introduces loops or functions before taught); high learner dropouts | **AST-Enforced Closed-World Invariant (Rule 24)**; automated Python 3.12 AST visitors reject any unearned syntax at compile time |
 | **4. Pedagogical Depth** | Passive copy-pasting, superficial syntax drills, shallow quiz questions | **13-Step First-Principles Anatomy**; Story → Physical Analogy → Memory Box Diagram → Hardware EEE Link → AI Link → 3-Tier Fault Hunting |
 | **5. Practical Context** | Abstract toy problems (`foo(x) + bar(y)`, calculating area of rectangle) | **B2B AI Agency Framework (Rule 22)**; junior engineer at *Nexus AI* solving rotating client challenges (FinTech, HealthTech, Smart Grid, AgriTech) |
-
----
-
-<a id="bento-architecture"></a>
-
-## 🏛️ In-Browser Architectural Highlights
-
-<div align="center">
-  <img src="assets/bento-architecture.svg" alt="NEXUS Academy Bento Architecture Highlights" width="100%" />
-</div>
 
 ---
 
@@ -308,10 +287,6 @@ sequenceDiagram
 
 All 14 published missions are authored, schema-validated, and verified through automated end-to-end Python AST compilation.
 
-<details>
-<summary><b>📦 Explore All 14 Published Missions (M001–M014)</b></summary>
-<br/>
-
 | Mission ID | English Title | Bengali Title | Client Industry (Rule 22) | Primary Concept Mastered | Status |
 |:---|:---|:---|:---|:---|:---:|
 | **M001** | Software Memory & Variables | সফটওয়্যারের মেমোরি | HealthTech (Patient Vitals) | Variables & `print()` standard output | `✓ Passed` |
@@ -328,8 +303,6 @@ All 14 published missions are authored, schema-validated, and verified through a
 | **M012** | Comparison Operators | মেমোরির দাঁড়িপাল্লা | E-Commerce (Discount Gates) | Evaluation operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) | `✓ Passed` |
 | **M013** | Nexus Progress Report | নেক্সাস প্রগ্রেস রিপোর্ট | Education Technology | Capstone integration of M001–M012 (0 new concepts) | `✓ Passed` |
 | **M014** | When Software Takes One Path | সফটওয়্যার যখন সিদ্ধান্ত নেয় | E-Commerce (Cart Routing) | Conditional execution using the `if` statement | `✓ Passed` |
-
-</details>
 
 ---
 
@@ -356,8 +329,7 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 <br/>
 
 <details>
-<summary><b>🗺️ Detailed 120-Mission Milestone Breakdown (Phases 1–5)</b></summary>
-<br/>
+<summary><b>🔍 Click to view Phase-by-Phase Detailed Milestone Tables</b></summary>
 
 #### Phase 1: Foundation (Missions 001–025)
 *Target: Mastery of fundamental Python constructs and deterministic control flow.*
@@ -427,10 +399,6 @@ The complete pedagogical master plan guides Bengali learners from absolute zero 
 
 Code correctness is an automated gate at NEXUS Academy. The repository features **1,640+ automated test assertions passing 100%** (1,189 foundational mission and schema assertions + 451 engine, error diagnostics, settings safety, and curriculum pipeline assertions) across 7 specialized validation suites validating missions, domain events, dictionary indices, error diagnostics, settings safety, curriculum graph dependencies, and step state persistence.
 
-<details>
-<summary><b>🧪 View Raw Automated Test Output (1,640 Assertions Passing)</b></summary>
-<br/>
-
 ```bash
 $ npm test
 ```
@@ -483,8 +451,6 @@ $ npm test
    Failed                    : 0
 ======================================================
 ```
-
-</details>
 
 ---
 

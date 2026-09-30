@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e1726" />
+      <stop offset="100%" stop-color="#080d16" />
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0c1726" />
+      <stop offset="100%" stop-color="#080c16" />
+    </linearGradient>
+    <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141126" />
+      <stop offset="100%" stop-color="#090814" />
+    </linearGradient>
+    <style>
+      .font-sans {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+      .font-mono {
+        font-family: 'SFMono-Regular', 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+      }
+      .card-title {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        fill: #f8fafc;
+      }
+      .card-desc {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 11.5px;
+        fill: #94a3b8;
+        line-height: 1.45;
+      }
+      .badge-text {
+        font-family: 'SFMono-Regular', 'JetBrains Mono', monospace;
+        font-size: 9.5px;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+
+  <!-- ================= CARD 1: 0ms WASM RUNTIME ================= -->
+  <g transform="translate(12, 10)">
+    <!-- Card Frame -->
+    <rect x="0" y="0" width="286" height="200" rx="10" fill="url(#cardGrad1)" stroke="#1e293b" stroke-width="1.2" />
+    <!-- Top Accent Line -->
+    <path d="M 10 0 L 276 0" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Icon & Tag -->
+    <rect x="16" y="16" width="34" height="34" rx="7" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-opacity="0.3" stroke-width="1" />
+    <text x="33" y="38" text-anchor="middle" font-size="16">⚡</text>
+
+    <rect x="58" y="23" width="112" height="20" rx="4" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-opacity="0.3" stroke-width="1" />
+    <text x="66" y="37" class="badge-text" fill="#34d399">0ms CLIENT RUNTIME</text>
+
+    <!-- Title -->
+    <text x="16" y="74" class="card-title">⚡ 0ms WASM Runtime</text>
+
+    <!-- Subtitle / Metric Pills -->
+    <g transform="translate(16, 86)">
+      <rect x="0" y="0" width="82" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="6" y="13" class="badge-text" fill="#cbd5e1">$0 Server Bills</text>
+
+      <rect x="88" y="0" width="84" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="94" y="13" class="badge-text" fill="#cbd5e1">CPython 3.12</text>
+
+      <rect x="178" y="0" width="76" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="184" y="13" class="badge-text" fill="#cbd5e1">100% Offline</text>
+    </g>
+
+    <!-- Description -->
+    <text x="16" y="126" class="card-desc">Code compiles and executes entirely inside</text>
+    <text x="16" y="144" class="card-desc">a dedicated Web Worker thread (Pyodide).</text>
+    <text x="16" y="162" class="card-desc">Zero queue latency, zero backend costs,</text>
+    <text x="16" y="180" class="card-desc" fill="#10b981">and an unblocked 60 FPS Monaco editor.</text>
+  </g>
+
+  <!-- ================= CARD 2: RULE 24 AST CONFINEMENT ================= -->
+  <g transform="translate(317, 10)">
+    <!-- Card Frame -->
+    <rect x="0" y="0" width="286" height="200" rx="10" fill="url(#cardGrad2)" stroke="#1e293b" stroke-width="1.2" />
+    <!-- Top Accent Line -->
+    <path d="M 10 0 L 276 0" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Icon & Tag -->
+    <rect x="16" y="16" width="34" height="34" rx="7" fill="#06b6d4" fill-opacity="0.12" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1" />
+    <text x="33" y="38" text-anchor="middle" font-size="16">🔒</text>
+
+    <rect x="58" y="23" width="124" height="20" rx="4" fill="#083344" fill-opacity="0.5" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1" />
+    <text x="66" y="37" class="badge-text" fill="#22d3ee">CLOSED-WORLD AST</text>
+
+    <!-- Title -->
+    <text x="16" y="74" class="card-title">🔒 Rule 24 AST Confinement</text>
+
+    <!-- Subtitle / Metric Pills -->
+    <g transform="translate(16, 86)">
+      <rect x="0" y="0" width="86" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="6" y="13" class="badge-text" fill="#cbd5e1">AST Inspection</text>
+
+      <rect x="92" y="0" width="76" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="98" y="13" class="badge-text" fill="#cbd5e1">Exit Code 2</text>
+
+      <rect x="174" y="0" width="80" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="180" y="13" class="badge-text" fill="#cbd5e1">Zero Leakage</text>
+    </g>
+
+    <!-- Description -->
+    <text x="16" y="126" class="card-desc">Automated compile-time Python AST visitor</text>
+    <text x="16" y="144" class="card-desc">audits every starter code and practice task.</text>
+    <text x="16" y="162" class="card-desc">Strictly halts CI if unearned syntax (loops,</text>
+    <text x="16" y="180" class="card-desc" fill="#22d3ee">functions, imports) enters a mission.</text>
+  </g>
+
+  <!-- ================= CARD 3: 23-EVENT DECOUPLED ENGINE ================= -->
+  <g transform="translate(622, 10)">
+    <!-- Card Frame -->
+    <rect x="0" y="0" width="286" height="200" rx="10" fill="url(#cardGrad3)" stroke="#1e293b" stroke-width="1.2" />
+    <!-- Top Accent Line -->
+    <path d="M 10 0 L 276 0" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Icon & Tag -->
+    <rect x="16" y="16" width="34" height="34" rx="7" fill="#a78bfa" fill-opacity="0.12" stroke="#a78bfa" stroke-opacity="0.3" stroke-width="1" />
+    <text x="33" y="38" text-anchor="middle" font-size="16">🧠</text>
+
+    <rect x="58" y="23" width="124" height="20" rx="4" fill="#2e1065" fill-opacity="0.5" stroke="#a78bfa" stroke-opacity="0.3" stroke-width="1" />
+    <text x="66" y="37" class="badge-text" fill="#c084fc">DECOUPLED EVENTBUS</text>
+
+    <!-- Title -->
+    <text x="16" y="74" class="card-title">🧠 23-Event Decoupled Bus</text>
+
+    <!-- Subtitle / Metric Pills -->
+    <g transform="translate(16, 86)">
+      <rect x="0" y="0" width="86" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="6" y="13" class="badge-text" fill="#cbd5e1">2-Phase Seal</text>
+
+      <rect x="92" y="0" width="82" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="98" y="13" class="badge-text" fill="#cbd5e1">SM-2 Spaced</text>
+
+      <rect x="180" y="0" width="74" height="18" rx="3" fill="#1e293b" fill-opacity="0.8" />
+      <text x="186" y="13" class="badge-text" fill="#cbd5e1">DAG Unlock</text>
+    </g>
+
+    <!-- Description -->
+    <text x="16" y="126" class="card-desc">Zero tight coupling between UI and core logic.</text>
+    <text x="16" y="144" class="card-desc">Synchronous pub/sub orchestrates dynamic</text>
+    <text x="16" y="162" class="card-desc">scoring, level-ups, DAG prerequisites, and</text>
+    <text x="16" y="180" class="card-desc" fill="#c084fc">SuperMemo SM-2 spaced review scheduling.</text>
+  </g>
+</svg>
