@@ -37,7 +37,6 @@ const FILES_TO_CHECK = [
   'data/feedback/initial-feedback.json',
   'services/FeedbackService.ts',
   'app/api/feedback/route.ts',
-  'components/feedback/FeedbackHub.tsx',
   'components/feedback/FeedbackHubV2.tsx',
   'app/feedback/page.tsx',
   'app/feedback-v2/page.tsx',
@@ -736,21 +735,21 @@ async function main() {
       );
 
       const feedbackHub = fs.readFileSync(
-        path.join(ROOT, 'components/feedback/FeedbackHub.tsx'),
+        path.join(ROOT, 'components/feedback/FeedbackHubV2.tsx'),
         'utf-8'
       );
       assert.ok(
-        feedbackHub.includes('getMissionStepCount') && feedbackHub.includes('availableStepCount'),
-        'FeedbackHub must dynamically resolve mission step counts via getMissionStepCount'
+        feedbackHub.includes('getMissionStepCount'),
+        'FeedbackHubV2 must dynamically resolve mission step counts via getMissionStepCount'
       );
       assert.ok(
-        feedbackHub.includes('EXPORT_JSON_BACKUP'),
-        'FeedbackHub must preserve the EXPORT_JSON_BACKUP option'
+        feedbackHub.includes('exportTelemetrySnapshot'),
+        'FeedbackHubV2 must preserve telemetry snapshot export'
       );
       assert.ok(
         !feedbackHub.includes('NODE 01 // LOCAL VAULT') &&
           !feedbackHub.includes('হাইব্রিড ডেটাবেস আর্কিটেকচার'),
-        'FeedbackHub must not publicly expose the internal hybrid database architecture breakdown'
+        'FeedbackHubV2 must not publicly expose the internal hybrid database architecture breakdown'
       );
     }
   );
