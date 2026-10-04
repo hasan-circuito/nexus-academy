@@ -5,7 +5,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, BookOpen, BarChart3, Settings, Play, ArrowRight } from 'lucide-react';
+import { LayoutDashboard, BookOpen, BarChart3, MessageSquareCode, Settings, Play, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useProgress } from '@/hooks/useProgress';
 
@@ -19,6 +19,7 @@ const BOTTOM_NAV_ITEMS: readonly NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Dictionary', href: '/dictionary', icon: BookOpen },
   { label: 'Progress', href: '/progress', icon: BarChart3 },
+  { label: 'Feedback', href: '/feedback', icon: MessageSquareCode },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
