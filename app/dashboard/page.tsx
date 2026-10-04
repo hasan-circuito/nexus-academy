@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Play, Lock, BookOpen, Star, Target, Flame, Trophy, Activity, ArrowRight, BookMarked, Code2 } from 'lucide-react';
+import { Play, Lock, BookOpen, Star, Target, Flame, Trophy, Activity, ArrowRight, BookMarked, Code2, Sparkles } from 'lucide-react';
 import manifest from '@/data/missions/manifest.json';
 import mission001 from '@/data/missions/mission-001.json';
 import { useProgress } from '@/hooks/useProgress';
@@ -56,6 +56,39 @@ export default function DashboardPage() {
 
   return (
     <div className="p-6 lg:p-10 max-w-7xl mx-auto space-y-8 pb-24">
+      {/* Version Switcher Pill (Experiment Safe Switcher) */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-2xl bg-card border border-border">
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20">
+            <Sparkles className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-foreground">ড্যাশবোর্ড মোড নির্বাচন</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-elevated text-foreground-muted border border-border">
+                v1 Classic Active
+              </span>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-0.5">
+              নতুন আধুনিক ২১st.dev ককপিট ড্যাশবোর্ড টেস্ট করতে পাশের বাটনে ক্লিক করুন
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-surface-elevated border border-border shrink-0">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-primary bg-primary/10 border border-primary/20 shadow-sm">
+            <span>◈ Dashboard v1 (ক্লাসিক)</span>
+          </div>
+          <Link
+            href="/dashboard-v2"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span>⬡ Dashboard v2 (21st.dev ককপিট)</span>
+          </Link>
+        </div>
+      </div>
+
       {/* Welcome Hero */}
       <section className="space-y-2">
         <h1 className="text-3xl font-bold text-foreground">Welcome back, Learner</h1>
