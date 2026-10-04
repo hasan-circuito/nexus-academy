@@ -1,0 +1,213 @@
+{
+  "directives": [
+    {
+      "id": "dir-001",
+      "code": "DIR-2026.04",
+      "authorName": "Hasan Mahmud",
+      "authorBadge": "FOUNDER // LEARNER #0",
+      "tag": "[DIRECTIVE // ROADMAP_PULSE]",
+      "title": "নির্মাতার বার্তা: তোমাদের মতামতেই গড়ে উঠছে NEXUS Academy",
+      "content": "NEXUS Academy কোনো একতরফা টিউটোরিয়াল সাইট নয়—এটি আমাদের সবার লার্নিং ইঞ্জিনিয়ারিং ল্যাব। কোনো মিশনের কোনো ধাপ বুঝতে অসুবিধা হলে, কোড রান করতে প্রবলেম হলে কিংবা নতুন কোনো ফিচারের আইডিয়া থাকলে সরাসরি নিচে জানাও। প্রতিটি ফিডব্যাক আমি নিজে পড়ি এবং তোমাদের ফিডব্যাক অনুযায়ীই পরবর্তী আপডেট ও সমাধান তৈরি হয়।",
+      "createdAt": "2026-10-04T04:00:00.000Z",
+      "pinned": true,
+      "poll": {
+        "id": "poll-roadmap-q4",
+        "questionBangla": "পরবর্তী প্ল্যাটফর্ম আপডেটে কোন মডিউলটি তোমাদের সবচেয়ে বেশি কাজে আসবে?",
+        "questionEnglish": "NEXT SPRINT PRIORITY MATRIX // SELECT TARGET MODULE",
+        "options": [
+          {
+            "id": "opt-missions-15-20",
+            "code": "MOD-01",
+            "labelBangla": "মিশন ১৫–২০: if-else ব্রাঞ্চিং এবং Loop অটোমেশন সিমুলেটর",
+            "labelEnglish": "Missions 015–020: Conditional Branching & Loop Automation",
+            "votes": 42
+          },
+          {
+            "id": "opt-memory-tracer",
+            "code": "MOD-02",
+            "labelBangla": "ভিজ্যুয়াল মেমোরি ট্রেসার: প্রতিটি লাইনে ভ্যারিয়েবল কীভাবে বদলায় তার লাইভ গ্রাফ",
+            "labelEnglish": "Step-by-Step Visual Memory & Variable State Tracer",
+            "votes": 35
+          },
+          {
+            "id": "opt-sandbox-vault",
+            "code": "MOD-03",
+            "labelBangla": "ওপেন পাইথন প্লেগ্রাউন্ড: নিজের মতো ছোট প্রজেক্ট লিখে সেভ করার ল্যাব",
+            "labelEnglish": "Open Python Sandbox & Personal Project Snippet Vault",
+            "votes": 29
+          }
+        ]
+      }
+    },
+    {
+      "id": "dir-002",
+      "code": "DIR-2026.03",
+      "authorName": "Hasan Mahmud",
+      "authorBadge": "FOUNDER // LEARNER #0",
+      "tag": "[SYS_UPDATE // v0.4.0]",
+      "title": "সিস্টেম আপডেট v0.4.0: মিশন ১১ থেকে ১৪ এবং ডিকশনারি প্রবলেম সলভিং হাব যুক্ত হয়েছে",
+      "content": "তোমাদের অনেকের অনুরোধ ছিল Boolean Logic, Comparison Operators এবং if-statement এর বাস্তব ইঞ্জিনিয়ারিং উদাহরণ যুক্ত করার। নতুন আপডেটে মিশন ১১–১৪ সম্পূর্ণ বাংলায় ভিজ্যুয়াল মেন্টাল মডেলসহ যুক্ত করা হয়েছে। এছাড়া প্রতিটি ধাপে তোমাদের লেখা কোড স্বয়ংক্রিয়ভাবে সেভ থাকার ব্যবস্থা (Step Persistence) চালু করা হয়েছে।",
+      "createdAt": "2026-10-02T14:30:00.000Z",
+      "pinned": false
+    }
+  ],
+  "items": [
+    {
+      "id": "fb-101",
+      "code": "TLM-0101",
+      "category": "improve",
+      "status": "in_progress",
+      "impact": "high_impact",
+      "authorName": "তানভীর আহমেদ (EEE '23)",
+      "title": "প্রতিটি মিশন শেষে ছোট একটি হার্ডওয়্যার বা সেন্সর ডেটা প্রজেক্ট থাকলে আরও দারুণ হতো",
+      "message": "মিশন ০১ থেকে ০৯ পর্যন্ত ক্যালকুলেটর এবং ইনপুট সিস্টেমগুলো খুব সুন্দরভাবে বোঝানো হয়েছে। যেহেতু আমরা অনেকেই ইঞ্জিনিয়ারিং ব্যাকগ্রাউন্ডের, তাই ভোল্টেজ, কারেন্ট বা সেন্সর থ্রেশহোল্ড চেক করার মতো অতিরিক্ত অনুশীলন (Optional Mini Lab) থাকলে কনসেপ্টগুলো আরও গভীরভাবে মনে থাকত।",
+      "createdAt": "2026-10-03T16:20:00.000Z",
+      "resonances": 27,
+      "telemetry": {
+        "missionId": "009",
+        "missionTitle": "Dynamic Math",
+        "stepNumber": 11,
+        "theme": "midnight",
+        "learnerXp": 840,
+        "learnerLevel": 4
+      },
+      "replies": [
+        {
+          "id": "rep-201",
+          "authorName": "Hasan Mahmud",
+          "authorRole": "Founder & Learner #0",
+          "badgeCode": "FOUNDER // HASAN MAHMUD",
+          "content": "ধন্যবাদ! আমরা এটি নিয়ে কাজ করতেছি, আপডেট চলমান। ইতিমধ্যে মিশন ১১ ও ১২-তে থার্মাল সেন্সর ও ব্যাটারি ভোল্টেজ কম্প্যারিজনের উদাহরণ যুক্ত করা হয়েছে এবং সামনের মিশনগুলোতে ডেডিকেটেড ইঞ্জিনিয়ারিং মিনি-ল্যাব আসছে।",
+          "createdAt": "2026-10-03T18:05:00.000Z",
+          "statusUpdatedTo": "in_progress"
+        }
+      ],
+      "syncOrigin": "seed"
+    },
+    {
+      "id": "fb-102",
+      "code": "TLM-0102",
+      "category": "problem",
+      "status": "resolved",
+      "impact": "high_impact",
+      "authorName": "সাদিয়া ইসলাম",
+      "title": "মিশন ০০৪-এর ধাপ ৮-এ স্ট্রিং কোটেশন ভুলে বাদ পড়লে এরর মেসেজটি আরও সহজ বাংলায় দেখালে ভালো হয়",
+      "message": "আমি যখন print(Hello) লিখছিলাম কোটেশন ছাড়া, তখন NameError আসছিল। নতুনদের জন্য প্রথমবার NameError দেখলে একটু কনফিউজিং লাগে যে কেন এটি ভ্যারিয়েবল খুঁজছে। এখানে বাংলায় একটি ছোট হিন্ট দিলে খুব উপকার হয়।",
+      "createdAt": "2026-10-02T09:15:00.000Z",
+      "resonances": 19,
+      "telemetry": {
+        "missionId": "004",
+        "missionTitle": "When Information Has a Type",
+        "stepNumber": 8,
+        "theme": "cyber-oasis",
+        "learnerXp": 360,
+        "learnerLevel": 2
+      },
+      "replies": [
+        {
+          "id": "rep-202",
+          "authorName": "Hasan Mahmud",
+          "authorRole": "Founder & Learner #0",
+          "badgeCode": "FOUNDER // HASAN MAHMUD",
+          "content": "সমস্যাটি চিহ্নিত হয়েছে এবং আমাদের Error Diagnostics ইঞ্জিনে এর সমাধান যুক্ত করা হয়েছে। এখন কোটেশন ছাড়া টেক্সট লিখলে সরাসরি বাংলায় ব্যাখ্যা দেখানো হয় কেন পাইথন সেটিকে ভ্যারিয়েবল মনে করছে।",
+          "createdAt": "2026-10-02T12:40:00.000Z",
+          "statusUpdatedTo": "resolved"
+        }
+      ],
+      "syncOrigin": "seed"
+    },
+    {
+      "id": "fb-103",
+      "code": "TLM-0103",
+      "category": "improve",
+      "status": "planned",
+      "impact": "standard",
+      "authorName": "মাহমুদুল হাসান রাকিব",
+      "title": "ডিকশনারি পেজের কনসেপ্টগুলো বুকমার্ক বা 'নিজের নোট' হিসেবে সেভ রাখার অপশন চাই",
+      "message": "Problem Solving Hub (Dictionary)-এ প্রতিটি টপিকের বাংলা ব্যাখ্যাগুলো রিভিশনের জন্য অসাধারণ। যদি কঠিন মনে হওয়া টপিকগুলোর পাশে ছোট করে নিজের ভাষায় ১-২ লাইনের নোট লিখে রাখার ব্যবস্থা থাকে, তবে পরীক্ষার আগে বা প্র্যাকটিসের সময় দ্রুত দেখে নেওয়া যাবে।",
+      "createdAt": "2026-10-03T21:10:00.000Z",
+      "resonances": 15,
+      "telemetry": {
+        "theme": "warm-zen",
+        "learnerXp": 620,
+        "learnerLevel": 3
+      },
+      "replies": [
+        {
+          "id": "rep-203",
+          "authorName": "Hasan Mahmud",
+          "authorRole": "Founder & Learner #0",
+          "badgeCode": "FOUNDER // HASAN MAHMUD",
+          "content": "চমৎকার আইডিয়া! এটি আমাদের রোডম্যাপে যুক্ত করা হলো। ডিকশনারির প্রতিটি কার্ডে পার্সোনাল মাইক্রো-নোট যুক্ত করার ফিচারটি আমরা পরবর্তী স্প্রিন্টে নিয়ে আসছি।",
+          "createdAt": "2026-10-04T01:15:00.000Z",
+          "statusUpdatedTo": "planned"
+        }
+      ],
+      "syncOrigin": "seed"
+    },
+    {
+      "id": "fb-104",
+      "code": "TLM-0104",
+      "category": "feedback",
+      "status": "resolved",
+      "impact": "standard",
+      "authorName": "নাফিস করিম",
+      "title": "মুখস্থ না করে মেমোরি বক্স ও পাইপলাইনের মাধ্যমে পাইথন শেখার পদ্ধতিটা সত্যিই আলাদা",
+      "message": "আগে ইউটিউবে অনেক ভিডিও দেখেছি কিন্তু কেন x = x + 1 কাজ করে বা ডান পাশের হিসাব আগে হয় সেটি কখনো মাথায় ঢোকেনি। মিশন ০০৬-এর টু-স্টেপ অ্যাসাইনমেন্ট পাইপলাইন করার পর প্রথমবার মনে হলো আমি সত্যিই প্রোগ্রামিং বুঝতে পারছি। পুরো টিমকে ধন্যবাদ!",
+      "createdAt": "2026-10-01T19:45:00.000Z",
+      "resonances": 34,
+      "telemetry": {
+        "missionId": "006",
+        "missionTitle": "The Assignment Pipeline",
+        "stepNumber": 13,
+        "theme": "nordic",
+        "learnerXp": 550,
+        "learnerLevel": 3
+      },
+      "replies": [
+        {
+          "id": "rep-204",
+          "authorName": "Hasan Mahmud",
+          "authorRole": "Founder & Learner #0",
+          "badgeCode": "FOUNDER // HASAN MAHMUD",
+          "content": "তোমার এই কথাটি আমাদের সবচেয়ে বড় অনুপ্রেরণা। মুখস্থবিদ্যা বাদ দিয়ে তোমরা যেন সত্যিকারের সফটওয়্যার ইঞ্জিনিয়ারের মতো চিন্তা করতে পারো, সেটিই NEXUS Academy-এর মূল লক্ষ্য।",
+          "createdAt": "2026-10-01T21:00:00.000Z",
+          "statusUpdatedTo": "resolved"
+        }
+      ],
+      "syncOrigin": "seed"
+    },
+    {
+      "id": "fb-105",
+      "code": "TLM-0105",
+      "category": "problem",
+      "status": "in_progress",
+      "impact": "standard",
+      "authorName": "রাশেদুল ইসলাম",
+      "title": "মোবাইল ব্রাউজারে মিশন কোড এডিটরে কিবোর্ড ওপেন করলে নিচের নেভিগেশন বাটন মাঝে মাঝে ঢেকে যায়",
+      "message": "আমি ফোন থেকে মিশন ০১০ প্র্যাকটিস করার সময় খেয়াল করলাম, কোড লেখার সময় অ্যান্ড্রয়েড কিবোর্ড ওপেন থাকলে রান বাটন দেখতে একটু স্ক্রল করতে হয়। মোবাইল ভিউতে এডিটর হাইট একটু কমপ্যাক্ট করলে আরও সুবিধা হবে।",
+      "createdAt": "2026-10-04T03:20:00.000Z",
+      "resonances": 11,
+      "telemetry": {
+        "missionId": "010",
+        "missionTitle": "Modern String Formatting",
+        "stepNumber": 9,
+        "theme": "midnight",
+        "learnerXp": 910,
+        "learnerLevel": 4
+      },
+      "replies": [
+        {
+          "id": "rep-205",
+          "authorName": "Hasan Mahmud",
+          "authorRole": "Founder & Learner #0",
+          "badgeCode": "FOUNDER // HASAN MAHMUD",
+          "content": "ধন্যবাদ! আমরা এটি নিয়ে কাজ করতেছি, আপডেট চলমান। মোবাইল ভিউপোর্টে ভার্চুয়াল কিবোর্ড ওপেন হলে এডিটর যেন স্বয়ংক্রিয়ভাবে রিসাইজ হয়, সেটির লেআউট অপ্টিমাইজেশন চলছে।",
+          "createdAt": "2026-10-04T04:10:00.000Z",
+          "statusUpdatedTo": "in_progress"
+        }
+      ],
+      "syncOrigin": "seed"
+    }
+  ]
+}
