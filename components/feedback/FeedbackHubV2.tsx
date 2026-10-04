@@ -370,27 +370,6 @@ export function FeedbackHubV2() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto space-y-6 pb-28">
       {/* ============================================================
-       * 1. VERSION COMPARISON BAR (Discussion 1 vs Discussion 2)
-       * ============================================================ */}
-      <div className="flex flex-wrap items-center justify-between gap-2 p-2 rounded-xl bg-surface-elevated/70 border border-border">
-        <div className="flex items-center gap-1.5">
-          <Link
-            href="/feedback"
-            className="text-xs font-semibold px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface transition-colors font-bangla-ui"
-          >
-            Discussion 1 (v1 ক্লাসিক্যাল)
-          </Link>
-          <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-bangla-ui flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Discussion 2 (v2 ক্লিন ও আধুনিক)</span>
-          </span>
-        </div>
-        <span className="text-[11px] text-muted-foreground font-bangla hidden sm:inline">
-          সহজ, পরিষ্কার ও হিজিবিজি-মুক্ত ডেমো ভিউয়ার
-        </span>
-      </div>
-
-      {/* ============================================================
        * 2. ELEGANT IMMERSIVE HEADER & CREATOR AUTH
        * ============================================================ */}
       <header className="relative rounded-2xl border border-border bg-card p-6 sm:p-7 space-y-4 shadow-sm overflow-hidden">
