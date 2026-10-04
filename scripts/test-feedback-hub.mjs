@@ -737,6 +737,15 @@ async function main() {
         feedbackHub.includes('getMissionStepCount') && feedbackHub.includes('availableStepCount'),
         'FeedbackHub must dynamically resolve mission step counts via getMissionStepCount'
       );
+      assert.ok(
+        feedbackHub.includes('EXPORT_JSON_BACKUP'),
+        'FeedbackHub must preserve the EXPORT_JSON_BACKUP option'
+      );
+      assert.ok(
+        !feedbackHub.includes('NODE 01 // LOCAL VAULT') &&
+          !feedbackHub.includes('হাইব্রিড ডেটাবেস আর্কিটেকচার'),
+        'FeedbackHub must not publicly expose the internal hybrid database architecture breakdown'
+      );
     }
   );
 
