@@ -87,8 +87,11 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
 
       {/* Connected Timeline */}
       <div className="relative">
-        {/* Continuous Track Line */}
-        <div className="absolute top-5 left-4 md:left-5 bottom-6 w-0.5 bg-gradient-to-b from-emerald-500 via-cyan-500 to-zinc-800" />
+        {/* Continuous Tracing Laser Track */}
+        <div className="absolute top-5 left-4 md:left-5 bottom-6 w-1 rounded-full bg-zinc-800 overflow-hidden shadow-[0_0_10px_rgba(6,182,212,0.4)]">
+          <div className="w-full h-full bg-gradient-to-b from-emerald-400 via-cyan-400 to-purple-500/40" />
+          <div className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent opacity-70 animate-pulse" />
+        </div>
 
         <div className="space-y-6">
           {PHASE_DEFINITIONS.map(phase => {

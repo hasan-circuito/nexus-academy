@@ -639,3 +639,38 @@ html.font-large {
     @apply font-sans;
   }
 }
+
+/* ============================================================
+ * Magic UI & Aceternity Animation Keyframes
+ * ============================================================ */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateY(calc(var(--radius) * 1)) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(calc(var(--radius) * 1)) rotate(-360deg);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+.animate-orbit {
+  animation: orbit var(--duration) linear infinite var(--direction);
+}
+
+.animate-spin-slow {
+  animation: spin-slow var(--speed, 4s) linear infinite;
+}
