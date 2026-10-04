@@ -32,7 +32,7 @@ export default function DashboardV2Page() {
               </span>
             </div>
             <p className="text-[11px] text-zinc-400 mt-0.5">
-              BorderBeam motion glow, GitHub-style execution heatmap, and structured curriculum roadmap
+              Living fire border beam, GitHub-style execution heatmap, and structured curriculum roadmap
             </p>
           </div>
         </div>
