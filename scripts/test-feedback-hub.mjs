@@ -38,7 +38,9 @@ const FILES_TO_CHECK = [
   'services/FeedbackService.ts',
   'app/api/feedback/route.ts',
   'components/feedback/FeedbackHub.tsx',
+  'components/feedback/FeedbackHubV2.tsx',
   'app/feedback/page.tsx',
+  'app/feedback-v2/page.tsx',
   'components/mission/MissionFooter.tsx',
 ];
 
@@ -700,7 +702,11 @@ async function main() {
     () => {
       const appConstants = fs.readFileSync(path.join(ROOT, 'constants/app.ts'), 'utf-8');
       assert.ok(appConstants.includes("FEEDBACK: '/feedback'"), 'ROUTES.FEEDBACK missing');
-      assert.ok(appConstants.includes("label: 'Feedback'"), 'NAV_ITEMS Feedback missing');
+      assert.ok(appConstants.includes("FEEDBACK_V2: '/feedback-v2'"), 'ROUTES.FEEDBACK_V2 missing');
+      assert.ok(
+        appConstants.includes('ROUTES.FEEDBACK') && appConstants.includes('ROUTES.FEEDBACK_V2'),
+        'NAV_ITEMS Feedback routes missing'
+      );
 
       const sidebar = fs.readFileSync(path.join(ROOT, 'components/layout/Sidebar.tsx'), 'utf-8');
       assert.ok(

@@ -30,16 +30,18 @@ export const ROUTES = {
   DICTIONARY: '/dictionary',
   PROGRESS: '/progress',
   FEEDBACK: '/feedback',
+  FEEDBACK_V2: '/feedback-v2',
   SETTINGS: '/settings',
   ABOUT: '/about',
 } as const;
 
 // Navigation items (for Sidebar)
 export const NAV_ITEMS = [
-  { label: 'Dashboard',  href: ROUTES.DASHBOARD,  icon: 'LayoutDashboard' },
-  { label: 'Dictionary', href: ROUTES.DICTIONARY,  icon: 'BookOpen' },
-  { label: 'Progress',   href: ROUTES.PROGRESS,    icon: 'BarChart3' },
-  { label: 'Feedback',   href: ROUTES.FEEDBACK,    icon: 'MessageSquareCode' },
-  { label: 'Settings',   href: ROUTES.SETTINGS,    icon: 'Settings' },
-  { label: 'About',      href: ROUTES.ABOUT,       icon: 'Info' },
+  { label: 'Dashboard', href: ROUTES.DASHBOARD, icon: 'LayoutDashboard' },
+  { label: 'Dictionary', href: ROUTES.DICTIONARY, icon: 'BookOpen' },
+  { label: 'Progress', href: ROUTES.PROGRESS, icon: 'BarChart3' },
+  { label: 'Discussion 1', href: ROUTES.FEEDBACK, icon: 'MessageSquareCode' },
+  { label: 'Discussion 2 (v2)', href: ROUTES.FEEDBACK_V2, icon: 'Sparkles' },
+  { label: 'Settings', href: ROUTES.SETTINGS, icon: 'Settings' },
+  { label: 'About', href: ROUTES.ABOUT, icon: 'Info' },
 ] as const;

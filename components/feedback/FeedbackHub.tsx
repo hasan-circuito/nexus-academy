@@ -453,7 +453,28 @@ export function FeedbackHub() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-10 max-w-6xl mx-auto space-y-8 pb-28">
+    <div className="p-4 sm:p-6 lg:p-10 max-w-6xl mx-auto space-y-6 pb-28">
+      {/* Version Comparison Switcher */}
+      <div className="flex flex-wrap items-center justify-between gap-2 p-2 rounded-xl bg-surface-elevated/70 border border-border">
+        <div className="flex items-center gap-1.5">
+          <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-bangla-ui">
+            ◈ Discussion 1 (v1 ক্লাসিক্যাল)
+          </span>
+          <Link
+            href="/feedback-v2"
+            className="text-xs font-semibold px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface transition-colors font-bangla-ui flex items-center gap-1.5"
+          >
+            <span>Discussion 2 (v2 ক্লিন ও আধুনিক)</span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-primary/20 text-primary font-mono font-bold">
+              NEW
+            </span>
+          </Link>
+        </div>
+        <span className="text-[11px] text-muted-foreground font-bangla hidden sm:inline">
+          পাশাপাশি তুলনা করার জন্য এক্সপেরিমেন্টাল ভিউয়ার
+        </span>
+      </div>
+
       {/* ============================================================
        * 1. TELEMETRY COMMAND HEADER & ARCHITECTURE INSPECTOR
        * ============================================================ */}

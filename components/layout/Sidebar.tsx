@@ -9,6 +9,7 @@ import {
   BookOpen,
   BarChart3,
   MessageSquareCode,
+  Sparkles,
   Settings,
   Info,
   Zap,
@@ -29,6 +30,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   BookOpen,
   BarChart3,
   MessageSquareCode,
+  Sparkles,
   Settings,
   Info,
 };
@@ -144,7 +146,7 @@ export function Sidebar() {
             const Icon = ICON_MAP[item.icon];
             const isActive =
               pathname === item.href ||
-              (item.href !== '/dashboard' && pathname.startsWith(item.href));
+              (item.href !== '/dashboard' && pathname.startsWith(item.href + '/'));
 
             return (
               <Link
