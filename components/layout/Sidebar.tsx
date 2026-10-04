@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   BookOpen,
   BarChart3,
+  MessageSquareCode,
   Settings,
   Info,
   Zap,
@@ -27,6 +28,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   LayoutDashboard,
   BookOpen,
   BarChart3,
+  MessageSquareCode,
   Settings,
   Info,
 };
