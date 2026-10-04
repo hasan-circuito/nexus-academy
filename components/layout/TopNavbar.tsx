@@ -23,6 +23,7 @@ export function TopNavbar() {
     if (pathname === '/' || pathname === '/dashboard') return { title: 'Dashboard', bangla: 'ড্যাশবোর্ড' };
     if (pathname.startsWith('/progress')) return { title: 'Learning Journey', bangla: 'শেখার অগ্রগতি' };
     if (pathname.startsWith('/dictionary')) return { title: 'Problem Solving Hub', bangla: 'কনসেপ্ট ও প্রবলেম সলভিং' };
+    if (pathname.startsWith('/feedback')) return { title: 'Feedback & Telemetry', bangla: 'মতামত ও সাপোর্ট' };
     if (pathname.startsWith('/settings')) return { title: 'Settings', bangla: '' };
     if (pathname.startsWith('/about')) return { title: 'About NEXUS', bangla: 'সম্পর্কে' };
     if (pathname.startsWith('/debug')) return { title: 'Debug Lab', bangla: 'ডিবাগ ল্যাব' };
