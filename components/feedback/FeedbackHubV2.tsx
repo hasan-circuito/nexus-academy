@@ -381,14 +381,6 @@ export function FeedbackHubV2() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Discussion 2 (v2 ক্লিন ও আধুনিক)</span>
           </span>
-          <Link
-            href="/design-lab"
-            className="text-xs font-mono font-semibold px-2.5 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 transition-colors flex items-center gap-1"
-            title="Explore $6,000 Design Engineering Showcase Lab"
-          >
-            <Sparkles className="w-3 h-3" />
-            <span>$6,000 DESIGN_LAB</span>
-          </Link>
         </div>
         <span className="text-[11px] text-muted-foreground font-bangla hidden sm:inline">
           সহজ, পরিষ্কার ও হিজিবিজি-মুক্ত ডেমো ভিউয়ার
