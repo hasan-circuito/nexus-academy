@@ -46,14 +46,14 @@ export function HudStatusWidget({ className, onOpenSearch }: HudStatusWidgetProp
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold text-white tracking-tight">
-                স্বাগতম, কোডার!
+                Welcome back, Learner!
               </h2>
               <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700">
                 Pyodide WASM Active
               </span>
             </div>
             <p className="text-xs text-zinc-400 mt-0.5">
-              আজকের পাইথন চ্যালেঞ্জ সম্পন্ন করে আপনার লার্নিং স্ট্রিক ধরে রাখুন
+              Maintain your daily momentum by executing today's Python challenges
             </p>
           </div>
         </div>
@@ -70,12 +70,12 @@ export function HudStatusWidget({ className, onOpenSearch }: HudStatusWidgetProp
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5 leading-none">
-              <span className="text-lg font-extrabold text-white font-mono">{streakDays} দিন</span>
+              <span className="text-lg font-extrabold text-white font-mono">{streakDays} Days</span>
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">
                 STREAK
               </span>
             </div>
-            <span className="text-[11px] text-zinc-400 mt-1">ধারাবাহিক লার্নিং</span>
+            <span className="text-[11px] text-zinc-400 mt-1">Continuous Learning</span>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export function HudStatusWidget({ className, onOpenSearch }: HudStatusWidgetProp
           <div className="flex items-center justify-between text-xs mb-1.5">
             <div className="flex items-center gap-1.5 font-medium text-zinc-200">
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>লেভেল {currentLevel}: {levelTitle}</span>
+              <span>Level {currentLevel}: {isClient ? xpState.levelName : 'Learner'}</span>
             </div>
             <div className="font-mono text-zinc-400 text-[11px]">
               <span className="text-cyan-400 font-semibold">{currentXP}</span> XP
@@ -102,9 +102,9 @@ export function HudStatusWidget({ className, onOpenSearch }: HudStatusWidgetProp
           </div>
 
           <div className="flex items-center justify-between text-[10px] text-zinc-400 mt-1">
-            <span>পরবর্তী লেভেলে বাকি: {xpToNextLevel} XP</span>
+            <span>{xpToNextLevel} XP to Next Level</span>
             <span className="text-amber-400 flex items-center gap-0.5">
-              <Sparkles className="w-3 h-3" /> {xpPercent}% পূর্ণ
+              <Sparkles className="w-3 h-3" /> {xpPercent}% Complete
             </span>
           </div>
         </div>

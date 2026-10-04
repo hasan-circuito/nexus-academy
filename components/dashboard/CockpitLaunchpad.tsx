@@ -61,11 +61,11 @@ export function CockpitLaunchpad({ className }: CockpitLaunchpadProps) {
       ? `/mission/mission-${target.id}/step/0`
       : `/mission/mission-${target.id}/step/${savedStep}`;
 
-    let actionLabel = 'মিশন শুরু করুন';
+    let actionLabel = 'Start Mission';
     if (isCompleted) {
-      actionLabel = 'মিশন রিভিশন দিন';
+      actionLabel = 'Review Mission';
     } else if (savedStep > 0) {
-      actionLabel = `স্টেপ ${savedStep + 1}-এ ফিরে যান`;
+      actionLabel = `Resume Step ${savedStep + 1}`;
     }
 
     return {
@@ -105,7 +105,7 @@ export function CockpitLaunchpad({ className }: CockpitLaunchpadProps) {
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>চলমান মিশন • {isCompleted ? 'সম্পন্ন ✓' : 'অগ্রগতি চলছে'}</span>
+              <span>Active Mission • {isCompleted ? 'Completed ✓' : 'In Progress'}</span>
             </span>
 
             <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-mono">
@@ -134,17 +134,17 @@ export function CockpitLaunchpad({ className }: CockpitLaunchpadProps) {
           <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-zinc-400">
             <div className="flex items-center gap-1.5 bg-zinc-900/60 px-3 py-1.5 rounded-lg border border-zinc-800">
               <Layers className="w-3.5 h-3.5 text-cyan-400" />
-              <span>ধাপ: <strong className="text-white">{isCompleted ? totalSteps : savedStep + 1} / {totalSteps}</strong></span>
+              <span>Step: <strong className="text-white">{isCompleted ? totalSteps : savedStep + 1} / {totalSteps}</strong></span>
             </div>
 
             <div className="flex items-center gap-1.5 bg-zinc-900/60 px-3 py-1.5 rounded-lg border border-zinc-800">
               <Clock className="w-3.5 h-3.5 text-amber-400" />
-              <span>সময়: <strong className="text-white">~{mission.estimatedMinutes || 20} মিনিট</strong></span>
+              <span>Est: <strong className="text-white">~{mission.estimatedMinutes || 20} mins</strong></span>
             </div>
 
             <div className="flex items-center gap-1.5 bg-zinc-900/60 px-3 py-1.5 rounded-lg border border-zinc-800">
               <Cpu className="w-3.5 h-3.5 text-emerald-400" />
-              <span>অগ্রগতি: <strong className="text-emerald-400 font-mono">{progressPercent}%</strong></span>
+              <span>Progress: <strong className="text-emerald-400 font-mono">{progressPercent}%</strong></span>
             </div>
           </div>
 
@@ -177,7 +177,7 @@ export function CockpitLaunchpad({ className }: CockpitLaunchpadProps) {
             className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800/90 border border-zinc-700/80 text-zinc-300 hover:text-white text-xs font-medium transition-all"
           >
             <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
-            <span>কনসেপ্ট ডিকশনারি দেখুন</span>
+            <span>Explore Concept Dictionary</span>
           </Link>
         </div>
       </div>

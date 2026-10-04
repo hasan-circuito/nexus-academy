@@ -14,7 +14,7 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
   const reviewData = React.useMemo(() => {
     if (!isClient) {
       return {
-        conceptName: 'পাইথন মেমোরি রেফারেন্স ও ভ্যারিয়েবল পয়েন্টার',
+        conceptName: 'Python Memory Reference & Variable Pointers',
         missionId: '003',
         daysAgo: 3,
         suggestedMinutes: 2,
@@ -28,7 +28,7 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
     if (pendingReviews.length > 0) {
       const topReview = pendingReviews[0];
       return {
-        conceptName: `মিশন ${topReview.missionId}: কনসেপ্ট রিকল ড্রিল`,
+        conceptName: `Mission ${topReview.missionId}: Concept Recall Drill`,
         missionId: topReview.missionId,
         daysAgo: topReview.intervalDays || 1,
         suggestedMinutes: 2,
@@ -38,7 +38,7 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
 
     // Default concept drill based on completed mission or foundational
     return {
-      conceptName: 'পাইথন মেমোরি মডেল ও id() ফাংশন',
+      conceptName: 'Python Memory Model & id() Function',
       missionId: '004',
       daysAgo: 2,
       suggestedMinutes: 2,
@@ -64,13 +64,13 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
               <Brain className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-zinc-100">স্মৃতি রিভিশন ল্যাব</h3>
+              <h3 className="text-sm font-bold text-zinc-100">Spaced Recall Lab</h3>
               <p className="text-[11px] text-zinc-400 font-mono">SuperMemo SM-2 Spaced Recall</p>
             </div>
           </div>
 
           <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-            {reviewData.dueCount}টি প্রস্তুত
+            {reviewData.dueCount} Due
           </span>
         </div>
 
@@ -78,10 +78,10 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
         <div className="p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 text-xs space-y-2">
           <div className="flex items-center justify-between text-zinc-400 text-[11px]">
             <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3 text-amber-400" /> {reviewData.daysAgo} দিন আগে শেখা
+              <Clock className="w-3 h-3 text-amber-400" /> Learned {reviewData.daysAgo}d ago
             </span>
             <span className="text-purple-400 font-medium font-mono">
-              ~{reviewData.suggestedMinutes} মিনিট সময়
+              ~{reviewData.suggestedMinutes} min drill
             </span>
           </div>
 
@@ -90,7 +90,7 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
           </h4>
 
           <p className="text-zinc-400 text-[11px] leading-relaxed">
-            স্মৃতিতে দীর্ঘদিন স্থায়ী করতে কনসেপ্টটি ঝালাই করে নিন। রিভিশনে কোনো পেনাল্টি নেই।
+            Reinforce neural retention pathways through quick retrieval. Zero penalty.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export function SpacedRecallWidget({ className }: { className?: string }) {
             className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-purple-600/90 hover:bg-purple-500 text-white font-semibold text-xs transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)]"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>২ মিনিটের রিকল ড্রিল শুরু করুন</span>
+            <span>Start 2-Min Recall Drill</span>
             <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
           </Link>
         </div>

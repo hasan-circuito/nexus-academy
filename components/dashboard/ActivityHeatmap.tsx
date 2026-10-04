@@ -91,27 +91,27 @@ export function ActivityHeatmap({ className }: { className?: string }) {
           </div>
           <div>
             <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-1.5">
-              <span>ল্যাব কোড এক্সিকিউশন হিটম্যাপ</span>
+              <span>Lab Execution Heatmap</span>
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400">
                 GitHub-Style
               </span>
             </h3>
             <p className="text-xs text-zinc-400">
-              গত ২০ সপ্তাহে মোট <strong className="text-emerald-400">{totalExecutions} বার</strong> স্যান্ডবক্সে কোড রান ও টেস্ট পাস
+              <strong className="text-emerald-400">{totalExecutions} total executions</strong> & sandbox test runs over the last 20 weeks
             </p>
           </div>
         </div>
 
         {/* Legend */}
         <div className="flex items-center gap-2 text-xs text-zinc-400 self-start sm:self-auto">
-          <span className="text-[11px]">কম</span>
+          <span className="text-[11px]">Less</span>
           {[0, 1, 2, 3, 4].map(lvl => (
             <span
               key={lvl}
               className={cn('w-3 h-3 rounded-[3px] border', LEVEL_COLORS[lvl as 0 | 1 | 2 | 3 | 4])}
             />
           ))}
-          <span className="text-[11px]">বেশি</span>
+          <span className="text-[11px]">More</span>
         </div>
       </div>
 
@@ -151,19 +151,19 @@ export function ActivityHeatmap({ className }: { className?: string }) {
             >
               <Info className="w-3.5 h-3.5 text-emerald-400" />
               <span>
-                <strong className="text-emerald-400 font-mono">{hoveredDay.count}টি কোড রান</strong> — {hoveredDay.date}
+                <strong className="text-emerald-400 font-mono">{hoveredDay.count} executions</strong> on {hoveredDay.date}
               </span>
             </motion.div>
           ) : (
             <span className="text-zinc-500 italic flex items-center gap-1.5">
               <Sparkles className="w-3 h-3 text-cyan-400" />
-              যেকোনো সেলের ওপর মাউস নিয়ে তারিখ ও কোড রান সংখ্যা দেখুন
+              Hover over any cell to view execution count and date
             </span>
           )}
         </div>
 
         <span className="font-mono text-[11px] text-zinc-500 hidden sm:inline">
-          {progress?.streak?.current || 0} দিন সক্রিয় ধারাবাহিকতা
+          {progress?.streak?.current || 0} days active streak
         </span>
       </div>
     </div>

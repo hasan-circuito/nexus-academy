@@ -125,30 +125,30 @@ export function BentoMetricsGrid({ className }: { className?: string }) {
   return (
     <div className={cn('grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4', className)}>
       <BentoCard
-        title="বোধগম্যতা স্কোর"
+        title="Understanding Score"
         value={`${avgUnderstandingScore}%`}
-        subtitle="কুইজ, ডিবাগ ও প্র্যাকটিস চ্যালেঞ্জের সম্মিলিত স্কোর"
+        subtitle="Composite accuracy across quizzes, debugging & code practice"
         icon={Target}
         accent="emerald"
       />
       <BentoCard
-        title="মোট অর্জিত XP"
+        title="Total XP Earned"
         value={`${totalXP}`}
-        subtitle={`লেভেল ${isClient ? xpState.level : 1} (${isClient ? xpState.levelName : 'ল্যাব শিক্ষার্থী'})`}
+        subtitle={`Level ${isClient ? xpState.level : 1} (${isClient ? xpState.levelName : 'Learner'})`}
         icon={Trophy}
         accent="purple"
       />
       <BentoCard
-        title="লার্নিং স্ট্রিক"
-        value={`${streakDays} দিন`}
-        subtitle="প্রতিদিনের কোড সমাধান ও ল্যাব প্র্যাকটিস"
+        title="Active Streak"
+        value={`${streakDays} Days`}
+        subtitle="Consistent daily code executions & lab milestones"
         icon={Flame}
         accent="amber"
       />
       <BentoCard
-        title="ল্যাব মিশন সমাপ্তি"
+        title="Missions Completed"
         value={`${completedMissionsCount} / ${totalMissions}`}
-        subtitle={`কারিকুলামের ${Math.round((completedMissionsCount / totalMissions) * 100)}% সম্পন্ন হয়েছে`}
+        subtitle={`${Math.round((completedMissionsCount / totalMissions) * 100)}% of curriculum completed`}
         icon={Code2}
         accent="cyan"
       />

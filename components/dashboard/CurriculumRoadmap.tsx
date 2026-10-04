@@ -21,35 +21,33 @@ interface PhaseDefinition {
 const PHASE_DEFINITIONS: PhaseDefinition[] = [
   {
     id: 1,
-    phaseNumber: 'ফেজ ১',
-    title: 'ফান্ডামেন্টালস ও পাইথন মেমোরি মডেল',
-    tagline: 'ভ্যারিয়েবলস, অবজেক্ট রেফারেন্স, id() ফাংশন ও স্ট্রিং পরিচিতি',
+    phaseNumber: 'Phase 1',
+    title: 'Python Fundamentals & Memory Model',
+    tagline: 'Variables, object references, id() internals & string essentials',
     missionIds: ['001', '002', '003', '004', '005'],
   },
   {
     id: 2,
-    phaseNumber: 'ফেজ ২',
-    title: 'ইনপুট, টাইপ কনভার্সন ও স্ট্রিং ফরম্যাটিং',
-    tagline: 'input(), টাইপ কাস্টিং, গাণিতিক হিসাব ও আধুনিক f-strings',
+    phaseNumber: 'Phase 2',
+    title: 'Input, Type Casting & String Formatting',
+    tagline: 'input(), type conversion, arithmetic precision & modern f-strings',
     missionIds: ['006', '007', '008', '009', '010'],
   },
   {
     id: 3,
-    phaseNumber: 'ফেজ ৩',
-    title: 'বুলিয়ান লজিক, অপারেটরস ও ব্রাঞ্চিং',
-    tagline: 'লজিক্যাল ট্রুথ টেবিল, কম্প্যারিজন অপারেটরস ও if স্টেটমেন্টস',
+    phaseNumber: 'Phase 3',
+    title: 'Boolean Logic, Operators & Branching',
+    tagline: 'Truth tables, comparison operators & conditional if statements',
     missionIds: ['011', '012', '013', '014'],
   },
   {
     id: 4,
-    phaseNumber: 'ফেজ ৪ (আসন্ন)',
-    title: 'লুপস, ইটারেশন ও ডেটা স্ট্রাকচারস',
-    tagline: 'while & for লুপস, লিস্ট ম্যানিপুলেশন, ডিকশনারি ও ফাংশন আর্কিটেকচার',
+    phaseNumber: 'Phase 4 (Upcoming)',
+    title: 'Loops, Collections & Data Structures',
+    tagline: 'while & for loops, list manipulation, dictionaries & function design',
     missionIds: [],
   },
 ];
-
-const toBnDigits = (n: number | string) => n.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[+d]);
 
 export function CurriculumRoadmap({ className }: { className?: string }) {
   const { progress, isClient } = useProgress();
@@ -75,15 +73,15 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
         <div>
           <h3 className="text-lg font-bold text-white flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-cyan-400" />
-            <span>সিলেবাস মাইলস্টোন রোডম্যাপ (Phase Roadmap)</span>
+            <span>Curriculum Phase Roadmap</span>
           </h3>
           <p className="text-xs text-zinc-400 mt-0.5">
-            ১৪টি ল্যাব মিশনকে দীর্ঘ লিস্টের বদলে ৪টি সুবিন্যস্ত ফেজে সাজানো হয়েছে
+            14 interactive lab missions structured into 4 sequential mastery phases
           </p>
         </div>
 
         <span className="self-start sm:self-auto text-xs font-mono px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-          ১৪টি প্রকাশিত ল্যাব মিশন
+          14 Published Lab Missions
         </span>
       </div>
 
@@ -192,12 +190,12 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                         </h4>
                         {isActive && (
                           <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">
-                            চলমান ফেজ
+                            Current Phase
                           </span>
                         )}
                         {isCompleted && (
                           <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
-                            সম্পন্ন ✓
+                            Completed ✓
                           </span>
                         )}
                       </div>
@@ -207,7 +205,7 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                     <div className="flex items-center gap-3">
                       {totalInPhase > 0 && (
                         <span className="text-xs font-mono text-zinc-300">
-                          {toBnDigits(completedCount)} / {toBnDigits(totalInPhase)} মিশন ({toBnDigits(progressPct)}%)
+                          {completedCount} / {totalInPhase} Missions ({progressPct}%)
                         </span>
                       )}
                       <div className="p-1 rounded-md text-zinc-400 hover:text-white">
@@ -283,32 +281,32 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                             <div className="flex items-center gap-3 shrink-0 ml-3">
                               {mComplete ? (
                                 <span className="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
-                                  <CheckCircle2 className="w-3.5 h-3.5" /> ১০০%
+                                  <CheckCircle2 className="w-3.5 h-3.5" /> 100%
                                 </span>
                               ) : mLocked ? (
-                                <span className="text-zinc-600 flex items-center gap-1">
-                                  <Lock className="w-3 h-3" /> লকড
+                                <span className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-500 font-mono text-[11px] flex items-center gap-1.5 shrink-0">
+                                  <Lock className="w-3.5 h-3.5" /> Locked
                                 </span>
                               ) : (
                                 <span className="text-cyan-400 font-mono text-[11px] whitespace-nowrap">
-                                  ধাপ {toBnDigits(savedStep + 1)}/{toBnDigits(totalSteps)}
+                                  Step {savedStep + 1} / {totalSteps}
                                 </span>
                               )}
 
-                              <Link
-                                href={targetUrl}
-                                className={cn(
-                                  'px-3 py-1.5 rounded-md font-semibold text-[11px] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0',
-                                  mComplete
-                                    ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300'
-                                    : mLocked
-                                    ? 'bg-zinc-900 text-zinc-600 pointer-events-none'
-                                    : 'bg-cyan-500 hover:bg-cyan-400 text-zinc-950 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
-                                )}
-                              >
-                                {mComplete ? 'রিভিউ' : mLocked ? 'লক' : 'প্রবেশ'}
-                                {!mLocked && <ArrowRight className="w-3 h-3 shrink-0" />}
-                              </Link>
+                              {!mLocked && (
+                                <Link
+                                  href={targetUrl}
+                                  className={cn(
+                                    'px-3 py-1.5 rounded-md font-semibold text-[11px] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0',
+                                    mComplete
+                                      ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300'
+                                      : 'bg-cyan-500 hover:bg-cyan-400 text-zinc-950 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
+                                  )}
+                                >
+                                  {mComplete ? 'Review' : savedStep > 0 ? 'Resume' : 'Start'}
+                                  <ArrowRight className="w-3 h-3 shrink-0" />
+                                </Link>
+                              )}
                             </div>
                           </div>
                         );

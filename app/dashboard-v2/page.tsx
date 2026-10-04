@@ -26,13 +26,13 @@ export default function DashboardV2Page() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-white">পরীক্ষামূলক ড্যাশবোর্ড v2 (21st.dev Cockpit)</span>
+              <span className="text-xs font-bold text-white">Developer Cockpit (Dashboard v2)</span>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                 ACTIVE
               </span>
             </div>
             <p className="text-[11px] text-zinc-400 mt-0.5">
-              কার্ড বর্ডার মোশন, গিটহাব হিটম্যাপ ও ফেজ রোডম্যাপ ভিত্তিক আধুনিক ডেভেলপার ইন্টারফেস
+              BorderBeam motion glow, GitHub-style execution heatmap, and structured curriculum roadmap
             </p>
           </div>
         </div>
@@ -44,10 +44,10 @@ export default function DashboardV2Page() {
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-400 hover:text-zinc-200 transition-colors"
           >
             <LayoutGrid className="w-3.5 h-3.5" />
-            <span>Dashboard v1 (ক্লাসিক)</span>
+            <span>Dashboard v1 (Classic)</span>
           </Link>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-cyan-300 bg-cyan-500/15 border border-cyan-500/30 shadow-sm">
-            <span>⬡ Dashboard v2 (ককপিট)</span>
+            <span>⬡ Dashboard v2 (Cockpit)</span>
           </div>
         </div>
       </div>
@@ -60,11 +60,11 @@ export default function DashboardV2Page() {
               Dev Mode
             </span>
             <span className="text-zinc-200 font-medium">
-              ডেভেলপার প্রিভিউ মোড চালু আছে: সব মিশন এবং ল্যাব স্টেপ টেস্ট করার জন্য আনলকড।
+              Developer preview active: All missions and lab steps unlocked for testing.
             </span>
           </div>
           <Link href="/settings" className="font-semibold text-cyan-400 hover:underline shrink-0 ml-4 flex items-center gap-1">
-            <span>সেটিংস</span>
+            <span>Settings</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
