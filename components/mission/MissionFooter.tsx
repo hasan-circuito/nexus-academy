@@ -1,8 +1,9 @@
 'use client';
 
-import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle, X, MessageSquareCode } from 'lucide-react';
 import { ProgressEngine } from '@/engines/progress/ProgressEngine';
 import type { MissionData } from '@/types/mission.types';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useCallback, useState } from 'react';
 import { MissionProgressGate, type IncompleteStepInfo } from '@/services/MissionProgressGate';
@@ -78,10 +79,21 @@ export function MissionFooter({ missionData, currentIndex }: Props) {
           <ArrowLeft className="w-4 h-4" /> Previous
         </button>
 
-        {/* Step indicator */}
-        <span className="text-xs text-muted-foreground font-medium hidden sm:block">
-          {currentIndex + 1} / {totalSteps}
-        </span>
+        {/* Step indicator + Contextual Feedback Telemetry Trigger */}
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-muted-foreground font-mono font-medium hidden sm:inline">
+            {currentIndex + 1} / {totalSteps}
+          </span>
+          <Link
+            href={`/feedback?mission=${missionData.id}&step=${currentIndex + 1}`}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface hover:bg-surface-hover border border-border text-[11px] font-bangla text-muted-foreground hover:text-primary transition-colors"
+            title="Report a problem or suggest an improvement for this step"
+          >
+            <MessageSquareCode className="w-3.5 h-3.5 text-primary shrink-0" />
+            <span className="hidden md:inline">⌁ সমস্যা বা পরামর্শ? মতামত দিন</span>
+            <span className="md:hidden">⌁ মতামত</span>
+          </Link>
+        </div>
 
         <button
           onClick={handleNext}
