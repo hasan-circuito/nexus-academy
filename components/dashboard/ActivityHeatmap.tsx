@@ -116,7 +116,10 @@ export function ActivityHeatmap({ className }: { className?: string }) {
       </div>
 
       {/* Grid container */}
-      <div className="relative overflow-x-auto pb-2 scrollbar-none">
+      <div
+        className="relative overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         <div className="flex gap-1.5 min-w-max">
           {weeks.map((week, wIdx) => (
             <div key={wIdx} className="flex flex-col gap-1.5">

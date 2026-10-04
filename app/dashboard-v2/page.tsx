@@ -79,19 +79,20 @@ export default function DashboardV2Page() {
       {/* Section 3: Bento Grid Metrics (4 Spotlight Cards) */}
       <BentoMetricsGrid />
 
-      {/* Section 4: 2-Column Core Architecture */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column (7 cols): Milestone Curriculum Roadmap */}
-        <div className="lg:col-span-7 space-y-6">
-          <CurriculumRoadmap />
-        </div>
+      {/* Section 4: Full-Width Milestone Curriculum Roadmap */}
+      <section className="w-full">
+        <CurriculumRoadmap />
+      </section>
 
-        {/* Right Column (5 cols): Activity Heatmap & Spaced Recall */}
-        <div className="lg:col-span-5 space-y-6">
-          <ActivityHeatmap />
-          <SpacedRecallWidget />
+      {/* Section 5: Bottom Utility Hub (Activity Heatmap + Spaced Recall) */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="lg:col-span-7">
+          <ActivityHeatmap className="h-full" />
         </div>
-      </div>
+        <div className="lg:col-span-5">
+          <SpacedRecallWidget className="h-full" />
+        </div>
+      </section>
     </div>
   );
 }

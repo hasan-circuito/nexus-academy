@@ -49,6 +49,8 @@ const PHASE_DEFINITIONS: PhaseDefinition[] = [
   },
 ];
 
+const toBnDigits = (n: number | string) => n.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[+d]);
+
 export function CurriculumRoadmap({ className }: { className?: string }) {
   const { progress, isClient } = useProgress();
   const { settings } = useSettings();
@@ -176,8 +178,8 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                     className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 cursor-pointer select-none"
                   >
                     <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-zinc-400">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-mono font-bold text-zinc-400 whitespace-nowrap shrink-0 px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">
                           {phase.phaseNumber}
                         </span>
                         <h4
@@ -205,7 +207,7 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                     <div className="flex items-center gap-3">
                       {totalInPhase > 0 && (
                         <span className="text-xs font-mono text-zinc-300">
-                          {completedCount} / {totalInPhase} মিশন ({progressPct}%)
+                          {toBnDigits(completedCount)} / {toBnDigits(totalInPhase)} মিশন ({toBnDigits(progressPct)}%)
                         </span>
                       )}
                       <div className="p-1 rounded-md text-zinc-400 hover:text-white">
@@ -278,7 +280,7 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                               </div>
                             </div>
 
-                            <div className="flex items-center gap-3 shrink-0 ml-2">
+                            <div className="flex items-center gap-3 shrink-0 ml-3">
                               {mComplete ? (
                                 <span className="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
                                   <CheckCircle2 className="w-3.5 h-3.5" /> ১০০%
@@ -288,15 +290,15 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                                   <Lock className="w-3 h-3" /> লকড
                                 </span>
                               ) : (
-                                <span className="text-cyan-400 font-mono text-[11px]">
-                                  ধাপ {savedStep + 1}/{totalSteps}
+                                <span className="text-cyan-400 font-mono text-[11px] whitespace-nowrap">
+                                  ধাপ {toBnDigits(savedStep + 1)}/{toBnDigits(totalSteps)}
                                 </span>
                               )}
 
                               <Link
                                 href={targetUrl}
                                 className={cn(
-                                  'px-2.5 py-1 rounded-md font-semibold text-[11px] transition-colors flex items-center gap-1',
+                                  'px-3 py-1.5 rounded-md font-semibold text-[11px] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0',
                                   mComplete
                                     ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300'
                                     : mLocked
@@ -305,7 +307,7 @@ export function CurriculumRoadmap({ className }: { className?: string }) {
                                 )}
                               >
                                 {mComplete ? 'রিভিউ' : mLocked ? 'লক' : 'প্রবেশ'}
-                                {!mLocked && <ArrowRight className="w-3 h-3" />}
+                                {!mLocked && <ArrowRight className="w-3 h-3 shrink-0" />}
                               </Link>
                             </div>
                           </div>
