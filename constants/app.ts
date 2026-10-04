@@ -29,6 +29,7 @@ export const ROUTES = {
   MISSION_STEP: (id: string, step: number) => `/mission/${id}/step/${step}`,
   DICTIONARY: '/dictionary',
   PROGRESS: '/progress',
+  FEEDBACK: '/feedback',
   SETTINGS: '/settings',
   ABOUT: '/about',
 } as const;
@@ -38,6 +39,7 @@ export const NAV_ITEMS = [
   { label: 'Dashboard',  href: ROUTES.DASHBOARD,  icon: 'LayoutDashboard' },
   { label: 'Dictionary', href: ROUTES.DICTIONARY,  icon: 'BookOpen' },
   { label: 'Progress',   href: ROUTES.PROGRESS,    icon: 'BarChart3' },
+  { label: 'Feedback',   href: ROUTES.FEEDBACK,    icon: 'MessageSquareCode' },
   { label: 'Settings',   href: ROUTES.SETTINGS,    icon: 'Settings' },
   { label: 'About',      href: ROUTES.ABOUT,       icon: 'Info' },
 ] as const;
