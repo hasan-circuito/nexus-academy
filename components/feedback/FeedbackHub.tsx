@@ -14,7 +14,6 @@ import {
   Send,
   Lock,
   Unlock,
-  Layers,
   GitPullRequest,
   Activity,
   Filter,
@@ -22,8 +21,6 @@ import {
   CornerDownRight,
   Radio,
   MessageSquareCode,
-  ChevronDown,
-  ChevronUp,
   Download,
   Plus,
   X,
@@ -216,9 +213,6 @@ export function FeedbackHub() {
   const [showPinModal, setShowPinModal] = useState(false);
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState('');
-
-  // Architecture Drawer State
-  const [showArchitecture, setShowArchitecture] = useState(false);
 
   // New Directive Composer State (Creator Mode)
   const [showDirectiveComposer, setShowDirectiveComposer] = useState(false);
@@ -485,8 +479,8 @@ export function FeedbackHub() {
                 <Database className="w-3.5 h-3.5 text-primary" />
                 <span>
                   {syncStatus.cloudConfigured
-                    ? 'MODE // GITHUB_CLOUD_SYNC'
-                    : 'MODE // HYBRID_LOCAL + API_READY'}
+                    ? 'STATUS // CLOUD_SYNC_ACTIVE'
+                    : 'STATUS // TELEMETRY_ONLINE'}
                 </span>
               </span>
               <SignalWaveSvg />
@@ -500,26 +494,17 @@ export function FeedbackHub() {
             </p>
           </div>
 
-          {/* Right Controls: Architecture Inspector & Creator Console Toggle */}
+          {/* Right Controls: Export Backup & Creator Console Toggle */}
           <div className="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end gap-2.5 shrink-0">
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setShowArchitecture((prev) => !prev)}
-                className={cn(
-                  'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold border transition-all',
-                  showArchitecture
-                    ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                    : 'bg-surface-elevated hover:bg-surface-hover text-foreground border-border'
-                )}
+                onClick={handleExportSnapshot}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-elevated hover:bg-surface-hover border border-border text-xs font-mono font-semibold text-foreground shrink-0 transition-colors"
+                title="Download JSON backup of all feedback & telemetry"
               >
-                <Layers className="w-3.5 h-3.5" />
-                <span>[DB_ARCHITECTURE]</span>
-                {showArchitecture ? (
-                  <ChevronUp className="w-3.5 h-3.5" />
-                ) : (
-                  <ChevronDown className="w-3.5 h-3.5" />
-                )}
+                <Download className="w-3.5 h-3.5 text-primary" />
+                <span>EXPORT_JSON_BACKUP</span>
               </button>
 
               {creatorUnlocked ? (
@@ -596,72 +581,6 @@ export function FeedbackHub() {
               </button>
             </div>
           </form>
-        )}
-
-        {/* Collapsible Database & Storage Architecture Matrix */}
-        {showArchitecture && (
-          <div className="relative z-10 mt-6 pt-6 border-t border-border space-y-4 animate-in fade-in duration-200">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h2 className="text-sm font-bold text-foreground font-bangla-ui flex items-center gap-2">
-                  <Database className="w-4 h-4 text-primary" />
-                  <span>হাইব্রিড ডেটাবেস আর্কিটেকচার: এই ফিডব্যাকগুলো কোথায় এবং কীভাবে জমা হয়?</span>
-                </h2>
-                <p className="text-xs text-muted-foreground font-bangla mt-0.5">
-                  কোনো মাসিক সার্ভার খরচ ছাড়াই (Zero-Cost) অফলাইন এবং ক্লাউড—দুই মাধ্যমেই ডেটা সুরক্ষিত থাকে:
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={handleExportSnapshot}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-border text-xs font-mono text-foreground shrink-0 transition-colors"
-              >
-                <Download className="w-3.5 h-3.5 text-primary" />
-                <span>EXPORT_JSON_BACKUP</span>
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-xl bg-surface border border-border space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono text-primary font-bold">
-                  <span>NODE 01 // LOCAL VAULT</span>
-                  <span>[ACTIVE]</span>
-                </div>
-                <h3 className="text-sm font-semibold text-foreground font-bangla-ui">
-                  তাৎক্ষণিক ব্রাউজার ও সিড স্টোরেজ
-                </h3>
-                <p className="text-xs text-muted-foreground font-bangla leading-relaxed">
-                  ইউজার কমেন্ট বা ভোট দেওয়ার সাথে সাথে `localStorage` এবং `initial-feedback.json`-এর সাথে মার্জ হয়ে যায়। ফলে ইন্টারনেট না থাকলেও জিরো ল্যাটেন্সিতে কাজ করে।
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-surface border border-border space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono text-info font-bold">
-                  <span>NODE 02 // NEXT.JS API</span>
-                  <span>[/api/feedback]</span>
-                </div>
-                <h3 className="text-sm font-semibold text-foreground font-bangla-ui">
-                  সার্ভারলেস টেলিমেট্রি ব্রিজ
-                </h3>
-                <p className="text-xs text-muted-foreground font-bangla leading-relaxed">
-                  Next.js-এর বিল্ট-ইন `/api/feedback` রাউট প্রতিটি নতুন কমেন্ট, স্ট্যাটাস আপডেট এবং নির্মাতার রিপ্লাই ভ্যালিডেট করে ক্লাউডে সিঙ্ক করে।
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-surface border border-border space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono text-success font-bold">
-                  <span>NODE 03 // GITHUB CLOUD DB</span>
-                  <span>[{syncStatus.cloudConfigured ? 'CONNECTED' : 'READY'}]</span>
-                </div>
-                <h3 className="text-sm font-semibold text-foreground font-bangla-ui">
-                  GitHub Issues ক্লাউড ডেটাবেস
-                </h3>
-                <p className="text-xs text-muted-foreground font-bangla leading-relaxed">
-                  `GITHUB_FEEDBACK_TOKEN` যুক্ত থাকলে প্রতিটি ফিডব্যাক স্বয়ংক্রিয়ভাবে `{syncStatus.repo}` রিপোজিটরিতে লেবেলসহ জমা হয় এবং রিপ্লাইগুলো থ্রেড হিসেবে সেভ থাকে।
-                </p>
-              </div>
-            </div>
-          </div>
         )}
 
         {/* Live Telemetry Counters */}
