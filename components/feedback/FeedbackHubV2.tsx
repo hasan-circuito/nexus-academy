@@ -182,7 +182,7 @@ export function FeedbackHubV2() {
   const [filterCategory, setFilterCategory] = useState<'all' | FeedbackCategory>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | FeedbackStatus>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'resonances' | 'newest'>('resonances');
+  const [sortBy, setSortBy] = useState<'resonances' | 'newest'>('newest');
 
   // Creator Reply in-Card State
   const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
@@ -198,18 +198,29 @@ export function FeedbackHubV2() {
 
   useEffect(() => {
     let active = true;
-    feedbackService.syncWithCloud().then((res) => {
-      if (!active) return;
-      setItems(res.items);
-      setSyncStatus(res.syncStatus);
-      setResonatedIds(feedbackService.getResonatedIds());
-      setCreatorUnlockedFlag(feedbackService.isCreatorUnlocked(false));
-    });
+    const triggerSync = () => {
+      feedbackService.syncWithCloud().then((res) => {
+        if (!active) return;
+        setItems(res.items);
+        setSyncStatus(res.syncStatus);
+        setResonatedIds(feedbackService.getResonatedIds());
+        setCreatorUnlockedFlag(feedbackService.isCreatorUnlocked(false));
+      });
+    };
+
+    triggerSync();
+
+    // Auto-poll every 10s and sync on tab focus for seamless cross-device updates
+    const pollInterval = setInterval(triggerSync, 10000);
+    window.addEventListener('focus', triggerSync);
 
     const handleUpdate = () => refreshLocal();
     window.addEventListener('nexus_feedback_update', handleUpdate);
+
     return () => {
       active = false;
+      clearInterval(pollInterval);
+      window.removeEventListener('focus', triggerSync);
       window.removeEventListener('nexus_feedback_update', handleUpdate);
     };
   }, [refreshLocal]);
@@ -740,16 +751,47 @@ export function FeedbackHubV2() {
             })}
           </div>
 
-          {/* Search Input */}
-          <div className="relative min-w-[180px]">
-            <Search className="w-3.5 h-3.5 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="খুঁজুন..."
-              className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-surface border border-border text-xs font-bangla text-foreground focus:outline-none focus:border-primary"
-            />
+          {/* Controls: Sort Toggle + Search Input */}
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Sort Toggle */}
+            <div className="flex items-center p-0.5 rounded-lg bg-surface border border-border text-xs">
+              <button
+                type="button"
+                onClick={() => setSortBy('newest')}
+                className={cn(
+                  'px-2.5 py-1 rounded-md transition-colors font-bangla-ui text-[11px]',
+                  sortBy === 'newest'
+                    ? 'bg-amber-500/20 text-amber-300 font-semibold'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                সর্বশেষ
+              </button>
+              <button
+                type="button"
+                onClick={() => setSortBy('resonances')}
+                className={cn(
+                  'px-2.5 py-1 rounded-md transition-colors font-bangla-ui text-[11px]',
+                  sortBy === 'resonances'
+                    ? 'bg-amber-500/20 text-amber-300 font-semibold'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                জনপ্রিয়
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative min-w-[150px] sm:min-w-[180px]">
+              <Search className="w-3.5 h-3.5 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="খুঁজুন..."
+                className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-surface border border-border text-xs font-bangla text-foreground focus:outline-none focus:border-primary"
+              />
+            </div>
           </div>
         </div>
 

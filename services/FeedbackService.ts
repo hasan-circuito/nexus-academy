@@ -576,18 +576,56 @@ export class FeedbackService {
     }
 
     try {
-      const res = await fetch('/api/feedback', { method: 'GET' });
+      const localItems = this.getItems();
+      // Automatically upload any local items created before cloud sync was configured
+      const unsyncedLocalItems = localItems.filter(
+        (i) => !i.githubIssueNumber && !i.id.startsWith('fb-10') && i.syncOrigin === 'local'
+      );
+      if (unsyncedLocalItems.length > 0) {
+        for (const unItem of unsyncedLocalItems) {
+          try {
+            await fetch('/api/feedback', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'create_feedback',
+                payload: {
+                  id: unItem.id,
+                  code: unItem.code,
+                  category: unItem.category,
+                  impact: unItem.impact,
+                  authorName: unItem.authorName,
+                  title: unItem.title,
+                  message: unItem.message,
+                  telemetry: unItem.telemetry,
+                },
+              }),
+            });
+          } catch {
+            // Non-blocking fallback
+          }
+        }
+      }
+
+      const res = await fetch('/api/feedback', {
+        method: 'GET',
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          Pragma: 'no-cache',
+        },
+      });
       if (!res.ok) throw new Error('API request failed');
 
       const data = (await res.json()) as FeedbackStorePayload;
-      const localItems = this.getItems();
+      const currentLocal = this.getItems();
       const seedStatusMap = new Map(cloneSeedItems().map((s) => [s.id, s.status]));
 
       // Deep-merge remote items with local items without losing local replies, resonances, or status updates
       const remoteItems = Array.isArray(data.items) ? data.items : [];
       const remoteMap = new Map(remoteItems.map((r) => [r.id, r]));
 
-      const mergedItems: FeedbackItem[] = localItems.map((localItem) => {
+      const baseMerged: FeedbackItem[] = currentLocal.map((localItem) => {
         const remoteItem = remoteMap.get(localItem.id);
         if (!remoteItem) return localItem;
 
@@ -623,12 +661,16 @@ export class FeedbackService {
         };
       });
 
-      const localIds = new Set(localItems.map((i) => i.id));
+      const localIds = new Set(currentLocal.map((i) => i.id));
+      const freshRemoteItems: FeedbackItem[] = [];
       for (const rItem of remoteItems) {
         if (rItem && typeof rItem.id === 'string' && !localIds.has(rItem.id)) {
-          mergedItems.push(rItem);
+          freshRemoteItems.push(rItem);
         }
       }
+
+      // Prepend fresh remote items so new submissions from other devices appear immediately at the top
+      const mergedItems: FeedbackItem[] = [...freshRemoteItems, ...baseMerged];
 
       this.saveItems(mergedItems);
 

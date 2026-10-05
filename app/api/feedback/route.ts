@@ -15,6 +15,10 @@ import type {
   FeedbackStorePayload,
 } from '@/types/feedback.types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+
 const DEFAULT_GITHUB_REPO = 'hasan-circuito/nexus-academy';
 
 const VALID_CATEGORIES: FeedbackCategory[] = ['improve', 'problem', 'feedback'];
@@ -127,14 +131,15 @@ export async function GET() {
 
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${repo}/issues?labels=nexus-feedback&state=all&per_page=30`,
+      `https://api.github.com/repos/${repo}/issues?labels=nexus-feedback&state=all&per_page=50`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/vnd.github+json',
           'X-GitHub-Api-Version': '2022-11-28',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
         },
-        next: { revalidate: 30 },
+        cache: 'no-store',
       }
     );
 
